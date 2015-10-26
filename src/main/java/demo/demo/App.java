@@ -1,20 +1,21 @@
 package demo.demo;
 import java.rmi.RemoteException;
 
-import datadriver.DistanceDataDriver.DistanceDataDriver;
-import datadriver.GoodsDataDriver.GoodsDataDriver;
-import datadriver.TransDataDriver.TransDataDriver;
-import datadriver.UserDataDriver.UserDataDriver;
-import Driver.goodsblDriver.GoodsBLDriver;
-import Driver.transblDriver.TransBLDriver;
-import Driver.userblDriver.UserblDriver;
-import Stub.DistancedataStub.DistancedataStub;
-import Stub.GoodsdataStub.goodsdataStub;
-import Stub.UserdataStub.UserdataStub;
-import Stub.goodsblStub.goodsblStub;
-import Stub.transblStub.transblStub;
-import Stub.transdataStub.transdataStub;
-import Stub.userblStub.UserblStub;
+import transbl.TransBLDriver;
+import transbl.transblStub;
+import transdata.TransDataDriver;
+import transdata.transdataStub;
+import userbl.UserblDriver;
+import userbl.UserblStub;
+import userdata.UserDataDriver;
+import userdata.UserdataStub;
+import distancedata.DistanceDataDriver;
+import distancedata.DistancedataStub;
+import goodsbl.GoodsBLDriver;
+import goodsbl.goodsblStub;
+import goodsdata.GoodsDataDriver;
+import goodsdata.goodsdataStub;
+
 
 public class App {
 	public static void main(String[]args) throws RemoteException{
