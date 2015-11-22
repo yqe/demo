@@ -1,7 +1,6 @@
 package storagebl;
 
-import java.util.ArrayList;
-
+import po.StorageList;
 import po.StoragePO;
 import storageblService.StorageBlService;
 
@@ -15,14 +14,14 @@ public class StorageBlDriver {
 
 	public void Driver(StorageBlService sbs) {
 
-		sbs.InStorageInput();
+		sbs.InStorageInput(null);
 		sbs.InStorageDetele(0);
-		sbs.OutStorageinput();
+		sbs.OutStorageInput(null);
 		sbs.OutStorageDelete(0);
-		StoragePO[] sinfo = { new StoragePO("南京", "0000000001", "2015-10-11",
-				"上海", "航运区", 1, 1, 1) };
+		StorageList sinfo = new StorageList();
+		StoragePO sto = new StoragePO("南京", "0000000001", "2015-10-11", "上海", "航运区", 1, 1, 1);
 		sbs.StorageCheck(sinfo);
 		sbs.StorageSee("wuwa");
-		sbs.StorageUpdate(sinfo[0]);
+		sbs.StorageUpdate(sto);
 	}
 }

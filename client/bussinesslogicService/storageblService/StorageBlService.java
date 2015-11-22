@@ -1,98 +1,30 @@
 package storageblService;
 
+import java.util.ArrayList;
+
+import po.OutStorageList;
+import po.StorageList;
 import po.StoragePO;
 
+public interface StorageBlService {
 
-/**
- * 
- * @author zxc
- * 
- * @Time 2015-10-25
- */
-public class StorageBlService {
 
-	/**
-	 * 库存信息输入
-	 * 
-	 * @param
-	 * 
-	 * @return
-	 * 
-	 * @exception
-	 */
-	public void InStorageInput() {
-	}
+	public void InStorageInput(StorageList slt);
 
-	/**
-	 * 删除输入的库存信息
-	 * 
-	 * @param 输入的库存信息号数
-	 * 
-	 * @return
-	 * 
-	 * @exception
-	 */
-	public void InStorageDetele(int rank) {
-	}
 
-	/**
-	 * 出库信息输入
-	 * 
-	 * @param
-	 * 
-	 * @return
-	 * 
-	 * @exception
-	 */
-	public void OutStorageinput() {
-	}
+	public void InStorageDetele(int rank);
 
-	/**
-	 * 删除输入的出库信息
-	 * 
-	 * @param 输入的出库信息号数
-	 * 
-	 * @return
-	 * 
-	 * @exception
-	 */
-	public void OutStorageDelete(int rank) {
-	}
+	public void OutStorageInput(OutStorageList oslt);
 
-	/**
-	 * 显示库存快照
-	 * 
-	 * @param Storageinfo库存信息
-	 * 
-	 * @return
-	 * 
-	 * @exception
-	 */
-	public void StorageCheck(StoragePO[] svo) {
-	}
 
-	/**
-	 * 显示库存快照
-	 * 
-	 * @param 库存信息
-	 * 
-	 * @return
-	 * 
-	 * @exception
-	 */
-	public void StorageSee(String info) {
-	}
+	public void OutStorageDelete(int rank);
 
-	/**
-	 * 更新库存信息
-	 * 
-	 * @param 更新的库存信息
-	 * 
-	 * @return
-	 * 
-	 * @exception
-	 */
-	public void StorageUpdate(StoragePO svo) {
-	}
+
+	public void StorageCheck(StorageList slt);
+
+
+	public void StorageSee(String info);
+
+	public void StorageUpdate(StoragePO svo);
 
 }

@@ -1,61 +1,20 @@
 package storagedataService;
 
-import po.StoragePO;
+import java.net.ServerSocket;
 
-/**
- * 
- * @author zxc
- * 
- * @Time 2015-10-25
- */
-public class StorageDataService {
-	/**
-	 * 库存信息增加
-	 * 
-	 * @param 增加的库存信息
-	 * 
-	 * @return
-	 * 
-	 * @exception
-	 */
-	public void StorageDataAdd(StoragePO svo) {
-	}
+import po.OutStorageList;
+import po.StorageList;
 
-	/**
-	 * 库存信息删除
-	 * 
-	 * @param 删除的库存信息
-	 * 
-	 * @return
-	 * 
-	 * @exception
-	 */
-	public void StorageDataDelete(StoragePO svo) {
-	}
 
-	/**
-	 * 库存信息查看
-	 * 
-	 * @param
-	 * 
-	 * @return 库存快照
-	 * 
-	 * @exception
-	 */
-	public StoragePO[] StorageDataCheck() {
-		return null;
-	}
+public interface StorageDataService {
 
-	/**
-	 * 查看库存
-	 * 
-	 * @param
-	 * 
-	 * @return 库存信息
-	 * 
-	 * @exception
-	 */
-	public String[] StorageDataSee() {
-		return null;
-	}
+	public void StorageDataAdd(StorageList slt);
+
+
+	public void StorageDataDelete(OutStorageList oslt);
+	public StorageList StorageDataCheck();
+
+
+	public String[] StorageDataSee();
+
 }
