@@ -2,6 +2,8 @@ package storagebl;
 
 import java.util.ArrayList;
 
+import po.OutStorageList;
+import po.StorageList;
 import po.StoragePO;
 import storageblService.StorageBlService;
 
@@ -11,7 +13,7 @@ import storageblService.StorageBlService;
  * 
  * @Time 2015-10-25
  */
-public class StorageBlStub extends StorageBlService {
+public class StorageBlStub implements StorageBlService {
 
 	/**
 	 * 库存信息输入
@@ -102,6 +104,21 @@ public class StorageBlStub extends StorageBlService {
 	 */
 	public void StorageUpdate(StoragePO svo) {
 		System.out.println("StorageUpdate()success");
+	}
+
+	public void InStorageInput(StorageList slt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void OutStorageInput(OutStorageList oslt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void StorageCheck(StorageList slt) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
