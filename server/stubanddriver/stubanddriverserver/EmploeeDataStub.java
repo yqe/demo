@@ -8,11 +8,11 @@ import po.EmploeePO;
 
 public class EmploeeDataStub implements employeedataService.EmploeeDataService{
 
-	public EmploeePO find(String ID) throws RemoteException {
+	//public EmploeePO find(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("find 213421");
-		return new EmploeePO("1231442");
-	}
+		//System.out.println("find 213421");
+		//return new EmploeePO("1231442");
+	//}
 
 	public void insertEmp(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -32,6 +32,11 @@ public class EmploeeDataStub implements employeedataService.EmploeeDataService{
 	public void modify(String ID, EmploeePO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("modify emploee lan  213445");
+	}
+
+	public EmploeePO find(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

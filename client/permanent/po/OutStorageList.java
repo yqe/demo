@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class OutStorageList implements Serializable{
 	private static final long serialVersionUID = 1L;
-ArrayList<OutStoragePO> Slist=new ArrayList<OutStoragePO>();
+ArrayList<OutStorageDocuPO> Slist=new ArrayList<OutStorageDocuPO>();
 	
-	public void addOutStoragePO(OutStoragePO sli){
+	public void addOutStoragePO(OutStorageDocuPO sli){
 		Slist.add(sli);
 	}
 
-	public ArrayList<OutStoragePO> getSlist() {
+	public ArrayList<OutStorageDocuPO> getSlist() {
 		return Slist;
 	}
 }

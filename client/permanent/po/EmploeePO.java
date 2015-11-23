@@ -5,65 +5,68 @@ import java.util.ArrayList;
 
 public class EmploeePO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private String ID;//员工ID
+	private String empID;//员工ID
 	private String name;//员工姓名
-	 private int age;//员工年龄
-	 private String institution;//员工机构
+	private int age;//员工年龄
+	private String position;//员工职位
+	private String sex;
+	private String phonenum;
 	private double salary;//员工薪水
 	private ArrayList<EmploeePO> emploee;
+	private String idendity;//身份证
+	private String address;//住址
 	
-   public  EmploeePO(String ID){
-	   this.setID(ID);
-	   
-	    setEmploee(new ArrayList<EmploeePO>());
+	public EmploeePO(String empID,String name,int age,String position,String sex,String phonenum,int salary,String idendity,String address){
+		this.empID=empID;
+		this.name=name;
+		this.age=age;
+		this.position=position;
+		this.sex=sex;
+		this.phonenum=phonenum;
+		this.salary=salary;
+		this.idendity=idendity;
+		this.address=address;
+	}
+	
+	public String getempID(){
+		return empID;
+	}
+	
+    public String getPosition() {
+		return position;
 	}
 
-public String getID() {
-	return ID;
-}
+	public String getSex() {
+		return sex;
+	}
 
-public void setID(String iD) {
-	ID = iD;
-}
+	public String getPhonenum() {
+		return phonenum;
+	}
 
-public String getName() {
-	return name;
-}
+	public String getIdendity() {
+		return idendity;
+	}
 
-public void setName(String name) {
-	this.name = name;
-}
 
-public int getAge() {
-	return age;
-}
+	public String getAddress() {
+		return address;
+	}
 
-public void setAge(int age) {
-	this.age = age;
-}
+	public String getName() {
+		return name;
+	}
 
-public String getInstitution() {
-	return institution;
-}
+	public int getAge() {
+		return age;
+	}
 
-public void setInstitution(String institution) {
-	this.institution = institution;
-}
 
-public double getSalary() {
-	return salary;
-}
+	public double getSalary() {
+		return salary;
+	}
 
-public void setSalary(double salary) {
-	this.salary = salary;
-}
-
-public ArrayList<EmploeePO> getEmploee() {
-	return emploee;
-}
-
-public void setEmploee(ArrayList<EmploeePO> emploee) {
-	this.emploee = emploee;
-}
-   
+	public ArrayList<EmploeePO> getEmploee() {
+		return emploee;
+	}  
 }
