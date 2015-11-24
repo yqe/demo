@@ -14,8 +14,9 @@ public class StorageBl implements StorageBlService{
 	
 	public void InStorageInput(StorageList slt) {
 		try {
-			Socket insto=new Socket("localhost",8888);
+			Socket insto=new Socket("localhost",8889);
 			ObjectOutputStream oos=new ObjectOutputStream(insto.getOutputStream());
+			oos.writeUTF("Storage");
 			oos.writeUTF("InStorageInput");
 			oos.writeObject(slt);
 			oos.flush();
