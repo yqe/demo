@@ -39,4 +39,14 @@ public class EmploeeDataStub implements employeedataService.EmploeeDataService{
 		return null;
 	}
 
+	public void insertEmp(EmploeePO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void delete(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

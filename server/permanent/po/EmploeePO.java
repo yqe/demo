@@ -11,7 +11,7 @@ public class EmploeePO implements Serializable {
 	private String position;//员工职位
 	private String sex;
 	private String phonenum;
-	private double salary;//员工薪水
+	private int salary;//员工薪水
 	private ArrayList<EmploeePO> emploee;
 	private String idendity;//身份证
 	private String address;//住址
@@ -62,7 +62,7 @@ public class EmploeePO implements Serializable {
 	}
 
 
-	public double getSalary() {
+	public int getSalary() {
 		return salary;
 	}
 

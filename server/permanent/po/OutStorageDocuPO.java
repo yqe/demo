@@ -2,19 +2,19 @@ package po;
 
 import java.io.Serializable;
 
-public class OutStoragePO implements Serializable{
+public class OutStorageDocuPO implements Serializable{
 	private static final long serialVersionUID = 1L;
-	/* ¿ìµÝ±àºÅ */
+	/* ï¿½ï¿½Ý±ï¿½ï¿½ */
 	public String goodno;
-	/* ³ö¿âÈÕÆÚ */
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	public String outtime;
-	/* Ä¿µÄµØ */
+	/* Ä¿ï¿½Äµï¿½ */
 	public String destination;
-	/* ×°ÔËÐÎÊ½ */
+	/* ×°ï¿½ï¿½ï¿½ï¿½Ê½ */
 	public String loadform;
-	/* ÖÐ×ªµ¥±àºÅorÆûÔË±àºÅ */
+	/* ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½orï¿½ï¿½ï¿½Ë±ï¿½ï¿½ */
 	public String transferno;
-	public OutStoragePO(String goodno,String outtime,String destination,String loadform,String transferno) {
+	public OutStorageDocuPO(String goodno,String outtime,String destination,String loadform,String transferno) {
 		this.goodno=goodno;
 		this.outtime=outtime;
 		this.destination=destination;
