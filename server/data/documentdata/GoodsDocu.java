@@ -97,11 +97,32 @@ public void insert(GoodsDocuPO po) throws RemoteException {
 	
 public void delete(String goodsID) throws RemoteException {
 	// TODO Auto-generated method stub
-	
+	try {
+		mysqlimp=new MySqlImp();
+		String delete="DELETE FROM 快递单"+" WHERE 订单条形码号="+goodsID;
+		mysqlimp.update(delete);
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 
 public void update(GoodsDocuPO pos) throws RemoteException {
 	// TODO Auto-generated method stub
-	
+	try {
+		//有问题
+		mysqlimp=new MySqlImp();
+		//String update="UPDATE 快递单"+"SET "
+		//mysqlimp.update(update);
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 }

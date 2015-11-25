@@ -62,6 +62,17 @@ public class EmploeeData implements EmploeeDataService{
 			this.address=po.getAddress();
 			this.id=po.getIdendity();
 			this.empID=po.getempID();
+			try {
+				mysqlimp=new MySqlImp();
+				String insert="INSERT INTO 员工信息"+" (员工职位,员工编号,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址)"+" VALUES('"+position+"','"+empID+"','"+name+"',"+salary+",'"+sex+"',"+age+",'"+phonenum+"','"+id+"','"+address+"')";
+				mysqlimp.update(insert);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		public void delete(String ID) throws RemoteException {
@@ -82,7 +93,18 @@ public class EmploeeData implements EmploeeDataService{
 		}
 
 		public void update(String ID, EmploeePO po) throws RemoteException {
-			// TODO Auto-generated method stub
+			//这里有点问题回头再改改
+			try {
+				mysqlimp=new MySqlImp();
+				String update="UPDATE 员工信息"+"SET 员工职位="+po.getPosition()+" WHERE 员工编号="+po.getempID();
+				mysqlimp.update(update);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 
