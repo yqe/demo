@@ -9,7 +9,7 @@ import mysqlimp.MySqlImp;
 import po.EmploeePO;
 
 public class EmploeeData implements EmploeeDataService{
-		static MySqlImp mysqlimp;
+		MySqlImp mysqlimp;
 		private String position;
 		private String name;
 		private int salary;
@@ -25,7 +25,7 @@ public class EmploeeData implements EmploeeDataService{
 			try {
 				empID = ID;
 				mysqlimp=new MySqlImp();
-				String find="SELECT 员工职位,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址"+" FROM 员工信息"+" WHERE 员工编号='empID'";
+				String find="SELECT 员工职位,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址"+" FROM 员工信息"+" WHERE 员工编号="+empID;
 				ResultSet rs=mysqlimp.query(find);
 				rs.next();
 				position=rs.getString(1);
@@ -48,6 +48,7 @@ public class EmploeeData implements EmploeeDataService{
 			
 			
 			EmploeePO emppo=new EmploeePO(empID,name,age,position,sex,phonenum,salary,id,address);
+			System.out.println(name+age+position);
 			return emppo;
 		}
 
@@ -96,7 +97,7 @@ public class EmploeeData implements EmploeeDataService{
 			//这里有点问题回头再改改
 			try {
 				mysqlimp=new MySqlImp();
-				String update="UPDATE 员工信息"+"SET 员工职位="+po.getPosition()+" WHERE 员工编号="+po.getempID();
+				String update="UPDATE 员工信息"+" SET 员工职位="+po.getPosition()+" WHERE 员工编号="+po.getempID();
 				mysqlimp.update(update);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

@@ -50,5 +50,15 @@ public class DocumentDataStub implements documentdataService.DocumentDataService
 		System.out.println("本次服务已关闭");
 	}
 
+	public void delete(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public DocumentPO findmore() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 

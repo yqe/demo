@@ -9,7 +9,7 @@ public class StrategyDataDriver {
 	String departureplace="南京";
 	String destination="北京";
     public  void drive(strategydataService.StrategyDataService StrategyDataStub) throws RemoteException{
-    	StrategyDataStub.observe("salary");
-    	StrategyDataStub.calprice(weight, departureplace, destination);
+    	StrategyDataStub.observe();
+    	//trategyDataStub.calprice(weight, departureplace, destination);
     }
 }

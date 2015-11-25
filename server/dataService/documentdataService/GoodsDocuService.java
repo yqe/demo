@@ -1,6 +1,7 @@
 package documentdataService;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.GoodsDocuPO;
 
@@ -19,4 +20,8 @@ public interface GoodsDocuService {
 	
 	public void update(GoodsDocuPO pos) throws RemoteException;
 	//更新单据信息
+
+	public ArrayList<GoodsDocuPO> findmore() throws RemoteException;
+
 }
+

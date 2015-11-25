@@ -3,11 +3,13 @@ package documentdata;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import documentdataService.GoodsDocuService;
 import mysqlimp.MySqlImp;
 import po.GoodsDocuPO;
 
-public class GoodsDocu {
+public class GoodsDocu implements GoodsDocuService{
 	private String dilivername;
 	private String diliveraddress;
 	private String diliverworkspace;
@@ -24,6 +26,7 @@ public class GoodsDocu {
 	private String goodsID;//订单条形码号
 	private String receivedtime;//收件日期
 	private double receivedmoney;//收款金额
+	private ArrayList<GoodsDocuPO> goodsList;
 	MySqlImp mysqlimp;
 	
 	
@@ -66,7 +69,7 @@ public GoodsDocuPO find(String ID) throws RemoteException {
 public void insert(GoodsDocuPO po) throws RemoteException {
 	// TODO Auto-generated method stub
 	this.dilivername=po.getDilivername();
-	this.diliveraddress=po.getDiliveraddress();po.getReceiveraddress();
+	this.diliveraddress=po.getDiliveraddress();
 	this.diliverworkspace=po.getDiliverworkspace();
 	this.diliverhomephone=po.getDiliverhomephone();
 	this.dilivermobile=po.getDilivermobile();
@@ -124,5 +127,25 @@ public void update(GoodsDocuPO pos) throws RemoteException {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+}
+
+public ArrayList<GoodsDocuPO> findmore() throws RemoteException {
+	// TODO Auto-generated method stub
+	try {
+		mysqlimp=new MySqlImp();
+		goodsList=new ArrayList<GoodsDocuPO>();
+		String findmore="SELECT *"+" FROM 快递单";
+		ResultSet rs=mysqlimp.query(findmore);
+		while(rs.next()){
+			goodsList.add(new GoodsDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getDouble(11),rs.getDouble(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getDouble(16)));
+		}
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return goodsList;
 }
 }

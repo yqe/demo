@@ -23,7 +23,7 @@ public interface DocumentDataService{
 	//插入单据
 	
 	
-	public void delete(DocumentPO pos) throws RemoteException;
+	public void delete(String ID) throws RemoteException;
 	//删除单据
 	
 	
@@ -31,7 +31,7 @@ public interface DocumentDataService{
 	//更新单据信息
 	
 	
-	public DocumentPO findmore(String type) throws RemoteException;
+	public DocumentPO findmore() throws RemoteException;
 	//根据单据类型返回多个单据
 	
 	

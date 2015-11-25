@@ -6,7 +6,7 @@ import distancedataService.DistanceDataService;
 
 public class DistancedataStub implements DistanceDataService{
 
-	public double caldistance(String depatureplace, String destination)
+	public double getdistance(String depatureplace, String destination)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		double distance=100;
