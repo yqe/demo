@@ -6,14 +6,18 @@ import java.sql.SQLException;
 
 import distancedataService.DistanceDataService;
 import mysqlimp.MySqlImp;
+import po.DistancePO;
 
 public class DistanceData implements DistanceDataService{
 		private MySqlImp mysqlimp;
 		private double distance;
-		
-	public double getdistance(String departureplace, String destination) throws RemoteException {
+		private String departureplace;
+		private String destination;
+	public DistancePO getdistance(String departureplace, String destination) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
+			this.departureplace=departureplace;
+			this.destination=destination;
 			mysqlimp=new MySqlImp();
 			String finddistance="SELECT 距离"+" FROM 城市距离"+" WHERE 出发地='"+departureplace+"' and 目的地='"+destination+"'";
 			ResultSet rs=mysqlimp.query(finddistance);
@@ -27,7 +31,8 @@ public class DistanceData implements DistanceDataService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return distance;
+			DistancePO dispo=new DistancePO(departureplace,destination,distance);
+		return dispo;
 	}
 
 }

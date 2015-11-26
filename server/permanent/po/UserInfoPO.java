@@ -1,15 +1,22 @@
 package po;
 
 public class UserInfoPO {
-         int id;
-         String name;
-         String password;
+        private String name;
+        private String password;
          
-         public void UserPO(int i,String n,String p){
-        	 id=i;
+         public UserInfoPO(String n,String p){
+        	
         	 name =n;
         	 password=p;
          }
+
+		public String getName() {
+			return name;
+		}
+
+		public String getPassword() {
+			return password;
+		}
          
          
 }

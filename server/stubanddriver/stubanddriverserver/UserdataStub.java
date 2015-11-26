@@ -33,4 +33,9 @@ public class UserdataStub implements UserDataService{
 		System.out.println("find Success");
 	}
 
+	public UserInfoPO getLoginPO(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
