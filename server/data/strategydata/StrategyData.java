@@ -47,7 +47,7 @@ public class StrategyData implements StrategyDataService{
 		//更新职位相对应的月薪
 		try {
 			mysqlimp=new MySqlImp();
-			String updatesal="UPDATE 经营策略"+" SET 月薪="+sal+" WHERE 职位="+pos;
+			String updatesal="UPDATE 经营策略"+" SET 月薪='"+sal+"' WHERE 职位='"+pos+"'";
 			mysqlimp.update(updatesal);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

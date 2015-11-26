@@ -36,7 +36,7 @@ public GoodsDocuPO find(String ID) throws RemoteException {
 	try {
 		mysqlimp=new MySqlImp();
 		String find="SELECT 寄件人姓名,寄件人住址,寄件人单位,寄件人电话,寄件人手机,收件人姓名,收件人住址,收件人单位,收件人电话"
-				+ "，收件人手机,包装费,费用合计,快递类型,收件日期,收款金额"+" FROM 快递单"+" WHERE 订单条形码号="+goodsID;
+				+ "，收件人手机,包装费,费用合计,快递类型,收件日期,收款金额"+" FROM 快递单"+" WHERE 订单条形码号='"+goodsID+"'";
 		ResultSet rs=mysqlimp.query(find);
 		rs.next();
 		dilivername=rs.getString(1);
@@ -102,7 +102,7 @@ public void delete(String goodsID) throws RemoteException {
 	// TODO Auto-generated method stub
 	try {
 		mysqlimp=new MySqlImp();
-		String delete="DELETE FROM 快递单"+" WHERE 订单条形码号="+goodsID;
+		String delete="DELETE FROM 快递单"+" WHERE 订单条形码号='"+goodsID+"'";
 		mysqlimp.update(delete);
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
