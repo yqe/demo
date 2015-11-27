@@ -3,6 +3,7 @@ package transdata;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import mysqlimp.MySqlImp;
 import po.TransPO;
@@ -44,6 +45,70 @@ public class TransData implements TransDataService{
 		}
 		TransPO trapo=new TransPO(date,bussinessID,expreID,destination,carsID,monitor,supercargo,fee,orderID);
 		return trapo;
+		}
+		public void delete(String goodsID) {
+			// TODO Auto-generated method stub
+			try {
+				mysqlimp=new MySqlImp();
+				String delete="DELETE FROM 装车单"+" WHERE 装箱中订单条形码号='"+goodsID+"'";
+				mysqlimp.update(delete);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		public void insert(TransPO po) {
+			// TODO Auto-generated method stub
+			try {
+				mysqlimp=new MySqlImp();
+				this.date=po.getDate();
+				this.bussinessID=po.getBussinessID();
+				this.expreID=po.getExpreID();
+				this.destination=po.getDestination();
+				this.carsID=po.getCarsID();
+				this.monitor=po.getMonitor();
+				this.supercargo=po.getSupercargo();
+				this.fee=po.getFee();
+				this.orderID=po.getOrderID();
+				String insert="INSERT INTO 装车单"+" (装车日期,本营业厅编号,汽运编号,到达地,车辆代号,监装员,押运员,运费,装箱中订单条形码号)"
+				+" VALUES('"+date+"','"+bussinessID+"','"+expreID+"','"+destination+"','"+carsID+"','"+monitor+"','"+supercargo+"',"+fee+",'"+orderID+"')";
+				mysqlimp.update(insert);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		public void update(TransPO po) {
+			// TODO Auto-generated method stub
+			TransData tran=new TransData();
+			tran.delete(po.getOrderID());
+			tran.insert(po);
+		}
+		public ArrayList<TransPO> findmore() {
+			// TODO Auto-generated method stub
+			ArrayList<TransPO> transList=new ArrayList<TransPO>();
+			try {
+				mysqlimp=new MySqlImp();
+				String findmore="SELECT * FROM 装车单";
+				ResultSet rs=mysqlimp.query(findmore);
+				while(rs.next()){
+					transList.add(new TransPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getString(9)));
+				}
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return transList;
 		}
 
 }

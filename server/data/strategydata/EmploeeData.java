@@ -3,10 +3,12 @@ package strategydata;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import employeedataService.EmploeeDataService;
 import mysqlimp.MySqlImp;
 import po.EmploeePO;
+import po.TransPO;
 
 public class EmploeeData implements EmploeeDataService{
 		MySqlImp mysqlimp;
@@ -111,9 +113,28 @@ public class EmploeeData implements EmploeeDataService{
 			
 		}
 
-		public void modify(String ID, EmploeePO po) throws RemoteException {
+		public ArrayList<EmploeePO> findall() throws RemoteException {
 			// TODO Auto-generated method stub
+			ArrayList<EmploeePO> empList=new ArrayList<EmploeePO>();
+			try {
+				mysqlimp=new MySqlImp();
+				String findmore="SELECT * FROM 员工信息";
+				ResultSet rs=mysqlimp.query(findmore);
+				while(rs.next()){
+					empList.add(new EmploeePO(rs.getString(2),rs.getString(3),rs.getInt(6),rs.getString(1),rs.getString(5),rs.getString(7),rs.getInt(4),rs.getString(8),rs.getString(9)));
+				}
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return empList;
 			
 		}
+
+
 		
 }

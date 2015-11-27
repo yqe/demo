@@ -7,10 +7,10 @@ import po.OutStorageList;
 import po.StorageList;
 
 public interface OutStorageService {
-	public void StorageDataAdd(OutStorageList slt);
+	public void StorageDataAdd(OutStorageList oslt);
 
 
-	public void StorageDataDelete(OutStorageList oslt);
+	public void StorageDataDelete(String goodsID);
 	
 	public StorageList StorageDataCheck();
 

@@ -115,18 +115,9 @@ public void delete(String goodsID) throws RemoteException {
 
 public void update(GoodsDocuPO pos) throws RemoteException {
 	// TODO Auto-generated method stub
-	try {
-		//有问题
-		mysqlimp=new MySqlImp();
-		//String update="UPDATE 快递单"+"SET "
-		//mysqlimp.update(update);
-	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		GoodsDocu goods=new GoodsDocu();
+		goods.delete(pos.getGoodsID());
+		goods.insert(pos);
 }
 
 public ArrayList<GoodsDocuPO> findmore() throws RemoteException {

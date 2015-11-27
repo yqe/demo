@@ -4,16 +4,16 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import financedataService.FinanceDataService;
-import po.AccountPO;
+import po.InitializeAccountPO;
 import po.DocumentPO;
 
 public class FinanceDataDriver {
    public void drive(FinanceDataStub FinanceDataStub) throws RemoteException{
-      AccountPO id1=new  AccountPO();
+      InitializeAccountPO id1=new  InitializeAccountPO();
       
-      AccountPO id2=new  AccountPO();
-      AccountPO id3=new  AccountPO();
-      AccountPO id4=new  AccountPO();
+      InitializeAccountPO id2=new  InitializeAccountPO();
+      InitializeAccountPO id3=new  InitializeAccountPO();
+      InitializeAccountPO id4=new  InitializeAccountPO();
       long id=1234552;
       ArrayList<DocumentPO> a=new ArrayList();
       FinanceDataStub.add(id1);

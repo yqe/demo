@@ -8,6 +8,7 @@
 package employeedataService;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.EmploeePO;
 
@@ -22,7 +23,7 @@ public interface EmploeeDataService{
 	
 	public void update(String ID, EmploeePO po ) throws RemoteException;
 	
-	public void modify(String ID, EmploeePO po ) throws RemoteException;
+	public ArrayList<EmploeePO> findall()throws RemoteException;
 	
 	
 }

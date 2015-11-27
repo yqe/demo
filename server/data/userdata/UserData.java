@@ -33,6 +33,41 @@ public class UserData implements UserDataService{
 				//System.out.println(password);
 			return userinfo;
 		}
+		public void delete(String ID) {
+			// TODO Auto-generated method stub
+			try {
+				mysqlimp=new MySqlImp();
+				String delete="DELETE FROM 登录时所需信息"+" WHERE 账户ID='"+ID+"'";
+				mysqlimp.update(delete);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		public void insert(UserInfoPO po) {
+			// TODO Auto-generated method stub
+			try {
+				mysqlimp=new MySqlImp();
+				this.username=po.getName();
+				this.password=po.getPassword();
+				String insert="INSERT INTO 登录时所需信息"+" (账户ID,账户密码)"+" VALUES('"+username+"','"+password+"')";
+				mysqlimp.update(insert);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		public void update(UserInfoPO po) {
+			// TODO Auto-generated method stub
+			
+		}
 
 		
 }

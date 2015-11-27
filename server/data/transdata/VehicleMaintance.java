@@ -2,8 +2,10 @@ package transdata;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import mysqlimp.MySqlImp;
+import po.TransPO;
 import po.VehicleMaintanceInfoPO;
 import transdataService.VehicleMaintanceService;
 
@@ -101,6 +103,27 @@ public class VehicleMaintance implements VehicleMaintanceService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public ArrayList<VehicleMaintanceInfoPO> findmore() {
+		// TODO Auto-generated method stub
+		ArrayList<VehicleMaintanceInfoPO> vehicleList=new ArrayList<VehicleMaintanceInfoPO>();
+		try {
+			mysqlimp=new MySqlImp();
+			String findmore="SELECT * FROM 车辆维护相关信息";
+			ResultSet rs=mysqlimp.query(findmore);
+			while(rs.next()){
+				vehicleList.add(new VehicleMaintanceInfoPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)));
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vehicleList;
 	}
 
 }
