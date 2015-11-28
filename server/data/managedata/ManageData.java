@@ -28,7 +28,7 @@ public class ManageData implements ManageDataService{
 			String findall="SELECT * FROM 成本管理";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
-				costList.add(new CostManagePO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getDouble(6),rs.getString(9),));
+				costList.add(new CostManagePO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getDouble(6),rs.getDouble(7),rs.getDouble(8),rs.getString(9),rs.getString(10)));
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

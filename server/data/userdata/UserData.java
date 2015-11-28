@@ -66,7 +66,9 @@ public class UserData implements UserDataService{
 		}
 		public void update(UserInfoPO po) {
 			// TODO Auto-generated method stub
-			
+			UserData user=new UserData();
+			user.delete(po.getName());
+			user.insert(po);
 		}
 
 		

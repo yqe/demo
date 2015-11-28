@@ -16,7 +16,7 @@ public class EmploeePO implements Serializable {
 	private String idendity;//身份证
 	private String address;//住址
 	
-	public EmploeePO(String empID,String name,int age,String position,String sex,String phonenum,int salary,String idendity,String address){
+	public EmploeePO(String position,String empID,String name,int salary,String sex,int age,String phonenum,String idendity,String address){
 		this.empID=empID;
 		this.name=name;
 		this.age=age;

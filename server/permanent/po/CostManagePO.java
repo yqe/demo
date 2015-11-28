@@ -12,9 +12,10 @@ public class CostManagePO implements Serializable {
     private double transfee;//运费
     private String rentyear;//租金年份
     private String yundan;//运单号
-    private double salarymonth;//人员工资
-    public CostManagePO(String date,double payment,String payer,String payaccount,double rent,double transfee, String rentyear,
-    		String yundan,double salarymonth){
+    private double empsalary;//人员工资
+    private double reward;//奖励
+    public CostManagePO(String date,double payment,String payer,String payaccount,double rent,double transfee,double empsalary,double reward, String rentyear,
+    		String yundan){
     	this.date=date;
     	this.payment=payment;
     	this.payer=payer;
@@ -23,17 +24,41 @@ public class CostManagePO implements Serializable {
     	this.transfee=transfee;
     	this.rentyear=rentyear;
     	this.yundan=yundan;
-    	this.salarymonth=salarymonth;
+    	this.empsalary=empsalary;
+    	this.reward=reward;
     	
     }
-      public String getDate(){return date;} 
-      public double getPayment(){return payment;}
-      public String getPayer(){return payer;}
-      public String getPayaccount(){return payaccount;}
-      public double getRent(){return rent;}
-      public double getSalary(){return transfee;}
-      public String getRentyear(){return rentyear;}
-      public String getYundan(){return yundan;}
-      public double getSalarymonth(){return salarymonth;}
+	public String getDate() {
+		return date;
+	}
+	public double getPayment() {
+		return payment;
+	}
+	public String getPayer() {
+		return payer;
+	}
+	public String getPayaccount() {
+		return payaccount;
+	}
+	public double getRent() {
+		return rent;
+	}
+	public double getTransfee() {
+		return transfee;
+	}
+	public String getRentyear() {
+		return rentyear;
+	}
+	public String getYundan() {
+		return yundan;
+	}
+	public double getEmpsalary() {
+		return empsalary;
+	}
+	public double getReward() {
+		return reward;
+	}
+
+   
       
 }

@@ -38,4 +38,22 @@ public class UserdataStub implements UserDataService{
 		return null;
 	}
 
+	@Override
+	public void delete(String ID) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insert(UserInfoPO po) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(UserInfoPO po) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

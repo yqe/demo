@@ -18,8 +18,10 @@ public class OutStorageDocu implements OutStorageService{
 		private String loadform;
 		private	String transcentreID;
 		ArrayList<OutStorageDocuPO> outsee;
+		private String transcentrename;
 	public void StorageDataAdd(OutStorageList oslt) {
-				
+		OutStorageDocu  outdocu=new OutStorageDocu();
+		outdocu.findtransname(oslt);
 		try {
 			int i=0;
 			ArrayList<OutStorageDocuPO> out=oslt.getSlist();
@@ -32,7 +34,7 @@ public class OutStorageDocu implements OutStorageService{
 				this.destination=outpo.getDestination();
 				this.loadform=outpo.getLoadform();
 				this.transcentreID=outpo.getTransferno();
-				String insert="INSERT INTO 出库单"+" (快递编号,出库日期,目的地,装运形式,中转中心编号）"+" VALUES（'"+goodsID+"','"+outdate+"','"+destination+"','"+loadform+"','"+transcentreID+"')";
+				String insert="INSERT INTO '"+transcentrename+"'"+" (快递编号,出库日期,目的地,装运形式,中转中心编号）"+" VALUES（'"+goodsID+"','"+outdate+"','"+destination+"','"+loadform+"','"+transcentreID+"')";
 				mysqlimp.update(insert);
 				i--;
 			}
@@ -87,4 +89,43 @@ public class OutStorageDocu implements OutStorageService{
 		return outsee;
 	}
 
+	public String findtransname(OutStorageList oslt){
+		ArrayList<OutStorageDocuPO> out=new ArrayList<OutStorageDocuPO>();
+		OutStorageDocuPO outpo=out.get(0);
+		
+		switch(outpo.getTransferno()){
+		case "025000":
+			 transcentrename="南京出库单";
+			 break;
+		case "010000":
+			 transcentrename="北京出库单";
+			 break;
+		case "020000":
+			 transcentrename="广州出库单";
+			 break;
+		case "021000":
+			 transcentrename="上海出库单";
+			 break;
+		}
+		return  transcentrename;
+		
+	}
+	
+	public String findnamebyid(String ID){
+		switch(ID){
+		case "025000":
+			 transcentrename="南京出库单";
+			 break;
+		case "010000":
+			 transcentrename="北京出库单";
+			 break;
+		case "020000":
+			 transcentrename="广州出库单";
+			 break;
+		case "021000":
+			 transcentrename="上海出库单";
+			 break;
+		}
+		return  transcentrename;
+	}
 }

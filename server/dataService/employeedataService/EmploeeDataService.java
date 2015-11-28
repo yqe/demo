@@ -21,7 +21,7 @@ public interface EmploeeDataService{
 	
 	public void delete(String ID ) throws RemoteException;
 	
-	public void update(String ID, EmploeePO po ) throws RemoteException;
+	public void update( EmploeePO po ) throws RemoteException;
 	
 	public ArrayList<EmploeePO> findall()throws RemoteException;
 	

@@ -19,6 +19,7 @@ public class InputStorageDocu implements InputStorageService{
 	private String queue;//排号
 	private String shelf;//架号
 	private String local;//位号
+	private String databasestoragename;//数据库里的入库单名字
 	MySqlImp mysqlimp;
 	ArrayList<InputStorageDocuPO> insee;
 	public void InputStorageAdd(InputStorageList inslt) {
@@ -92,4 +93,11 @@ public class InputStorageDocu implements InputStorageService{
 		
 	}
 	
+	public String finddataname(InputStorageList inslt){
+		ArrayList<InputStorageDocuPO> in=inslt.getSlist();
+		InputStorageDocuPO inputpo=in.get(0);
+		
+		return area;
+		
+	}
 }

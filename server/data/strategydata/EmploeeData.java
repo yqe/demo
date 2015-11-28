@@ -49,7 +49,7 @@ public class EmploeeData implements EmploeeDataService{
 			}
 			
 			
-			EmploeePO emppo=new EmploeePO(empID,name,age,position,sex,phonenum,salary,id,address);
+			EmploeePO emppo=new EmploeePO(position,empID,name,salary,sex,age,phonenum,id,address);
 			System.out.println(name+age+position+id);
 			return emppo;
 		}
@@ -95,22 +95,11 @@ public class EmploeeData implements EmploeeDataService{
 			
 		}
 
-		public void update(String ID, EmploeePO po) throws RemoteException {
+		public void update( EmploeePO po) throws RemoteException {
 			//这里有点问题回头再改改
-			try {
-				mysqlimp=new MySqlImp();
-				position=po.getPosition();
-				empID=po.getempID();
-				String update="UPDATE 员工信息"+" SET 员工职位='"+position+"' WHERE 员工编号='"+empID+"'";
-				mysqlimp.update(update);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			EmploeeData empda=new EmploeeData();
+			empda.delete(po.getempID());
+			empda.insertEmp(po);
 		}
 
 		public ArrayList<EmploeePO> findall() throws RemoteException {
@@ -121,7 +110,7 @@ public class EmploeeData implements EmploeeDataService{
 				String findmore="SELECT * FROM 员工信息";
 				ResultSet rs=mysqlimp.query(findmore);
 				while(rs.next()){
-					empList.add(new EmploeePO(rs.getString(2),rs.getString(3),rs.getInt(6),rs.getString(1),rs.getString(5),rs.getString(7),rs.getInt(4),rs.getString(8),rs.getString(9)));
+					empList.add(new EmploeePO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9)));
 				}
 				
 			} catch (ClassNotFoundException e) {

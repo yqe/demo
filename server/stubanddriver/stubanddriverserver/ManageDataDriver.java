@@ -12,7 +12,7 @@ public class ManageDataDriver {
 	{ //EmploeePO a =new EmploeePO("tt");
 	 //EmploeePO b =new EmploeePO("");
 	 long id =231214;
-	 ManageDataStub.find(id);
+	 //ManageDataStub.find(id);
 	 //ManageDataStub.update(b); 
 	// ManageDataStub.delete(a);
 		
