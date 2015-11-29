@@ -1,8 +1,11 @@
 package stubanddriverserver;
 
+import java.util.ArrayList;
+
+import po.InputStorageDocuPO;
 import po.OutStorageList;
 import po.StorageList;
-import po.StoragePO;
+import po.StorageCheckPO;
 import storagedataService.StorageDataService;
 
 
@@ -23,7 +26,7 @@ public class StorageDataStub implements StorageDataService {
 	 * 
 	 * @exception
 	 */
-	public void StorageDataAdd(StoragePO svo) {
+	public void StorageDataAdd(StorageCheckPO svo) {
 		System.out.println("StorageDataAdd()success");
 	}
 
@@ -36,7 +39,7 @@ public class StorageDataStub implements StorageDataService {
 	 * 
 	 * @exception
 	 */
-	public void StorageDataDelete(StoragePO svo) {
+	public void StorageDataDelete(StorageCheckPO svo) {
 		System.out.println("StorageDataDelete()success");
 	}
 
@@ -82,7 +85,15 @@ public class StorageDataStub implements StorageDataService {
 		
 	}
 
-	public StorageList StorageDataCheck() {
+
+	@Override
+	public void StorageDataAdd(InputStorageDocuPO po) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<StorageCheckPO> StorageDataCheck() {
 		// TODO Auto-generated method stub
 		return null;
 	}

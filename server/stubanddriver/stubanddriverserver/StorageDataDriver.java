@@ -1,7 +1,7 @@
 package stubanddriverserver;
 
 import po.StorageList;
-import po.StoragePO;
+import po.StorageCheckPO;
 import storagedataService.StorageDataService;
 
 
@@ -16,7 +16,7 @@ public class StorageDataDriver {
 
 	public void Driver(StorageDataService sds) {
 
-		StorageList sinfo = sds.StorageDataCheck();
+		//StorageList sinfo = sds.StorageDataCheck();
 //		sds.StorageDataAdd(sinfo[0]);
 //		sds.StorageDataDelete(sinfo[0]);
 //

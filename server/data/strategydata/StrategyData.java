@@ -27,7 +27,7 @@ public class StrategyData implements StrategyDataService{
 			while(rs.next()){
 			i++;
 			straList.add(new StrategyPO(rs.getString(1),rs.getInt(2),rs.getInt(3)));
-			//System.out.println("薪水"+rs.getString(1)+"薪水"+rs.getInt(2)+rs.getInt(3));
+			System.out.println("薪水"+rs.getString(1)+"薪水"+rs.getInt(2)+rs.getInt(3));
 			}
 			
 		} catch (ClassNotFoundException e) {

@@ -8,25 +8,15 @@ public class CostManagePO implements Serializable {
     private double payment;//付款金额
     private  String payer;//付款人
     private  String payaccount;//付款账号
-    private  double rent;//租金
-    private double transfee;//运费
-    private String rentyear;//租金年份
-    private String yundan;//运单号
-    private double empsalary;//人员工资
-    private double reward;//奖励
-    public CostManagePO(String date,double payment,String payer,String payaccount,double rent,double transfee,double empsalary,double reward, String rentyear,
-    		String yundan){
+    private String tiaomu;//条目
+    private String tip;//备注
+    public CostManagePO(String date,double payment,String payer,String payaccount,String tiaomu,String tip){
     	this.date=date;
     	this.payment=payment;
     	this.payer=payer;
     	this.payaccount=payaccount;
-    	this.rent=rent;
-    	this.transfee=transfee;
-    	this.rentyear=rentyear;
-    	this.yundan=yundan;
-    	this.empsalary=empsalary;
-    	this.reward=reward;
-    	
+    	this.tiaomu=tiaomu;
+    	this.tip=tip;
     }
 	public String getDate() {
 		return date;
@@ -40,25 +30,13 @@ public class CostManagePO implements Serializable {
 	public String getPayaccount() {
 		return payaccount;
 	}
-	public double getRent() {
-		return rent;
+	public String getTiaomu() {
+		return tiaomu;
 	}
-	public double getTransfee() {
-		return transfee;
+	public String getTip() {
+		return tip;
 	}
-	public String getRentyear() {
-		return rentyear;
-	}
-	public String getYundan() {
-		return yundan;
-	}
-	public double getEmpsalary() {
-		return empsalary;
-	}
-	public double getReward() {
-		return reward;
-	}
-
+	
    
       
 }

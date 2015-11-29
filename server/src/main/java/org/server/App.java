@@ -3,6 +3,7 @@ package org.server;
 import java.rmi.RemoteException;
 
 import distancedata.DistanceData;
+import managedata.ManageCostData;
 import po.EmploeePO;
 import po.UserInfoPO;
 import strategydata.EmploeeData;
@@ -21,19 +22,21 @@ public class App
         EmploeeData d=new EmploeeData();
         DistanceData dis=new DistanceData();
         UserData	u=new UserData();
+        ManageCostData ma=new ManageCostData();
         try {
-			//s.observe(); 
+			s.observe(); 
 			//s.updatesalary("总经理", 50000);
 			//s.updateconstant(30);
 			//d.find("114500");
 			//d.delete("114500");
 			//d.insertEmp(new EmploeePO("总经理","114500","啊皮豪",50000,"男",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号"));
 			//d.update(new EmploeePO("总经理","114500","啊皮豪",50000,"女",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号"));
-        	dis.getdistance("天津", "北京");
-			//u.getLoginPO("1124");
+        	//dis.getdistance("天津", "北京");
+			//u.getLoginPO("123");
 			//u.delete("1124");
-			u.insert(new UserInfoPO("1124","5678"));
-		} catch (RemoteException e) {
+			//u.insert(new UserInfoPO("1124","5678"));
+			//ma.find();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

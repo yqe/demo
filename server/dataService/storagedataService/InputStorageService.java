@@ -17,5 +17,5 @@ public interface InputStorageService {
 	public StorageList StorageDataCheck();
 
 
-	public ArrayList<InputStorageDocuPO> StorageDataSee();
+	public ArrayList<InputStorageDocuPO> StorageDataSee(String transcenterID);
 }

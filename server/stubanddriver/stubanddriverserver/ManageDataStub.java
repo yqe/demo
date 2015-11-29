@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import po.CostManagePO;
 import po.EmploeePO;
 
-import managedataService.ManageDataService;
+import managedataService.ManageCostService;
 
-public class ManageDataStub implements ManageDataService {
+public class ManageDataStub implements ManageCostService {
 
 	public EmploeePO find(long id) throws RemoteException {
 		// TODO Auto-generated method stub

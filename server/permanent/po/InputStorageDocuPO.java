@@ -8,7 +8,8 @@ public class InputStorageDocuPO {
 		private String queue;//排号
 		private String shelf;//架号
 		private String local;//位号
-		public InputStorageDocuPO(String goodsID,String intime,String desti,String area,String queue,String shelf,String local){
+		private String transcenterID;//中转中心编号
+		public InputStorageDocuPO(String goodsID,String intime,String desti,String area,String queue,String shelf,String local,String transID){
 			this.goodsID=goodsID;
 			this.intime=intime;
 			this.destination=desti;
@@ -16,6 +17,10 @@ public class InputStorageDocuPO {
 			this.queue=queue;
 			this.shelf=shelf;
 			this.local=local;
+			this.transcenterID=transID;
+		}
+		public String getTranscenterID() {
+			return transcenterID;
 		}
 		public String getGoodsID() {
 			return goodsID;

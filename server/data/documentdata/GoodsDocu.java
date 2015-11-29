@@ -26,6 +26,17 @@ public class GoodsDocu implements GoodsDocuService{
 	private String goodsID;//订单条形码号
 	private String receivedtime;//收件日期
 	private double receivedmoney;//收款金额
+	private String goodsname;//货物名
+	private int goodsnumber;//货物数量
+	private double length;//长度
+	private double width;//宽//
+	private double height;//高
+	private double v;//体积	
+	private String goodsinfo;//货物信息
+	private String wrappedtype;//包装种类
+	private String expectedtime;//预期到达时间
+	private String generatetime;//寄件单生成日期
+	private String courier;//快递员姓名
 	private ArrayList<GoodsDocuPO> goodsList;
 	MySqlImp mysqlimp;
 	
@@ -35,24 +46,33 @@ public GoodsDocuPO find(String ID) throws RemoteException {
 	goodsID=ID;
 	try {
 		mysqlimp=new MySqlImp();
-		String find="SELECT 寄件人姓名,寄件人住址,寄件人单位,寄件人电话,寄件人手机,收件人姓名,收件人住址,收件人单位,收件人电话"
-				+ "，收件人手机,包装费,费用合计,快递类型,收件日期,收款金额"+" FROM 快递单"+" WHERE 订单条形码号='"+goodsID+"'";
+		String find="SELECT 寄件人姓名,寄件人住址,寄件人单位,寄件人手机,收件人姓名,收件人住址,收件人单位"
+				+ "，收件人手机,包装费,费用合计,快递类型,收件日期,收款金额,货物名称,货物数量,货物重量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名"+" FROM 快递单"+" WHERE 订单条形码号='"+goodsID+"'";
 		ResultSet rs=mysqlimp.query(find);
 		rs.next();
-		dilivername=rs.getString(1);
-		diliveraddress=rs.getString(2);
-		diliverworkspace=rs.getString(3);
-		diliverhomephone=rs.getString(4);
-		dilivermobile=rs.getString(5);
-		receivername=rs.getString(6);
-		receiveraddress=rs.getString(7);
-		receiverworkspace=rs.getString(8);
-		receiverhomephone=rs.getString(9);
-		receivermobile=rs.getString(10);
-		wrappedfee=rs.getDouble(11);
-		totalfee=rs.getDouble(12);
-		receivedtime=rs.getString(13);
-		receivedmoney=rs.getDouble(14);
+		this.dilivername=rs.getString(1);
+		this.diliveraddress=rs.getString(2);
+		this.diliverworkspace=rs.getString(3);
+		this.dilivermobile=rs.getString(4);
+		this.receivername=rs.getString(5);
+		this.receiveraddress=rs.getString(6);
+		this.receiverworkspace=rs.getString(7);
+		this.receivermobile=rs.getString(8);
+		this.wrappedfee=rs.getDouble(9);
+		this.totalfee=rs.getDouble(10);
+		this.receivedtime=rs.getString(11);
+		this.receivedmoney=rs.getDouble(12);
+		this.goodsname=rs.getString(13);
+		this.goodsnumber=rs.getInt(14);
+		this.length=rs.getDouble(15);
+		this.width=rs.getDouble(16);
+		this.height=rs.getDouble(17);
+		this.v=rs.getDouble(18);
+		this.goodsinfo=rs.getString(19);
+		this.wrappedtype=rs.getString(20);
+		this.expectedtime=rs.getString(21);
+		this.generatetime=rs.getString(22);
+		this.courier=rs.getString(23);
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -62,7 +82,7 @@ public GoodsDocuPO find(String ID) throws RemoteException {
 	}
 	GoodsDocuPO goodsdocuPO=new GoodsDocuPO(dilivername,diliveraddress,diliverworkspace,diliverhomephone,
 			dilivermobile,receivername,receiveraddress,receiverworkspace,receiverhomephone,receivermobile,wrappedfee,
-			totalfee,expresstype,goodsID,receivedtime,receivedmoney);
+			totalfee,expresstype,goodsID,receivedtime,receivedmoney,goodsname,goodsnumber,length,width,height,v,goodsinfo,wrappedtype,expectedtime,generatetime,courier);
 	return goodsdocuPO;
 }
 
@@ -71,12 +91,10 @@ public void insert(GoodsDocuPO po) throws RemoteException {
 	this.dilivername=po.getDilivername();
 	this.diliveraddress=po.getDiliveraddress();
 	this.diliverworkspace=po.getDiliverworkspace();
-	this.diliverhomephone=po.getDiliverhomephone();
 	this.dilivermobile=po.getDilivermobile();
 	this.receivername=po.getReceivername();
 	this.receiveraddress=po.getReceiveraddress();
 	this.receiverworkspace=po.getReceiverworkspace();
-	this.receiverhomephone=po.getReceiverhomephone();
 	this.receivermobile=po.getReceivermobile();
 	this.wrappedfee=po.getWrappedfee();
 	this.totalfee=po.getTotalfee();
@@ -84,8 +102,20 @@ public void insert(GoodsDocuPO po) throws RemoteException {
 	this.receivedtime=po.getReceivedtime();
 	this.receivedmoney=po.getReceivedmoney();
 	this.goodsID=po.getGoodsID();
+	this.goodsname=po.getGoodsname();
+	this.goodsnumber=po.getGoodsnumber();
+	this.length=po.getLength();
+	this.width=po.getWidth();
+	this.height=po.getHeight();
+	this.v=po.getV();
+	this.goodsinfo=po.getGoodsinfo();
+	this.wrappedtype=po.getWrappedtype();
+	this.expectedtime=po.getExpectedtime();
+	this.generatetime=po.getGeneratetime();
+	this.courier=po.getCourier();
 	String insert="INSERT INTO 快递单"+" (寄件人姓名,寄件人地址,寄件人单位,寄件人电话,寄件人手机,收件人姓名,收件人地址,收件人单位,收件人电话,收件人手机,"
-			+ "包装费,合计费用,快递类型,订单条形码号,收件日期,收款金额)"+" VALUES('"+dilivername+"','"+diliveraddress+"','"+diliverworkspace+"','"+diliverhomephone+"','"+receivername+"','"+receiveraddress+"','"+receiverworkspace+"','"+receiverhomephone+"','"+receivermobile+"',"+wrappedfee+","+totalfee+",'"+expresstype+"','"+goodsID+"','"+receivedtime+"',"+receivedmoney+")";
+			+ "包装费,合计费用,快递类型,订单条形码号,收件日期,收款金额,货物名称,货物数量,货物重量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名)"+" VALUES('"+dilivername+"','"+diliveraddress+"','"+diliverworkspace+"','"+diliverhomephone+"','"+receivername+"','"+receiveraddress+"','"+receiverworkspace+"','"+receiverhomephone+"','"+receivermobile+"',"+wrappedfee+","+totalfee+",'"+expresstype+"','"+goodsID+"','"+receivedtime+"',"+receivedmoney+","
+					+ "'"+goodsname+"','"+goodsnumber+"',"+length+","+width+","+height+","+v+",'"+goodsinfo+"','"+wrappedtype+"','"+expectedtime+"','"+generatetime+"','"+courier+"')";
 	try {
 		mysqlimp=new MySqlImp();
 		mysqlimp.update(insert);
@@ -128,15 +158,43 @@ public ArrayList<GoodsDocuPO> findmore() throws RemoteException {
 		String findmore="SELECT *"+" FROM 快递单";
 		ResultSet rs=mysqlimp.query(findmore);
 		while(rs.next()){
-			goodsList.add(new GoodsDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getDouble(11),rs.getDouble(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getDouble(16)));
+			this.dilivername=rs.getString(1);
+			this.diliveraddress=rs.getString(2);
+			this.diliverworkspace=rs.getString(3);
+			this.dilivermobile=rs.getString(4);
+			this.receivername=rs.getString(5);
+			this.receiveraddress=rs.getString(6);
+			this.receiverworkspace=rs.getString(7);
+			this.receivermobile=rs.getString(8);
+			this.wrappedfee=rs.getDouble(9);
+			this.totalfee=rs.getDouble(10);
+			this.receivedtime=rs.getString(11);
+			this.receivedmoney=rs.getDouble(12);
+			this.goodsname=rs.getString(13);
+			this.goodsnumber=rs.getInt(14);
+			this.length=rs.getDouble(15);
+			this.width=rs.getDouble(16);
+			this.height=rs.getDouble(17);
+			this.v=rs.getDouble(18);
+			this.goodsinfo=rs.getString(19);
+			this.wrappedtype=rs.getString(20);
+			this.expectedtime=rs.getString(21);
+			this.generatetime=rs.getString(22);
+			this.courier=rs.getString(23);
+			goodsList.add(new GoodsDocuPO(dilivername,diliveraddress,diliverworkspace,diliverhomephone,
+					dilivermobile,receivername,receiveraddress,receiverworkspace,receiverhomephone,receivermobile,wrappedfee,
+					totalfee,expresstype,goodsID,receivedtime,receivedmoney,goodsname,goodsnumber,length,width,height,v,goodsinfo,wrappedtype,expectedtime,generatetime,courier));
 		}
+		return goodsList;
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		return null;
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		return null;
 	}
-	return goodsList;
+	
 }
 }

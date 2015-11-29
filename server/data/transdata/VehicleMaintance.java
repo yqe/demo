@@ -91,18 +91,11 @@ public class VehicleMaintance implements VehicleMaintanceService {
 		}
 	}
 
-	public void update(String vehicleID) {
+	public void update(VehicleMaintanceInfoPO po) {
 		// TODO Auto-generated method stub
-		try {
-			mysqlimp=new MySqlImp();
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		VehicleMaintance vehi=new VehicleMaintance();
+		vehi.delete(po.getVehicleID());
+		vehi.insert(po);
 	}
 
 	public ArrayList<VehicleMaintanceInfoPO> findmore() {

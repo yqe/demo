@@ -15,6 +15,6 @@ public interface OutStorageService {
 	public StorageList StorageDataCheck();
 
 
-	public ArrayList<OutStorageDocuPO> StorageDataSee();
+	public ArrayList<OutStorageDocuPO> StorageDataSee(String transID);
 
 }

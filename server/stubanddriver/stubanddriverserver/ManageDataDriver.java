@@ -5,10 +5,10 @@ package stubanddriverserver;
 import java.rmi.RemoteException;
 
 import po.EmploeePO;
-import managedataService.ManageDataService;
+import managedataService.ManageCostService;
 
 public class ManageDataDriver {
-	public void drive(ManageDataService ManageDataStub)throws RemoteException
+	public void drive(ManageCostService ManageDataStub)throws RemoteException
 	{ //EmploeePO a =new EmploeePO("tt");
 	 //EmploeePO b =new EmploeePO("");
 	 long id =231214;
