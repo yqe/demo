@@ -42,10 +42,10 @@ public class AdminInfoStream {
 	private void PowerChange(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
-			if (ud.getLoginPO(up.getName()) == null) {
+			if (ud.getLoginPO(up.getUserID()) == null) {
 				oos.writeBoolean(false);
 			} else {
-				ud.delete(up.getName());
+				ud.delete(up.getUserID());
 				oos.writeBoolean(true);
 			}
 		} catch (ClassNotFoundException e) {
@@ -60,10 +60,10 @@ public class AdminInfoStream {
 	private void DeleteAcc(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
-			if (ud.getLoginPO(up.getName()) == null) {
+			if (ud.getLoginPO(up.getUserID()) == null) {
 				oos.writeBoolean(false);
 			} else {
-				ud.delete(up.getName());
+				ud.delete(up.getUserID());
 				oos.writeBoolean(true);
 			}
 		} catch (ClassNotFoundException e) {
@@ -80,7 +80,7 @@ public class AdminInfoStream {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
 			// TODO
-			if (ud.getLoginPO(up.getName()) == null) {
+			if (ud.getLoginPO(up.getUserID()) == null) {
 				oos.writeBoolean(false);
 			} else {
 				ud.update(up);

@@ -10,7 +10,17 @@ import po.TransferDocuPO;
 import po.ZzzxArrivalDocuPO;
 
 public class TransitInfoStream {
-
+	
+	public void JudgeCmd(ObjectInputStream ois, ObjectOutputStream oos) {
+		try {
+			if (ois.readUTF().equals("TransitReceive"))
+				TransitReceive(ois,oos);
+			if (ois.readUTF().equals("ShipmentBill"))
+				ShipmentBill(ois,oos);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public void TransitReceive(ObjectInputStream ois, ObjectOutputStream oos){
 		try {
 			ZzzxArrivalDocu zadu=new ZzzxArrivalDocu();

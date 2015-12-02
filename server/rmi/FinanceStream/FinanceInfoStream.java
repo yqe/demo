@@ -8,7 +8,14 @@ import documentdata.ZzzxArrivalDocu;
 import po.ZzzxArrivalDocuPO;
 
 public class FinanceInfoStream {
-
+	public void JudgeCmd(ObjectInputStream ois, ObjectOutputStream oos) {
+		try {
+			if (ois.readUTF().equals("PaymentBill"))
+				PaymentBill(ois, oos);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public void PaymentBill(ObjectInputStream ois, ObjectOutputStream oos){
 		try {
 			ZzzxArrivalDocu zadu=new ZzzxArrivalDocu();
