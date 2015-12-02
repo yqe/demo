@@ -12,7 +12,7 @@ public interface OutStorageService {
 
 	public void StorageDataDelete(String goodsID);
 	
-	public StorageList StorageDataCheck();
+	public int OutStorageNum(String transcenterID,String time);
 
 
 	public ArrayList<OutStorageDocuPO> StorageDataSee(String transID);

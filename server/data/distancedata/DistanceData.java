@@ -10,9 +10,9 @@ import po.DistancePO;
 
 public class DistanceData implements DistanceDataService{
 		private MySqlImp mysqlimp;
-		private double distance;
-		private String departureplace;
-		private String destination;
+		private double distance;//距离
+		private String departureplace;//出发地
+		private String destination;//目的地
 	public DistancePO getdistance(String departureplace, String destination) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {

@@ -6,6 +6,7 @@ import distancedata.DistanceData;
 import managedata.ManageCostData;
 import po.EmploeePO;
 import po.UserInfoPO;
+import storagedata.InputStorageDocu;
 import strategydata.EmploeeData;
 import strategydata.StrategyData;
 import userdata.UserData;
@@ -23,8 +24,9 @@ public class App
         DistanceData dis=new DistanceData();
         UserData	u=new UserData();
         ManageCostData ma=new ManageCostData();
+        InputStorageDocu input=new InputStorageDocu();
         try {
-			s.observe(); 
+			//s.observe(); 
 			//s.updatesalary("总经理", 50000);
 			//s.updateconstant(30);
 			//d.find("114500");
@@ -32,10 +34,11 @@ public class App
 			//d.insertEmp(new EmploeePO("总经理","114500","啊皮豪",50000,"男",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号"));
 			//d.update(new EmploeePO("总经理","114500","啊皮豪",50000,"女",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号"));
         	//dis.getdistance("天津", "北京");
-			//u.getLoginPO("123");
+			//u.getLoginPO("1124");
 			//u.delete("1124");
 			//u.insert(new UserInfoPO("1124","5678"));
 			//ma.find();
+        	input.storagenum("010000", "20151124");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

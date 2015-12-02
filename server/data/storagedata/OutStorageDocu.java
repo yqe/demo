@@ -23,8 +23,8 @@ public class OutStorageDocu implements OutStorageService{
 		
 		//生成出库单,同时自动在库存盘点里删除一条记录
 	public void StorageDataAdd(OutStorageList oslt) {
-		OutStorageDocu  outdocu=new OutStorageDocu();
-		outdocu.findtransname(oslt);
+	
+		this.findtransname(oslt);
 		try {
 			int i=0;
 			ArrayList<OutStorageDocuPO> out=oslt.getSlist();
@@ -37,9 +37,9 @@ public class OutStorageDocu implements OutStorageService{
 				this.destination=outpo.getDestination();
 				this.loadform=outpo.getLoadform();
 				this.transcentreID=outpo.getTransferno();
-				String insert="INSERT INTO '"+transcentrename+"'"+" (快递编号,出库日期,目的地,装运形式,中转中心编号）"+" VALUES（'"+goodsID+"','"+outdate+"','"+destination+"','"+loadform+"','"+transcentreID+"')";
+				String insert="INSERT INTO "+transcentrename+""+" (快递编号,出库日期,目的地,装运形式,中转中心编号）"+" VALUES（'"+goodsID+"','"+outdate+"','"+destination+"','"+loadform+"','"+transcentreID+"')";
 				//生成一条出库单
-				String deletecheck="DELETE FROM '"+transcentercheck+"'"+" WHERE 快递编号='"+goodsID+"'";
+				String deletecheck="DELETE FROM "+transcentercheck+""+" WHERE 快递编号='"+goodsID+"'";
 				//删除一条库存记录
 				mysqlimp.update(insert);
 				mysqlimp.update(deletecheck);
@@ -75,24 +75,26 @@ public class OutStorageDocu implements OutStorageService{
 	//查看所有的出库单
 	public ArrayList<OutStorageDocuPO> StorageDataSee(String transID) {
 		// TODO Auto-generated method stub
-		OutStorageDocu  outdocu=new OutStorageDocu();
-		outdocu.findnamebyid(transID);
+			this.findnamebyid(transID);
 		try {
 			ArrayList<OutStorageDocuPO> outsee=new ArrayList<OutStorageDocuPO>();
 			mysqlimp=new MySqlImp();
-			String findall="SELECT *"+" FROM '"+transcentrename+"'";
+			String findall="SELECT *"+" FROM "+transcentrename+"";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
 				outsee.add(new OutStorageDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
+			return outsee;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		return outsee;
+		
 	}
 
 	public void findtransname(OutStorageList oslt){
@@ -144,9 +146,29 @@ public class OutStorageDocu implements OutStorageService{
 	}
 
 	@Override
-	public StorageList StorageDataCheck() {
+	public int OutStorageNum(String transcenterID, String time) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		this.findnamebyid(transcenterID);		
+		try {
+			int num=0;
+			mysqlimp=new MySqlImp();
+			String findbytime="SELECT 快递编号,出库日期,目的地,装运形式,中转中心编号"+" FROM "+transcentrename+" WHERE 出库日期='"+time+"'";
+			ResultSet rs=mysqlimp.query(findbytime);
+			while(rs.next()){
+			num++;
+			}
+			return num;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
 	}
+
+	
+
 }

@@ -20,22 +20,25 @@ public class UserData implements UserDataService{
 			try {
 				this.userID=ID;
 				mysqlimp=new MySqlImp();
-				String getLoginPO="SELECT 账户密码,账户人姓名,职位"+" FROM 登录时所需信息"+" WHERE 账户ID='"+username+"'";
+				String getLoginPO="SELECT 账户密码,账户人姓名,职位"+" FROM 登录时所需信息"+" WHERE 账户ID='"+userID+"'";
 				ResultSet rs=mysqlimp.query(getLoginPO);
 				rs.next();
 				this.password=rs.getString(1);
 				this.username=rs.getString(2);
 				this.position=rs.getString(3);
+				UserInfoPO userinfo=new UserInfoPO(userID,password,username,position);
+				//System.out.println(password+username+position);
+				return userinfo;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
+				return null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 //				e.printStackTrace();
+				return null;
 			}
-				UserInfoPO userinfo=new UserInfoPO(userID,password,username,position);
-				System.out.println(password);
-			return userinfo;
+				
 		}
 		public void delete(String ID) {
 			// TODO Auto-generated method stub
