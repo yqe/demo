@@ -33,10 +33,12 @@ public class ManageCostData implements ManageCostService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in ManageCostData!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ManageCostData!");
 			return null;
 		}
 		
@@ -68,9 +70,11 @@ public class ManageCostData implements ManageCostService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in ManageCostData!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ManageCostData!");
 		}
 		
 	}

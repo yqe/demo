@@ -31,11 +31,13 @@ public class UserData implements UserDataService{
 				return userinfo;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-//				e.printStackTrace();
+				e.printStackTrace();
+				System.out.println("Class has some problem in UserData!");
 				return null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-//				e.printStackTrace();
+				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in UserData!");
 				return null;
 			}
 				
@@ -49,9 +51,11 @@ public class UserData implements UserDataService{
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in UserData!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in UserData!");
 			}
 			
 		}
@@ -68,9 +72,11 @@ public class UserData implements UserDataService{
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in UserData!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in UserData!");
 			}
 		}
 		public void update(UserInfoPO po) {

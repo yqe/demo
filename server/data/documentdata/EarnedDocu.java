@@ -31,9 +31,11 @@ public class EarnedDocu implements EarnedDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in EarnedDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in EarnedDocu!");
 		}
 	}
 
@@ -47,9 +49,11 @@ public class EarnedDocu implements EarnedDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in EarnedDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in EarnedDocu!");
 		}
 	}
 
@@ -76,10 +80,12 @@ public class EarnedDocu implements EarnedDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in EarnedDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in EarnedDocu!");
 			return null;
 		}
 		
@@ -101,10 +107,12 @@ public class EarnedDocu implements EarnedDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in EarnedDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in EarnedDocu!");
 			return null;
 		}
 		

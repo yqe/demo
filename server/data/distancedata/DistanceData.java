@@ -24,15 +24,20 @@ public class DistanceData implements DistanceDataService{
 			rs.next();
 			distance=rs.getDouble(1);
 			//System.out.println(distance);
+			DistancePO dispo=new DistancePO(departureplace,destination,distance);
+			return dispo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in getdistance!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in getdistance!");
+			return null;
 		}
-			DistancePO dispo=new DistancePO(departureplace,destination,distance);
-		return dispo;
+			
 	}
 
 }

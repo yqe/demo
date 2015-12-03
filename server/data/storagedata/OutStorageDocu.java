@@ -49,9 +49,11 @@ public class OutStorageDocu implements OutStorageService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in OutStorageDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in OutStorageDocu!");
 		}
 		
 	}
@@ -66,9 +68,11 @@ public class OutStorageDocu implements OutStorageService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in OutStorageDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in OutStorageDocu!");
 		}
 	}
 
@@ -88,10 +92,12 @@ public class OutStorageDocu implements OutStorageService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in OutStorageDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in OutStorageDocu!");
 			return null;
 		}
 		
@@ -161,10 +167,12 @@ public class OutStorageDocu implements OutStorageService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in OutStorageDocu!");
 			return 0;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in OutStorageDocu!");
 			return 0;
 		}
 	}

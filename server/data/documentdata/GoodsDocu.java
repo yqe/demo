@@ -73,17 +73,22 @@ public GoodsDocuPO find(String ID) throws RemoteException {
 		this.expectedtime=rs.getString(21);
 		this.generatetime=rs.getString(22);
 		this.courier=rs.getString(23);
+		GoodsDocuPO goodsdocuPO=new GoodsDocuPO(dilivername,diliveraddress,diliverworkspace,diliverhomephone,
+			dilivermobile,receivername,receiveraddress,receiverworkspace,receiverhomephone,receivermobile,wrappedfee,
+			totalfee,expresstype,goodsID,receivedtime,receivedmoney,goodsname,goodsnumber,length,width,height,v,goodsinfo,wrappedtype,expectedtime,generatetime,courier);
+		return goodsdocuPO;
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Class has some problem in GoodsDocu!");
+		return null;
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Some MySql problem has happened in GoodsDocu!");
+		return null;
 	}
-	GoodsDocuPO goodsdocuPO=new GoodsDocuPO(dilivername,diliveraddress,diliverworkspace,diliverhomephone,
-			dilivermobile,receivername,receiveraddress,receiverworkspace,receiverhomephone,receivermobile,wrappedfee,
-			totalfee,expresstype,goodsID,receivedtime,receivedmoney,goodsname,goodsnumber,length,width,height,v,goodsinfo,wrappedtype,expectedtime,generatetime,courier);
-	return goodsdocuPO;
+	
 }
 
 public void insert(GoodsDocuPO po) throws RemoteException {
@@ -122,9 +127,11 @@ public void insert(GoodsDocuPO po) throws RemoteException {
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Class has some problem in GoodsDocu!");
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Some MySql problem has happened in GoodsDocu!");
 	}
 }
 	
@@ -137,9 +144,11 @@ public void delete(String goodsID) throws RemoteException {
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Class has some problem in GoodsDocu!");
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Some MySql problem has happened in GoodsDocu!");
 	}
 }
 
@@ -189,10 +198,12 @@ public ArrayList<GoodsDocuPO> findmore() throws RemoteException {
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Class has some problem in GoodsDocu!");
 		return null;
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		System.out.println("Some MySql problem has happened in GoodsDocu!");
 		return null;
 	}
 	

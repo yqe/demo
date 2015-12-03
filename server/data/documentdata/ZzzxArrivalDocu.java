@@ -31,14 +31,19 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 				this.goodsState=rs.getString(5);
 				zzzxpo.add(new ZzzxArrivalDocuPO(transferCenterNum,arrivalDate,transferNumber,startPlace,goodsState));
 			}
+			return zzzxpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in ZzzxArrivalDocu!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ZzzxArrivalDocu!");
+			return null;
 		}
-		return zzzxpo;
+		
 	}
 
 	public void delete(String goodsID) {
@@ -50,9 +55,11 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in ZzzxArrivalDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ZzzxArrivalDocu!");
 		}
 	}
 
@@ -68,12 +75,14 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 				String insert="INSERT INTO 中转中心到达单"+" (中转中心编号,到达日期,中转单编号,出发地,货物到达状态)"
 				+" VALUES('"+transferCenterNum+"','"+arrivalDate+"','"+transferNumber+"','"+startPlace+"','"+goodsState+"')";
 				mysqlimp.update(insert);
-				} catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in ZzzxArrivalDocu!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in ZzzxArrivalDocu!");
 			}
 	}
 
@@ -96,17 +105,20 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 			this.transferNumber=rs.getString(3);
 			this.startPlace=rs.getString(4);
 			this.goodsState=rs.getString(5);
-		
+			ZzzxArrivalDocuPO zzzxpo=new ZzzxArrivalDocuPO(transferCenterNum,arrivalDate,transferNumber,startPlace,goodsState);
+			return zzzxpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in ZzzxArrivalDocu!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ZzzxArrivalDocu!");
+			return null;
 		}
-		ZzzxArrivalDocuPO zzzxpo=new ZzzxArrivalDocuPO(transferCenterNum,arrivalDate,transferNumber,startPlace,goodsState);
 		
-		return zzzxpo;
 	}
 
 }

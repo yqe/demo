@@ -29,16 +29,20 @@ public class StrategyData implements StrategyDataService{
 			straList.add(new StrategyPO(rs.getString(1),rs.getInt(2),rs.getInt(3)));
 			System.out.println("薪水"+rs.getString(1)+"薪水"+rs.getInt(2)+rs.getInt(3));
 			}
-			
+			return straList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in StrategyData!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in StrategyData!");
+			return null;
 		}
 		
-		return straList;
+		
 	}
 
 
@@ -52,9 +56,11 @@ public class StrategyData implements StrategyDataService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in StrategyData!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in StrategyData!");
 		}
 		
 	}
@@ -70,9 +76,11 @@ public class StrategyData implements StrategyDataService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in StrategyData!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in StrategyData!");
 		}
 	}
 

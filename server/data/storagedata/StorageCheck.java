@@ -42,14 +42,16 @@ public class StorageCheck implements StorageCheckService{
 			this.shelf=po.getShelf();
 			this.location=po.getLocation();
 			this.time=po.getTime();
-			String insert="INSERT INTO '"+transcentername+"'"+" (快递编号,区号,排号,架号,位号,入库日期)"+" VALUES('"+goodsID+"','"+area+"','"+row+"','"+shelf+"','"+location+"','"+time+"')";
+			String insert="INSERT INTO "+transcentername+""+" (快递编号,区号,排号,架号,位号,入库日期)"+" VALUES('"+goodsID+"','"+area+"','"+row+"','"+shelf+"','"+location+"','"+time+"')";
 			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in StorageCheck!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in StorageCheck!");
 		}
 		
 	}
@@ -59,16 +61,18 @@ public class StorageCheck implements StorageCheckService{
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
-			String delete="DELETE FORM '"+transcentername+"' WHERE 快递编号='"+ID+"'";
+			String delete="DELETE FORM "+transcentername+" WHERE 快递编号='"+ID+"'";
 			mysqlimp.update(delete);
 			
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in StorageCheck!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in StorageCheck!");
 		}
 		
 	}
@@ -79,7 +83,7 @@ public class StorageCheck implements StorageCheckService{
 		try {
 			mysqlimp=new MySqlImp();
 			ArrayList<StorageCheckPO> stoList=new ArrayList<StorageCheckPO>();
-			String findbydate="SELECT * FROM '"+transcentername+"'"+" WHERE 入库日期='"+date+"'";
+			String findbydate="SELECT * FROM "+transcentername+""+" WHERE 入库日期='"+date+"'";
 			ResultSet rs=mysqlimp.query(findbydate);
 			while(rs.next()){
 				stoList.add(new StorageCheckPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
@@ -88,10 +92,12 @@ public class StorageCheck implements StorageCheckService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in StorageCheck!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in StorageCheck!");
 			return null;
 		}
 		
@@ -102,7 +108,7 @@ public class StorageCheck implements StorageCheckService{
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
-			String find="SELECT * FROM '"+transcentername+"'"+" WHERE 快递编号='"+ID+"'";
+			String find="SELECT * FROM "+transcentername+""+" WHERE 快递编号='"+ID+"'";
 			ResultSet rs=mysqlimp.query(find);
 			rs.next();
 			StorageCheckPO spo=new StorageCheckPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
@@ -110,15 +116,17 @@ public class StorageCheck implements StorageCheckService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in StorageCheck!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in StorageCheck!");
 			return null;
 		}
 		
 	}
-	
+	//逻辑层调用这个方法，设置库存盘点名字
 	public void findname(String position){
 		switch(position){
 		case "南京中转中心仓库管理员":

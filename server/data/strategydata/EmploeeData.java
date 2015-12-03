@@ -38,20 +38,24 @@ public class EmploeeData implements EmploeeDataService{
 				phonenum=rs.getString(6);
 				id=rs.getString(7);
 				address=rs.getString(8);
-				
+				EmploeePO emppo=new EmploeePO(position,empID,name,salary,sex,age,phonenum,id,address);
+				//System.out.println(name+age+position+id);
+				return emppo;
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in EmploeeData!");
+				return null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in EmploeeData!");
+				return null;
 			}
 			
 			
-			EmploeePO emppo=new EmploeePO(position,empID,name,salary,sex,age,phonenum,id,address);
-			System.out.println(name+age+position+id);
-			return emppo;
+			
 		}
 
 		public void insertEmp(EmploeePO po) throws RemoteException {
@@ -72,9 +76,11 @@ public class EmploeeData implements EmploeeDataService{
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in EmploeeData!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in EmploeeData!");
 			}
 		}
 
@@ -88,9 +94,11 @@ public class EmploeeData implements EmploeeDataService{
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in EmploeeData!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in EmploeeData!");
 			}
 			
 		}
@@ -112,15 +120,19 @@ public class EmploeeData implements EmploeeDataService{
 				while(rs.next()){
 					empList.add(new EmploeePO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9)));
 				}
-				
+				return empList;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in EmploeeData!");
+				return null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in EmploeeData!");
+				return null;
 			}
-			return empList;
+			
 			
 		}
 

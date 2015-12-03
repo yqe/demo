@@ -36,16 +36,22 @@ public class TransData implements TransDataService{
 			this.supercargo=rs.getString(7);
 			this.fee=rs.getDouble(8);
 			this.orderID=rs.getString(9);
+			TransPO trapo=new TransPO(date,bussinessID,expreID,destination,carsID,monitor,supercargo,fee,orderID);
+			return trapo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in TransData!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in TransData!");
+			return null;
 		}
-		TransPO trapo=new TransPO(date,bussinessID,expreID,destination,carsID,monitor,supercargo,fee,orderID);
-		return trapo;
-		}
+		
+	}
+		
 		public void delete(String goodsID) {
 			// TODO Auto-generated method stub
 			try {
@@ -55,9 +61,11 @@ public class TransData implements TransDataService{
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in TransData!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in TransData!");
 			}
 		}
 		public void insert(TransPO po) {
@@ -79,9 +87,11 @@ public class TransData implements TransDataService{
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in TransData!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in TransData!");
 			}
 		}
 		public void update(TransPO po) {
@@ -100,15 +110,19 @@ public class TransData implements TransDataService{
 				while(rs.next()){
 					transList.add(new TransPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getString(9)));
 				}
-				
+				return transList;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Class has some problem in TransData!");
+				return null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("Some MySql problem has happened in TransData!");
+				return null;
 			}
-			return transList;
+			
 		}
 
 }

@@ -21,14 +21,19 @@ public class ManageAccount implements ManageAccountService {
 			String find="SELECT * FROM 账户管理"+" WHERE 账户ID='"+ID+"'";
 			ResultSet rs=mysqlimp.query(find);
 			accpo=new ManageAccountPO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4));
+			return accpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in ManageAccount!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ManageAccount!");
+			return null;
 		}
-		return accpo;
+		
 	}
 
 	public void insert(ManageAccountPO po) {
@@ -45,9 +50,11 @@ public class ManageAccount implements ManageAccountService {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in ManageAccount!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ManageAccount!");
 		}
 	}
 
@@ -60,9 +67,11 @@ public class ManageAccount implements ManageAccountService {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in ManageAccount!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ManageAccount!");
 		}
 	}
 

@@ -56,9 +56,11 @@ public class InputStorageDocu implements InputStorageService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in InputStorageDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in InputStorageDocu!");
 		}
 	}
 		//删除，但是单据要保存~~暂时没用
@@ -72,9 +74,11 @@ public class InputStorageDocu implements InputStorageService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in InputStorageDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in InputStorageDocu!");
 		}
 	}
 
@@ -98,10 +102,12 @@ public class InputStorageDocu implements InputStorageService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in InputStorageDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in InputStorageDocu!");
 			return null;
 		}
 	
@@ -170,10 +176,12 @@ public class InputStorageDocu implements InputStorageService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in InputStorageDocu!");
 			return 0;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in InputStorageDocu!");
 			return 0;
 		}
 		

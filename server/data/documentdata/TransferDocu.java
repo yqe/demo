@@ -41,14 +41,19 @@ public class TransferDocu implements TransferDocuService{
 				this.money=rs.getDouble(10);
 				transpo.add(new TransferDocuPO(transportType,date,transferNumber,flightNumber,startPlace,destination,goodsNumber,carryNumber,monitor,money));
 			}
+				return transpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in TransferDocu!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in TransferDocu!");
+			return null;
 		}
-		return transpo;
+		
 	}
 
 	public void delete(String goodsID) {
@@ -60,9 +65,11 @@ public class TransferDocu implements TransferDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in TransferDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in TransferDocu!");
 		}
 	}
 
@@ -86,9 +93,11 @@ public class TransferDocu implements TransferDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in TransferDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in TransferDocu!");
 		}
 	}
 
@@ -115,16 +124,20 @@ public class TransferDocu implements TransferDocuService{
 			this.monitor=rs.getString(8);
 			this.carryNumber=rs.getString(9);
 			this.money=rs.getDouble(10);
-			
+			TransferDocuPO docupo=new TransferDocuPO(transportType,date,transferNumber,flightNumber,startPlace,destination,goodsNumber,monitor,carryNumber,money);
+			return docupo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in TransferDocu!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in TransferDocu!");
+			return null;
 		}
-		TransferDocuPO docupo=new TransferDocuPO(transportType,date,transferNumber,flightNumber,startPlace,destination,goodsNumber,monitor,carryNumber,money);
-		return docupo;
+		
 	}
 
 

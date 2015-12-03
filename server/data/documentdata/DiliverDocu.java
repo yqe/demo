@@ -28,10 +28,12 @@ public class DiliverDocu implements DiliverDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in DilivverDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in getdistance!");
 			return null;
 		}
 		
@@ -52,10 +54,12 @@ public class DiliverDocu implements DiliverDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in DilivverDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in getdistance!");
 			return null;
 		}
 	}
@@ -74,11 +78,11 @@ public class DiliverDocu implements DiliverDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		
+			System.out.println("Class has some problem in DilivverDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+			System.out.println("Some MySql problem has happened in getdistance!");
 		}
 	}
 
@@ -101,11 +105,11 @@ public class DiliverDocu implements DiliverDocuService{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		
+			System.out.println("Class has some problem in DilivverDocu!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		
+			System.out.println("Some MySql problem has happened in getdistance!");
 		}
 	}
 

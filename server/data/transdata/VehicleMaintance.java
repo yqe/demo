@@ -39,15 +39,20 @@ public class VehicleMaintance implements VehicleMaintanceService {
 			this.mobile=rs.getString(8);
 			this.sex=rs.getString(9);
 			this.limittime=rs.getString(10);
+			VehicleMaintanceInfoPO vepo=new VehicleMaintanceInfoPO(vehicleID,bussinessID,carsID,worktime,driverID,birthday,idendity,mobile,sex,limittime);
+			return vepo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in VehicleMaintance!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in VehicleMaintance!");
+			return null;
 		}
-		VehicleMaintanceInfoPO vepo=new VehicleMaintanceInfoPO(vehicleID,bussinessID,carsID,worktime,driverID,birthday,idendity,mobile,sex,limittime);
-		return vepo;
+		
 	}
 
 	public void delete(String vehicleID) {
@@ -59,9 +64,11 @@ public class VehicleMaintance implements VehicleMaintanceService {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in VehicleMaintance!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in VehicleMaintance!");
 		}
 	}
 
@@ -85,9 +92,11 @@ public class VehicleMaintance implements VehicleMaintanceService {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in VehicleMaintance!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in VehicleMaintance!");
 		}
 	}
 
@@ -108,15 +117,19 @@ public class VehicleMaintance implements VehicleMaintanceService {
 			while(rs.next()){
 				vehicleList.add(new VehicleMaintanceInfoPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)));
 			}
-			
+			return vehicleList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Class has some problem in VehicleMaintance!");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in VehicleMaintance!");
+			return null;
 		}
-		return vehicleList;
+		
 	}
 
 }
