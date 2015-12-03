@@ -39,7 +39,7 @@ public class arrival {
 		JLabel l1=new JLabel("快递物流系统");
 		int b1size=30;
 		l1.setFont(new Font("快递物流系统",Font.PLAIN,b1size));
-		JLabel l2=new JLabel("—>中转接收");
+		JLabel l2=new JLabel("—>生成到达单");
 	    int b2size=16;
 	    JLabel l3=new JLabel("营业厅编号:");
 	    JLabel l4=new JLabel("到达日期:");
@@ -48,7 +48,7 @@ public class arrival {
 	    JLabel l7=new JLabel("中转单编号:");
 
 	    
-	    JLabel l8=new JLabel("中转中心到达单列表:");
+	    JLabel l8=new JLabel("营业厅到达单列表:");
   
     l2.setFont(new Font("",Font.PLAIN,b2size));
     l3.setFont(new Font("",Font.PLAIN,b2size));

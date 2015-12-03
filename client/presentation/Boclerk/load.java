@@ -50,6 +50,8 @@ public class load {
     JLabel l10=new JLabel("运费:");
     JLabel l11=new JLabel("元");
     
+    JLabel l12=new JLabel("营业厅编号:");
+    
     
     int lmain=16;
     l3.setFont(new Font("",Font.PLAIN,lmain));
@@ -61,6 +63,7 @@ public class load {
     l9.setFont(new Font("",Font.PLAIN,lmain));
     l10.setFont(new Font("",Font.PLAIN,lmain));
     l11.setFont(new Font("",Font.PLAIN,lmain));
+    l12.setFont(new Font("",Font.PLAIN,lmain));
     
     final JTextField id=new JTextField();
     final JTextField transid=new JTextField();
@@ -69,7 +72,7 @@ public class load {
     final JTextField yy=new JTextField();//Ѻ��Ա
     final JTextField price=new JTextField();
 
-
+    final JTextField yyt=new JTextField();
 
     JButton b4=new JButton("生成装车单");
 	b4.addActionListener(new ActionListener(){
@@ -82,6 +85,7 @@ public class load {
 			}
 			boolean istransid=true;
 			boolean iscarid=true;
+			boolean isyytid=true;
 			
 			boolean cisempty=carid.getText().equals("");
 		    boolean pisempty=price.getText().equals("");
@@ -89,8 +93,11 @@ public class load {
 		    boolean carisempty=carid.getText().equals("");
 		    boolean jzisempty=jz.getText().equals("");
 		    boolean yyisempty=yy.getText().equals("");
+		    boolean yytisempty=yyt.getText().equals("");
 		    
-			boolean isempty=cisempty||pisempty||tisempty||carisempty||jzisempty||yyisempty;
+		    
+		    
+			boolean isempty=cisempty||pisempty||tisempty||carisempty||jzisempty||yyisempty||yytisempty;
 		    
 			if(id.getText().length()==10&&isnum&&!isempty){
 			JOptionPane.showMessageDialog(null, "成功生成装车单!");
@@ -102,6 +109,9 @@ public class load {
 			else if(!isnum&&!pisempty){
 				JOptionPane.showMessageDialog(null, "请输入合法的金额!");//只能是整数
 			}
+			else if(!isyytid&&!yytisempty){
+				JOptionPane.showMessageDialog(null, "请输入合法的汽运编号!");
+			}		
 			else if(!istransid&&!tisempty){
 				JOptionPane.showMessageDialog(null, "请输入合法的汽运编号!");
 			}
@@ -153,6 +163,7 @@ public class load {
     p1.add(l9);
     p1.add(l10);
     p1.add(l11); 
+    p1.add(l12); 
     
     p1.add(id);
     p1.add(transid);
@@ -160,7 +171,7 @@ public class load {
     p1.add(jz);
     p1.add(yy);
     p1.add(price);
-    
+    p1.add(yyt);
     
 
 	p1.add(b4);
@@ -184,20 +195,22 @@ public class load {
 	monthbox.setBounds(375, 150, 80, 30);
 	daybox.setBounds(475, 150, 80, 30);
 	
-	l5.setBounds(100, 200, 150, 30); 
-	l6.setBounds(100, 250, 150, 30);
-	l7.setBounds(100, 300, 150, 30);
-	l8.setBounds(100, 350, 150, 30);
-	l9.setBounds(100, 400, 150, 30);
-	l10.setBounds(100, 450, 150, 30); l11.setBounds(450, 450, 100, 30);
+	l12.setBounds(100, 200, 150, 30);
+	l5.setBounds(100, 250, 150, 30); 
+	l6.setBounds(100, 300, 150, 30);
+	l7.setBounds(100, 350, 150, 30);
+	l8.setBounds(100, 400, 150, 30);
+	l9.setBounds(100, 450, 150, 30);
+	l10.setBounds(100, 500, 150, 30); l11.setBounds(450, 500, 100, 30);
 	
 	id.setBounds(275, 100, 150, 30);
-	transid.setBounds(275,200, 150, 30);	
-	sitebox.setBounds(275, 250, 80,30);
-	carid.setBounds(275,300, 150, 30);
-	jz.setBounds(275,350, 150, 30);
-	yy.setBounds(275,400, 150, 30);
-	price.setBounds(275,450, 150, 30);
+	transid.setBounds(275,250, 150, 30);	
+	sitebox.setBounds(275, 300, 80,30);
+	carid.setBounds(275,350, 150, 30);
+	jz.setBounds(275,400, 150, 30);
+	yy.setBounds(275,450, 150, 30);
+	price.setBounds(275,500, 150, 30);
+	yyt.setBounds(275,200, 150, 30);
 
 
 	b4.setBounds(b4xloc, b4yloc, 180, 40);

@@ -33,7 +33,7 @@ public class courier {
 	JPanel content = new JPanel();
 	final JPanel control = new JPanel();
 	public JPanel Panel() throws IOException{
-	BufferedImage bgp=ImageIO.read(new File("D:/快递物流系统/demo/client/presentation/Cbackground.jpg"));
+	BufferedImage bgp=ImageIO.read(new File("D:/test_eclipse/workspace/demo/client/presentation/Cbackground.jpg"));
 	background = new ImageIcon(bgp);
 
 	JPanel courier = new JPanel() {

@@ -32,7 +32,7 @@ public class storagemain {
 	JPanel content = new JPanel();
 	final JPanel control = new JPanel();
 	public JPanel Panel() throws IOException{
-	BufferedImage bgp=ImageIO.read(new File("D:/快递物流系统/demo/client/presentation/Sbackground.jpg"));
+	BufferedImage bgp=ImageIO.read(new File("D:/test_eclipse/workspace/demo/client/presentation/Sbackground.jpg"));
 	Sbackground = new ImageIcon(bgp);
 
 	JPanel storagemain = new JPanel() {
