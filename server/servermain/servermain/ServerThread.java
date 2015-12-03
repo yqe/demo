@@ -36,7 +36,7 @@ public class ServerThread implements Runnable {
 				socket = server.accept();
 				if (socket != null) {
 					Receiver r = new Receiver(socket);
-					r.Receiver();
+					r.dealcmd();
 				}
 			}
 		} catch (Exception e) {
@@ -51,13 +51,12 @@ public class ServerThread implements Runnable {
 
 		Receiver(Socket socket) {
 			this.socket = socket;
-
 		}
 
-		public void Receiver() throws IOException {
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
+		public void dealcmd() {
 			try {
+				oos = new ObjectOutputStream(socket.getOutputStream());
+				ois = new ObjectInputStream(socket.getInputStream());
 				switch (ois.readUTF()) {
 				case "Storage":
 					new StorageInfoStream().JudgeCmd(ois, oos);

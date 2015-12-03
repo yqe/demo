@@ -14,23 +14,31 @@ import transdata.VehicleMaintance;
 public class HallClerkInfoStream {
 	public void JudgeCmd(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			if (ois.readUTF().equals("LoadingList"))
+			switch (ois.readUTF()) {
+			case "LoadingList":
 				LoadingList(ois, oos);
-			if (ois.readUTF().equals("ReceiveBill"))
+				break;
+			case "ReceiveBill":
 				ReceiveBill(ois, oos);
-			if (ois.readUTF().equals("CarInfoMaintain"))
+				break;
+			case "CarInfoMaintain":
 				CarInfoMaintain(ois, oos);
-			if (ois.readUTF().equals("ArrivalBill"))
-			ArrivalBill(ois, oos);
+				break;
+			case "ArrivalBill":
+				ArrivalBill(ois, oos);
+				break;
+			default:
+				break;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void ArrivalBill(ObjectInputStream ois, ObjectOutputStream oos) {
-		ZzzxArrivalDocu zad=new ZzzxArrivalDocu();
+		ZzzxArrivalDocu zad = new ZzzxArrivalDocu();
 		try {
-			ZzzxArrivalDocuPO zapo=(ZzzxArrivalDocuPO) ois.readObject();
+			ZzzxArrivalDocuPO zapo = (ZzzxArrivalDocuPO) ois.readObject();
 			zad.insert(zapo);
 			oos.writeBoolean(true);
 		} catch (ClassNotFoundException e) {

@@ -13,10 +13,16 @@ public class TransitInfoStream {
 	
 	public void JudgeCmd(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			if (ois.readUTF().equals("TransitReceive"))
+			switch (ois.readUTF()) {
+			case "TransitReceive":
 				TransitReceive(ois,oos);
-			if (ois.readUTF().equals("ShipmentBill"))
+				break;
+			case "ShipmentBill":
 				ShipmentBill(ois,oos);
+				break;
+			default:
+				break;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

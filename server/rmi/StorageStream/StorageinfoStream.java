@@ -6,20 +6,27 @@ import java.io.ObjectOutputStream;
 
 import po.InputStorageList;
 import po.OutStorageList;
-import storagedata.StorageData;
 
 public class StorageInfoStream {
 
 	public void JudgeCmd(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			if (ois.readUTF().equals("InStoragePO"))
+			switch (ois.readUTF()) {
+			case "InStoragePO":
 				InStorageInfoGet(ois,oos);
-			if(ois.readUTF().equals("OutStoragePO"))
+				break;
+			case "OutStoragePO":
 				OutStorageInfoGet(ois,oos);
-			if(ois.readUTF().equals("CheckStorage"))
+				break;
+			case "CheckStorage":
 				StorageCheckInfoGet(ois,oos);
-			if(ois.readUTF().equals("SeeStorage"))
+				break;
+			case "SeeStorage":
 				StorageSeeInfoGet(ois,oos);
+				break;
+			default:
+				break;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -27,8 +34,8 @@ public class StorageInfoStream {
 
 	public void InStorageInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			InputStorageList slt = (InputStorageList) ois.readObject();
-			
+			InputStorageList islt = (InputStorageList) ois.readObject();
+			System.out.println(islt.getSlist().get(0).getIntime());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -36,8 +43,8 @@ public class StorageInfoStream {
 
 	public void OutStorageInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			OutStorageList slt = (OutStorageList) ois.readObject();
-
+			OutStorageList oslt = (OutStorageList) ois.readObject();
+			System.out.println(oslt.getSlist().get(0).getGoodno());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

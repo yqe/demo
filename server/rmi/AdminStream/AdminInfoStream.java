@@ -12,14 +12,22 @@ public class AdminInfoStream {
 
 	public void JudgeCmd(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			if (ois.readUTF().equals("PasswordChange"))
+			switch (ois.readUTF()) {
+			case "PasswordChange":
 				PasswordChange(ois, oos);
-			if (ois.readUTF().equals("PowerChange"))
+				break;
+			case "PowerChange":
 				PowerChange(ois, oos);
-			if (ois.readUTF().equals("DeleteAcc"))
+				break;
+			case "DeleteAcc":
 				DeleteAcc(ois, oos);
-			if (ois.readUTF().equals("AddAccount"))
-				AddAccount(ois,oos);
+				break;
+			case "AddAccount":
+				AddAccount(ois, oos);
+				break;
+			default:
+				break;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

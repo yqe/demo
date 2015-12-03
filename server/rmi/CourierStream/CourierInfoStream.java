@@ -11,12 +11,19 @@ public class CourierInfoStream {
 
 	public void JudgeCmd(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			if (ois.readUTF().equals("SendBill"))
-				SendBill(ois,oos);
-			if (ois.readUTF().equals("DeliveryBill"))
-				DeliveryBill(ois,oos);
-			if (ois.readUTF().equals("QueryOrder"))
-				QueryOrder(ois,oos);
+			switch (ois.readUTF()) {
+			case "SendBill":
+				SendBill(ois, oos);
+				break;
+			case "DeliveryBill":
+				DeliveryBill(ois, oos);
+				break;
+			case "QueryOrder":
+				QueryOrder(ois, oos);
+				break;
+			default:
+				break;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -26,10 +33,10 @@ public class CourierInfoStream {
 		GoodsDocu gd = new GoodsDocu();
 		try {
 			GoodsDocuPO gdpo = (GoodsDocuPO) ois.readObject();
-			gdpo=gd.find(gdpo.getGoodsID());
-			if(gdpo==null){
-			oos.writeBoolean(true);}
-			else{
+			gdpo = gd.find(gdpo.getGoodsID());
+			if (gdpo == null) {
+				oos.writeBoolean(true);
+			} else {
 				oos.writeObject(gdpo);
 			}
 		} catch (Exception e) {
@@ -38,8 +45,7 @@ public class CourierInfoStream {
 	}
 
 	private void DeliveryBill(ObjectInputStream ois, ObjectOutputStream oos) {
-		
-		
+
 	}
 
 	private void SendBill(ObjectInputStream ois, ObjectOutputStream oos) {

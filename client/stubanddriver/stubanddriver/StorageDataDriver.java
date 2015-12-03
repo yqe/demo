@@ -1,4 +1,4 @@
-package stubanddriverserver;
+package stubanddriver;
 
 /**
  *

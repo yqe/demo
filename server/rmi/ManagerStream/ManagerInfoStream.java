@@ -13,34 +13,40 @@ public class ManagerInfoStream {
 
 	public void JudgeCmd(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			if (ois.readUTF().equals("FormulateStrategy"))
-				FormulateStrategy(ois,oos);
-			if (ois.readUTF().equals("ApproveBill"))
-				ApproveBill(ois,oos);
-			if (ois.readUTF().equals("CheckBill"))
-				CheckBill(ois,oos);
-			if (ois.readUTF().equals("AddAccount")){}
-	
+			switch (ois.readUTF()) {
+			case "FormulateStrategy":
+				FormulateStrategy(ois, oos);
+				break;
+			case "ApproveBill":
+				ApproveBill(ois, oos);
+				break;
+			case "CheckBill":
+				CheckBill(ois, oos);
+				break;
+			case "AddAccount":
+				break;
+			default:
+				break;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void CheckBill(ObjectInputStream ois, ObjectOutputStream oos) {
-		
-		
+
 	}
 
 	private void ApproveBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void FormulateStrategy(ObjectInputStream ois, ObjectOutputStream oos) {
-		StrategyData sd=new StrategyData();
+		StrategyData sd = new StrategyData();
 		try {
 			oos.writeObject(sd.observe());
-			ArrayList<StrategyPO> spolist=(ArrayList<StrategyPO>)ois.readObject();
+			ArrayList<StrategyPO> spolist = (ArrayList<StrategyPO>) ois.readObject();
 			for (int i = 0; i < spolist.size(); i++) {
 				sd.updatesalary(spolist.get(i).getPosition(), spolist.get(i).getSalary());
 			}
@@ -55,6 +61,6 @@ public class ManagerInfoStream {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 }

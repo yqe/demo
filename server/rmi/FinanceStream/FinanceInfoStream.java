@@ -8,17 +8,24 @@ import documentdata.ZzzxArrivalDocu;
 import po.ZzzxArrivalDocuPO;
 
 public class FinanceInfoStream {
+
 	public void JudgeCmd(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			if (ois.readUTF().equals("PaymentBill"))
+			switch (ois.readUTF()) {
+			case "PaymentBill":
 				PaymentBill(ois, oos);
+				break;
+			default:
+				break;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	public void PaymentBill(ObjectInputStream ois, ObjectOutputStream oos){
+
+	public void PaymentBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			ZzzxArrivalDocu zadu=new ZzzxArrivalDocu();
+			ZzzxArrivalDocu zadu = new ZzzxArrivalDocu();
 			ZzzxArrivalDocuPO zapo = (ZzzxArrivalDocuPO) ois.readObject();
 			zadu.insert(zapo);
 			oos.writeBoolean(true);
