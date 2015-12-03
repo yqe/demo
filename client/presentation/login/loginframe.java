@@ -10,6 +10,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -58,6 +62,8 @@ public class loginframe {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private int xx,yy;
+	private boolean isDraging;
 
 	public void Frame() throws IOException {
 		BufferedImage bgp = ImageIO.read(new File(
@@ -228,6 +234,29 @@ public class loginframe {
 
 		frame.setResizable(false);
 		frame.setVisible(true);
+		
+		frame.addMouseListener(new MouseAdapter() {
+			   public void mousePressed(MouseEvent e) {
+			    isDraging = true;
+			    xx = e.getX();
+			    yy = e.getY();
+			   }
+
+			   public void mouseReleased(MouseEvent e) {
+			    isDraging = false;
+			   }
+			  });
+			  frame.addMouseMotionListener(new MouseMotionAdapter() {
+			   public void mouseDragged(MouseEvent e) {
+			    if (isDraging) { 
+			     int left = frame.getLocation().x;
+			     int top = frame.getLocation().y;
+			     frame.setLocation(left + e.getX() - xx, top + e.getY() - yy);
+			    } 
+			   }
+			  });  
+		
+		
 
 		l1.setBounds(150, 50, 40, 30);
 		id.setBounds(240, 50, 120, 30);
