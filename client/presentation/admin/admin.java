@@ -30,7 +30,7 @@ public class admin {
 	final JPanel control = new JPanel();
 	public JPanel Panel() throws IOException{
 	
-	BufferedImage bgp=ImageIO.read(new File("D:/快递物流系统/demo/client/presentation/Abackground.jpg"));
+	BufferedImage bgp=ImageIO.read(new File("D:/test_eclipse/workspace/demo/client/presentation/Abackground.jpg"));
 	background = new ImageIcon(bgp);
 	JPanel admin = new JPanel() {
 		public void paintComponent(Graphics g) {

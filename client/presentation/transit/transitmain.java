@@ -31,7 +31,7 @@ public class transitmain {
 	JPanel content = new JPanel();
 	final JPanel control = new JPanel();
 	public JPanel Panel() throws IOException{
-	BufferedImage bgp=ImageIO.read(new File("D:/快递物流系统/demo/client/presentation/tbackground.jpg"));
+	BufferedImage bgp=ImageIO.read(new File("D:/test_eclipse/workspace/demo/client/presentation/tbackground.jpg"));
 	background = new ImageIcon(bgp);
 
 	JPanel transitmain = new JPanel() {

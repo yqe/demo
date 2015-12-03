@@ -67,7 +67,7 @@ public class loginframe {
 
 	public void Frame() throws IOException {
 		BufferedImage bgp = ImageIO.read(new File(
-				"D:/快递物流系统/demo/client/presentation/background.png"));
+				"D:/test_eclipse/workspace/demo/client/presentation/background.png"));
 		background = new ImageIcon(bgp);
 
 		final JFrame frame = new JFrame("快递物流系统");
