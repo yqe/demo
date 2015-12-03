@@ -18,9 +18,9 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService{
 	MySqlImp mysqlimp;
 	private String bussinessname;
 	@Override
-	public void insert(BussinessArrivalDocuPO po,String bussinessID) {
+	public void insert(BussinessArrivalDocuPO po) {
 		// TODO Auto-generated method stub
-		this.findnamebyID(bussinessID);
+		this.findnamebyID(po.getBussinessID());
 		try {
 			mysqlimp=new MySqlImp();
 			this.arrivaltime=po.getArrivaltime();
@@ -61,10 +61,10 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService{
 	}
 
 	@Override
-	public void update(BussinessArrivalDocuPO po,String bussinessID) {
+	public void update(BussinessArrivalDocuPO po) {
 		// TODO Auto-generated method stub
-		this.delete(po.getTransferID(), bussinessID);
-		this.insert(po, bussinessID);
+		this.delete(po.getTransferID(),po.getBussinessID());
+		this.insert(po);
 	}
 
 	@Override
