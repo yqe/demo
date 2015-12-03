@@ -20,7 +20,7 @@ public class AdminBl implements AdminBlService {
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	// 查看职位信息
-	public UserInfoPO look(long id) {
+	public String look(String id,String password) {
 		try {
 			socket = new Socket("localhost", 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -31,7 +31,12 @@ public class AdminBl implements AdminBlService {
 			ois.close();
 			oos.close();
 			socket.close();
-			return upo;
+			if(password.equals(upo.getPassword()))
+				return upo.getPosition();
+			else if(upo==null)
+				return null;//无账号；
+			else
+				return "PasswordError";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

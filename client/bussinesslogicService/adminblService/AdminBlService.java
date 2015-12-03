@@ -12,7 +12,7 @@ import po.UserInfoPO;
 
 public interface AdminBlService {
 	
-	public UserInfoPO look(long id);// 查看职位信息
+	public String look(String id,String password);// 查看职位信息
 
 	public boolean positionTransfer(UserInfoPO upo); // 权限调整
 
