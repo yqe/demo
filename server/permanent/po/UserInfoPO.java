@@ -1,6 +1,7 @@
 package po;
 
 public class UserInfoPO {
+	
         private String username;//用户姓名
         private String password;//密码
         private String userID;//账户ID

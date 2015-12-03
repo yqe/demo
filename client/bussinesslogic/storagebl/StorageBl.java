@@ -1,5 +1,6 @@
 package storagebl;
 
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -9,41 +10,50 @@ import po.StorageList;
 import storageblService.StorageBlService;
 
 public class StorageBl implements StorageBlService {
+	Socket socket;
+	ObjectOutputStream oos;
+	ObjectInputStream ois;
 
-	public void InStorageInput(InputStorageList slt) {
+	public boolean InStorageInput(InputStorageList slt) {
 		System.out.println(slt.getSlist().get(0).getDestination());
-
+		boolean IsOk = false;
 		try {
-			Socket socket = new Socket("localhost", 8888);
-			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			socket = new Socket("localhost", 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");
 			oos.writeUTF("InStoragePO");
 			oos.writeObject(slt);
-			oos.flush();
+			IsOk = ois.readBoolean();
+			ois.close();
 			oos.close();
 			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println("StorageBl.InStorageInputSuccess");
+		return IsOk;
 	}
 
-	public void OutStorageInput(OutStorageList oslt) {
+	public boolean OutStorageInput(OutStorageList oslt) {
 		System.out.print(oslt.getSlist().get(0).getDestination());
-		
+		boolean IsOk = false;
 		try {
-			Socket socket = new Socket("localhost", 8888);
-			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			socket = new Socket("localhost", 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");
 			oos.writeUTF("OutStoragePO");
 			oos.writeObject(oslt);
-			oos.flush();
+			IsOk = ois.readBoolean();
+			ois.close();
 			oos.close();
 			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println("StorageBl.OutStorageInputSuccess");
+		return IsOk;
 	}
 
 	public InputStorageList StorageCheck() {

@@ -6,10 +6,10 @@ import po.OutStorageList;
 public interface StorageBlService {
 
 
-	public void InStorageInput(InputStorageList slt);
+	public boolean InStorageInput(InputStorageList slt);
 
 
-	public void OutStorageInput(OutStorageList oslt);
+	public boolean OutStorageInput(OutStorageList oslt);
 
 
 	public InputStorageList StorageCheck();

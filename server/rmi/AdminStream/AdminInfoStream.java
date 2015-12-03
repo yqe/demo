@@ -25,12 +25,27 @@ public class AdminInfoStream {
 			case "AddAccount":
 				AddAccount(ois, oos);
 				break;
+			case "GetAccount":
+				GetAccount(ois, oos);
+				break;
 			default:
 				break;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void GetAccount(ObjectInputStream ois, ObjectOutputStream oos) {
+		try {
+			String id=ois.readUTF();
+			UserInfoPO upo = ud.getLoginPO(id);
+			oos.writeObject(upo);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void AddAccount(ObjectInputStream ois, ObjectOutputStream oos) {
@@ -50,10 +65,12 @@ public class AdminInfoStream {
 	private void PowerChange(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
-			if (ud.getLoginPO(up.getUserID()) == null) {
+			UserInfoPO up2 = ud.getLoginPO(up.getUserID());
+			if (up2 == null) {
 				oos.writeBoolean(false);
 			} else {
-				ud.delete(up.getUserID());
+				UserInfoPO upo = new UserInfoPO(up.getUserID(), up2.getPassword(), up2.getUsername(), up.getPosition());
+				ud.update(upo);
 				oos.writeBoolean(true);
 			}
 		} catch (ClassNotFoundException e) {
@@ -87,11 +104,13 @@ public class AdminInfoStream {
 	private void PasswordChange(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
+			UserInfoPO up2 = ud.getLoginPO(up.getUserID());
 			// TODO
-			if (ud.getLoginPO(up.getUserID()) == null) {
+			if (up2 == null) {
 				oos.writeBoolean(false);
 			} else {
-				ud.update(up);
+				UserInfoPO upo = new UserInfoPO(up.getUserID(), up.getPassword(), up2.getUsername(), up2.getPosition());
+				ud.update(upo);
 				oos.writeBoolean(true);
 			}
 		} catch (Exception e) {
