@@ -14,6 +14,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService{
 	private String transferID;//中转编号
 	private String destination;//目的地
 	private String state;//到达状态
+	private String bussinessID;
 	MySqlImp mysqlimp;
 	private String bussinessname;
 	@Override
@@ -26,7 +27,8 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService{
 			this.transferID=po.getTransferID();
 			this.destination=po.getDestination();
 			this.state=po.getState();
-			String insert="INSERT INTO "+bussinessname+""+" (到达日期,中转单编号,出发地,货物到达状态)"+" VALUES('"+arrivaltime+"','"+transferID+"','"+destination+"','"+state+"')";
+			this.bussinessID=po.getBussinessID();
+			String insert="INSERT INTO "+bussinessname+""+" (到达日期,中转单编号,出发地,货物到达状态,营业厅编号)"+" VALUES('"+arrivaltime+"','"+transferID+"','"+destination+"','"+state+"','"+bussinessID+"')";
 			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -74,7 +76,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService{
 			String find="SELECT * FROM "+bussinessname+""+" WHERE 中转单编号='"+transferID+"'";
 			ResultSet rs=mysqlimp.query(find);
 			rs.next();
-			BussinessArrivalDocuPO busspo=new BussinessArrivalDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+			BussinessArrivalDocuPO busspo=new BussinessArrivalDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
 			return busspo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -100,7 +102,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService{
 			String findall="SELECT *"+" FROM "+bussinessname+"";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
-				busspoList.add(new BussinessArrivalDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+				busspoList.add(new BussinessArrivalDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
 			return busspoList;
 		} catch (ClassNotFoundException e) {
