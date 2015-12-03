@@ -6,6 +6,7 @@ import vo.DocumentVO;
 import documentblService.DocumentBlService;
 
 public class Document implements DocumentBlService{
+	
 
 	public boolean choose(String type) {
 		// TODO Auto-generated method stub

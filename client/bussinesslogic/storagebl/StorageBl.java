@@ -13,12 +13,12 @@ public class StorageBl implements StorageBlService {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
-
+	String hostid="localhost";
 	public boolean InStorageInput(InputStorageList slt) {
 		System.out.println(slt.getSlist().get(0).getDestination());
 		boolean IsOk = false;
 		try {
-			socket = new Socket("localhost", 8888);
+			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");
@@ -39,7 +39,7 @@ public class StorageBl implements StorageBlService {
 		System.out.print(oslt.getSlist().get(0).getDestination());
 		boolean IsOk = false;
 		try {
-			socket = new Socket("localhost", 8888);
+			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");

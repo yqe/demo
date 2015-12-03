@@ -26,6 +26,4 @@ public interface EmploeeBlService{
 	public boolean DeleteEmp(String ID);
 	//删除一个员工
 	
-	
-	
 }
