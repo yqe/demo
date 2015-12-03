@@ -6,23 +6,24 @@
  *
  */
 
-package adminbl;
+package userbl;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import adminblService.AdminBlService;
 import po.UserInfoPO;
+import userblService.UserBLService;
 
-public class AdminBl implements AdminBlService {
+public class UserBl implements UserBLService {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
+	String hostid="localhost";
 	// 查看职位信息
 	public String look(String id,String password) {
 		try {
-			socket = new Socket("localhost", 8888);
+			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
@@ -47,7 +48,7 @@ public class AdminBl implements AdminBlService {
 	public boolean positionTransfer(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
-			socket = new Socket("localhost", 8888);
+			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
@@ -67,7 +68,7 @@ public class AdminBl implements AdminBlService {
 	public boolean changePassword(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
-			socket = new Socket("localhost", 8888);
+			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
@@ -87,7 +88,7 @@ public class AdminBl implements AdminBlService {
 	public boolean cancellation(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
-			socket = new Socket("localhost", 8888);
+			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
