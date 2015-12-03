@@ -13,9 +13,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import po.UserInfoPO;
-import userblService.UserBlService;
+import userblService.UserBLService;
 
-public class UserBl implements UserBlService {
+public class UserBl implements UserBLService {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
