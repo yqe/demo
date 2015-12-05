@@ -3,12 +3,13 @@ package HallClerkStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import documentdata.BussinessArrivalDocu;
 import documentdata.EarnedDocu;
-import documentdata.ZzzxArrivalDocu;
+import po.BussinessArrivalDocuPO;
 import po.EarnedPO;
 import po.TransPO;
 import po.VehicleMaintanceInfoPO;
-import po.ZzzxArrivalDocuPO;
 import transdata.TransData;
 import transdata.VehicleMaintance;
 
@@ -46,10 +47,10 @@ public class HallClerkInfoStream {
 	 *                zxc
 	 */
 	private void ArrivalBill(ObjectInputStream ois, ObjectOutputStream oos) {
-		ZzzxArrivalDocu zad = new ZzzxArrivalDocu();
+		BussinessArrivalDocu  bad= new BussinessArrivalDocu();
 		try {
-			ZzzxArrivalDocuPO zapo = (ZzzxArrivalDocuPO) ois.readObject();
-			zad.insert(zapo);
+			BussinessArrivalDocuPO badpo = (BussinessArrivalDocuPO) ois.readObject();
+//			bad.insert(badpo);
 			oos.writeBoolean(true);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

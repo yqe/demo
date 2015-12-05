@@ -1,6 +1,10 @@
 package po;
 
-public class UserInfoPO {
+import java.io.Serializable;
+
+public class UserInfoPO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private String username;// 用户姓名
 	private String password;// 密码
 	private String userID;// 账户ID

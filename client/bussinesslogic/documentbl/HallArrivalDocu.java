@@ -4,7 +4,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Yytarrivaldocu extends Document {
+import po.BussinessArrivalDocuPO;
+
+public class HallArrivalDocu extends Document {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
@@ -20,15 +22,15 @@ public class Yytarrivaldocu extends Document {
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean BuildHallArrivalDocu() {
+	public boolean BuildHallArrivalDocu(BussinessArrivalDocuPO bapo) {
 		IsOk = false;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-			oos.writeUTF("Storage");
-			oos.writeUTF("InStoragePO");
-			oos.writeObject("");
+			oos.writeUTF("HallClerk");
+			oos.writeUTF("ArrivalBill");
+			oos.writeObject(bapo);
 			IsOk = ois.readBoolean();
 			ois.close();
 			oos.close();

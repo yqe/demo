@@ -29,6 +29,7 @@ public class AdminInfoStream {
 				GetAccount(ois, oos);
 				break;
 			default:
+				System.out.println("NJ");
 				break;
 			}
 		} catch (IOException e) {
@@ -38,14 +39,18 @@ public class AdminInfoStream {
 
 	private void GetAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			String id=ois.readUTF();
-			UserInfoPO upo = ud.getLoginPO(id);
+			System.out.println("in the way");
+			String id = ois.readUTF();
+			System.out.println(id);
+			// UserInfoPO upo = ud.getLoginPO(id);
+			oos.writeBoolean(false);
+			UserInfoPO upo = new UserInfoPO("12345", "54321", "zxc", "manger");
 			oos.writeObject(upo);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	private void AddAccount(ObjectInputStream ois, ObjectOutputStream oos) {
