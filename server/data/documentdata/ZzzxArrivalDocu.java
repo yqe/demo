@@ -34,12 +34,12 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 			return zzzxpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in ZzzxArrivalDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ZzzxArrivalDocu!");
 			return null;
 		}
@@ -109,14 +109,14 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 			return zzzxpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in ZzzxArrivalDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ZzzxArrivalDocu!");
-			return null;
+			return new ZzzxArrivalDocuPO("不存在","","",startPlace,goodsState);
 		}
 		
 	}

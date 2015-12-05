@@ -158,8 +158,8 @@ public class GoodsDocuPO implements Serializable {
 	}
 
 
-		public GoodsDocuPO(String dname,String daddress,String dworkspace,String dhphone,String dmobile,String rname,String raddress,
-				String rworkspace,String rhphone,String rmobile,double wfee,double tfee,String etype,String goodsID,String time,double money
+		public GoodsDocuPO(String dname,String daddress,String dworkspace,String dmobile,String rname,String raddress,
+				String rworkspace,String rmobile,double wfee,double tfee,String etype,String goodsID,String time,double money
 				,String goodsname,int goodsnum, double len,double wid,double hei,double v,String goodsinfo,String wrappedtype
 				,String expectedtime,String generatetime,String name){
 			this.dilivername=dname;

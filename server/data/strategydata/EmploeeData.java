@@ -49,9 +49,9 @@ public class EmploeeData implements EmploeeDataService{
 				return null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 				System.out.println("Some MySql problem has happened in EmploeeData!");
-				return null;
+				return new EmploeePO("不存在",empID,name,salary,sex,age,phonenum,id,address);
 			}
 			
 			

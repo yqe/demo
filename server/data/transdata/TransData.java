@@ -40,14 +40,14 @@ public class TransData implements TransDataService{
 			return trapo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in TransData!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in TransData!");
-			return null;
+			return new TransPO("不存在",bussinessID,expreID,destination,carsID,monitor,supercargo,fee,orderID);
 		}
 		
 	}

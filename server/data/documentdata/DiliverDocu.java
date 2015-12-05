@@ -27,14 +27,14 @@ public class DiliverDocu implements DiliverDocuService{
 			return dipo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in DilivverDocu!");
-			return null;
+			return new DiliverDocuPO("不存在","","","");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in getdistance!");
-			return null;
+			return new DiliverDocuPO("不存在","","","");
 		}
 		
 	}
@@ -53,12 +53,12 @@ public class DiliverDocu implements DiliverDocuService{
 			return dipoList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in DilivverDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in getdistance!");
 			return null;
 		}

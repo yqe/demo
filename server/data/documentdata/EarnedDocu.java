@@ -79,14 +79,14 @@ public class EarnedDocu implements EarnedDocuService{
 			return earnedpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in EarnedDocu!");
-			return null;
+			return new EarnedPO("不存在",2,"","","");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EarnedDocu!");
-			return null;
+			return new EarnedPO("不存在",2,"","","");
 		}
 		
 		

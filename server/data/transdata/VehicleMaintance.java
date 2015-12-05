@@ -48,9 +48,9 @@ public class VehicleMaintance implements VehicleMaintanceService {
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in VehicleMaintance!");
-			return null;
+			return new VehicleMaintanceInfoPO("不存在",bussinessID,carsID,worktime,driverID,birthday,idendity,mobile,sex,limittime);
 		}
 		
 	}

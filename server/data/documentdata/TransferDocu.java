@@ -44,12 +44,12 @@ public class TransferDocu implements TransferDocuService{
 				return transpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in TransferDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in TransferDocu!");
 			return null;
 		}
@@ -128,14 +128,14 @@ public class TransferDocu implements TransferDocuService{
 			return docupo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in TransferDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in TransferDocu!");
-			return null;
+			return new TransferDocuPO("不存在","","","","","","","","",0);
 		}
 		
 	}

@@ -31,14 +31,14 @@ public class Initialaccount implements InitialAccountService{
 			return accpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in Initialaccount!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in Initialaccount!");
-			return null;
+			return new InitializeAccountPO("不存在","","",4,5,5);
 		}
 		
 	
@@ -98,12 +98,12 @@ public class Initialaccount implements InitialAccountService{
 			return accList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in Initialaccount!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in Initialaccount!");
 			return null;
 		}

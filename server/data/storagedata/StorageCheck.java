@@ -115,14 +115,14 @@ public class StorageCheck implements StorageCheckService{
 			return spo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in StorageCheck!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StorageCheck!");
-			return null;
+			return new StorageCheckPO("不存在","","","","","");
 		}
 		
 	}

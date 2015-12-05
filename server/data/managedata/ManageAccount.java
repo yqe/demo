@@ -24,14 +24,14 @@ public class ManageAccount implements ManageAccountService {
 			return accpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in ManageAccount!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ManageAccount!");
-			return null;
+			return new ManageAccountPO("不存在",2,"","");
 		}
 		
 	}

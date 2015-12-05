@@ -28,14 +28,14 @@ public class DistanceData implements DistanceDataService{
 			return dispo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in getdistance!");
-			return null;
+			return new DistancePO("不存在","",0);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in getdistance!");
-			return null;
+			return new DistancePO("不存在","",0);
 		}
 			
 	}
