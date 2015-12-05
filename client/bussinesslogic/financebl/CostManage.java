@@ -1,20 +1,19 @@
-package documentbl;
+package financebl;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import po.GoodsDocuPO;
+import po.CostManagePO;
 
-public class Goodsdocu extends Document {
+public class CostManage {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
 	String hostid = "localhost";
-
 	/**
-	 * 建立寄件单
+	 * 建立成本管理
 	 * 
 	 * @param EarnedPO
 	 *            earnpo;
@@ -22,15 +21,15 @@ public class Goodsdocu extends Document {
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean BuildGoodsDocu(GoodsDocuPO gdpo){
-		IsOk = false;
+ public boolean BuildCostManage(CostManagePO cmpo){
+	 IsOk = false;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-			oos.writeUTF("HallClerk");
-			oos.writeUTF("LoadingList");
-			oos.writeObject(gdpo);
+			oos.writeUTF("Finance");
+			oos.writeUTF("PaymentBill");
+			oos.writeObject(cmpo);
 			IsOk = ois.readBoolean();
 			ois.close();
 			oos.close();
@@ -39,6 +38,6 @@ public class Goodsdocu extends Document {
 			e.printStackTrace();
 		}
 		return IsOk;
-		
-	}
+	 
+ }
 }
