@@ -29,7 +29,7 @@ public class Inquiry {
 	private ImageIcon background;
 	private ImageIcon button1;
 	public JPanel Panel() throws IOException{
-	BufferedImage bgp=ImageIO.read(new File("D:/快递物流系统/demo/client/presentation/background.png"));
+	BufferedImage bgp=ImageIO.read(new File("presentation/background.png"));
 	background = new ImageIcon(bgp);
 
 	final JPanel p1 = new JPanel(){public void paintComponent(Graphics g) {

@@ -48,7 +48,7 @@ public class financemainui {
 		// setBounds(40, 0, width, height);
 		// this.add(contain);
 		
-		BufferedImage bgp=ImageIO.read(new File("D:/test_eclipse/workspace/demo/client/presentation/Fbackground.jpg"));
+		BufferedImage bgp=ImageIO.read(new File("presentation/Fbackground.jpg"));
 		background = new ImageIcon(bgp);
 		
 		JPanel contain = new JPanel() {
