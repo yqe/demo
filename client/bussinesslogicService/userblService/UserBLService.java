@@ -10,7 +10,7 @@ package userblService;
 
 import po.UserInfoPO;
 
-public interface UserBLService {
+public interface UserBlService {
 	
 	public String look(String id,String password);// 查看职位信息
 
