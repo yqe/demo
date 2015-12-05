@@ -1,7 +1,11 @@
 package po;
 
 import java.io.Serializable;
-
+/**
+ * 营业厅到达单
+ * @author jjlb
+ *
+ */
 public class BussinessArrivalDocuPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//营业厅到达单

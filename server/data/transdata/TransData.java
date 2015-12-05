@@ -9,6 +9,10 @@ import mysqlimp.MySqlImp;
 import po.TransPO;
 import transdataService.TransDataService;
 
+/**
+ * @author jjlb
+ *装车单
+ */
 public class TransData implements TransDataService{
 		private String date;//装车日期
 		private String bussinessID;//本营业厅编号

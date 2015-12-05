@@ -8,6 +8,10 @@ import mysqlimp.MySqlImp;
 import po.StorageCheckPO;
 import storagedataService.StorageCheckService;
 
+/**
+ * @author jjlb
+ *库存盘点
+ */
 public class StorageCheck implements StorageCheckService{
 	public String goodsID;
 	/* 快递编号*/
@@ -104,6 +108,31 @@ public class StorageCheck implements StorageCheckService{
 		
 	}
 
+	public ArrayList<StorageCheckPO> findall() {
+		// TODO Auto-generated method stub
+		try {
+			mysqlimp=new MySqlImp();
+			ArrayList<StorageCheckPO> stoList=new ArrayList<StorageCheckPO>();
+			String findall="SELECT * FROM "+transcentername+"";
+			ResultSet rs=mysqlimp.query(findall);
+			while(rs.next()){
+				stoList.add(new StorageCheckPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
+			}
+			return stoList;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Class has some problem in StorageCheck!");
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Some MySql problem has happened in StorageCheck!");
+			return null;
+		}
+		
+		
+	}
 	public StorageCheckPO find(String ID) {
 		// TODO Auto-generated method stub
 		try {

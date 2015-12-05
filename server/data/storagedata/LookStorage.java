@@ -12,6 +12,10 @@ import po.InputStorageDocuPO;
 import po.OutStorageDocuPO;
 import storagedataService.LookStorageService;
 
+/**
+ * @author jjlb
+ *查看库存
+ */
 public class LookStorage implements LookStorageService{
 	//查看一段时间内的入库/出库/金额
 	private String transcentercheckname;//库存盘点中数据库的表单名字

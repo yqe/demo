@@ -1,7 +1,11 @@
 package po;
 
 import java.io.Serializable;
-
+/**
+ * 中转单
+ * @author jjlb
+ *
+ */
 public class TransferDocuPO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	 private String transportType;//交通工具种类

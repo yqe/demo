@@ -1,7 +1,11 @@
 package po;
 
 import java.io.Serializable;
-
+/**
+ * 中转中心到达单
+ * @author jjlb
+ *
+ */
 public class ZzzxArrivalDocuPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String transferCenterNum;//中转中心编号

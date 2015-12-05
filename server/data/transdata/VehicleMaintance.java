@@ -9,6 +9,10 @@ import po.TransPO;
 import po.VehicleMaintanceInfoPO;
 import transdataService.VehicleMaintanceService;
 
+/**
+ * @author jjlb
+ *车辆维护信息
+ */
 public class VehicleMaintance implements VehicleMaintanceService {
 	private String vehicleID;//车辆代号
 	private String bussinessID;//营业厅编号

@@ -2,7 +2,11 @@ package po;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * 期初建账
+ * @author jjlb
+ *
+ */
 public class InitializeAccountPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String bankaccountid;//银行 账户ID

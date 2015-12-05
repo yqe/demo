@@ -8,6 +8,10 @@ import documentdataService.DiliverDocuService;
 import mysqlimp.MySqlImp;
 import po.DiliverDocuPO;
 
+/**
+ * @author jjlb
+ *派件单
+ */
 public class DiliverDocu implements DiliverDocuService{
 	private String orderID;//订单条形码号
 	private String arrivaltime;//到达时间/

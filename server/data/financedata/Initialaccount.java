@@ -9,6 +9,10 @@ import mysqlimp.MySqlImp;
 import po.InitializeAccountPO;
 import po.TransPO;
 
+/**
+ * @author jjlb
+ *期初建账
+ */
 public class Initialaccount implements InitialAccountService{
 	private String bankaccountid;//银行账户id
 	private String jigou;

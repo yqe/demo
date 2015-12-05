@@ -9,6 +9,10 @@ import mysqlimp.MySqlImp;
 import po.BussinessArrivalDocuPO;
 import po.InputStorageDocuPO;
 
+/**
+ * @author jjlb
+ *营业厅到达单
+ */
 public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 	private String arrivaltime;// 到达日期
 	private String transferID;// 中转编号

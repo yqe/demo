@@ -9,6 +9,10 @@ import mysqlimp.MySqlImp;
 import po.TransPO;
 import po.ZzzxArrivalDocuPO;
 
+/**
+ * @author jjlb
+ *中转中心到达单
+ */
 public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 	private String transferCenterNum;//中转中心编号
 	private String arrivalDate;

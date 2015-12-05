@@ -9,6 +9,10 @@ import documentdataService.TransferDocuService;
 import mysqlimp.MySqlImp;
 import po.TransferDocuPO;
 
+/**
+ * @author jjlb
+ *中转单
+ */
 public class TransferDocu implements TransferDocuService{
 			MySqlImp mysqlimp;
 			 private String transportType;//交通工具种类

@@ -9,6 +9,10 @@ import managedataService.ManageCostService;
 import mysqlimp.MySqlImp;
 import po.CostManagePO;
 
+/**
+ * @author jjlb
+ *成本管理
+ */
 public class ManageCostData implements ManageCostService{
 			MySqlImp mysqlimp;
 		    private String date;//付款日期

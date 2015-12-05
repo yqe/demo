@@ -3,7 +3,11 @@ package po;
 import java.io.Serializable;
 
 import mysqlimp.MySqlImp;
-
+/**
+ * 快递单
+ * @author jjlb
+ *
+ */
 public class GoodsDocuPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String dilivername;

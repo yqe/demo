@@ -4,7 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import po.TransPO;
+import po.TransferDocuPO;
 
 public class Turndocu extends Document{
 	Socket socket;
@@ -21,7 +21,7 @@ public class Turndocu extends Document{
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean BuildTurnDocu(TransPO tspo){
+	public boolean BuildTurnDocu(TransferDocuPO tspo){
 		IsOk = false;
 	try {
 		socket = new Socket(hostid, 8888);

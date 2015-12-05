@@ -1,7 +1,11 @@
 package po;
 
 import java.io.Serializable;
-
+/**
+ * 收款单
+ * @author jjlb
+ *
+ */
 public class EarnedPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String paydate;//付款日期

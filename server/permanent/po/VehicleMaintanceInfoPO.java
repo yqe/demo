@@ -1,7 +1,11 @@
 package po;
 
 import java.io.Serializable;
-
+/**
+ * 车辆信息维护
+ * @author jjlb
+ *
+ */
 public class VehicleMaintanceInfoPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 		private String vehicleID;//车辆代号

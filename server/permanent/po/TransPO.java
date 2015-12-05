@@ -1,7 +1,11 @@
 package po;
 
 import java.io.Serializable;
-
+/**
+ * 装车单
+ * @author jjlb
+ *
+ */
 public class TransPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 		private String date;//装车日期

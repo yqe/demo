@@ -7,6 +7,10 @@ import managedataService.ManageAccountService;
 import mysqlimp.MySqlImp;
 import po.ManageAccountPO;
 
+/**
+ * @author jjlb
+ *账户管理
+ */
 public class ManageAccount implements ManageAccountService {
 	private String accountname;
 	private double balance;

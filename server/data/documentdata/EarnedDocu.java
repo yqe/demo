@@ -8,6 +8,10 @@ import documentdataService.EarnedDocuService;
 import mysqlimp.MySqlImp;
 import po.EarnedPO;
 
+/**
+ * @author jjlb
+ *收款单
+ */
 public class EarnedDocu implements EarnedDocuService{
 	private String paydate;//付款日期
 	private double earnedmoney;//收款金额

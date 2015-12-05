@@ -9,6 +9,10 @@ import documentdataService.GoodsDocuService;
 import mysqlimp.MySqlImp;
 import po.GoodsDocuPO;
 
+/**
+ * @author jjlb
+ *快递单
+ */
 public class GoodsDocu implements GoodsDocuService{
 	private String dilivername;
 	private String diliveraddress;

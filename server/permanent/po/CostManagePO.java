@@ -1,7 +1,11 @@
 package po;
 
 import java.io.Serializable;
-
+/**
+ * 成本管理
+ * @author jjlb
+ *
+ */
 public class CostManagePO implements Serializable {
 	private static final long serialVersionUID = 1L;
     private String date;//付款日期

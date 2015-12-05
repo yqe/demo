@@ -1,28 +1,20 @@
 package transit;
 
-import java.awt.Button;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+
+import documentbl.Turndocu;
+import po.TransferDocuPO;
 
 
 public class transitload {
@@ -82,17 +74,7 @@ public class transitload {
     
 
     JButton b4=new JButton("生成装车单");
-	b4.addActionListener(new ActionListener(){
-  		public void actionPerformed(ActionEvent e) {
-  		if(!isempty){
-  			JOptionPane.showMessageDialog(null,"成功生成装车单!");
-  		}
-  		else if(isempty){
-  			JOptionPane.showMessageDialog(null,"请输入完整的信息!");
-  		}
-  			
-  		}
-  	});
+
 	String[] year = new String[201];
     for (int i = 2000; i < 2100; i++) {
         year[i-2000] = i+"年";
@@ -117,7 +99,23 @@ public class transitload {
    JComboBox sitebox1 = new JComboBox(site);
    JComboBox sitebox2 = new JComboBox(site);
    
-
+	b4.addActionListener(new ActionListener(){
+  		public void actionPerformed(ActionEvent e) {
+  		if(!isempty){
+  			TransferDocuPO tfpo=new TransferDocuPO("飞机", "nian", zzdid.getText(), hbid.getText(),"上海", "南京",hgid.getText(),jz.getText(), yy.getText(), Double.parseDouble(price.getText()));
+  					Turndocu td=new Turndocu();
+  					boolean IsOk=td.BuildTurnDocu(tfpo);
+  					if(IsOk)
+  					JOptionPane.showMessageDialog(null,"成功生成装车单!");
+  					else
+  						JOptionPane.showMessageDialog(null,"生成装车单失败!");
+  		}
+  		else if(isempty){
+  			JOptionPane.showMessageDialog(null,"请输入完整的信息!");
+  		}
+  			
+  		}
+  	});
 
 	p1.setOpaque(false);
 	p1.setLayout(null);
