@@ -1,6 +1,9 @@
 package po;
 
-public class StrategyPO {
+import java.io.Serializable;
+
+public class StrategyPO implements Serializable {
+	private static final long serialVersionUID = 1L;
 		private String position;//职位
 		private int salary;//对应职位薪水
 		private int constant;//价格计算公式常量

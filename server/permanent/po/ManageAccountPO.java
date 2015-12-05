@@ -1,6 +1,9 @@
 package po;
 
-public class ManageAccountPO {
+import java.io.Serializable;
+
+public class ManageAccountPO implements Serializable {
+	private static final long serialVersionUID = 1L;
 		private String accountname;
 		private double balance;
 		private String accountID;

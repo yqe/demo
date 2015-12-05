@@ -1,6 +1,10 @@
 package po;
+
+import java.io.Serializable;
+
 //派件单
-public class DiliverDocuPO {
+public class DiliverDocuPO implements Serializable {
+	private static final long serialVersionUID = 1L;
 		private String orderID;//订单条形码号
 		private String arrivaltime;//到达时间/
 		private String receivername;//收件人姓名

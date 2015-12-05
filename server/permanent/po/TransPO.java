@@ -1,6 +1,9 @@
 package po;
 
-public class TransPO {
+import java.io.Serializable;
+
+public class TransPO implements Serializable {
+	private static final long serialVersionUID = 1L;
 		private String date;//装车日期
 		private String bussinessID;//本营业厅编号
 		private String expreID;//汽运编号

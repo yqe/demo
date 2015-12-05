@@ -1,6 +1,9 @@
 package po;
 
-public class DistancePO {
+import java.io.Serializable;
+
+public class DistancePO implements Serializable {
+	private static final long serialVersionUID = 1L;
 		private String departurepalce;
 		private String destination;
 		private double distance;

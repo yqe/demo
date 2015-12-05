@@ -1,6 +1,9 @@
 package po;
 
-public class BussinessArrivalDocuPO {
+import java.io.Serializable;
+
+public class BussinessArrivalDocuPO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	//营业厅到达单
 	private String bussinessID;//营业厅编号
 	private String arrivaltime;//到达日期
