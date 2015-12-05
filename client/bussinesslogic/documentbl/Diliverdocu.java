@@ -4,32 +4,32 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import po.ZzzxArrivalDocuPO;
+import po.DiliverDocuPO;
 
-public class Zzzxarrivaldocu extends Document {
+public class Diliverdocu extends Document {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
 	String hostid = "localhost";
 	/**
-	 * 建立中转中心到达单
+	 * 建立派件单
 	 * 
 	 * @param EarnedPO
 	 *            earnpo;
-	 * @return
+	 * @return boolean
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean BuildZzzxarrivalDocu(ZzzxArrivalDocuPO zzzxpo){
+	public boolean BuildDiliverDocu(DiliverDocuPO ddpo){
 		IsOk = false;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-			oos.writeUTF("Transit");
-			oos.writeUTF("TransitReceive");
-			oos.writeObject(zzzxpo);
+			oos.writeUTF("Courier");
+			oos.writeUTF("DeliveryBill");
+			oos.writeObject(ddpo);
 			IsOk = ois.readBoolean();
 			ois.close();
 			oos.close();
@@ -38,5 +38,6 @@ public class Zzzxarrivaldocu extends Document {
 			e.printStackTrace();
 		}
 		return IsOk;
+		
 	}
 }
