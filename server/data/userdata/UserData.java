@@ -67,7 +67,8 @@ public class UserData implements UserDataService{
 				this.password=po.getPassword();
 				this.username=po.getUsername();
 				this.position=po.getPosition();
-				String insert="INSERT INTO 登录时所需信息"+" (账户ID,账户密码,账户人姓名,职位)"+" VALUES('"+username+"','"+password+"'，'"+username+"','"+position+"')";
+				String insert="INSERT INTO 登录时所需信息"+" (账户ID,账户密码,账户人姓名,职位)"+" VALUES('"+userID+"','"+password+"','"+username+"','"+position+"')";
+				//System.out.println(insert);
 				mysqlimp.update(insert);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

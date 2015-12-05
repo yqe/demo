@@ -38,7 +38,8 @@ public class App
 			//u.delete("1124");
 			//u.insert(new UserInfoPO("1124","5678"));
 			//ma.find();
-        	input.storagenum("010000", "20151124");
+        	//u.update(new UserInfoPO("1124","2","jj","tt"));
+        	//input.storagenum("010000", "20151124");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
