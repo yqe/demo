@@ -34,7 +34,7 @@ public class App
 			//d.insertEmp(new EmploeePO("总经理","114500","啊皮豪",50000,"男",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号"));
 			//d.update(new EmploeePO("总经理","114500","啊皮豪",50000,"女",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号"));
         	//dis.getdistance("天津", "北京");
-			//u.getLoginPO("1124");
+			//u.getLoginPO("24");
 			//u.delete("1124");
 			//u.insert(new UserInfoPO("1124","5678"));
 			//ma.find();

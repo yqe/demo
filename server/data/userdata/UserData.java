@@ -31,14 +31,14 @@ public class UserData implements UserDataService{
 				return userinfo;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 				System.out.println("Class has some problem in UserData!");
 				return null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 				System.out.println("Some MySql problem has happened in UserData!");
-				return null;
+				return new UserInfoPO("不存在","","","");
 			}
 				
 		}
@@ -50,11 +50,11 @@ public class UserData implements UserDataService{
 				mysqlimp.update(delete);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 				System.out.println("Class has some problem in UserData!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 				System.out.println("Some MySql problem has happened in UserData!");
 			}
 			
@@ -72,11 +72,11 @@ public class UserData implements UserDataService{
 				mysqlimp.update(insert);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 				System.out.println("Class has some problem in UserData!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 				System.out.println("Some MySql problem has happened in UserData!");
 			}
 		}
