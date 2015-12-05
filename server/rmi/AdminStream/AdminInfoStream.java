@@ -39,14 +39,10 @@ public class AdminInfoStream {
 
 	private void GetAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			System.out.println("in the way");
-			String id = ois.readUTF();
-			System.out.println(id);
-			// UserInfoPO upo = ud.getLoginPO(id);
-			oos.writeBoolean(false);
-			UserInfoPO upo = new UserInfoPO("12345", "54321", "zxc", "manger");
+			UserInfoPO upoCilent = (UserInfoPO)ois.readObject();
+			UserInfoPO upo = ud.getLoginPO(upoCilent.getUserID());
 			oos.writeObject(upo);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
