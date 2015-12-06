@@ -25,6 +25,11 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import po.InputStorageList;
+import po.OutStorageDocuPO;
+import po.OutStorageList;
+import storagebl.StorageBl;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,7 +39,7 @@ public class outstorage {
 	private ImageIcon button1;
 	public JPanel Panel() throws IOException{
 
-
+		final OutStorageList oslt=new OutStorageList();
 
 		JPanel p1 = new JPanel();
 		p1.setBounds(0,0,900,700);
@@ -118,6 +123,8 @@ public class outstorage {
 			final String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();
 			final String place=(String) sitebox.getSelectedItem();
 			final String type=(String) typebox.getSelectedItem();
+			OutStorageDocuPO am=new OutStorageDocuPO(t1.getText(),date,place,type,t2.getText());
+			oslt.addOutStoragePO(am);
 			Object[] add={t1.getText(),date,place,type,t2.getText()};
 			DefaultTableModel model = (DefaultTableModel) table.getModel();            
 			model.insertRow(model.getRowCount(), add);
@@ -145,8 +152,13 @@ public class outstorage {
 	JButton b6=new JButton("完成出库");
 	b6.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-		
+		 StorageBl k=new StorageBl();
+		 boolean isOk=k.OutStorageInput(oslt);
+		 if (isOk)
 			JOptionPane.showMessageDialog(null,"成功完成出库!");
+		 else
+				JOptionPane.showMessageDialog(null,"无法完成出库!");
+
 		}
 		
 	});

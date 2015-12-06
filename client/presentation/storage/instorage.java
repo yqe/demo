@@ -18,6 +18,11 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import po.InputStorageDocuPO;
+import po.InputStorageList;
+import po.StoragePO;
+import storagebl.StorageBl;
+
 public class instorage {
 	private JPanel imagePanel;
 	private ImageIcon Sbackground;
@@ -26,7 +31,7 @@ public class instorage {
 	public JPanel Panel() throws IOException{
 	
 
-
+		final InputStorageList islt=new InputStorageList();
 	    JPanel p1 = new JPanel() ;
 		p1.setBounds(0,0,900,700);
 		JLabel l1=new JLabel("快递物流系统");
@@ -117,6 +122,8 @@ public class instorage {
 		public void actionPerformed(ActionEvent e) {
 			final String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();
 			final String place=(String) sitebox.getSelectedItem();
+			InputStorageDocuPO insto=new InputStorageDocuPO(id.getText(), date, place, qu.getText(), pai.getText(), jia.getText(), wei.getText(), zzzxid.getText());
+			islt.addInputStoragePO(insto);
 			Object[] add={id.getText(),date,place,qu.getText(),pai.getText(),jia.getText(),wei.getText(),zzzxid.getText()};
 			DefaultTableModel model = (DefaultTableModel) table.getModel();            
 			model.insertRow(model.getRowCount(), add);
@@ -147,8 +154,13 @@ public class instorage {
 	JButton b6=new JButton("完成入库");
 	b6.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-		
+			StorageBl ido=new StorageBl();
+			boolean isOk=ido.InStorageInput(islt);
+			if (isOk)
 			JOptionPane.showMessageDialog(null,"成功完成入库!");
+			else
+				JOptionPane.showMessageDialog(null,"无法完成入库!");
+
 		}
 		
 	});
