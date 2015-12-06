@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import po.VehicleMaintanceInfoPO;
 import transbl.TransBl;
 import courier.infoDialog;
 
@@ -88,22 +89,25 @@ public class Maintenance {
     b1.addActionListener(new ActionListener(){
   		public void actionPerformed(ActionEvent e) {	
   			TransBl trans=new TransBl();
-  			trans.GetVehicleInfoPO(carid.getText());
-  
+  			VehicleMaintanceInfoPO vpo=trans.GetVehicleInfoPO(carid.getText());
+            if(vpo.getVehicleID().equals("不存在")){
+            	JOptionPane.showMessageDialog(null, "所输入车辆ID不存在");
+            }    
+            else{
+               carnumber.setText(vpo.getCarsID());
+               driverid.setText(vpo.getDriverID());
+            	driversfz.setText(vpo.getIdendity());
+            	tel.setText(vpo.getMobile());
+            	
+            	
+            }
+  			
+  			
+  			
   			}
   	});
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
   	JButton b4=new JButton("更新车辆信息");
   	b4.addActionListener(new ActionListener(){
   		public void actionPerformed(ActionEvent e) {	
