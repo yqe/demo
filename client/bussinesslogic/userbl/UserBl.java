@@ -18,7 +18,7 @@ public class UserBl implements UserBlService {
 	ObjectInputStream ois;
 	String hostid = "localhost";
 	/**
-	 * 根据id查找用户信息
+	 * 根据id，密码，查找用户登录信息
 	 * 
 	 * @param String id, String password
 	 * @return String
@@ -47,6 +47,32 @@ public class UserBl implements UserBlService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	/**
+	 * 根据id查找用户信息
+	 * 
+	 * @param String id
+	 * @return UserInfoPO
+	 * @exception @author
+	 *                zxc
+	 */
+	public UserInfoPO CheckUserInfoPO(String id){
+		UserInfoPO upo=null;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Admin");
+			oos.writeUTF("GetAccount");
+			oos.writeObject(new UserInfoPO(id, "", "", ""));
+			upo = (UserInfoPO) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return upo;
 	}
 	/**
 	 * 根据id查找用户信息

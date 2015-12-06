@@ -143,7 +143,6 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 			bussinessname = "上海营业厅到达单";
 			break;
 		}
-
 	}
 
 }
