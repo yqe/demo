@@ -23,7 +23,8 @@ public class ManagerInfoStream {
 			case "CheckBill":
 				CheckBill(ois, oos);
 				break;
-			case "AddAccount":
+			case "ShowStrategy":
+				ShowStrategy(ois, oos);
 				break;
 			default:
 				break;
@@ -33,24 +34,67 @@ public class ManagerInfoStream {
 		}
 	}
 
-	private void CheckBill(ObjectInputStream ois, ObjectOutputStream oos) {
-
+	/**
+	 * 经营策略查看
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @exception @author
+	 *                zxc
+	 */
+	private void ShowStrategy(ObjectInputStream ois, ObjectOutputStream oos) {
+		StrategyData sd = new StrategyData();
+		try {
+			ArrayList<StrategyPO> spolist = sd.observe();
+			oos.writeObject(spolist);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
+	/**
+	 * 查看表单
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @exception @author
+	 *                zxc
+	 */
+	private void CheckBill(ObjectInputStream ois, ObjectOutputStream oos) {
+		// TODO Auto-generated method stub
+	}
+	/**
+	 * 审批单据
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @exception @author
+	 *                zxc
+	 */
 	private void ApproveBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * 经营策略修改
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @exception @author
+	 *                zxc
+	 */
 	private void FormulateStrategy(ObjectInputStream ois, ObjectOutputStream oos) {
 		StrategyData sd = new StrategyData();
 		try {
-			oos.writeObject(sd.observe());
-			ArrayList<StrategyPO> spolist = (ArrayList<StrategyPO>) ois.readObject();
-			for (int i = 0; i < spolist.size(); i++) {
-				sd.updatesalary(spolist.get(i).getPosition(), spolist.get(i).getSalary());
-			}
-			sd.updateconstant(spolist.get(0).getConstant());
+			StrategyPO spo = (StrategyPO) ois.readObject();
+			sd.updatesalary(spo.getPosition(), spo.getSalary());
+			sd.updateconstant(spo.getConstant());
+			oos.writeBoolean(true);
+			oos.writeObject(spo);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

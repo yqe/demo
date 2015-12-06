@@ -31,23 +31,35 @@ public class CourierInfoStream {
 		}
 	}
 
+	/**
+	 * 查询订单
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos
+	 * @exception @author
+	 *                zxc
+	 */
 	private void QueryOrder(ObjectInputStream ois, ObjectOutputStream oos) {
 		GoodsDocu gd = new GoodsDocu();
 		try {
-			GoodsDocuPO gdpo = (GoodsDocuPO) ois.readObject();
-			gdpo = gd.find(gdpo.getGoodsID());
-			if (gdpo == null) {
-				oos.writeBoolean(true);
-			} else {
-				oos.writeObject(gdpo);
-			}
+			String goodid = ois.readUTF();
+			GoodsDocuPO gdpo = gd.find(goodid);
+			oos.writeObject(gdpo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * 派件单
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos
+	 * @exception @author
+	 *                zxc
+	 */
 	private void DeliveryBill(ObjectInputStream ois, ObjectOutputStream oos) {
-		DiliverDocu ddp=new DiliverDocu();
+		DiliverDocu ddp = new DiliverDocu();
 		try {
 			DiliverDocuPO gdpo = (DiliverDocuPO) ois.readObject();
 			ddp.insert(gdpo);
@@ -58,6 +70,14 @@ public class CourierInfoStream {
 		}
 	}
 
+	/**
+	 * 快递单
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos
+	 * @exception @author
+	 *                zxc
+	 */
 	private void SendBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		GoodsDocu gd = new GoodsDocu();
 		try {
