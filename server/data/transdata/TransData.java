@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import documentdata.CondemnDocu;
 import mysqlimp.MySqlImp;
+import po.CondemnDocuPO;
 import po.TransPO;
 import transdataService.TransDataService;
 
@@ -74,6 +76,7 @@ public class TransData implements TransDataService{
 		}
 		public void insert(TransPO po) {
 			// TODO Auto-generated method stub
+			CondemnDocu condocu=new CondemnDocu();
 			try {
 				mysqlimp=new MySqlImp();
 				this.date=po.getDate();
@@ -85,6 +88,7 @@ public class TransData implements TransDataService{
 				this.supercargo=po.getSupercargo();
 				this.fee=po.getFee();
 				this.orderID=po.getOrderID();
+				condocu.insert(new CondemnDocuPO("装车单", orderID, "未审批"));
 				String insert="INSERT INTO 装车单"+" (装车日期,本营业厅编号,汽运编号,到达地,车辆代号,监装员,押运员,运费,装箱中订单条形码号)"
 				+" VALUES('"+date+"','"+bussinessID+"','"+expreID+"','"+destination+"','"+carsID+"','"+monitor+"','"+supercargo+"',"+fee+",'"+orderID+"')";
 				mysqlimp.update(insert);

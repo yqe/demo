@@ -40,6 +40,7 @@ public class StorageInfoStream {
 			InputStorageDocu insto=new InputStorageDocu();
 			insto.InputStorageAdd(islt);
 			oos.writeBoolean(true);
+			oos.writeObject(islt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,6 +52,7 @@ public class StorageInfoStream {
 			OutStorageDocu osto=new OutStorageDocu();
 			osto.StorageDataAdd(oslt);
 			oos.writeBoolean(true);
+			oos.writeObject(oslt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

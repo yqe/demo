@@ -14,6 +14,14 @@ public class StorageBl implements StorageBlService {
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	String hostid="localhost";
+	/**
+	 * 入库登记
+	 * 
+	 * @param InputStorageList slt;
+	 * @return boolean
+	 * @exception @author
+	 *                zxc
+	 */
 	public boolean InStorageInput(InputStorageList slt) {
 		System.out.println(slt.getSlist().get(0).getDestination());
 		boolean IsOk = false;
@@ -25,6 +33,7 @@ public class StorageBl implements StorageBlService {
 			oos.writeUTF("InStoragePO");
 			oos.writeObject(slt);
 			IsOk = ois.readBoolean();
+			ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -34,7 +43,14 @@ public class StorageBl implements StorageBlService {
 		System.out.println("StorageBl.InStorageInputSuccess");
 		return IsOk;
 	}
-
+	/**
+	 * 出库登记
+	 * 
+	 * @param OutStorageList oslt;
+	 * @return boolean
+	 * @exception @author
+	 *                zxc
+	 */
 	public boolean OutStorageInput(OutStorageList oslt) {
 		System.out.print(oslt.getSlist().get(0).getDestination());
 		boolean IsOk = false;
@@ -46,6 +62,7 @@ public class StorageBl implements StorageBlService {
 			oos.writeUTF("OutStoragePO");
 			oos.writeObject(oslt);
 			IsOk = ois.readBoolean();
+			ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

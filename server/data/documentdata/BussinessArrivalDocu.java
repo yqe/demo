@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import documentdataService.BussinessArrivalDocuService;
 import mysqlimp.MySqlImp;
 import po.BussinessArrivalDocuPO;
+import po.CondemnDocuPO;
 import po.InputStorageDocuPO;
 
 /**
@@ -26,6 +27,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 	public void insert(BussinessArrivalDocuPO po) {
 		// TODO Auto-generated method stub
 		this.findnamebyID(po.getBussinessID());
+		CondemnDocu condocu=new CondemnDocu();
 		try {
 			mysqlimp = new MySqlImp();
 			this.arrivaltime = po.getArrivaltime();
@@ -33,6 +35,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 			this.destination = po.getDestination();
 			this.state = po.getState();
 			this.bussinessID = po.getBussinessID();
+			condocu.insert(new CondemnDocuPO("营业厅到达单", transferID, "未审批"));
 			String insert = "INSERT INTO " + bussinessname + "" + " (到达日期,中转单编号,出发地,货物到达状态,营业厅编号)" + " VALUES('"
 					+ arrivaltime + "','" + transferID + "','" + destination + "','" + state + "','" + bussinessID
 					+ "')";
@@ -143,7 +146,6 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 			bussinessname = "上海营业厅到达单";
 			break;
 		}
-
 	}
 
 }

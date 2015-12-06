@@ -38,7 +38,7 @@ public class TransBl implements TransBlService {
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("HallClerk");
 			oos.writeUTF("CarInfoGet");
-			oos.writeUTF(vehicleID);
+			oos.writeObject(new String(vehicleID));
 			vpo = (VehicleMaintanceInfoPO) ois.readObject();
 			ois.close();
 			oos.close();

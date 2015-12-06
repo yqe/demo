@@ -52,10 +52,12 @@ public class HallClerkInfoStream {
 	private void CarInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
 		VehicleMaintance vm = new VehicleMaintance();
 		try {
-			String vid = ois.readUTF();
+			String vid = (String)ois.readObject();
+//			System.out.println(vid);
 			VehicleMaintanceInfoPO vmpo = vm.find(vid);
+//			System.out.println(vmpo.getVehicleID());
 			oos.writeObject(vmpo);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

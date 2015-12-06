@@ -1,14 +1,12 @@
 package org.server;
 
-import java.rmi.RemoteException;
-
 import distancedata.DistanceData;
 import managedata.ManageCostData;
-import po.EmploeePO;
-import po.UserInfoPO;
+import po.VehicleMaintanceInfoPO;
 import storagedata.InputStorageDocu;
 import strategydata.EmploeeData;
 import strategydata.StrategyData;
+import transdata.VehicleMaintance;
 import userdata.UserData;
 
 /**
@@ -25,6 +23,7 @@ public class App
         UserData	u=new UserData();
         ManageCostData ma=new ManageCostData();
         InputStorageDocu input=new InputStorageDocu();
+        VehicleMaintance v=new VehicleMaintance();
         try {
 			//s.observe(); 
 			//s.updatesalary("总经理", 50000);
@@ -40,6 +39,7 @@ public class App
 			//ma.find();
         	//u.update(new UserInfoPO("1124","2","jj","tt"));
         	//input.storagenum("010000", "20151124");
+        	v.update(new VehicleMaintanceInfoPO("112", "23", "22", "22", "22", "fjejw", "ef", "222", "22", "22", "22"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -4,7 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import documentdata.CondemnDocu;
 import mysqlimp.MySqlImp;
+import po.CondemnDocuPO;
 import po.OutStorageDocuPO;
 import po.OutStorageList;
 import po.StorageList;
@@ -25,6 +27,7 @@ public class OutStorageDocu implements OutStorageService{
 	public void StorageDataAdd(OutStorageList oslt) {
 	
 		this.findtransname(oslt);
+		CondemnDocu condocu=new CondemnDocu();
 		try {
 			int i=0;
 			ArrayList<OutStorageDocuPO> out=oslt.getSlist();
@@ -37,6 +40,7 @@ public class OutStorageDocu implements OutStorageService{
 				this.destination=outpo.getDestination();
 				this.loadform=outpo.getLoadform();
 				this.transcentreID=outpo.getTransferno();
+				condocu.insert(new CondemnDocuPO("出库单",goodsID, "未审批"));
 				String insert="INSERT INTO "+transcentrename+""+" (快递编号,出库日期,目的地,装运形式,中转中心编号）"+" VALUES（'"+goodsID+"','"+outdate+"','"+destination+"','"+loadform+"','"+transcentreID+"')";
 				//生成一条出库单
 				String deletecheck="DELETE FROM "+transcentercheck+""+" WHERE 快递编号='"+goodsID+"'";
