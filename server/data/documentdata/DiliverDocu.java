@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import documentdataService.DiliverDocuService;
 import mysqlimp.MySqlImp;
+import po.CondemnDocuPO;
 import po.DiliverDocuPO;
 
 /**
@@ -71,12 +72,14 @@ public class DiliverDocu implements DiliverDocuService{
 	@Override
 	public void insert(DiliverDocuPO po) {
 		// TODO Auto-generated method stub
+		CondemnDocu condocu=new CondemnDocu();
 		try {
 			this.orderID=po.getOrderID();
 			this.arrivaltime=po.getArrivaltime();
 			this.receivername=po.getReceivername();
 			this.courier=po.getCourier();
 			mysqlimp=new MySqlImp();
+			condocu.insert(new CondemnDocuPO("派件单", orderID, "未审批"));
 			String insert="INSERT INTO 派件单"+" (订单条形码号,到达日期,收件人姓名,派送员)"+" VALUES('"+orderID+"','"+arrivaltime+"','"+receivername+"','"+courier+"')";
 			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {

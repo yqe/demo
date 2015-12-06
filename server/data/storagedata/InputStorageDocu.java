@@ -4,7 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import documentdata.CondemnDocu;
 import mysqlimp.MySqlImp;
+import po.CondemnDocuPO;
 import po.InputStorageDocuPO;
 import po.InputStorageList;
 import po.OutStorageDocuPO;
@@ -29,6 +31,7 @@ public class InputStorageDocu implements InputStorageService{
 		// TODO Auto-generated method stub
 		
 		this.finddataname(inslt);
+		CondemnDocu condocu=new CondemnDocu();
 		try {
 			int i=0;
 			ArrayList<InputStorageDocuPO> in=inslt.getSlist();
@@ -44,6 +47,7 @@ public class InputStorageDocu implements InputStorageService{
 				this.shelf=inpo.getShelf();
 				this.local=inpo.getLocal();
 				this.transcenterID=inpo.getTranscenterID();
+				condocu.insert(new CondemnDocuPO("入库单",goodsID, "未审批"));
 				String insert="INSERT INTO "+transcentername+""+" (快递编号,入库日期,目的地,区号,排号,架号,位号,中转中心编号）"+" VALUES（'"+goodsID+"','"+intime+"','"+destination+"','"+area+"','"+queue+"','"+shelf+"','"+local+"','"+transcenterID+"')";
 				//数据库中生成一条入库单
 				String insertintocheck="INSERT INTO "+transcentercheckname+""+" (快递编号,区号,排号,架号,位号,入库日期)"+" VALUES('"+goodsID+"','"+area+"','"+queue+"','"+shelf+"','"+local+"','"+intime+"')";

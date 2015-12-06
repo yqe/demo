@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import documentdataService.ZzzxArrivalDocuService;
 import mysqlimp.MySqlImp;
+import po.CondemnDocuPO;
 import po.TransPO;
 import po.ZzzxArrivalDocuPO;
 
@@ -71,6 +72,7 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 	public void insert(ZzzxArrivalDocuPO po) {
 		// TODO Auto-generated method stub
 		this.findnamebyID(po.getTransferCenterNum());
+		CondemnDocu condocu=new CondemnDocu();
 		try {
 				mysqlimp=new MySqlImp();
 				this.transferCenterNum=po.getTransferCenterNum();
@@ -78,6 +80,7 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 				this.transferNumber=po.getTransferNumber();
 				this.startPlace=po.getStartPlace();
 				this.goodsState=po.getGoodsState();
+				condocu.insert(new CondemnDocuPO("中转中心到达单", transferNumber, "未审批"));
 				String insert="INSERT INTO "+transferariname+""+" (中转中心编号,到达日期,中转单编号,出发地,货物到达状态)"
 				+" VALUES('"+transferCenterNum+"','"+arrivalDate+"','"+transferNumber+"','"+startPlace+"','"+goodsState+"')";
 				mysqlimp.update(insert);

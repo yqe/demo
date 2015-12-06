@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import documentdataService.TransferDocuService;
 import mysqlimp.MySqlImp;
+import po.CondemnDocuPO;
 import po.TransferDocuPO;
 
 /**
@@ -17,7 +18,7 @@ public class TransferDocu implements TransferDocuService{
 			MySqlImp mysqlimp;
 			 private String transportType;//交通工具种类
 			 private String date;//装车日期
-			 private String transferNumber;//本中转中心单编号
+			 private String transferNumber;//本中转中心编号
 			 private String flightNumber;//航班号
 			 private String startPlace;//出发地
 			 private String destination;//目的地
@@ -80,6 +81,7 @@ public class TransferDocu implements TransferDocuService{
 
 	public void insert(TransferDocuPO po) {
 		// TODO Auto-generated method stub
+		CondemnDocu condocu=new CondemnDocu();
 		try {
 			mysqlimp=new MySqlImp();
 			this.transportType=po.getTransportType();
@@ -92,6 +94,7 @@ public class TransferDocu implements TransferDocuService{
 			this.monitor=po.getMonitor();
 			this.carryNumber=po.getCarryNumber();
 			this.money=po.getMoney();
+			condocu.insert(new CondemnDocuPO("中转单", transferNumber, "未审批"));
 			String insert="INSERT INTO "+transfername+""+" (交通工具种类,装车日期,本中转中心编号,航班号,出发地,到达地,货柜号,监装员,本次装箱托运单号,运费)"
 			+" VALUES('"+transportType+"','"+date+"','"+transferNumber+"','"+flightNumber+"','"+startPlace+"','"+destination+"','"+goodsNumber+"','"+monitor+"','"+carryNumber+"',"+money+")";
 			mysqlimp.update(insert);

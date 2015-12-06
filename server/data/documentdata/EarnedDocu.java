@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import documentdataService.EarnedDocuService;
 import mysqlimp.MySqlImp;
+import po.CondemnDocuPO;
 import po.EarnedPO;
 
 /**
@@ -22,6 +23,7 @@ public class EarnedDocu implements EarnedDocuService{
 	@Override
 	public void insert(EarnedPO po) {
 		// TODO Auto-generated method stub
+		CondemnDocu condocu=new CondemnDocu();
 		try {
 			mysqlimp=new MySqlImp();
 			this.paydate=po.getPaydate();
@@ -29,6 +31,7 @@ public class EarnedDocu implements EarnedDocuService{
 			this.dilivername=po.getDilivername();
 			this.orderID=po.getOrderID();
 			this.bussinessID=po.getBussinessID();
+			condocu.insert(new CondemnDocuPO("收款单", orderID, "未审批"));
 			String insert="INSERT INTO 收款单"+" (收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号)"
 			+" VALUES('"+paydate+"',"+earnedmoney+",'"+dilivername+"','"+orderID+"','"+bussinessID+"')";
 			mysqlimp.update(insert);
