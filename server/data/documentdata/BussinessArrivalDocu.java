@@ -18,9 +18,9 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 	private String transferID;// 中转编号
 	private String destination;// 目的地
 	private String state;// 到达状态
-	private String bussinessID;
+	private String bussinessID;//营业厅编号
 	MySqlImp mysqlimp;
-	private String bussinessname;
+	private String bussinessname;//营业厅名字
 
 	@Override
 	public void insert(BussinessArrivalDocuPO po) {

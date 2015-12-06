@@ -24,13 +24,14 @@ public class TransferDocu implements TransferDocuService{
 			 private String goodsNumber;//货柜号
 			 private String monitor;//监装员
 			 private String carryNumber;//本次装箱托运单号
-			 private double money;
+			 private double money;//价格
+			 private String transfername;//中转中心名字
 	public ArrayList<TransferDocuPO> findall() {
 		// TODO Auto-generated method stub
 		ArrayList<TransferDocuPO> transpo=new ArrayList<TransferDocuPO>();
 		try {
 			mysqlimp=new MySqlImp();
-			String findall="SELECT *"+" FROM 中转单";
+			String findall="SELECT *"+" FROM "+transfername+"";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
 				this.transportType=rs.getString(1);
@@ -64,7 +65,7 @@ public class TransferDocu implements TransferDocuService{
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
-			String delete="DELETE FROM 中转单"+"　WHERE 本次装箱托运单号='"+goodsID+"'";
+			String delete="DELETE FROM "+transfername+""+"　WHERE 本次装箱托运单号='"+goodsID+"'";
 			mysqlimp.update(delete);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -91,7 +92,7 @@ public class TransferDocu implements TransferDocuService{
 			this.monitor=po.getMonitor();
 			this.carryNumber=po.getCarryNumber();
 			this.money=po.getMoney();
-			String insert="INSERT INTO 中转单"+" (交通工具种类,装车日期,本中转中心编号,航班号,出发地,到达地,货柜号,监装员,本次装箱托运单号,运费)"
+			String insert="INSERT INTO "+transfername+""+" (交通工具种类,装车日期,本中转中心编号,航班号,出发地,到达地,货柜号,监装员,本次装箱托运单号,运费)"
 			+" VALUES('"+transportType+"','"+date+"','"+transferNumber+"','"+flightNumber+"','"+startPlace+"','"+destination+"','"+goodsNumber+"','"+monitor+"','"+carryNumber+"',"+money+")";
 			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {
@@ -116,7 +117,7 @@ public class TransferDocu implements TransferDocuService{
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
-			String find="SELECT 交通工具种类,装车日期,本中转中心编号,航班号,出发地,到达地,货柜号,监装员,本次装箱托运单号,运费"+" FROM 中转单"+" WHERE 本次装箱托运单号='"+carryNumber+"'";
+			String find="SELECT 交通工具种类,装车日期,本中转中心编号,航班号,出发地,到达地,货柜号,监装员,本次装箱托运单号,运费"+" FROM "+transfername+""+" WHERE 本次装箱托运单号='"+carryNumber+"'";
 			ResultSet rs=mysqlimp.query(find);
 			this.transportType=rs.getString(1);
 			this.date=rs.getString(2);
@@ -143,6 +144,22 @@ public class TransferDocu implements TransferDocuService{
 		}
 		
 	}
-
+//根据中转中心编号找到名字
+	public void findnamebyID(String transcenterID) {
+		switch (transcenterID) {
+		case "025000":
+			transfername= "南京中转单";
+			break;
+		case "010000":
+			transfername = "北京中转单";
+			break;
+		case "020000":
+			transfername = "广州中转单";
+			break;
+		case "021000":
+			transfername = "上海中转单";
+			break;
+		}
+	}
 
 }
