@@ -11,7 +11,6 @@ public interface StorageBlService {
 
 	public boolean OutStorageInput(OutStorageList oslt);
 
-
 	public InputStorageList StorageCheck();
 
 	public String[] StorageSee();

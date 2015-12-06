@@ -80,15 +80,22 @@ public class collection {
 				}
 				boolean cisempty = courier.getText().equals("");
 				boolean pisempty = profit.getText().equals("");
-				 System.out.println(courier.getText()+cisempty+profit.getText()+pisempty);
+				double rececash = 0.0;
+				try {
+					rececash = Double.parseDouble(profit.getText());
+				} catch (Exception e1) {
+					pisempty = true;
+				}
 				if (id.getText().length() != 10)
 					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
-				else if (cisempty || pisempty)
+				else if (cisempty)
 					JOptionPane.showMessageDialog(null, "请完整填写信息!");
+				else if (pisempty)
+					JOptionPane.showMessageDialog(null, "抱歉，请输入正确的收款金额!");
 				else {
 					Earneddocu edocu = new Earneddocu();
-					boolean IsOk = edocu.BuildEarnedDocu(new EarnedPO(date, Double.parseDouble(profit.getText()),
-							courier.getText(), id.getText(), ""));
+					boolean IsOk = edocu
+							.BuildEarnedDocu(new EarnedPO(date, rececash, courier.getText(), id.getText(), ""));
 					if (IsOk) {
 						JOptionPane.showMessageDialog(null, "成功建立收款单!");
 					} else {

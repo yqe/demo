@@ -33,6 +33,7 @@ public class StorageBl implements StorageBlService {
 			oos.writeUTF("InStoragePO");
 			oos.writeObject(slt);
 			IsOk = ois.readBoolean();
+			ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -61,6 +62,7 @@ public class StorageBl implements StorageBlService {
 			oos.writeUTF("OutStoragePO");
 			oos.writeObject(oslt);
 			IsOk = ois.readBoolean();
+			ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
