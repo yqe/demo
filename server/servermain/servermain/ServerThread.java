@@ -1,10 +1,12 @@
 package servermain;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import AdminStream.AdminInfoStream;
 import CourierStream.CourierInfoStream;
 import FinanceStream.FinanceInfoStream;
@@ -82,6 +84,13 @@ public class ServerThread implements Runnable {
 				default:
 					break;
 				}
+				Timer timer = new Timer();
+				timer.schedule(new TimerTask() {
+					public void run() {
+						// System.out.println("退出");
+						this.cancel();
+					}
+				}, 500);
 				ois.close();
 				oos.close();
 				socket.close();

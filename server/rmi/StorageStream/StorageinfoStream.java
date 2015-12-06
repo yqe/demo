@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 
 import po.InputStorageList;
 import po.OutStorageList;
+import storagedata.InputStorageDocu;
+import storagedata.OutStorageDocu;
 
 public class StorageInfoStream {
 
@@ -35,7 +37,9 @@ public class StorageInfoStream {
 	public void InStorageInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			InputStorageList islt = (InputStorageList) ois.readObject();
-			System.out.println(islt.getSlist().get(0).getIntime());
+			InputStorageDocu insto=new InputStorageDocu();
+			insto.InputStorageAdd(islt);
+			oos.writeBoolean(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -44,7 +48,9 @@ public class StorageInfoStream {
 	public void OutStorageInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			OutStorageList oslt = (OutStorageList) ois.readObject();
-			System.out.println(oslt.getSlist().get(0).getGoodno());
+			OutStorageDocu osto=new OutStorageDocu();
+			osto.StorageDataAdd(oslt);
+			oos.writeBoolean(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

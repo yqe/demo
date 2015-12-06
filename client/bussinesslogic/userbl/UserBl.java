@@ -17,8 +17,14 @@ public class UserBl implements UserBlService {
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	String hostid = "localhost";
-
-	// 根据id查找用户信息
+	/**
+	 * 根据id查找用户信息
+	 * 
+	 * @param String id, String password
+	 * @return String
+	 * @exception @author
+	 *                zxc
+	 */
 	public String look(String id, String password) {
 		try {
 			socket = new Socket(hostid, 8888);
@@ -34,16 +40,46 @@ public class UserBl implements UserBlService {
 			if (password.equals(upo.getPassword()))
 				return upo.getPosition();
 			else if (upo == null)
-				return "NoAccount";//无账户
+				return "NoAccount";// 无账户
 			else
-				return "PasswordError";//密码错误
+				return "PasswordError";// 密码错误
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-
-	// 权限调整
+	/**
+	 * 根据id查找用户信息
+	 * @param String id, String password
+	 * @return String
+	 * @exception @author
+	 *                zxc
+	 */
+	public UserInfoPO GetUserAccount(String id) {
+		UserInfoPO upo = null;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Admin");
+			oos.writeUTF("GetAccount");
+			oos.writeObject(new UserInfoPO(id, "", "", ""));
+			upo = (UserInfoPO) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return upo;
+	}
+	/**
+	 * 权限调整
+	 * @param UserInfoPO upo
+	 * @return boolean
+	 * @exception @author
+	 *                zxc
+	 */
 	public boolean positionTransfer(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
@@ -62,8 +98,13 @@ public class UserBl implements UserBlService {
 		}
 		return IsOk;
 	}
-
-	// 修改密码
+	/**
+	 * 修改密码
+	 * @param UserInfoPO upo
+	 * @return boolean
+	 * @exception @author
+	 *                zxc
+	 */
 	public boolean changePassword(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
@@ -74,7 +115,6 @@ public class UserBl implements UserBlService {
 			oos.writeUTF("PasswordChange");
 			oos.writeObject(upo);
 			IsOk = ois.readBoolean();
-			System.out.println(IsOk);
 			ois.close();
 			oos.close();
 			socket.close();
