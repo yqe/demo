@@ -29,10 +29,11 @@ public class Earneddocu extends Document {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-			oos.writeUTF("Storage");
-			oos.writeUTF("InStoragePO");
+			oos.writeUTF("HallClerk");
+			oos.writeUTF("ReceiveBill");
 			oos.writeObject(earnpo);
 			IsOk = ois.readBoolean();
+			ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

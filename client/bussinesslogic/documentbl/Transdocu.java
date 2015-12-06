@@ -30,6 +30,7 @@ public class Transdocu extends Document {
 			oos.writeUTF("LoadingList");
 			oos.writeObject(tpo);
 			IsOk = ois.readBoolean();
+			ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

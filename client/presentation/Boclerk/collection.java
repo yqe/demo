@@ -70,7 +70,8 @@ public class collection {
 		JButton b4 = new JButton("生成收款单");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String date=(String)(yearbox.getSelectedItem())+(String)(monthbox.getSelectedItem())+daybox.getSelectedItem().toString();
+				String date = (String) (yearbox.getSelectedItem()) + (String) (monthbox.getSelectedItem())
+						+ daybox.getSelectedItem().toString();
 				boolean isnum = true;
 				for (int i = 0; i < profit.getText().length(); i++) {
 					if (profit.getText().charAt(i) > '9' || profit.getText().charAt(i) < '1') {
@@ -79,27 +80,22 @@ public class collection {
 				}
 				boolean cisempty = courier.getText().equals("");
 				boolean pisempty = profit.getText().equals("");
-
-				// System.out.println(isempty);
-				if (id.getText().length() == 10 && isnum && !cisempty && !pisempty) {
-					Earneddocu edocu=new Earneddocu();
-					boolean IsOk=edocu.BuildEarnedDocu(new EarnedPO(date, Double.parseDouble(profit.getText()),courier.getText() , id.getText(), ""));
-					if(IsOk){
-					JOptionPane.showMessageDialog(null, "成功建立收款单!");
-					}else{
+				 System.out.println(courier.getText()+cisempty+profit.getText()+pisempty);
+				if (id.getText().length() != 10)
+					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
+				else if (cisempty || pisempty)
+					JOptionPane.showMessageDialog(null, "请完整填写信息!");
+				else {
+					Earneddocu edocu = new Earneddocu();
+					boolean IsOk = edocu.BuildEarnedDocu(new EarnedPO(date, Double.parseDouble(profit.getText()),
+							courier.getText(), id.getText(), ""));
+					if (IsOk) {
+						JOptionPane.showMessageDialog(null, "成功建立收款单!");
+					} else {
 						JOptionPane.showMessageDialog(null, "建立收款单失敗!");
 					}
-
-				} else if (id.getText().length() != 10) {
-					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
-				} else if (id.getText().length() == 10 && !cisempty) {
-					JOptionPane.showMessageDialog(null, "请输入合法的金额!");// 只能是整数
-				} else {
-					JOptionPane.showMessageDialog(null, "请完整填写信息!");
 				}
-
 			}
-
 		});
 
 		p1.setOpaque(false);

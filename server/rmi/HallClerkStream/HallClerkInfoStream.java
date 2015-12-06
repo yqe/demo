@@ -107,6 +107,7 @@ public class HallClerkInfoStream {
 			EarnedPO up = (EarnedPO) ois.readObject();
 			earn.insert(up);
 			oos.writeBoolean(true);
+			oos.writeObject(up);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -131,6 +132,7 @@ public class HallClerkInfoStream {
 			TransPO up = (TransPO) ois.readObject();
 			td.insert(up);
 			oos.writeBoolean(true);
+			oos.writeObject(up);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
