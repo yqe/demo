@@ -172,48 +172,7 @@ public class Send {
 			}
 		});
 
-<<<<<<< HEAD
-=======
-		JButton b4 = new JButton("生成寄件单");
-		b4.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-			 
-			 boolean senderisempty=sender.getText().equals("");
-			 boolean senderinfoisempty=senderinfo.getText().equals("");
-			 boolean sendertelisempty=sendertel.getText().equals("");
-			 boolean sendersiteisempty=sendersite.getText().equals("");
-			 
-			 boolean getterisempty=getter.getText().equals("");
-			 boolean getterinfoisempty=getterinfo.getText().equals("");
-			 boolean gettertelisempty=sendertel.getText().equals("");
-			 boolean gettersiteisempty=sendersite.getText().equals("");
-			 
-			 boolean goodsnameisempty=goodsname.getText().equals("");
-			 boolean goodsweightisempty=goodsweight.getText().equals("");
-			 boolean lengthisempty=length.getText().equals("");
-			 boolean widthisempty=width.getText().equals("");
-			 boolean heightisempty=height.getText().equals("");			 
-			 boolean goodsinfoisempty=goodsinfo.getText().equals("");
-			 boolean courierisempty=courier.getText().equals("");
-			 
-			 boolean isempty=senderisempty||senderinfoisempty||sendertelisempty||sendersiteisempty||getterisempty||getterinfoisempty||gettertelisempty||gettersiteisempty
-		||goodsnameisempty||goodsweightisempty||lengthisempty||widthisempty||heightisempty||goodsinfoisempty||courierisempty;
 
-			 if(!isempty){
-				 Goodsdocu goodsdocu=new Goodsdocu();
-				 //goodsdocu.BuildGoodsDocu(new GoodsDocuPO(sender.getText(),sendersite.getText(), senderinfo.getText(), sendertel.getText(), getter.getText(), gettersite.getText(), getterinfo.getText(), gettertel.getText(), wfee, tfee, etype, goodsID, time, goodsname, goodsnum, len, wid, hei, v, goodsinfo, wrappedtype, expectedtime, generatetime, name))
-			 }
-		
-				else {
-					JOptionPane.showMessageDialog(null, "请完整填写信息!");
-				}
-			}
-			
-		});
->>>>>>> origin/master
-		
-		
-		
 		
 		String[] num = new String[500];
 		for (int i = 1; i < 500; i++) {
