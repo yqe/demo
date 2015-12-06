@@ -196,34 +196,12 @@ public class Send {
 			 
 			 boolean isempty=senderisempty||senderinfoisempty||sendertelisempty||sendersiteisempty||getterisempty||getterinfoisempty||gettertelisempty||gettersiteisempty
 		||goodsnameisempty||goodsweightisempty||lengthisempty||widthisempty||heightisempty||goodsinfoisempty||courierisempty;
-//			 sender = new JTextField();
-//				final JTextField senderinfo = new JTextField();
-//				final JTextField sendertel = new JTextField();
-//				final JTextField sendersite = new JTextField();
-//				final JTextField getter = new JTextField();
-//				final JTextField getterinfo = new JTextField();
-//				final JTextField gettertel = new JTextField();
-//				final JTextField gettersite = new JTextField();
-//				final JTextField goodsname = new JTextField();
-//				final JTextField goodsweight = new JTextField();
-//				final JTextField length = new JTextField();
-//				final JTextField width = new JTextField();
-//				final JTextField height = new JTextField();
-//				final JTextField V = new JTextField();
-//				final JTextField goodsinfo = new JTextField();
-//				final JTextField price = new JTextField();
+
 			 if(!isempty){
-//				 //GoodsDocuPO goodpo=new GoodsDocuPO(sender.getText(), senderi.getText(), dworkspace, dhphone, dmobile, rname, raddress, rworkspace, rhphone, rmobile, wfee, tfee, etype, goodsID, time, money)
-//				 //Goodsdocu gd=new Goodsdocu();
-//				 //boolean IsOk=gd.BuildGoodsDocu(goodpo);
-//				//if(IsOk)	
-//				 JOptionPane.showMessageDialog(null, "生成寄件单成功!");
-//				else
-//					 JOptionPane.showMessageDialog(null, "生成寄件单失败!");
+				 Goodsdocu goodsdocu=new Goodsdocu();
+				// goodsdocu.BuildGoodsDocu(new GoodsDocuPO(sender.getText(),sendersite.getText(), senderinfo.getText(), sendertel.getText(), getter.getText(), gettersite.getText(), getterinfo.getText(), gettertel.getText(), wfee, tfee, etype, goodsID, time, goodsname, goodsnum, len, wid, hei, v, goodsinfo, wrappedtype, expectedtime, generatetime, name))
 			 }
-//				else if(!isid&&!idisempty){
-//					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
-//				}		
+		
 				else {
 					JOptionPane.showMessageDialog(null, "请完整填写信息!");
 				}
