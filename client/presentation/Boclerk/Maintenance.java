@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import transbl.TransBl;
 import courier.infoDialog;
 
 
@@ -53,7 +54,8 @@ public class Maintenance {
 	    JLabel l9=new JLabel("手机:");
 	    JLabel l10=new JLabel("性别:");
 	    JLabel l11=new JLabel("行驶证期限:");
-    
+	    
+	    JLabel l12=new JLabel("司机服役时间:");
     
     int lmain=16;
     l3.setFont(new Font("",Font.PLAIN,lmain));
@@ -65,6 +67,7 @@ public class Maintenance {
     l9.setFont(new Font("",Font.PLAIN,lmain));
     l10.setFont(new Font("",Font.PLAIN,lmain));
     l11.setFont(new Font("",Font.PLAIN,lmain));
+    l12.setFont(new Font("",Font.PLAIN,lmain));
     
     final JTextField carid=new JTextField();
     final JTextField carnumber=new JTextField();
@@ -72,15 +75,34 @@ public class Maintenance {
     final JTextField drivername=new JTextField();
     final JTextField driversfz=new JTextField();
     final JTextField tel=new JTextField();
+
     
     carnumber.setOpaque(false);
     driverid.setOpaque(false);
     drivername.setOpaque(false);
     driversfz.setOpaque(false);
     tel.setOpaque(false);
-  
+
 
     JButton b1=new JButton("查询车辆信息");
+    b1.addActionListener(new ActionListener(){
+  		public void actionPerformed(ActionEvent e) {	
+  			TransBl trans=new TransBl();
+  			trans.GetVehicleInfoPO(carid.getText());
+  
+  			}
+  	});
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
   	JButton b4=new JButton("更新车辆信息");
   	b4.addActionListener(new ActionListener(){
@@ -153,8 +175,9 @@ public class Maintenance {
 	   for (int i = 1; i <= 20; i++) {
 	       time[i-1] = i+"年"; 
 	   }
-	   JComboBox timebox = new JComboBox(time);
+	   JComboBox timebox1 = new JComboBox(time);
    
+	   JComboBox timebox2 = new JComboBox(time);
    
 	p1.setOpaque(false);
 	p1.setLayout(null);
@@ -169,6 +192,7 @@ public class Maintenance {
     p1.add(l9);
     p1.add(l10);
     p1.add(l11); 
+    p1.add(l12); 
     
     p1.add(carid);
     p1.add(carnumber);
@@ -176,6 +200,7 @@ public class Maintenance {
     p1.add(drivername);
     p1.add(driversfz);
     p1.add(tel);
+
     
     
     p1.add(b1);
@@ -183,7 +208,8 @@ public class Maintenance {
     p1.add(yearbox);
     p1.add(monthbox);
     p1.add(daybox);
-    p1.add(timebox);
+    p1.add(timebox1);
+    p1.add(timebox2);
     
     p1.add(jb1);
     p1.add(jb2);
@@ -210,10 +236,12 @@ public class Maintenance {
 	l9.setBounds(100, 400, 150, 30);
 	l10.setBounds(100, 450, 150, 30); 
 	l11.setBounds(100, 500, 100, 30);
+	l12.setBounds(100, 550, 150, 30);
 	
 	carid.setBounds(275, 100, 150, 30);
 	carnumber.setBounds(275,200, 150, 30);	
-	timebox.setBounds(275, 500, 80,30);
+	timebox1.setBounds(275, 500, 80,30);
+	timebox2.setBounds(275, 550, 80,30);
 	driverid.setBounds(275,350, 150, 30);
 	drivername.setBounds(275,150, 150, 30);
 	driversfz.setBounds(275,400, 150, 30);

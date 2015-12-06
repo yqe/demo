@@ -172,6 +172,54 @@ public class Send {
 			}
 		});
 
+		
+		
+		
+		
+		String[] num = new String[500];
+		for (int i = 1; i < 500; i++) {
+			num[i - 1] = String.valueOf(i);
+		}
+		JComboBox numbox = new JComboBox(num);
+
+		String[] type = { "普通快递", "经济快递", "次晨特快" };
+		JComboBox typebox = new JComboBox(type);
+
+		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
+		JComboBox depaturebox = new JComboBox(depature);
+
+		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
+		JComboBox destinationbox = new JComboBox(destination);
+
+		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
+		JComboBox packagebox = new JComboBox(pack);
+
+		String[] year = new String[100];
+		for (int i = 2015; i < 2115; i++) {
+			year[i - 2015] = i + "年";
+
+		}
+		JComboBox yearbox1 = new JComboBox(year);
+		JComboBox yearbox2 = new JComboBox(year);
+		String[] month = new String[12];
+		for (int i = 1; i <= 12; i++) {
+			month[i - 1] = i + "月";
+
+		}
+		JComboBox monthbox1 = new JComboBox(month);
+		JComboBox monthbox2 = new JComboBox(month);
+		String[] day = new String[31];
+		for (int i = 1; i <= 31; i++) {
+			day[i - 1] = i + "日";
+
+		}
+		JComboBox daybox1 = new JComboBox(day);
+		JComboBox daybox2 = new JComboBox(day);
+		
+		
+		
+		
+		
 		JButton b4 = new JButton("生成寄件单");
 		b4.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -196,83 +244,10 @@ public class Send {
 			 
 			 boolean isempty=senderisempty||senderinfoisempty||sendertelisempty||sendersiteisempty||getterisempty||getterinfoisempty||gettertelisempty||gettersiteisempty
 		||goodsnameisempty||goodsweightisempty||lengthisempty||widthisempty||heightisempty||goodsinfoisempty||courierisempty;
-//			 sender = new JTextField();
-//				final JTextField senderinfo = new JTextField();
-//				final JTextField sendertel = new JTextField();
-//				final JTextField sendersite = new JTextField();
-//				final JTextField getter = new JTextField();
-//				final JTextField getterinfo = new JTextField();
-//				final JTextField gettertel = new JTextField();
-//				final JTextField gettersite = new JTextField();
-//				final JTextField goodsname = new JTextField();
-//				final JTextField goodsweight = new JTextField();
-//				final JTextField length = new JTextField();
-//				final JTextField width = new JTextField();
-//				final JTextField height = new JTextField();
-//				final JTextField V = new JTextField();
-//				final JTextField goodsinfo = new JTextField();
-//				final JTextField price = new JTextField();
-			 if(!isempty){
-//				 //GoodsDocuPO goodpo=new GoodsDocuPO(sender.getText(), senderi.getText(), dworkspace, dhphone, dmobile, rname, raddress, rworkspace, rhphone, rmobile, wfee, tfee, etype, goodsID, time, money)
-//				 //Goodsdocu gd=new Goodsdocu();
-//				 //boolean IsOk=gd.BuildGoodsDocu(goodpo);
-//				//if(IsOk)	
-//				 JOptionPane.showMessageDialog(null, "生成寄件单成功!");
-//				else
-//					 JOptionPane.showMessageDialog(null, "生成寄件单失败!");
-			 }
-//				else if(!isid&&!idisempty){
-//					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
-//				}		
-				else {
-					JOptionPane.showMessageDialog(null, "请完整填写信息!");
-				}
+
 			}
 			
 		});
-		
-		
-		
-		
-		String[] num = new String[500];
-		for (int i = 1; i < 500; i++) {
-			num[i - 1] = String.valueOf(i);
-		}
-		JComboBox numbox = new JComboBox(num);
-
-		String[] type = { "普通快递", "经济快递", "次晨特快" };
-		JComboBox typebox = new JComboBox(type);
-
-		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
-		JComboBox depaturebox = new JComboBox(depature);
-
-		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
-		JComboBox destinationbox = new JComboBox(destination);
-
-		String[] pack = { "纸箱", "木箱", "快递袋" };
-		JComboBox packagebox = new JComboBox(pack);
-
-		String[] year = new String[100];
-		for (int i = 2015; i < 2115; i++) {
-			year[i - 2015] = i + "年";
-
-		}
-		JComboBox yearbox1 = new JComboBox(year);
-		JComboBox yearbox2 = new JComboBox(year);
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
-
-		}
-		JComboBox monthbox1 = new JComboBox(month);
-		JComboBox monthbox2 = new JComboBox(month);
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
-
-		}
-		JComboBox daybox1 = new JComboBox(day);
-		JComboBox daybox2 = new JComboBox(day);
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
@@ -404,7 +379,7 @@ public class Send {
 		numbox.setBounds(t1xloc + 210, t1yloc + 4 * interval, 60, 30);// ����
 
 		typebox.setBounds(t1xloc, t1yloc + 7 * interval, 80, 30);
-		packagebox.setBounds(t1xloc + 200, t1yloc + 7 * interval, 80, 30);
+		packagebox.setBounds(t1xloc + 200, t1yloc + 7 * interval, 120, 30);
 		price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
 		yearbox1.setBounds(t1xloc + 30, t1yloc + 8 * interval, 80, 30);
 		monthbox1.setBounds(t1xloc + 120, t1yloc + 8 * interval, 80, 30);
