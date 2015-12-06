@@ -1,21 +1,13 @@
 package transit;
 
-import java.awt.Button;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,9 +17,13 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import documentbl.Zzzxarrivaldocu;
+import po.ZzzxArrivalDocuPO;
 
+/**中转中心到达单
+ * @author jjlb
+ *
+ */
 public class transit {
 	private JPanel imagePanel;
 	private ImageIcon background;
@@ -111,12 +107,19 @@ public class transit {
   	JButton b4=new JButton("添加");
   	b4.addActionListener(new ActionListener(){
   		public void actionPerformed(ActionEvent e) {
-  			final String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();
-  			final String place=(String) sitebox.getSelectedItem();
-  			final String state=(String) statebox.getSelectedItem();
+  			
+  			String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();
+  			String place=(String) sitebox.getSelectedItem();
+  			String state=(String) statebox.getSelectedItem();
+  			Zzzxarrivaldocu transferaridocu=new Zzzxarrivaldocu();
+  			boolean IsOk=transferaridocu.BuildZzzxarrivalDocu(new ZzzxArrivalDocuPO(t1.getText(),date,t2.getText(),place,state));
+  			if(IsOk){
   			Object[] add={t1.getText(),date,place,state,t2.getText()};
   			DefaultTableModel model = (DefaultTableModel) table.getModel();            
   			model.insertRow(model.getRowCount(), add);
+  			}else{
+  				
+  			}
 //  			System.out.println(model.getRowCount());
   		}
   	});

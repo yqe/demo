@@ -80,29 +80,29 @@ public class transitload {
         year[i-2000] = i+"年";
     
     }
-    JComboBox yearbox = new JComboBox(year);
+    final JComboBox yearbox = new JComboBox(year);
     String[] month = new String[12];
     for (int i = 1; i <= 12; i++) {
         month[i-1] = i+"月";
     
     }
-    JComboBox monthbox = new JComboBox(month);
+    final JComboBox monthbox = new JComboBox(month);
     String[] day = new String[31];
     for (int i = 1; i <= 31; i++) {
         day[i-1] = i+"日";
     
     }
-   JComboBox daybox = new JComboBox(day);
+   final JComboBox daybox = new JComboBox(day);
 	
    String[]site={"上海","北京", "南京", "深圳", "广州","杭州"};
  
-   JComboBox sitebox1 = new JComboBox(site);
-   JComboBox sitebox2 = new JComboBox(site);
+   final JComboBox sitebox1 = new JComboBox(site);
+   final JComboBox sitebox2 = new JComboBox(site);
    
 	b4.addActionListener(new ActionListener(){
   		public void actionPerformed(ActionEvent e) {
   		if(!isempty){
-  			TransferDocuPO tfpo=new TransferDocuPO("飞机", "nian", zzdid.getText(), hbid.getText(),"上海", "南京",hgid.getText(),jz.getText(), yy.getText(), Double.parseDouble(price.getText()));
+  			TransferDocuPO tfpo=new TransferDocuPO("飞机",(String)( yearbox.getSelectedItem())+(String)(monthbox.getSelectedItem())+(String)(daybox.getSelectedItem()), zzdid.getText(), hbid.getText(),(String)sitebox1.getSelectedItem(), (String)sitebox2.getSelectedItem(),hgid.getText(),jz.getText(), yy.getText(), Double.parseDouble(price.getText()));
   					Turndocu td=new Turndocu();
   					boolean IsOk=td.BuildTurnDocu(tfpo);
   					if(IsOk)

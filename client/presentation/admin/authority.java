@@ -54,7 +54,9 @@ public class authority {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// PO传数据
+				
 				if (!t1.getText().equals("")) {
+					
 					t2.setText("姚朋");
 					job.setSelectedIndex(2);// 参照String的jobs
 				} else {
