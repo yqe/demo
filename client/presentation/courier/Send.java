@@ -95,11 +95,11 @@ public class Send {
 		l28.setFont(new Font("", Font.PLAIN, lmain));
 
 		final JTextField sender = new JTextField();
-		final JTextField senderworkespace = new JTextField();
+		final JTextField senderinfo = new JTextField();
 		final JTextField sendertel = new JTextField();
 		final JTextField sendersite = new JTextField();
 		final JTextField getter = new JTextField();
-		final JTextField getterworkspace = new JTextField();
+		final JTextField getterinfo = new JTextField();
 		final JTextField gettertel = new JTextField();
 		final JTextField gettersite = new JTextField();
 		final JTextField goodsname = new JTextField();
@@ -182,7 +182,7 @@ public class Send {
 			 boolean sendersiteisempty=sendersite.getText().equals("");
 			 
 			 boolean getterisempty=getter.getText().equals("");
-//			 boolean getterinfoisempty=getterinfo.getText().equals("");
+			 boolean getterinfoisempty=getterinfo.getText().equals("");
 			 boolean gettertelisempty=sendertel.getText().equals("");
 			 boolean gettersiteisempty=sendersite.getText().equals("");
 			 
