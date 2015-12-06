@@ -63,41 +63,32 @@ public class Maintenance {
 		final JTextField drivername = new JTextField();
 		final JTextField driversfz = new JTextField();
 		final JTextField tel = new JTextField();
+		final JTextField date = new JTextField();
 
 		carnumber.setOpaque(false);
 		driverid.setOpaque(false);
 		drivername.setOpaque(false);
 		driversfz.setOpaque(false);
 		tel.setOpaque(false);
+		date.setOpaque(false);
 		
-		String[] year = new String[201];
-		for (int i = 2000; i < 2100; i++) {
-			year[i - 2000] = i + "年";
 
-		}
-		JComboBox yearbox = new JComboBox(year);
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
-
-		}
-		JComboBox monthbox = new JComboBox(month);
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
-
-		}
-		JComboBox daybox = new JComboBox(day);
-
-		String[] time = new String[20];
+		final String[] time = new String[20];
 		for (int i = 1; i <= 20; i++) {
 			time[i - 1] = i + "年";
 		}
-		JComboBox timebox1 = new JComboBox(time);
+		final JComboBox timebox1 = new JComboBox(time);
 
-		JComboBox timebox2 = new JComboBox(time);
+		final JComboBox timebox2 = new JComboBox(time);
 		
-		
+		final JRadioButton jb1 = new JRadioButton("男");
+		jb1.setSelected(true);
+		jb1.setOpaque(false);
+		final JRadioButton jb2 = new JRadioButton("女");
+		jb2.setOpaque(false);
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(jb1);
+		bg.add(jb2);
 		
 		
 		
@@ -122,9 +113,29 @@ public class Maintenance {
 					drivername.setText(vpo.getDrivername());
 					driversfz.setText(vpo.getIdendity());
 					tel.setText(vpo.getMobile());
+                    date.setText(vpo.getBirthday());
+                
+                    String sex=jb1.getText();
+                    System.out.println(sex);
+                    if(!jb1.getText().equals(vpo.getSex())){
+                    	jb1.setSelected(false);
+                    	jb2.setSelected(true);
+                    }
+					
+                    for(int i=0;i<time.length;i++){
+                    	if(time[i].equals(vpo.getLimittime())){
+                    		timebox1.setSelectedIndex(i);
+                    		break;
+                    	}
+                    }
+                                  
+                    for(int i=0;i<time.length;i++){
+                    	if(time[i].equals(vpo.getWorktime())){
+                    		timebox2.setSelectedIndex(i);
+                    		break;
+                    	}
+                    }
                     
-					
-					
 					
 				}
 
@@ -149,12 +160,15 @@ public class Maintenance {
 						|| driveridisempty || drivernameisempty
 						|| driversfzisempty || telisempty;
 
-				if (carid.getText().length() == 10 && iscarid && iscarnumber
+				if (carid.getText().length() == 9 && iscarid && iscarnumber
 						&& isdriverid && !isempty) {
 					JOptionPane.showMessageDialog(null, "更新成功!");
-					// System.out.println(isempty+" 1");
-					// System.out.println(carnumberisempty+" 2");
-					// System.out.println(driveridisempty+" 3");
+					TransBl trans = new TransBl();
+					String s = jb1.isSelected() ? "男" : "女"; 
+					VehicleMaintanceInfoPO vpo = new VehicleMaintanceInfoPO(carid.getText(),null,carnumber.getText(),timebox2.getSelectedItem().toString(),driverid.getText(),drivername.getText(),date.getText(),driversfz.getText(),tel.getText(),s,timebox1.getSelectedItem().toString());
+					trans.ChangeVehicleInfoPO(vpo);
+							
+					
 				} else if (!iscarid && !caridisempty) {
 					JOptionPane.showMessageDialog(null, "请输入正确的车辆代号!");
 				} else if (!iscarnumber && !carnumberisempty) {
@@ -168,14 +182,7 @@ public class Maintenance {
 			}
 		});
 
-		JRadioButton jb1 = new JRadioButton("男");
-		jb1.setSelected(true);
-		jb1.setOpaque(false);
-		JRadioButton jb2 = new JRadioButton("女");
-		jb2.setOpaque(false);
-		ButtonGroup bg = new ButtonGroup();
-		bg.add(jb1);
-		bg.add(jb2);
+		
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
@@ -201,9 +208,7 @@ public class Maintenance {
 
 		p1.add(b1);
 		p1.add(b4);
-		p1.add(yearbox);
-		p1.add(monthbox);
-		p1.add(daybox);
+		p1.add(date);
 		p1.add(timebox1);
 		p1.add(timebox2);
 
@@ -220,9 +225,8 @@ public class Maintenance {
 		l2.setBounds(50, b1yloc, 150, 30);
 		l3.setBounds(100, 100, 150, 30);
 		l4.setBounds(100, 150, 150, 30);
-		yearbox.setBounds(275, 300, 80, 30);
-		monthbox.setBounds(375, 300, 80, 30);
-		daybox.setBounds(475, 300, 80, 30);
+		date.setBounds(275, 300, 150, 30);
+	
 
 		l5.setBounds(100, 200, 150, 30);
 		l6.setBounds(100, 250, 150, 30);
