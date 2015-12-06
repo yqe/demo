@@ -1,26 +1,19 @@
 package Boclerk;
-import java.awt.Button;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import documentbl.Transdocu;
+import po.TransPO;
 
 
 public class load {
@@ -73,7 +66,30 @@ public class load {
     final JTextField price=new JTextField();
 
     final JTextField yyt=new JTextField();
-
+    String[] year = new String[201];
+    for (int i = 2000; i < 2100; i++) {
+        year[i-2000] = i+"年";
+    
+    }
+    final JComboBox yearbox = new JComboBox(year);
+    String[] month = new String[12];
+    for (int i = 1; i <= 12; i++) {
+        month[i-1] = i+"月";
+    
+    }
+    final JComboBox monthbox = new JComboBox(month);
+    String[] day = new String[31];
+    for (int i = 1; i <= 31; i++) {
+        day[i-1] = i+"日";
+    
+    }
+   final JComboBox daybox = new JComboBox(day);
+	
+   String[]site={"上海","北京", "南京", "深圳", "广州","杭州"};
+ 
+   final JComboBox sitebox = new JComboBox(site);
+   
+    
     JButton b4=new JButton("生成装车单");
 	b4.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {			
@@ -98,10 +114,15 @@ public class load {
 		    
 		    
 			boolean isempty=cisempty||pisempty||tisempty||carisempty||jzisempty||yyisempty||yytisempty;
-		    
+		    String date=(String)(yearbox.getSelectedItem())+(String)(monthbox.getSelectedItem())+(String)(daybox.getSelectedItem());
 			if(id.getText().length()==10&&isnum&&!isempty){
-			JOptionPane.showMessageDialog(null, "成功生成装车单!");
-		
+				Transdocu trans=new Transdocu();
+				boolean IsOk=trans.BuildTransDocu(new TransPO(date, yyt.getText(), transid.getText(), (String)(sitebox.getSelectedItem()), carid.getText(), jz.getText(), yy.getText(), Double.parseDouble(price.getText()), id.getText()));
+				if(IsOk){
+				JOptionPane.showMessageDialog(null, "成功生成装车单!");
+				}else{
+					JOptionPane.showMessageDialog(null, "生成装车单失败!");
+				}
 			}
 			else if(id.getText().length()!=10){
 				JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
@@ -125,29 +146,7 @@ public class load {
 		
 	});
 	
-	String[] year = new String[201];
-    for (int i = 2000; i < 2100; i++) {
-        year[i-2000] = i+"年";
-    
-    }
-    JComboBox yearbox = new JComboBox(year);
-    String[] month = new String[12];
-    for (int i = 1; i <= 12; i++) {
-        month[i-1] = i+"月";
-    
-    }
-    JComboBox monthbox = new JComboBox(month);
-    String[] day = new String[31];
-    for (int i = 1; i <= 31; i++) {
-        day[i-1] = i+"日";
-    
-    }
-   JComboBox daybox = new JComboBox(day);
 	
-   String[]site={"上海","北京", "南京", "深圳", "广州","杭州"};
- 
-   JComboBox sitebox = new JComboBox(site);
-   
    
 
 	p1.setOpaque(false);
