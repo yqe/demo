@@ -31,7 +31,7 @@ public class VehicleMaintance implements VehicleMaintanceService {
 		try {
 			this.vehicleID=vehicleID;
 			mysqlimp=new MySqlImp();
-			String find="SELECT *"+" FROM 车辆维护相关信息";
+			String find="SELECT *"+" FROM 车辆维护相关信息"+" WHERE 车辆代号='"+vehicleID+"'";
 			ResultSet rs=mysqlimp.query(find);
 			rs.next();
 			this.vehicleID=rs.getString(1);
@@ -46,6 +46,7 @@ public class VehicleMaintance implements VehicleMaintanceService {
 			this.sex=rs.getString(10);
 			this.limittime=rs.getString(11);
 			VehicleMaintanceInfoPO vepo=new VehicleMaintanceInfoPO(vehicleID,bussinessID,carsID,worktime,driverID,drivername,birthday,idendity,mobile,sex,limittime);
+//			System.out.println(vehicleID+"&&&"+bussinessID+carsID+worktime+driverID+drivername+birthday+idendity);
 			return vepo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
