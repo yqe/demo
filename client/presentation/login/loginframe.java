@@ -89,8 +89,7 @@ public class loginframe {
 						frame.add(c.Panel());
 						break;
 					case "总经理":
-						if (passwordstr.equals("123"))
-							frame.remove(p1);
+						frame.remove(p1);
 						frame.setBounds(500, 100, m.Panel().getWidth(), m.Panel().getHeight());
 						frame.add(m.Panel());
 						break;
