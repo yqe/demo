@@ -28,8 +28,8 @@ public class Goodsdocu extends Document {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-			oos.writeUTF("HallClerk");
-			oos.writeUTF("LoadingList");
+			oos.writeUTF("Courier");
+			oos.writeUTF("SendBill");
 			oos.writeObject(gdpo);
 			IsOk = ois.readBoolean();
 			ois.close();

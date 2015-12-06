@@ -11,6 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import financebl.SetAccount;
+import po.InitializeAccountPO;
+
 public class BuildAccount {
 	int labelw = 120;
 	int labelh = 30;
@@ -59,7 +62,14 @@ public class BuildAccount {
 				
 			    boolean isempty=personisempty||carisempty||storageisempty||banknameisempty||bankmoneyisempty;
 				if(isnum&&!isempty){
-				JOptionPane.showMessageDialog(null, "成功建账!");			
+				 SetAccount m =new SetAccount();
+				 InitializeAccountPO ipo=new InitializeAccountPO(textfield[0].getText(),textfield[1].getText(),textfield[2].getText(),
+						 Integer.parseInt(textfield[3].getText()),Integer.parseInt(textfield[4].getText()),Double.parseDouble(textfield[5].getText()));
+				boolean isOk=m.BuildAccount(ipo);
+				 if (isOk)
+				     JOptionPane.showMessageDialog(null, "成功建账!");			
+				 else
+					 JOptionPane.showMessageDialog(null, "建账失败!");	
 				}
 				else if(!isempty&&!isnum){
 					JOptionPane.showMessageDialog(null, "请输入合法的金额!");//只能是整数

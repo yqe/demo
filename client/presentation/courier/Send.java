@@ -1,24 +1,13 @@
 package courier;
 
-import java.awt.Button;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,7 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import documentbl.Document;
+import po.GoodsDocuPO;
+import documentbl.Goodsdocu;
 
 public class Send {
 	private JPanel imagePanel;
@@ -105,14 +95,15 @@ public class Send {
 		l28.setFont(new Font("", Font.PLAIN, lmain));
 
 		final JTextField sender = new JTextField();
-		final JTextField senderinfo = new JTextField();
+		final JTextField senderworkespace = new JTextField();
 		final JTextField sendertel = new JTextField();
 		final JTextField sendersite = new JTextField();
 		final JTextField getter = new JTextField();
-		final JTextField getterinfo = new JTextField();
+		final JTextField getterworkspace = new JTextField();
 		final JTextField gettertel = new JTextField();
 		final JTextField gettersite = new JTextField();
 		final JTextField goodsname = new JTextField();
+		final JTextField goodsnumber = new JTextField();
 		final JTextField goodsweight = new JTextField();
 		final JTextField length = new JTextField();
 		final JTextField width = new JTextField();
@@ -191,7 +182,7 @@ public class Send {
 			 boolean sendersiteisempty=sendersite.getText().equals("");
 			 
 			 boolean getterisempty=getter.getText().equals("");
-			 boolean getterinfoisempty=getterinfo.getText().equals("");
+//			 boolean getterinfoisempty=getterinfo.getText().equals("");
 			 boolean gettertelisempty=sendertel.getText().equals("");
 			 boolean gettersiteisempty=sendersite.getText().equals("");
 			 
@@ -205,10 +196,31 @@ public class Send {
 			 
 			 boolean isempty=senderisempty||senderinfoisempty||sendertelisempty||sendersiteisempty||getterisempty||getterinfoisempty||gettertelisempty||gettersiteisempty
 		||goodsnameisempty||goodsweightisempty||lengthisempty||widthisempty||heightisempty||goodsinfoisempty||courierisempty;
-			
+//			 sender = new JTextField();
+//				final JTextField senderinfo = new JTextField();
+//				final JTextField sendertel = new JTextField();
+//				final JTextField sendersite = new JTextField();
+//				final JTextField getter = new JTextField();
+//				final JTextField getterinfo = new JTextField();
+//				final JTextField gettertel = new JTextField();
+//				final JTextField gettersite = new JTextField();
+//				final JTextField goodsname = new JTextField();
+//				final JTextField goodsweight = new JTextField();
+//				final JTextField length = new JTextField();
+//				final JTextField width = new JTextField();
+//				final JTextField height = new JTextField();
+//				final JTextField V = new JTextField();
+//				final JTextField goodsinfo = new JTextField();
+//				final JTextField price = new JTextField();
 			 if(!isempty){
-					JOptionPane.showMessageDialog(null, "生成寄件单成功!");
-				}
+//				 //GoodsDocuPO goodpo=new GoodsDocuPO(sender.getText(), senderi.getText(), dworkspace, dhphone, dmobile, rname, raddress, rworkspace, rhphone, rmobile, wfee, tfee, etype, goodsID, time, money)
+//				 //Goodsdocu gd=new Goodsdocu();
+//				 //boolean IsOk=gd.BuildGoodsDocu(goodpo);
+//				//if(IsOk)	
+//				 JOptionPane.showMessageDialog(null, "生成寄件单成功!");
+//				else
+//					 JOptionPane.showMessageDialog(null, "生成寄件单失败!");
+			 }
 //				else if(!isid&&!idisempty){
 //					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
 //				}		
@@ -417,5 +429,4 @@ public class Send {
 		return p1;
 
 	}
-
 }

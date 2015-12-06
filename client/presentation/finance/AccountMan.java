@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import po.ManageAccountPO;
+import financebl.AddAccount;
+
 public class AccountMan {
 	int labelw = 120;
 	int labelh = 30;
@@ -46,7 +49,13 @@ public class AccountMan {
 					
 				if(!isempty&&isnum){
 					//添加新数据到PO
+					ManageAccountPO a=new ManageAccountPO(textfield[0].getText(),Double.parseDouble(textfield[1].getText()),"","");
+					AddAccount adacc=new AddAccount();
+					boolean IsOk=adacc.BuildAddAccount(a);
+					if (IsOk)
 					JOptionPane.showMessageDialog(null, "添加成功!");
+					else 
+						JOptionPane.showMessageDialog(null, "添加失败!");
 				}	
 				else if(!isempty&&!isnum){
 					JOptionPane.showMessageDialog(null, "所输入金额非法!");
