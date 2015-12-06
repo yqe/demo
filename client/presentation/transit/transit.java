@@ -113,14 +113,17 @@ public class transit {
   			String state=(String) statebox.getSelectedItem();
   			Zzzxarrivaldocu transferaridocu=new Zzzxarrivaldocu();
   			boolean IsOk=transferaridocu.BuildZzzxarrivalDocu(new ZzzxArrivalDocuPO(t1.getText(),date,t2.getText(),place,state));
-  			if(IsOk){
-  			Object[] add={t1.getText(),date,place,state,t2.getText()};
-  			DefaultTableModel model = (DefaultTableModel) table.getModel();            
-  			model.insertRow(model.getRowCount(), add);
-  			}else{
-  				
-  			}
-//  			System.out.println(model.getRowCount());
+  			if(IsOk)
+  				JOptionPane.showMessageDialog(null,"中转接受完成!");
+  			else
+  				JOptionPane.showMessageDialog(null,"抱歉，中转接受失败!");
+//  			Object[] add={t1.getText(),date,place,state,t2.getText()};
+//  			DefaultTableModel model = (DefaultTableModel) table.getModel();            
+//  			model.insertRow(model.getRowCount(), add);
+//  			}else{
+//  				
+//  			}
+////  			System.out.println(model.getRowCount());
   		}
   	});
 	

@@ -113,6 +113,7 @@ public class AdminInfoStream {
 				UserInfoPO upo = new UserInfoPO(up.getUserID(), up.getPassword(), up2.getUsername(), up2.getPosition());
 				ud.update(upo);
 				oos.writeBoolean(true);
+				oos.writeObject(upo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

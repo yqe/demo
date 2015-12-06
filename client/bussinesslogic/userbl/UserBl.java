@@ -115,6 +115,7 @@ public class UserBl implements UserBlService {
 			oos.writeUTF("PasswordChange");
 			oos.writeObject(upo);
 			IsOk = ois.readBoolean();
+			ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

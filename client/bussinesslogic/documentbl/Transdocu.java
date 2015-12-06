@@ -15,9 +15,8 @@ public class Transdocu extends Document {
 	/**
 	 * 建立装车单
 	 * 
-	 * @param EarnedPO
-	 *            earnpo;
-	 * @return
+	 * @param TransPO tpo
+	 * @return boolean
 	 * @exception @author
 	 *                zxc
 	 */

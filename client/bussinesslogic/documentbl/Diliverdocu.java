@@ -23,6 +23,7 @@ public class Diliverdocu extends Document {
 	 */
 	public boolean BuildDiliverDocu(DiliverDocuPO ddpo){
 		IsOk = false;
+		System.out.println(ddpo.getCourier());
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -31,6 +32,7 @@ public class Diliverdocu extends Document {
 			oos.writeUTF("DeliveryBill");
 			oos.writeObject(ddpo);
 			IsOk = ois.readBoolean();
+			ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

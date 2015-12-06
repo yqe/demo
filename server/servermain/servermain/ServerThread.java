@@ -84,13 +84,6 @@ public class ServerThread implements Runnable {
 				default:
 					break;
 				}
-				Timer timer = new Timer();
-				timer.schedule(new TimerTask() {
-					public void run() {
-						// System.out.println("退出");
-						this.cancel();
-					}
-				}, 500);
 				ois.close();
 				oos.close();
 				socket.close();

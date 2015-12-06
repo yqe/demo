@@ -70,7 +70,8 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 
 	public void insert(ZzzxArrivalDocuPO po) {
 		// TODO Auto-generated method stub
-			try {
+		this.findnamebyID(po.getTransferCenterNum());
+		try {
 				mysqlimp=new MySqlImp();
 				this.transferCenterNum=po.getTransferCenterNum();
 				this.arrivalDate=po.getArrivalDate();

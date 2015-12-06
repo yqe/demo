@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import documentdata.DiliverDocu;
 import documentdata.GoodsDocu;
+import po.DiliverDocuPO;
 import po.GoodsDocuPO;
 
 public class CourierInfoStream {
@@ -45,7 +47,15 @@ public class CourierInfoStream {
 	}
 
 	private void DeliveryBill(ObjectInputStream ois, ObjectOutputStream oos) {
-
+		DiliverDocu ddp=new DiliverDocu();
+		try {
+			DiliverDocuPO gdpo = (DiliverDocuPO) ois.readObject();
+			ddp.insert(gdpo);
+			oos.writeBoolean(true);
+			oos.writeObject(gdpo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void SendBill(ObjectInputStream ois, ObjectOutputStream oos) {
