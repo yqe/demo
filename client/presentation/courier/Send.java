@@ -201,7 +201,7 @@ public class Send {
 
 			 if(!isempty){
 				 Goodsdocu goodsdocu=new Goodsdocu();
-				// goodsdocu.BuildGoodsDocu(new GoodsDocuPO(sender.getText(),sendersite.getText(), senderinfo.getText(), sendertel.getText(), getter.getText(), gettersite.getText(), getterinfo.getText(), gettertel.getText(), wfee, tfee, etype, goodsID, time, goodsname, goodsnum, len, wid, hei, v, goodsinfo, wrappedtype, expectedtime, generatetime, name))
+				 //goodsdocu.BuildGoodsDocu(new GoodsDocuPO(sender.getText(),sendersite.getText(), senderinfo.getText(), sendertel.getText(), getter.getText(), gettersite.getText(), getterinfo.getText(), gettertel.getText(), wfee, tfee, etype, goodsID, time, goodsname, goodsnum, len, wid, hei, v, goodsinfo, wrappedtype, expectedtime, generatetime, name))
 			 }
 		
 				else {
@@ -233,6 +233,7 @@ public class Send {
 		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
 		JComboBox packagebox = new JComboBox(pack);
 
+		
 		String[] year = new String[100];
 		for (int i = 2015; i < 2115; i++) {
 			year[i - 2015] = i + "年";

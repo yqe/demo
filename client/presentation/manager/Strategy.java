@@ -24,6 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import po.StrategyPO;
+
 public class Strategy {
 	private JPanel imagePanel;
 	private ImageIcon background;
@@ -99,7 +101,8 @@ public class Strategy {
 			String newprice = price.getText(); // StrategyPO传入新的数据
 
 			public void actionPerformed(ActionEvent e) {
-				
+				strategybl.Strategy stra=new strategybl.Strategy();
+				//boolean IsOk=stra.modify(new StrategyPO(pos, , cons));
 				JOptionPane.showMessageDialog(null, "修改成功!");
 			}
 		});
