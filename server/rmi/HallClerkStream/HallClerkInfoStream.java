@@ -23,16 +23,40 @@ public class HallClerkInfoStream {
 			case "ReceiveBill":
 				ReceiveBill(ois, oos);
 				break;
-			case "CarInfoMaintain":
-				CarInfoMaintain(ois, oos);
+			case "CarInfoChange":
+				CarInfoChange(ois, oos);
 				break;
 			case "ArrivalBill":
 				ArrivalBill(ois, oos);
+				break;
+			case "CarInfoGet":
+				CarInfoGet(ois, oos);
 				break;
 			default:
 				break;
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 车辆信息获取
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos
+	 * @return
+	 * @exception @author
+	 *                zxc
+	 */
+	private void CarInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
+		VehicleMaintance vm = new VehicleMaintance();
+		try {
+			String vid = ois.readUTF();
+			VehicleMaintanceInfoPO vmpo = vm.find(vid);
+			oos.writeObject(vmpo);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -47,10 +71,10 @@ public class HallClerkInfoStream {
 	 *                zxc
 	 */
 	private void ArrivalBill(ObjectInputStream ois, ObjectOutputStream oos) {
-		BussinessArrivalDocu  bad= new BussinessArrivalDocu();
+		BussinessArrivalDocu bad = new BussinessArrivalDocu();
 		try {
 			BussinessArrivalDocuPO badpo = (BussinessArrivalDocuPO) ois.readObject();
-//			bad.insert(badpo);
+			// bad.insert(badpo);
 			oos.writeBoolean(true);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -70,18 +94,13 @@ public class HallClerkInfoStream {
 	 * @exception @author
 	 *                zxc
 	 */
-	private void CarInfoMaintain(ObjectInputStream ois, ObjectOutputStream oos) {
+	private void CarInfoChange(ObjectInputStream ois, ObjectOutputStream oos) {
 		VehicleMaintance vm = new VehicleMaintance();
 		try {
 			VehicleMaintanceInfoPO vmpo = (VehicleMaintanceInfoPO) ois.readObject();
-			vmpo = vm.find(vmpo.getVehicleID());
-			if (vmpo == null)
-				oos.writeBoolean(false);
-			else {
-				oos.writeObject(vmpo);
-				vmpo = (VehicleMaintanceInfoPO) ois.readObject();
-				vm.update(vmpo);
-			}
+			vm.update(vmpo);
+			oos.writeBoolean(true);
+			oos.writeObject(vmpo);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -15,9 +15,8 @@ public class CostManage {
 	/**
 	 * 建立成本管理
 	 * 
-	 * @param EarnedPO
-	 *            earnpo;
-	 * @return
+	 * @param CostManagePO cmpo
+	 * @return boolean
 	 * @exception @author
 	 *                zxc
 	 */
@@ -38,6 +37,5 @@ public class CostManage {
 			e.printStackTrace();
 		}
 		return IsOk;
-	 
  }
 }
