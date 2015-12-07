@@ -22,13 +22,13 @@ public class infoDialog extends JDialog implements ActionListener {
 	JLabel worksitel = new JLabel("单位:");
 	JLabel tell = new JLabel("手机:");
 
-	JTextField namet = new JTextField("姚朋");
-	JTextField homesitet = new JTextField("南京大学");
-	JTextField worksitet = new JTextField("南京大学");
-	JTextField telt = new JTextField("1380000578");
+	JTextField namet = new JTextField();
+	JTextField homesitet = new JTextField();
+	JTextField worksitet = new JTextField();
+	JTextField telt = new JTextField();
 
 	// JButton ok=new JButton("ȷ��");
-	infoDialog(String ID) throws IOException {
+	infoDialog(String name,String home,String workspace,String tel) throws IOException {
 		BufferedImage bgp = ImageIO.read(new File("presentation/Cbackground.jpg"));
 		background = new ImageIcon(bgp);
 		JPanel back = new JPanel() {
@@ -71,6 +71,12 @@ public class infoDialog extends JDialog implements ActionListener {
 		homesitet.setEditable(false);
 		worksitet.setEditable(false);
 		telt.setEditable(false);
+		
+		namet.setText(name);
+		homesitet.setText(home);
+		worksitet.setText(workspace);
+		telt.setText(tel);
+		
 
 		namet.setBounds(150, 30, 100, 30);
 		homesitet.setBounds(150, 80, 100, 30);

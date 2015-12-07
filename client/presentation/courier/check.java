@@ -45,7 +45,7 @@ public class check {
 				if(id.getText().length()==10){
 				try {
 					String[] infoma=goodsbl.Goodsgetinfo(id.getText());
-					info = new infoDialog(null);
+					info = new infoDialog(infoma[0],infoma[1],infoma[2],infoma[3]);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
