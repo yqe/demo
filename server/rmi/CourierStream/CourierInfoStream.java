@@ -42,8 +42,10 @@ public class CourierInfoStream {
 	private void QueryOrder(ObjectInputStream ois, ObjectOutputStream oos) {
 		GoodsDocu gd = new GoodsDocu();
 		try {
-			String goodid = ois.readUTF();
+			String goodid =(String)ois.readObject();
 			GoodsDocuPO gdpo = gd.find(goodid);
+			System.out.println(gdpo.getCourier());
+			System.out.println(gdpo);
 			oos.writeObject(gdpo);
 		} catch (Exception e) {
 			e.printStackTrace();
