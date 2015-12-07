@@ -39,33 +39,30 @@ public class StateOfRun {
 		JButton okbtn = new JButton("确定");
 		okbtn.setBounds(650, 50, 100, 30);
 		context.add(okbtn);
-		String[] columnnames = { "快递编号", "入库日期", "目的地", "区号", "排号", "架号", "位号" };
-		String[] columnnames2 = { "快递编号", "入库日期", "目的地", "区号", "排号", "架号", "位号" };
+		String[] columnnames = { "订单条形码号", "到达日期", "收款金额", "快递员" };
+		String[] columnnames2 = { "付款日期", "付款金额", "付款人", "付款账户", "条目", "备注" };
 		Object[][] data = {};
 		Object[][] data2 = {};
-		DefaultTableModel model1=new  DefaultTableModel(data,columnnames);
-		DefaultTableModel model2=new  DefaultTableModel(data2,columnnames2);
-		JTable table=new JTable(model1);
-		JTable table2=new JTable(model2);
+		DefaultTableModel model1 = new DefaultTableModel(data, columnnames);
+		DefaultTableModel model2 = new DefaultTableModel(data2, columnnames2);
+		JTable table = new JTable(model1);
+		JTable table2 = new JTable(model2);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-		JScrollPane jp1=new JScrollPane(table);    
-		JScrollPane jp2=new JScrollPane(table2);   
-	    
-	    jp1.setOpaque(false);
-	    jp1.getViewport().setOpaque(false);
-	    jp2.setOpaque(false);
-	    jp2.getViewport().setOpaque(false);
-		
+		JScrollPane jp1 = new JScrollPane(table);
+		JScrollPane jp2 = new JScrollPane(table2);
+
+		jp1.setOpaque(false);
+		jp1.getViewport().setOpaque(false);
+		jp2.setOpaque(false);
+		jp2.getViewport().setOpaque(false);
+
 		jp1.setBounds(40, 100, 300, 500);
 		jp2.setBounds(40 + 350 + 20, 100, 300, 500);
 		context.add(jp1);
 		context.add(jp2);
-		
-		
-		
-		
+
 	}
 
 	public String[] GetBoxStr(int n, String meanth) {

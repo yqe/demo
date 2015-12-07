@@ -3,7 +3,9 @@ package documentbl;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
+import po.CostManagePO;
 import po.EarnedPO;
 
 public class Earneddocu extends DocumentBl {
@@ -13,7 +15,62 @@ public class Earneddocu extends DocumentBl {
 	ObjectInputStream ois;
 	boolean IsOk;
 	String hostid = "localhost";
-
+	/**
+	 * 得到所给日期之间的所有收款单
+	 * 
+	 * @param EarnedPO
+	 *            earnpo;
+	 * @return
+	 * @exception @author
+	 *                zxc
+	 */
+	@SuppressWarnings("unchecked")
+	public ArrayList<EarnedPO> GetEarnedDocu(String datal,String datar) {
+		ArrayList<EarnedPO> epolist=null;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Finance");
+			oos.writeUTF("GetEarnedDocu");
+			oos.writeObject(new String(datal+"-"+datar));
+			epolist=(ArrayList<EarnedPO>) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return epolist;
+	}
+	/**
+	 * 得到所给日期之间的所有收款单
+	 * 
+	 * @param EarnedPO
+	 *            earnpo;
+	 * @return
+	 * @exception @author
+	 *                zxc
+	 */
+	@SuppressWarnings("unchecked")
+	public ArrayList<CostManagePO> GetCostManageDocu(String datal,String datar) {
+		ArrayList<CostManagePO> cpolist=null;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Finance");
+			oos.writeUTF("GetCostManageDocu");
+			oos.writeObject(new String(datal+"-"+datar));
+			cpolist=(ArrayList<CostManagePO>) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cpolist;
+	}
 	/**
 	 * 建立收款单
 	 * 
