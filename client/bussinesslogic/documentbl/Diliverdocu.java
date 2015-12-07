@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import po.DiliverDocuPO;
 
-public class Diliverdocu extends Document {
+public class Diliverdocu extends DocumentBl {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;

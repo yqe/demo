@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import po.EarnedPO;
 
-public class Earneddocu extends Document {
+public class Earneddocu extends DocumentBl {
 
 	Socket socket;
 	ObjectOutputStream oos;

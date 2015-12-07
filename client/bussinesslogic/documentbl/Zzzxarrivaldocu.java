@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import po.ZzzxArrivalDocuPO;
 
-public class Zzzxarrivaldocu extends Document {
+public class Zzzxarrivaldocu extends DocumentBl {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;

@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import documentdata.CondemnDocu;
+import po.CondemnDocuPO;
 import po.StrategyPO;
 import strategydata.StrategyData;
 
@@ -17,8 +19,8 @@ public class ManagerInfoStream {
 			case "FormulateStrategy":
 				FormulateStrategy(ois, oos);
 				break;
-			case "ApproveBill":
-				ApproveBill(ois, oos);
+			case "GetUnapproveBill":
+				GetUnapproveBill(ois, oos);
 				break;
 			case "CheckBill":
 				CheckBill(ois, oos);
@@ -26,10 +28,36 @@ public class ManagerInfoStream {
 			case "ShowStrategy":
 				ShowStrategy(ois, oos);
 				break;
+			case "ApproveBill":
+				ApproveBill(ois, oos);
+				break;
 			default:
 				break;
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 批量审批单据
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @exception @author
+	 *                zxc
+	 */
+	private void ApproveBill(ObjectInputStream ois, ObjectOutputStream oos) {
+		CondemnDocu cd = new CondemnDocu();
+		try {
+			cd.update();
+			oos.writeBoolean(true);
+			oos.writeObject(new String("Ok"));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -55,6 +83,7 @@ public class ManagerInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 查看表单
 	 * 
@@ -66,6 +95,7 @@ public class ManagerInfoStream {
 	private void CheckBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		// TODO Auto-generated method stub
 	}
+
 	/**
 	 * 审批单据
 	 * 
@@ -74,9 +104,18 @@ public class ManagerInfoStream {
 	 * @exception @author
 	 *                zxc
 	 */
-	private void ApproveBill(ObjectInputStream ois, ObjectOutputStream oos) {
-		// TODO Auto-generated method stub
-
+	private void GetUnapproveBill(ObjectInputStream ois, ObjectOutputStream oos) {
+		CondemnDocu cd = new CondemnDocu();
+		try {
+			ArrayList<CondemnDocuPO> cdpolist = cd.findall();
+			oos.writeObject(cdpolist);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

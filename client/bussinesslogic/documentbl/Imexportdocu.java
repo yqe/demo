@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import po.InputStorageDocuPO;
 
-public class Imexportdocu extends Document {
+public class Imexportdocu extends DocumentBl {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;

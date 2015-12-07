@@ -80,11 +80,10 @@ public class Strategy implements StrategyBlService{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
 	public boolean modifySalary(StrategyPO spo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }
