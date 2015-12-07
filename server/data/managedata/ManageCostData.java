@@ -82,5 +82,31 @@ public class ManageCostData implements ManageCostService{
 		}
 		
 	}
+	
+	
+	public CostManagePO find(String paydate) throws RemoteException {
+		// TODO Auto-generated method stub
+		try {
+			mysqlimp=new MySqlImp();
+			String findall="SELECT * FROM 成本管理"+" WHERE 付款日期='"+paydate+"'";
+			ResultSet rs=mysqlimp.query(findall);
+			rs.next();
+			CostManagePO cost=new CostManagePO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+			return cost;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Class has some problem in ManageCostData!");
+			return new CostManagePO("不存在",20,"","","","");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ManageCostData!");
+			return new CostManagePO("不存在",20,"","","","");
+		}
+		
+		
+	}
 
+	
 }

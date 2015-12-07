@@ -73,13 +73,13 @@ public class EarnedDocu implements EarnedDocuService{
 	}
 
 	@Override
-	public EarnedPO find(String goodsID) {
+	public EarnedPO find(String paydate) {
 		// TODO Auto-generated method stub
 	
 		try {
 			EarnedPO earnedpo;
 			mysqlimp=new MySqlImp();
-			String find="SELECT 收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号"+" FROM 收款单"+" WHERE 订单条形码号='"+goodsID+"'";
+			String find="SELECT 收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号"+" FROM 收款单"+" WHERE 收款日期='"+paydate+"'";
 			ResultSet rs=mysqlimp.query(find);
 			rs.next();
 			earnedpo=new EarnedPO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5));
