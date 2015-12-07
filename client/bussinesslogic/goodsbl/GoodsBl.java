@@ -80,6 +80,7 @@ public class GoodsBl implements GoodsBLService {
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Courier");
 			oos.writeUTF("QueryOrder");
+			oos.writeObject(new String(ID));
 			GoodsDocuPO gdpo = (GoodsDocuPO) ois.readObject();
 			ois.close();
 			oos.close();
