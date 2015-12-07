@@ -24,7 +24,7 @@ public class CheckBill {
 		int boxwidth = 100;
 		int boxheight = 30;
 		int boxgap = 10;
-		JLabel yytlabel=new JLabel("营业厅编号:");
+		JLabel yytlabel = new JLabel("营业厅编号:");
 		JButton timecheck = new JButton("按天查询");
 		JButton hallcheck = new JButton("按营业厅查询");
 		context.removeAll();
@@ -41,18 +41,18 @@ public class CheckBill {
 		hallno.setBounds(sw + 150, sh + gap, 200, boxheight);
 		hallcheck.setBounds(sw + 10 + (boxgap + boxwidth) * 3 + 200, sh + gap, buttonw, buttonh);
 
-		String[] columnnames = { "快递编号", "入库日期", "目的地", "区号", "排号", "架号", "位号" };
+		String[] columnnames = { "营业厅编号", "订单条形码号", "收款日期", "收款金额", "收款快递员" };
 		Object[][] data = {};
-		
-		DefaultTableModel model=new  DefaultTableModel(data,columnnames);
-		JTable bill=new JTable(model);
+
+		DefaultTableModel model = new DefaultTableModel(data, columnnames);
+		JTable bill = new JTable(model);
 		bill.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		JScrollPane jp=new JScrollPane(bill);    
-	    
-	    jp.setOpaque(false);
-	    jp.getViewport().setOpaque(false);
+		JScrollPane jp = new JScrollPane(bill);
+
+		jp.setOpaque(false);
+		jp.getViewport().setOpaque(false);
 		jp.setBounds(sw, 120, 528, 500);
-		
+
 		context.add(yytlabel);
 		context.add(jp);
 		context.add(timecheck);

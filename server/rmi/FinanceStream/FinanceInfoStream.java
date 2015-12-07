@@ -24,6 +24,9 @@ public class FinanceInfoStream {
 			case "GetCostManageDocu":
 				GetCostManageDocu(ois, oos);
 				break;
+			case "":
+				GetCostManageDocu(ois, oos);
+				break;
 			default:
 				break;
 			}
@@ -43,8 +46,14 @@ public class FinanceInfoStream {
 	private void GetCostManageDocu(ObjectInputStream ois, ObjectOutputStream oos) {
 		ManageCostData costdata = new ManageCostData();
 		try {
+			ArrayList<CostManagePO> costpolist;
 			String[] data = ((String) ois.readObject()).split(" ");
-			ArrayList<CostManagePO> costpolist = costdata.find();
+//			if(data[0].equals("ID"))
+//				costpolist = costdata.find(data[2]);
+//			else if(data[1].equals("day"))
+//				costpolist = costdata.find(data[2]);
+//			else
+			costpolist = costdata.find();
 			oos.writeObject(costpolist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

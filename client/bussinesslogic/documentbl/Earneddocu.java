@@ -18,7 +18,8 @@ public class Earneddocu extends DocumentBl {
 
 	/**
 	 * 得到所给日期之间的所有收款单
-	 * 
+	 * ifdata1=="ID",为得到所给营业厅ID的所有收款单
+	 * ifdata1=="day",为得到所给日期当天的所有收款单;
 	 * @param EarnedPO
 	 *            earnpo;
 	 * @return
