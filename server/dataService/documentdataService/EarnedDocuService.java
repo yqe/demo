@@ -12,7 +12,7 @@ public interface EarnedDocuService {
 	
 	public void update(EarnedPO po);
 	
-	public EarnedPO find(String goodsID);
+	public EarnedPO find(String timebegin,String timeend);
 	
 	public ArrayList<EarnedPO> findall() ;
 }

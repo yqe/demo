@@ -22,7 +22,8 @@ public class GoodsDocuPO implements Serializable {
 	private double totalfee;//费用合计
 	private String expresstype;//快递类型
 	private String goodsID;//订单条形码号
-	private String receivedtime;//收件日期
+	private double weight;//重量
+	private double receivedmoney;//收款金额
 	private String goodsname;//货物名
 	private int goodsnumber;//货物数量
 	private double length;//长度
@@ -34,9 +35,16 @@ public class GoodsDocuPO implements Serializable {
 	private String expectedtime;//预期到达时间
 	private String generatetime;//寄件单生成日期
 	private String courier;//快递员姓名
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public double getReceivedmoney() {
+		return receivedmoney;
+	}
 	
-	
-		public String getDilivername() {
+	public String getDilivername() {
 		return dilivername;
 	}
 
@@ -96,11 +104,6 @@ public class GoodsDocuPO implements Serializable {
 	}
 
 
-	public String getReceivedtime() {
-		return receivedtime;
-	}
-
-
 	public String getGoodsname() {
 		return goodsname;
 	}
@@ -157,7 +160,7 @@ public class GoodsDocuPO implements Serializable {
 
 
 		public GoodsDocuPO(String dname,String daddress,String dworkspace,String dmobile,String rname,String raddress,
-				String rworkspace,String rmobile,double wfee,double tfee,String etype,String goodsID,String time
+				String rworkspace,String rmobile,double wfee,double tfee,String etype,String goodsID,double weight,double remoney
 				,String goodsname,int goodsnum, double len,double wid,double hei,double v,String goodsinfo,String wrappedtype
 				,String expectedtime,String generatetime,String name){
 			this.dilivername=dname;
@@ -172,7 +175,8 @@ public class GoodsDocuPO implements Serializable {
 			this.totalfee=tfee;
 			this.expresstype=etype;
 			this.goodsID=goodsID;
-			this.receivedtime=time;
+			this.weight=weight;
+			this.receivedmoney=remoney;
 			this.goodsname=goodsname;
 			this.goodsnumber=goodsnum;
 			this.length=len;
