@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 import documentdata.CondemnDocu;
 import po.CondemnDocuPO;
+import po.EmploeePO;
 import po.StrategyPO;
+import strategydata.EmploeeData;
 import strategydata.StrategyData;
 
 public class ManagerInfoStream {
@@ -31,6 +33,18 @@ public class ManagerInfoStream {
 			case "ApproveBill":
 				ApproveBill(ois, oos);
 				break;
+			case "IDGetEmployeeInfo":
+				IDGetEmployeeInfo(ois, oos);
+				break;
+			case "GetOEmployee":
+				GetOEmployee(ois, oos);
+				break;
+			case "ModifyOrAddEmpInfo":
+				ModifyOrAddEmpInfo(ois, oos);
+				break;
+			case "DeleteEmpInfo":
+				DeleteEmpInfo(ois, oos);
+				break;
 			default:
 				break;
 			}
@@ -40,10 +54,107 @@ public class ManagerInfoStream {
 	}
 
 	/**
+	 * 根据员工Id删除员工信息
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void DeleteEmpInfo(ObjectInputStream ois, ObjectOutputStream oos) {
+		EmploeeData emdata = new EmploeeData();
+		try {
+			String empoid = (String) ois.readObject();
+			emdata.delete(empoid);
+			oos.writeObject(new String("OK"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 根据ID修改员工信息,若没有这个ID则增加员工信息
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void ModifyOrAddEmpInfo(ObjectInputStream ois, ObjectOutputStream oos) {
+		EmploeeData emdata = new EmploeeData();
+		try {
+			EmploeePO empo = (EmploeePO) ois.readObject();
+			if (emdata.find(empo.getempID()).getPosition().equals("不存在")) {
+				emdata.insertEmp(empo);
+				oos.writeObject(new String("OK"));
+			} else {
+				emdata.update(empo);
+				oos.writeObject(new String("OK"));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 根据机构得到此机构所有员工信息
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void GetOEmployee(ObjectInputStream ois, ObjectOutputStream oos) {
+		EmploeeData emdata = new EmploeeData();
+		try {
+			String org = (String) ois.readObject();
+			ArrayList<EmploeePO> empolist = emdata.findall();
+			oos.writeObject(empolist);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 根据Id查找员工信息
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void IDGetEmployeeInfo(ObjectInputStream ois, ObjectOutputStream oos) {
+		EmploeeData emdata = new EmploeeData();
+		try {
+			String Id = (String) ois.readObject();
+			EmploeePO empo = emdata.find(Id);
+			oos.writeObject(empo);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * 批量审批单据
 	 * 
 	 * @param
-	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
 	 * @exception @author
 	 *                zxc
 	 */
@@ -52,7 +163,7 @@ public class ManagerInfoStream {
 		try {
 			cd.update();
 			oos.writeBoolean(true);
-			oos.writeObject(new String("Ok"));
+			oos.writeObject(new String("OK"));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,7 +177,7 @@ public class ManagerInfoStream {
 	 * 经营策略查看
 	 * 
 	 * @param
-	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
 	 * @exception @author
 	 *                zxc
 	 */
@@ -88,7 +199,7 @@ public class ManagerInfoStream {
 	 * 查看表单
 	 * 
 	 * @param
-	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
 	 * @exception @author
 	 *                zxc
 	 */
@@ -100,7 +211,7 @@ public class ManagerInfoStream {
 	 * 审批单据
 	 * 
 	 * @param
-	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
 	 * @exception @author
 	 *                zxc
 	 */
@@ -122,7 +233,7 @@ public class ManagerInfoStream {
 	 * 经营策略修改
 	 * 
 	 * @param
-	 * @return ObjectInputStream ois, ObjectOutputStream oos
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
 	 * @exception @author
 	 *                zxc
 	 */

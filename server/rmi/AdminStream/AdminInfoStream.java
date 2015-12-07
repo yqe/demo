@@ -39,7 +39,7 @@ public class AdminInfoStream {
 
 	private void GetAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			UserInfoPO upoCilent = (UserInfoPO)ois.readObject();
+			UserInfoPO upoCilent = (UserInfoPO) ois.readObject();
 			UserInfoPO upo = ud.getLoginPO(upoCilent.getUserID());
 			oos.writeObject(upo);
 		} catch (Exception e) {
@@ -67,13 +67,9 @@ public class AdminInfoStream {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
 			UserInfoPO up2 = ud.getLoginPO(up.getUserID());
-			if (up2 == null) {
-				oos.writeBoolean(false);
-			} else {
-				UserInfoPO upo = new UserInfoPO(up.getUserID(), up2.getPassword(), up2.getUsername(), up.getPosition());
-				ud.update(upo);
-				oos.writeBoolean(true);
-			}
+			UserInfoPO upo = new UserInfoPO(up.getUserID(), up2.getPassword(), up2.getUsername(), up.getPosition());
+			ud.update(upo);
+			oos.writeBoolean(true);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,15 +102,10 @@ public class AdminInfoStream {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
 			UserInfoPO up2 = ud.getLoginPO(up.getUserID());
-			// TODO
-			if (up2 == null) {
-				oos.writeBoolean(false);
-			} else {
-				UserInfoPO upo = new UserInfoPO(up.getUserID(), up.getPassword(), up2.getUsername(), up2.getPosition());
-				ud.update(upo);
-				oos.writeBoolean(true);
-				oos.writeObject(upo);
-			}
+			UserInfoPO upo = new UserInfoPO(up.getUserID(), up.getPassword(), up2.getUsername(), up2.getPosition());
+			ud.update(upo);
+			oos.writeBoolean(true);
+			oos.writeObject(upo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

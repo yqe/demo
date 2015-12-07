@@ -31,6 +31,7 @@ public class FinanceInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 按得到所给之间的所有付款单
 	 * 
@@ -40,10 +41,10 @@ public class FinanceInfoStream {
 	 *                zxc
 	 */
 	private void GetCostManageDocu(ObjectInputStream ois, ObjectOutputStream oos) {
-		ManageCostData costdata=new ManageCostData();
+		ManageCostData costdata = new ManageCostData();
 		try {
-			String[] data=((String) ois.readObject()).split("-");
-			ArrayList<CostManagePO> costpolist=costdata.find();
+			String[] data = ((String) ois.readObject()).split(" ");
+			ArrayList<CostManagePO> costpolist = costdata.find();
 			oos.writeObject(costpolist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -51,8 +52,9 @@ public class FinanceInfoStream {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
+
 	/**
 	 * 按得到所给之间的所有收款单
 	 * 
@@ -62,10 +64,10 @@ public class FinanceInfoStream {
 	 *                zxc
 	 */
 	private void GetEarnedDocu(ObjectInputStream ois, ObjectOutputStream oos) {
-		EarnedDocu ed=new EarnedDocu();
+		EarnedDocu ed = new EarnedDocu();
 		try {
-			String[] data=((String) ois.readObject()).split("-");
-			ArrayList<EarnedPO> epolist=ed.findall();
+			String[] data = ((String) ois.readObject()).split(" ");
+			ArrayList<EarnedPO> epolist = ed.findall();
 			oos.writeObject(epolist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -75,6 +77,7 @@ public class FinanceInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 生成付款单
 	 * 
