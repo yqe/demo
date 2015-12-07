@@ -29,7 +29,6 @@ public class GoodsDocu implements GoodsDocuService {
 	private String expresstype;// 快递类型
 	private String goodsID;// 订单条形码号
 	private double weight;// 重量
-	private double receivedmoney;//收款金额
 	private String goodsname;// 货物名
 	private int goodsnumber;// 货物数量
 	private double length;// 长度
@@ -50,7 +49,7 @@ public class GoodsDocu implements GoodsDocuService {
 		try {
 			mysqlimp = new MySqlImp();
 			String find = "SELECT 寄件人姓名,寄件人住址,寄件人单位,寄件人手机,收件人姓名,收件人住址,收件人单位"
-					+ ",收件人手机,包装费,费用合计,快递类型,货物重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名" + " FROM 快递单"
+					+ ",收件人手机,包装费,费用合计,快递类型,订单条形码号,重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名" + " FROM 快递单"
 					+ " WHERE 订单条形码号='" + goodsID + "'";
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
@@ -67,35 +66,34 @@ public class GoodsDocu implements GoodsDocuService {
 			this.expresstype=rs.getString(11);
 			this.goodsID = rs.getString(12);
 			this.weight=rs.getDouble(13);
-			this.receivedmoney=rs.getDouble(14);
-			this.goodsname=rs.getString(15);
-			this.goodsnumber=rs.getInt(16);
-			this.length = rs.getDouble(17);
-			this.width = rs.getDouble(18);
-			this.height = rs.getDouble(19);
-			this.v = rs.getDouble(20);
-			this.goodsinfo = rs.getString(21);
-			this.wrappedtype = rs.getString(22);
-			this.expectedtime = rs.getString(23);
-			this.generatetime = rs.getString(24);
-			this.courier = rs.getString(25);
+			this.goodsname=rs.getString(14);
+			this.goodsnumber=rs.getInt(15);
+			this.length = rs.getDouble(16);
+			this.width = rs.getDouble(17);
+			this.height = rs.getDouble(18);
+			this.v = rs.getDouble(19);
+			this.goodsinfo = rs.getString(20);
+			this.wrappedtype = rs.getString(21);
+			this.expectedtime = rs.getString(22);
+			this.generatetime = rs.getString(23);
+			this.courier = rs.getString(24);
 			
 			GoodsDocuPO goodsdocuPO = new GoodsDocuPO(dilivername, diliveraddress, diliverworkspace, dilivermobile,
 					receivername, receiveraddress, receiverworkspace, receivermobile, wrappedfee, totalfee, expresstype,
-					goodsID, weight,receivedmoney, goodsname, goodsnumber, length, width, height, v, goodsinfo, wrappedtype,
+					goodsID, weight, goodsname, goodsnumber, length, width, height, v, goodsinfo, wrappedtype,
 					expectedtime, generatetime, courier);
 			return goodsdocuPO;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Class has some problem in GoodsDocu!");
-			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, 0, "",0, 0, 0, 0, 0, "", "", "",
+			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0,0,"", "", 0, "",0, 0, 0, 0, 0, "", "", "",
 					"", "");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Some MySql problem has happened in GoodsDocu!");
-			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, 0, "",0, 0, 0, 0, 0, "", "", "",
+			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0,0,"", "", 0, "",0, 0, 0, 0, 0, "", "", "",
 					"", "");
 		}
 
@@ -118,7 +116,6 @@ public class GoodsDocu implements GoodsDocuService {
 			this.expresstype = po.getExpresstype();
 			this.goodsID = po.getGoodsID();
 			this.weight=po.getWeight();
-			this.receivedmoney=po.getReceivedmoney();
 			this.goodsname = po.getGoodsname();
 			this.goodsnumber = po.getGoodsnumber();
 			this.length = po.getLength();
@@ -132,11 +129,11 @@ public class GoodsDocu implements GoodsDocuService {
 			this.courier = po.getCourier();
 			condocu.insert(new CondemnDocuPO("快递单", goodsID, "未审批"));
 			String insert = "INSERT INTO 快递单" + " (寄件人姓名,寄件人地址,寄件人单位,寄件人电话,寄件人手机,收件人姓名,收件人地址,收件人单位,收件人电话,收件人手机,"
-					+ "包装费,合计费用,快递类型,订单条形码号,重量,收款金额,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名)" + " VALUES('"
+					+ "包装费,合计费用,快递类型,订单条形码号,重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名)" + " VALUES('"
 					+ dilivername + "','" + diliveraddress + "','" + diliverworkspace + "','" + diliverhomephone + "','"
 					+ receivername + "','" + receiveraddress + "','" + receiverworkspace + "','" + receiverhomephone
 					+ "','" + receivermobile + "'," + wrappedfee + "," + totalfee + ",'" + expresstype + "','" + goodsID
-					+ "'," + weight + ","+receivedmoney+"" + "'" + goodsname + "','" + goodsnumber + "'," + length + "," + width
+					+ "'," + weight + "" + "'" + goodsname + "','" + goodsnumber + "'," + length + "," + width
 					+ "," + height + "," + v + ",'" + goodsinfo + "','" + wrappedtype + "','" + expectedtime + "','"
 					+ generatetime + "','" + courier + "')";
 
@@ -198,22 +195,21 @@ public class GoodsDocu implements GoodsDocuService {
 				this.expresstype=rs.getString(11);
 				this.goodsID = rs.getString(12);
 				this.weight=rs.getDouble(13);
-				this.receivedmoney=rs.getDouble(14);
-				this.goodsname=rs.getString(15);
-				this.goodsnumber=rs.getInt(16);
-				this.length = rs.getDouble(17);
-				this.width = rs.getDouble(18);
-				this.height = rs.getDouble(19);
-				this.v = rs.getDouble(20);
-				this.goodsinfo = rs.getString(21);
-				this.wrappedtype = rs.getString(22);
-				this.expectedtime = rs.getString(23);
-				this.generatetime = rs.getString(24);
-				this.courier = rs.getString(25);
+				this.goodsname=rs.getString(14);
+				this.goodsnumber=rs.getInt(15);
+				this.length = rs.getDouble(16);
+				this.width = rs.getDouble(17);
+				this.height = rs.getDouble(18);
+				this.v = rs.getDouble(19);
+				this.goodsinfo = rs.getString(20);
+				this.wrappedtype = rs.getString(21);
+				this.expectedtime = rs.getString(22);
+				this.generatetime = rs.getString(23);
+				this.courier = rs.getString(24);
 				
 				goodsList.add(new GoodsDocuPO(dilivername, diliveraddress, diliverworkspace, dilivermobile,
 						receivername, receiveraddress, receiverworkspace, receivermobile, wrappedfee, totalfee, expresstype,
-						goodsID, weight,receivedmoney, goodsname, goodsnumber, length, width, height, v, goodsinfo, wrappedtype,
+						goodsID, weight,goodsname, goodsnumber, length, width, height, v, goodsinfo, wrappedtype,
 						expectedtime, generatetime, courier));
 			}
 			return goodsList;
