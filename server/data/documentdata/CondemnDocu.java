@@ -52,4 +52,18 @@ public class CondemnDocu {
 			e.printStackTrace();
 		}
 	}
+	
+	public void update(){
+		try {
+			mysqlimp=new MySqlImp();
+			String set="UPDATE 审批单据"+" SET 状态=已审批";
+			mysqlimp.update(set);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
