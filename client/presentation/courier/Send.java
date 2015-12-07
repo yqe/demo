@@ -105,7 +105,6 @@ public class Send {
 		final JTextField gettertel = new JTextField();
 		final JTextField gettersite = new JTextField();
 		final JTextField goodsname = new JTextField();
-		final JTextField goodsnumber = new JTextField();
 		final JTextField goodsweight = new JTextField();
 		final JTextField length = new JTextField();
 		final JTextField width = new JTextField();
@@ -180,7 +179,7 @@ public class Send {
 		for (int i = 1; i < 500; i++) {
 			num[i - 1] = String.valueOf(i);
 		}
-		JComboBox numbox = new JComboBox(num);
+		final JComboBox numbox = new JComboBox(num);
 
 		String[] type = { "普通快递", "经济快递", "次晨特快" };
 		final JComboBox typebox = new JComboBox(type);
@@ -249,17 +248,23 @@ public class Send {
 			 String exceptedtime=yearbox1.getSelectedItem().toString()+monthbox1.getSelectedItem().toString()+daybox1.getSelectedItem().toString();
 			 String generatetime=yearbox2.getSelectedItem().toString()+monthbox2.getSelectedItem().toString()+daybox2.getSelectedItem().toString();
 			 
+			 
+			 
+			 
+			 
 			 if(!isempty){				 
-//			 GoodsBl goodsbl=new GoodsBl();//生成PO中的两个null分别为没有的Goodsid和收件日期
-//			 GoodsDocuPO gpo=new GoodsDocuPO(sender.getText(), senderinfo.getText(),
-//					 sendertel.getText(), sendersite.getText(), getter.getText(), getterinfo.getText(), 
-//					 gettertel.getText(), gettersite.getText(),
-//					 Double.valueOf(price.getText()),//此处应为包装费
-//					 Double.valueOf(price.getText()),//此处应为总快递费
-//					 typebox.getSelectedItem().toString(),null,null,goodsname.getText(),
-//					 Integer.valueOf(goodsnumber.getText()), Double.valueOf(length.getText()),
-//					 Double.valueOf(width.getText()),Double.valueOf(height.getText()),Double.valueOf(V.getText()),goodsinfo.getText(),
-//					 packagebox.getSelectedItem().toString(), exceptedtime, generatetime,courier.getText());
+			 GoodsBl goodsbl=new GoodsBl();
+			 GoodsDocuPO gpo=new GoodsDocuPO(sender.getText(), senderinfo.getText(),
+					 sendertel.getText(), sendersite.getText(), getter.getText(), getterinfo.getText(), 
+					 gettertel.getText(), gettersite.getText(),
+					 Double.valueOf(price.getText()),//此处应为包装费
+					 Double.valueOf(price.getText()),//此处应为总快递费
+					 typebox.getSelectedItem().toString(),null,Double.valueOf(goodsweight.getText()),goodsname.getText(),
+					 Integer.valueOf(numbox.getSelectedItem().toString()), Double.valueOf(length.getText()),
+					 Double.valueOf(width.getText()),Double.valueOf(height.getText()),Double.valueOf(V.getText()),goodsinfo.getText(),
+					 packagebox.getSelectedItem().toString(), exceptedtime, generatetime,courier.getText());
+			          
+			        goodsbl.BuildGoodsDocu(gpo);
 			 JOptionPane.showMessageDialog(null, "成功生成寄件单!");
 			 }
 			 else{
