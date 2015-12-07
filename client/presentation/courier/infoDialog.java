@@ -88,7 +88,7 @@ public class infoDialog extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-
+     
 	}
 
 }

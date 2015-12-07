@@ -58,7 +58,7 @@ public class changepasswordmain {
 						if (equal) {
 							UserBl userbl=new UserBl();
 							boolean IsOk=userbl.changePassword(new UserInfoPO(id.getText(), password1, "", ""));
-							if(IsOk)
+							if(IsOk)  
 							JOptionPane.showMessageDialog(null, "修改成功!");// 将新密码传入所对应PO
 							else
 								JOptionPane.showMessageDialog(null, "修改失败!");

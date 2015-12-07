@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import po.UserInfoPO;
 import userbl.UserBl;
 
 public class authority {
@@ -46,7 +47,7 @@ public class authority {
 		t2.setOpaque(false);
 		t2.setEditable(false);
 
-		String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
+		final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
 
 		final JComboBox job = new JComboBox(jobs);
 
@@ -54,15 +55,21 @@ public class authority {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// PO传数据
+				try{
+					UserBl m=new UserBl();
+				    UserInfoPO a=m.GetUserAccount(t1.getText());
+				    if (!t1.getText().equals("")) {
+						
+						t2.setText(a.getUsername());
+						for(int i=0;i<7;i++){
+							if (jobs[i].equals(a.getPosition()))
+						job.setSelectedIndex(i);}// 参照String的jobs
+					} else {
+						JOptionPane.showMessageDialog(null, "请输入账号!");
+					}
+ }
+				 catch(Exception e1){e1.printStackTrace();}
 				
-				if (!t1.getText().equals("")) {
-					
-					t2.setText("姚朋");
-					job.setSelectedIndex(2);// 参照String的jobs
-				} else {
-					JOptionPane.showMessageDialog(null, "请输入账号!");
-				}
-
 			}
 
 		});
@@ -71,7 +78,12 @@ public class authority {
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserBl userbl=new UserBl();
-				
+				UserInfoPO usertemp=userbl.CheckUserInfoPO(t1.getText());
+				String ID=usertemp.getUserID();
+				String name=usertemp.getUsername();
+				String pass=usertemp.getPassword();
+				boolean isOk=userbl.positionTransfer(new UserInfoPO(ID, pass, name, job.getSelectedItem().toString()));
+				if (isOk)
 				JOptionPane.showMessageDialog(null, "修改成功!");
 			}
 

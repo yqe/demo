@@ -112,6 +112,7 @@ public class financemainui {
 					CmdButtonShow(bw, bh, 0, 0);
 					cc = false;
 				}
+				
 				new CostIncome().costincome(context);
 				context.repaint();
 				break;
@@ -120,6 +121,7 @@ public class financemainui {
 					CmdButtonShow(bw, bh, 0, 0);
 					cc = false;
 				}
+				OperateState();
 				new StateOfRun().stateofrun(context);
 				context.repaint();
 				break;
@@ -199,6 +201,9 @@ public class financemainui {
 		int bw = cmdsize - (gapw << 1);
 		int bh = mbh + 5;
 		CmdButtonShow(bw, bh, mbw, mbh);
+	}
+	public void OperateState(){
+		
 	}
 }
 
