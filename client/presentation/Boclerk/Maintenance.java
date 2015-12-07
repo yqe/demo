@@ -160,12 +160,12 @@ public class Maintenance {
 						|| driveridisempty || drivernameisempty
 						|| driversfzisempty || telisempty;
 
-				if (carid.getText().length() == 9 && iscarid && iscarnumber
+				TransBl trans = new TransBl();
+				String s = jb1.isSelected() ? "男" : "女"; 
+				VehicleMaintanceInfoPO vpo = new VehicleMaintanceInfoPO(carid.getText(),null,carnumber.getText(),timebox2.getSelectedItem().toString(),driverid.getText(),drivername.getText(),date.getText(),driversfz.getText(),tel.getText(),s,timebox1.getSelectedItem().toString());
+				if (trans.ChangeVehicleInfoPO(vpo) && iscarid && iscarnumber
 						&& isdriverid && !isempty) {
-					JOptionPane.showMessageDialog(null, "更新成功!");
-					TransBl trans = new TransBl();
-					String s = jb1.isSelected() ? "男" : "女"; 
-					VehicleMaintanceInfoPO vpo = new VehicleMaintanceInfoPO(carid.getText(),null,carnumber.getText(),timebox2.getSelectedItem().toString(),driverid.getText(),drivername.getText(),date.getText(),driversfz.getText(),tel.getText(),s,timebox1.getSelectedItem().toString());
+					JOptionPane.showMessageDialog(null, "更新成功!");				
 					trans.ChangeVehicleInfoPO(vpo);
 							
 					
