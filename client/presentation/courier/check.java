@@ -1,25 +1,17 @@
 package courier;
-import java.awt.Button;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import goodsbl.GoodsBl;
 
 
 public class check {
@@ -48,9 +40,11 @@ public class check {
 		b4.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {			
 				infoDialog info=null;
+				GoodsBl goodsbl=new GoodsBl();
 				
 				if(id.getText().length()==10){
 				try {
+					String[] infoma=goodsbl.Goodsgetinfo(id.getText());
 					info = new infoDialog(null);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
