@@ -49,7 +49,7 @@ public class GoodsDocu implements GoodsDocuService {
 		try {
 			mysqlimp = new MySqlImp();
 			String find = "SELECT 寄件人姓名,寄件人住址,寄件人单位,寄件人手机,收件人姓名,收件人住址,收件人单位"
-					+ "，收件人手机,包装费,费用合计,快递类型,收件日期,货物名称,货物数量,货物重量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名" + " FROM 快递单"
+					+ ",收件人手机,包装费,费用合计,快递类型,收件日期,货物名称,货物数量,货物重量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名" + " FROM 快递单"
 					+ " WHERE 订单条形码号='" + goodsID + "'";
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
