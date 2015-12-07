@@ -55,22 +55,22 @@ public class authority {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// PO传数据
-				try{
+//				
 					UserBl m=new UserBl();
 				    UserInfoPO a=m.GetUserAccount(t1.getText());
-				    if (!t1.getText().equals("")) {
+				     if (a.getUserID().equals("不存在")) JOptionPane.showMessageDialog(null, "请输入正确账号!");
+				    System.out.println(a.getUsername());
+				     if (!t1.getText().equals("")) {
 						
 						t2.setText(a.getUsername());
 						for(int i=0;i<7;i++){
 							if (jobs[i].equals(a.getPosition()))
 						job.setSelectedIndex(i);}// 参照String的jobs
-					} else {
-						JOptionPane.showMessageDialog(null, "请输入账号!");
-					}
+					} 
+				    
+				  
  }
-				 catch(Exception e1){e1.printStackTrace();}
 				
-			}
 
 		});
 
