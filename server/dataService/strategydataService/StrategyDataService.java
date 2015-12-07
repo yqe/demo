@@ -19,4 +19,6 @@ public interface StrategyDataService{
 	public void updatesalary(String pos,int sal) throws RemoteException;
 	
 	public void updateconstant(int cons) throws RemoteException;
+	
+	
 }

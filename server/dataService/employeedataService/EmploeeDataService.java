@@ -25,5 +25,6 @@ public interface EmploeeDataService{
 	
 	public ArrayList<EmploeePO> findall()throws RemoteException;
 	
+	public ArrayList<EmploeePO> findbypos(String postion);
 	
 }

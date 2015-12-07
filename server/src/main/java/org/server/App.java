@@ -1,8 +1,9 @@
 package org.server;
 
 import distancedata.DistanceData;
+import documentdata.GoodsDocu;
 import managedata.ManageCostData;
-import po.VehicleMaintanceInfoPO;
+import po.GoodsDocuPO;
 import storagedata.InputStorageDocu;
 import strategydata.EmploeeData;
 import strategydata.StrategyData;
@@ -24,6 +25,7 @@ public class App
         ManageCostData ma=new ManageCostData();
         InputStorageDocu input=new InputStorageDocu();
         VehicleMaintance v=new VehicleMaintance();
+        GoodsDocu g=new GoodsDocu();
         try {
 			//s.observe(); 
 			//s.updatesalary("总经理", 50000);
@@ -39,8 +41,9 @@ public class App
 			//ma.find();
         	//u.update(new UserInfoPO("1124","2","jj","tt"));
         	//input.storagenum("010000", "20151124");
-        	v.update(new VehicleMaintanceInfoPO("112", "23", "22", "22", "22", "fjejw", "ef", "222", "22", "22", "22"));
-		} catch (Exception e) {
+        	//v.update(new VehicleMaintanceInfoPO("112", "23", "22", "22", "22", "fjejw", "ef", "222", "22", "22", "22"));
+        	g.insert(new GoodsDocuPO("3231", "ggg", "fefe", "effe", "efef", "fef", "iii", "1232321", 20, 30, "333", "412", 40, "ggg", 10, 20, 30, 30, 80, "rrr", "3", "ttt", "ttt", "yyy"));
+        } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

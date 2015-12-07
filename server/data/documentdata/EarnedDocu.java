@@ -119,14 +119,16 @@ public class EarnedDocu implements EarnedDocuService{
 			return earnedList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in EarnedDocu!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EarnedDocu!");
-			return null;
+			ArrayList<EarnedPO> earnList=new ArrayList<EarnedPO>();
+			earnList.add(new EarnedPO("不存在",2,"","",""));
+			return earnList;
 		}
 		
 		
@@ -135,7 +137,28 @@ public class EarnedDocu implements EarnedDocuService{
 	@Override
 	public ArrayList<EarnedPO> findbyID(String bussID) {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			mysqlimp=new MySqlImp();
+			ArrayList<EarnedPO> earnedList=new ArrayList<EarnedPO>();
+			String findbyID="SELECT *"+" FROM 收款单"+" WHERE 所属营业厅编号='"+bussID+"'";
+			ResultSet rs=mysqlimp.query(findbyID);
+			while(rs.next()){
+				earnedList.add(new EarnedPO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+			}
+			return earnedList;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Class has some problem in EarnedDocu!");
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			ArrayList<EarnedPO> earnList=new ArrayList<EarnedPO>();
+			earnList.add(new EarnedPO("不存在",2,"","",""));
+			return earnList;
+		}
+		
 	}
 	
 }

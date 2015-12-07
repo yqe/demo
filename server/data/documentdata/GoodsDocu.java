@@ -128,15 +128,15 @@ public class GoodsDocu implements GoodsDocuService {
 			this.generatetime = po.getGeneratetime();
 			this.courier = po.getCourier();
 			condocu.insert(new CondemnDocuPO("快递单", goodsID, "未审批"));
-			String insert = "INSERT INTO 快递单" + " (寄件人姓名,寄件人地址,寄件人单位,寄件人电话,寄件人手机,收件人姓名,收件人地址,收件人单位,收件人电话,收件人手机,"
-					+ "包装费,合计费用,快递类型,订单条形码号,重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名)" + " VALUES('"
-					+ dilivername + "','" + diliveraddress + "','" + diliverworkspace + "','" + diliverhomephone + "','"
-					+ receivername + "','" + receiveraddress + "','" + receiverworkspace + "','" + receiverhomephone
-					+ "','" + receivermobile + "'," + wrappedfee + "," + totalfee + ",'" + expresstype + "','" + goodsID
-					+ "'," + weight + "" + "'" + goodsname + "','" + goodsnumber + "'," + length + "," + width
+			String insert = "INSERT INTO 快递单" + " (寄件人姓名,寄件人住址,寄件人单位,寄件人手机,收件人姓名,收件人住址,收件人单位,收件人手机,"
+					+ "包装费,费用合计,快递类型,订单条形码号,重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名)" + " VALUES('"
+					+ dilivername + "','" + diliveraddress + "','" + diliverworkspace + "','" + dilivermobile + "','"
+					+ receivername + "','" + receiveraddress + "','" + receiverworkspace + "','" + receivermobile
+					+ "'," + wrappedfee + "," + totalfee + ",'" + expresstype + "','" + goodsID
+					+ "'," + weight + "," + "'" + goodsname + "'," + goodsnumber + "," + length + "," + width
 					+ "," + height + "," + v + ",'" + goodsinfo + "','" + wrappedtype + "','" + expectedtime + "','"
 					+ generatetime + "','" + courier + "')";
-
+			System.out.println(insert);
 			mysqlimp = new MySqlImp();
 			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {
