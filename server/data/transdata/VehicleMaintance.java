@@ -96,7 +96,7 @@ public class VehicleMaintance implements VehicleMaintanceService {
 			this.limittime=po.getLimittime();
 			String insert="INSERT INTO 车辆维护相关信息"+" (车辆代号,营业厅编号,车牌号,服役时间,司机编号,司机姓名,出生日期,身份证号,手机号码,性别,行驶证期限)"
 			+" VALUES('"+vehicleID+"','"+bussinessID+"','"+carsID+"','"+worktime+"','"+driverID+"','"+drivername+"','"+birthday+"','"+idendity+"','"+mobile+"','"+sex+"','"+limittime+"')";
-			System.out.println(insert);
+//			System.out.println(insert);
 			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
