@@ -1,5 +1,7 @@
 package courier;
 
+import goodsbl.GoodsBl;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -181,16 +183,16 @@ public class Send {
 		JComboBox numbox = new JComboBox(num);
 
 		String[] type = { "普通快递", "经济快递", "次晨特快" };
-		JComboBox typebox = new JComboBox(type);
+		final JComboBox typebox = new JComboBox(type);
 
 		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
-		JComboBox depaturebox = new JComboBox(depature);
+		final JComboBox depaturebox = new JComboBox(depature);
 
 		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
-		JComboBox destinationbox = new JComboBox(destination);
+		final JComboBox destinationbox = new JComboBox(destination);
 
 		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
-		JComboBox packagebox = new JComboBox(pack);
+		final JComboBox packagebox = new JComboBox(pack);
 
 		
 		String[] year = new String[100];
@@ -198,22 +200,22 @@ public class Send {
 			year[i - 2015] = i + "年";
 
 		}
-		JComboBox yearbox1 = new JComboBox(year);
-		JComboBox yearbox2 = new JComboBox(year);
+		final JComboBox yearbox1 = new JComboBox(year);
+		final JComboBox yearbox2 = new JComboBox(year);
 		String[] month = new String[12];
 		for (int i = 1; i <= 12; i++) {
 			month[i - 1] = i + "月";
 
 		}
-		JComboBox monthbox1 = new JComboBox(month);
-		JComboBox monthbox2 = new JComboBox(month);
+		final JComboBox monthbox1 = new JComboBox(month);
+		final JComboBox monthbox2 = new JComboBox(month);
 		String[] day = new String[31];
 		for (int i = 1; i <= 31; i++) {
 			day[i - 1] = i + "日";
 
 		}
-		JComboBox daybox1 = new JComboBox(day);
-		JComboBox daybox2 = new JComboBox(day);
+		final JComboBox daybox1 = new JComboBox(day);
+		final JComboBox daybox2 = new JComboBox(day);
 		
 		
 		
@@ -243,6 +245,28 @@ public class Send {
 			 
 			 boolean isempty=senderisempty||senderinfoisempty||sendertelisempty||sendersiteisempty||getterisempty||getterinfoisempty||gettertelisempty||gettersiteisempty
 		||goodsnameisempty||goodsweightisempty||lengthisempty||widthisempty||heightisempty||goodsinfoisempty||courierisempty;
+
+			 String exceptedtime=yearbox1.getSelectedItem().toString()+monthbox1.getSelectedItem().toString()+daybox1.getSelectedItem().toString();
+			 String generatetime=yearbox2.getSelectedItem().toString()+monthbox2.getSelectedItem().toString()+daybox2.getSelectedItem().toString();
+			 
+			 if(!isempty){				 
+			 GoodsBl goodsbl=new GoodsBl();//生成PO中的两个null分别为没有的Goodsid和收件日期
+			 GoodsDocuPO gpo=new GoodsDocuPO(sender.getText(), senderinfo.getText(),
+					 sendertel.getText(), sendersite.getText(), getter.getText(), getterinfo.getText(), 
+					 gettertel.getText(), gettersite.getText(),
+					 Double.valueOf(price.getText()),//此处应为包装费
+					 Double.valueOf(price.getText()),//此处应为总快递费
+					 typebox.getSelectedItem().toString(),null,null,goodsname.getText(),
+					 Integer.valueOf(goodsnumber.getText()), Double.valueOf(length.getText()),
+					 Double.valueOf(width.getText()),Double.valueOf(height.getText()),Double.valueOf(V.getText()),goodsinfo.getText(),
+					 packagebox.getSelectedItem().toString(), exceptedtime, generatetime,courier.getText());
+			 JOptionPane.showMessageDialog(null, "成功生成寄件单!");
+			 }
+			 else{
+				 JOptionPane.showMessageDialog(null, "信息未填写完整!");
+			 }
+			 
+			 
 
 			}
 			
