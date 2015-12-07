@@ -46,6 +46,7 @@ public class admin {
 		final changepasswordmain change = new changepasswordmain();
 		final logoff logoff = new logoff();
 		final authority au = new authority();
+		final adduser add=new adduser();
 
 		control.setBounds(0, 0, size, 500);
 		content.setBounds(size, 0, 600, 500);
@@ -96,6 +97,26 @@ public class admin {
 			}
 
 		});
+		
+		JButton b7 = new JButton("增加用户");
+		b7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					changepanel(add.Panel());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		
+		
+		
+		
+		
+		
 
 		control.setLayout(null);
 		control.setOpaque(false);
@@ -103,12 +124,14 @@ public class admin {
 		control.add(b4);
 		control.add(b5);
 		control.add(b6);
+		control.add(b7);
 
-		int b4xloc = size / 6, b4yloc = control.getHeight() / 5, b4ysize = control.getHeight() / 5;
+		int b4xloc = size / 6, b4yloc = control.getHeight() / 6, b4ysize = control.getHeight() / 6;
 		b4.setBounds(b4xloc, b4yloc, 120, 30);
 		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
 		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);
-		b3.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 30);
+		b3.setBounds(b4xloc, b4yloc + 4 * b4ysize, 120, 30);
+		b7.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 30);
 
 		content.add(change.Panel());
 		content.setLayout(null);

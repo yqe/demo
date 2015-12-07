@@ -51,6 +51,9 @@ public class manager {
     final checkdocuments cd=new checkdocuments();
     final 	staff sf=new staff();
     final approve a=new approve();
+    final addemployee add=new addemployee();
+    final deleteemployee delete=new deleteemployee();
+    
     
 	control.setBounds(0, 0, size, 700);
 	content.setBounds(size,0,650,700);
@@ -111,7 +114,7 @@ public class manager {
 		}
 		
 	});
-	JButton b7=new JButton("人员机构管理");
+	JButton b7=new JButton("人员调度");
 	b7.addActionListener(new ActionListener(){
 	public void actionPerformed(ActionEvent e) {
 	
@@ -124,6 +127,35 @@ public class manager {
 	}
 	
 });
+	JButton b8=new JButton("添加员工");
+	b8.addActionListener(new ActionListener(){
+	public void actionPerformed(ActionEvent e) {
+	
+		try {	
+            	changepanel(add.Panel());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+});
+	JButton b9=new JButton("删除员工");
+	b9.addActionListener(new ActionListener(){
+	public void actionPerformed(ActionEvent e) {
+	
+		try {	
+            	changepanel(delete.Panel());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+});
+	
+	
+	
 	
 
 	control.setLayout(null);
@@ -133,18 +165,21 @@ public class manager {
 	control.add(b5);
 	control.add(b6);
 	control.add(b7);
-	
+	control.add(b8);
+	control.add(b9);
 
 
 	
 
 
-	int b4xloc=size/6,b4yloc=control.getHeight()/6,b4ysize=control.getHeight()/6;
+	int b4xloc=size/6,b4yloc=control.getHeight()/8,b4ysize=control.getHeight()/9;
 	b4.setBounds(b4xloc, b4yloc, 120, 30);
 	b5.setBounds(b4xloc, b4yloc+b4ysize, 120, 30);
 	b6.setBounds(b4xloc, b4yloc+2*b4ysize, 120, 30);
 	b7.setBounds(b4xloc, b4yloc+3*b4ysize, 120, 30);
-	b3.setBounds(b4xloc, b4yloc+4*b4ysize, 120, 30);
+	b8.setBounds(b4xloc, b4yloc+4*b4ysize, 120, 30);
+	b9.setBounds(b4xloc, b4yloc+5*b4ysize, 120, 30);	
+	b3.setBounds(b4xloc, b4yloc+6*b4ysize, 120, 30);
 
 	content.add(strategy.Panel());
 	content.setLayout(null);

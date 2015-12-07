@@ -36,7 +36,7 @@ public class staff {
 	JLabel l1=new JLabel("快递物流系统");
 	int b1size=30;
 	l1.setFont(new Font("快递物流系统",Font.PLAIN,b1size));
-	JLabel l2=new JLabel("—>人员机构管理");
+	JLabel l2=new JLabel("—>人员调度");
     int b2size=16; 
 	JLabel l3=new JLabel("机构选择:");
 	JLabel l4=new JLabel("员工ID:");
