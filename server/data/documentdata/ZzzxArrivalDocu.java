@@ -20,14 +20,14 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 	private String transferNumber;//中转单编号
 	private String startPlace;//出发地
 	private String goodsState;//货物到达状态
-	private String transferariname;//中转中心到达单名字
 	MySqlImp mysqlimp;
-	public ArrayList<ZzzxArrivalDocuPO> findall() {
+	//根据中转中心编号返回所有该中转中心到达单
+	public ArrayList<ZzzxArrivalDocuPO> findall(String transID) {
 		// TODO Auto-generated method stub
 		ArrayList<ZzzxArrivalDocuPO> zzzxpo=new ArrayList<ZzzxArrivalDocuPO>();
 		try {
 			mysqlimp=new MySqlImp();
-			String findall="SELECT *"+" FROM "+transferariname+"";
+			String findall="SELECT *"+" FROM 中转中心到达单"+" WHERE 中转中心编号='"+transID+"'";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
 				this.transferCenterNum=rs.getString(1);
@@ -56,7 +56,7 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
-			String delete="DELETE FROM "+transferariname+""+" WHERE 中转单编号='"+goodsID+"'";
+			String delete="DELETE FROM 中转中心到达单"+" WHERE 中转单编号='"+goodsID+"'";
 			mysqlimp.update(delete);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -71,7 +71,6 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 
 	public void insert(ZzzxArrivalDocuPO po) {
 		// TODO Auto-generated method stub
-		this.findnamebyID(po.getTransferCenterNum());
 		CondemnDocu condocu=new CondemnDocu();
 		try {
 				mysqlimp=new MySqlImp();
@@ -81,7 +80,7 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 				this.startPlace=po.getStartPlace();
 				this.goodsState=po.getGoodsState();
 				condocu.insert(new CondemnDocuPO("中转中心到达单", transferNumber, "未审批"));
-				String insert="INSERT INTO "+transferariname+""+" (中转中心编号,到达日期,中转单编号,出发地,货物到达状态)"
+				String insert="INSERT INTO 中转中心到达单"+" (中转中心编号,到达日期,中转单编号,出发地,货物到达状态)"
 				+" VALUES('"+transferCenterNum+"','"+arrivalDate+"','"+transferNumber+"','"+startPlace+"','"+goodsState+"')";
 				mysqlimp.update(insert);
 			} catch (ClassNotFoundException e) {
@@ -102,12 +101,13 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 		zzzx.insert(po);
 	}
 
-	public ZzzxArrivalDocuPO find(String transferNumber) {
+	//返回一个中转中心到达单
+	public ZzzxArrivalDocuPO find(String transferNumber,String transID) {
 		// TODO Auto-generated method stub
 		try {
 			this.transferNumber=transferNumber;
 			mysqlimp=new MySqlImp();
-			String find="SELECT *"+" FROM "+transferariname+""+" WHERE 中转单编号='"+transferNumber+"'";
+			String find="SELECT *"+" FROM 中转中心到达单"+" WHERE 中转单编号='"+transferNumber+"' and WHERE 中转中心编号='"+transID+"'";
 			ResultSet rs=mysqlimp.query(find);
 			this.transferCenterNum=rs.getString(1);
 			this.arrivalDate=rs.getString(2);
@@ -131,20 +131,4 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 	}
 
 	//逻辑调用增删改查前先调用这个方法设置名字
-	public void findnamebyID(String transcenterID) {
-		switch (transcenterID) {
-		case "025000":
-			transferariname= "南京中转中心到达单";
-			break;
-		case "010000":
-			transferariname = "北京中转中心到达单";
-			break;
-		case "020000":
-			transferariname = "广州中转中心到达单";
-			break;
-		case "021000":
-			transferariname = "上海中转中心到达单";
-			break;
-		}
-	}
 }

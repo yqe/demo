@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import po.TransferDocuPO;
 
 public interface TransferDocuService {
-		public ArrayList<TransferDocuPO> findall();
+		public ArrayList<TransferDocuPO> findall(String transcenterID);
 		
 		public void delete(String goodsID);
 		

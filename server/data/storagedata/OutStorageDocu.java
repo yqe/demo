@@ -12,6 +12,10 @@ import po.OutStorageList;
 import po.StorageList;
 import storagedataService.OutStorageService;
 
+/**
+ * @author jjlb
+ *出库单
+ */
 public class OutStorageDocu implements OutStorageService{
 		MySqlImp mysqlimp;
 		private String goodsID;
@@ -20,13 +24,11 @@ public class OutStorageDocu implements OutStorageService{
 		private String loadform;
 		private	String transcentreID;
 		ArrayList<OutStorageDocuPO> outsee;
-		private String transcentrename;
 		private String transcentercheck;
 		
 		//生成出库单,同时自动在库存盘点里删除一条记录
 	public void StorageDataAdd(OutStorageList oslt) {
 	
-		this.findtransname(oslt);
 		CondemnDocu condocu=new CondemnDocu();
 		try {
 			int i=0;
@@ -41,9 +43,9 @@ public class OutStorageDocu implements OutStorageService{
 				this.loadform=outpo.getLoadform();
 				this.transcentreID=outpo.getTransferno();
 				condocu.insert(new CondemnDocuPO("出库单",goodsID, "未审批"));
-				String insert="INSERT INTO "+transcentrename+""+" (快递编号,出库日期,目的地,装运形式,中转中心编号）"+" VALUES（'"+goodsID+"','"+outdate+"','"+destination+"','"+loadform+"','"+transcentreID+"')";
+				String insert="INSERT INTO 出库单"+" (快递编号,出库日期,目的地,装运形式,中转中心编号）"+" VALUES（'"+goodsID+"','"+outdate+"','"+destination+"','"+loadform+"','"+transcentreID+"')";
 				//生成一条出库单
-				String deletecheck="DELETE FROM "+transcentercheck+""+" WHERE 快递编号='"+goodsID+"'";
+				String deletecheck="DELETE FROM 库存盘点"+" WHERE 快递编号='"+goodsID+"'";
 				//删除一条库存记录
 				mysqlimp.update(insert);
 				mysqlimp.update(deletecheck);
@@ -83,11 +85,10 @@ public class OutStorageDocu implements OutStorageService{
 	//查看所有的出库单
 	public ArrayList<OutStorageDocuPO> StorageDataSee(String transID) {
 		// TODO Auto-generated method stub
-			this.findnamebyid(transID);
 		try {
 			ArrayList<OutStorageDocuPO> outsee=new ArrayList<OutStorageDocuPO>();
 			mysqlimp=new MySqlImp();
-			String findall="SELECT *"+" FROM "+transcentrename+"";
+			String findall="SELECT *"+" FROM 出库单"+" WHERE 中转中心编号='"+transID+"'";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
 				outsee.add(new OutStorageDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
@@ -106,63 +107,15 @@ public class OutStorageDocu implements OutStorageService{
 		}
 		
 	}
-
-	public void findtransname(OutStorageList oslt){
-		ArrayList<OutStorageDocuPO> out=new ArrayList<OutStorageDocuPO>();
-		OutStorageDocuPO outpo=out.get(0);
-		
-		switch(outpo.getTransferno()){
-		case "025000":
-			 transcentrename="南京出库单";
-			 transcentercheck="南京库存盘点";
-			 break;
-		case "010000":
-			 transcentrename="北京出库单";
-			 transcentercheck="北京库存盘点";
-			 break;
-		case "020000":
-			 transcentrename="广州出库单";
-			 transcentercheck="广州库存盘点";
-			 break;
-		case "021000":
-			 transcentrename="上海出库单";
-			 transcentercheck="上海库存盘点";
-			 break;
-		}
-		
-		
-	}
-	
-	public void findnamebyid(String ID){
-		switch(ID){
-		case "025000":
-			 transcentrename="南京出库单";
-			 transcentercheck="南京库存盘点";
-			 break;
-		case "010000":
-			 transcentrename="北京出库单";
-			 transcentercheck="北京库存盘点";
-			 break;
-		case "020000":
-			 transcentrename="广州出库单";
-			 transcentercheck="广州库存盘点";
-			 break;
-		case "021000":
-			 transcentrename="上海出库单";
-			 transcentercheck="上海库存盘点";
-			 break;
-		}
-		
-	}
-
+//
+	//得到一段时间内的出库数量
 	@Override
 	public int OutStorageNum(String transcenterID, String time) {
 		// TODO Auto-generated method stub
-		this.findnamebyid(transcenterID);		
 		try {
 			int num=0;
 			mysqlimp=new MySqlImp();
-			String findbytime="SELECT 快递编号,出库日期,目的地,装运形式,中转中心编号"+" FROM "+transcentrename+" WHERE 出库日期='"+time+"'";
+			String findbytime="SELECT 快递编号,出库日期,目的地,装运形式,中转中心编号"+" FROM 出库单"+" WHERE 出库日期='"+time+"' and WHERE 中转中心编号='"+transcenterID+"'";
 			ResultSet rs=mysqlimp.query(findbytime);
 			while(rs.next()){
 			num++;

@@ -26,7 +26,6 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 	@Override
 	public void insert(BussinessArrivalDocuPO po) {
 		// TODO Auto-generated method stub
-		this.findnamebyID(po.getBussinessID());
 		CondemnDocu condocu=new CondemnDocu();
 		try {
 			mysqlimp = new MySqlImp();
@@ -36,7 +35,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 			this.state = po.getState();
 			this.bussinessID = po.getBussinessID();
 			condocu.insert(new CondemnDocuPO("营业厅到达单", transferID, "未审批"));
-			String insert = "INSERT INTO " + bussinessname + "" + " (到达日期,中转单编号,出发地,货物到达状态,营业厅编号)" + " VALUES('"
+			String insert = "INSERT INTO 营业厅到达单" + " (到达日期,中转单编号,出发地,货物到达状态,营业厅编号)" + " VALUES('"
 					+ arrivaltime + "','" + transferID + "','" + destination + "','" + state + "','" + bussinessID
 					+ "')";
 			mysqlimp.update(insert);
@@ -54,10 +53,9 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 	@Override
 	public void delete(String transferID, String bussinessID) {
 		// TODO Auto-generated method stub
-		this.findnamebyID(bussinessID);
 		try {
 			mysqlimp = new MySqlImp();
-			String delete = "DELETE FROM " + bussinessname + "" + " WHERE 中转单编号='" + transferID + "'";
+			String delete = "DELETE FROM 营业厅到达单" + " WHERE 中转单编号='" + transferID + "' and WHERE 营业厅编号='"+bussinessID+"'";
 			mysqlimp.update(delete);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -80,10 +78,9 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 	@Override
 	public BussinessArrivalDocuPO find(String transferID, String bussinessID) {
 		// TODO Auto-generated method stub
-		this.findnamebyID(bussinessID);
 		try {
 			mysqlimp = new MySqlImp();
-			String find = "SELECT * FROM " + bussinessname + "" + " WHERE 中转单编号='" + transferID + "'";
+			String find = "SELECT * FROM 营业厅到达单" + " WHERE 中转单编号='" + transferID + "' and WHERE 营业厅编号='"+bussinessID+"'";
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
 			BussinessArrivalDocuPO busspo = new BussinessArrivalDocuPO(rs.getString(1), rs.getString(2),
@@ -106,11 +103,10 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 	@Override
 	public ArrayList<BussinessArrivalDocuPO> findmore(String bussinessID) {
 		// TODO Auto-generated method stub
-		this.findnamebyID(bussinessID);
 		try {
 			ArrayList<BussinessArrivalDocuPO> busspoList = new ArrayList<BussinessArrivalDocuPO>();
 			mysqlimp = new MySqlImp();
-			String findall = "SELECT *" + " FROM " + bussinessname + "";
+			String findall = "SELECT *" + " FROM 营业厅到达单"+" WHERE 营业厅编号='"+bussinessID+"'";
 			ResultSet rs = mysqlimp.query(findall);
 			while (rs.next()) {
 				busspoList.add(new BussinessArrivalDocuPO(rs.getString(1), rs.getString(2), rs.getString(3),
@@ -131,21 +127,6 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 	}
 
 	// 营业厅到达单
-	public void findnamebyID(String transcenterID) {
-		switch (transcenterID) {
-		case "025000":
-			bussinessname = "南京营业厅到达单";
-			break;
-		case "010000":
-			bussinessname = "北京营业厅到达单";
-			break;
-		case "020000":
-			bussinessname = "广州营业厅到达单";
-			break;
-		case "021000":
-			bussinessname = "上海营业厅到达单";
-			break;
-		}
-	}
+
 
 }
