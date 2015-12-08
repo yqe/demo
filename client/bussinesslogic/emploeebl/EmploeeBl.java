@@ -75,20 +75,45 @@ public class EmploeeBl implements EmploeeBlService {
 		return empolist;
 	}
 	/**
-	 * 根据ID修改员工信息,若没有这个ID则增加员工信息
+	 * 根据ID修改员工信息;
 	 * @param EmploeePO empo;
 	 * @return boolean;
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean ModifyOrAddEmpInfo(EmploeePO empo) {
+	public boolean ModifyEmpInfo(EmploeePO empo) {
 		boolean IsOk=false;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Manager");
-			oos.writeUTF("ModifyOrAddEmpInfo");
+			oos.writeUTF("ModifyEmpInfo");
+			oos.writeObject(empo);
+			IsOk=(boolean) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return IsOk;
+	}
+	/**
+	 * 增加员工信息
+	 * @param EmploeePO empo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean AddEmpInfo(EmploeePO empo) {
+		boolean IsOk=false;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Manager");
+			oos.writeUTF("AddEmpInfo");
 			oos.writeObject(empo);
 			IsOk=(boolean) ois.readObject();
 			ois.close();

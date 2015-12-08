@@ -39,11 +39,14 @@ public class ManagerInfoStream {
 			case "GetOEmployee":
 				GetOEmployee(ois, oos);
 				break;
-			case "ModifyOrAddEmpInfo":
-				ModifyOrAddEmpInfo(ois, oos);
+			case "ModifyEmpInfo":
+				ModifyEmpInfo(ois, oos);
 				break;
 			case "DeleteEmpInfo":
 				DeleteEmpInfo(ois, oos);
+				break;
+			case "AddEmpInfo":
+				AddEmpInfo(ois, oos);
 				break;
 			default:
 				break;
@@ -51,6 +54,25 @@ public class ManagerInfoStream {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void AddEmpInfo(ObjectInputStream ois, ObjectOutputStream oos) {
+		EmploeeData emdata = new EmploeeData();
+		try {
+			EmploeePO empo = (EmploeePO) ois.readObject();
+			if (emdata.find(empo.getempID()).getPosition().equals("不存在")) {
+				emdata.insertEmp(empo);
+				oos.writeObject(new Boolean(true));
+			} else
+				oos.writeObject(new Boolean(false));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -66,7 +88,7 @@ public class ManagerInfoStream {
 		try {
 			String empoid = (String) ois.readObject();
 			emdata.delete(empoid);
-			oos.writeObject(new String("OK"));
+			oos.writeObject(new Boolean(true));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,24 +99,19 @@ public class ManagerInfoStream {
 	}
 
 	/**
-	 * 根据ID修改员工信息,若没有这个ID则增加员工信息
+	 * 根据ID修改员工信息;
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
 	 * @exception @author
 	 *                zxc
 	 */
-	private void ModifyOrAddEmpInfo(ObjectInputStream ois, ObjectOutputStream oos) {
+	private void ModifyEmpInfo(ObjectInputStream ois, ObjectOutputStream oos) {
 		EmploeeData emdata = new EmploeeData();
 		try {
 			EmploeePO empo = (EmploeePO) ois.readObject();
-			if (emdata.find(empo.getempID()).getPosition().equals("不存在")) {
-				emdata.insertEmp(empo);
-				oos.writeObject(new String("OK"));
-			} else {
 				emdata.update(empo);
-				oos.writeObject(new String("OK"));
-			}
+				oos.writeObject(new Boolean(true));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
