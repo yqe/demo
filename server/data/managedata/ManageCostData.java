@@ -87,29 +87,61 @@ public class ManageCostData implements ManageCostService{
 	}
 	
 	
-	public CostManagePO findbytime(String timebegin,String timeend) throws RemoteException {
+	public ArrayList<CostManagePO> findbytime(String timebegin,String timeend) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
+			ArrayList<CostManagePO> cosList=new ArrayList<CostManagePO>();
 			mysqlimp=new MySqlImp();
-			String findall="SELECT * FROM 成本管理"+" WHERE 付款日期>='"+timebegin+"' AND 付款日期<='"+timeend+"'";
+			String findall="SELECT * FROM 成本管理"+" WHERE 付款日期>='"+timebegin+"' and 付款日期<='"+timeend+"'";
 			ResultSet rs=mysqlimp.query(findall);
-			rs.next();
-			CostManagePO cost=new CostManagePO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+			while(rs.next()){
+			cosList.add(new CostManagePO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
+			}
 			rs.close();
-			return cost;
+			return cosList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Class has some problem in ManageCostData!");
-			return new CostManagePO("不存在",20,"","","","");
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ManageCostData!");
-			return new CostManagePO("不存在",20,"","","","");
+			ArrayList<CostManagePO> cosList=new ArrayList<CostManagePO>();
+			cosList.add(new CostManagePO("不存在",20,"","","",""));
+			return cosList;
 		}
 		
 		
+	}
+
+	@Override
+	public ArrayList<CostManagePO> findbydate(String date) {
+		// TODO Auto-generated method stub
+		try {
+			ArrayList<CostManagePO> cosList=new ArrayList<CostManagePO>();
+			mysqlimp=new MySqlImp();
+			String findall="SELECT * FROM 成本管理"+" WHERE 付款日期='"+date+"'";
+			ResultSet rs=mysqlimp.query(findall);
+			while(rs.next()){
+			cosList.add(new CostManagePO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
+			}
+			rs.close();
+			return cosList;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Class has some problem in ManageCostData!");
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Some MySql problem has happened in ManageCostData!");
+			ArrayList<CostManagePO> cosList=new ArrayList<CostManagePO>();
+			cosList.add(new CostManagePO("不存在",20,"","","",""));
+			return cosList;
+		}
 	}
 
 	

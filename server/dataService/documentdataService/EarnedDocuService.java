@@ -12,9 +12,11 @@ public interface EarnedDocuService {
 	
 	public void update(EarnedPO po);
 	
-	public ArrayList<EarnedPO> findbydate(String timebegin,String timeend);
+	public ArrayList<EarnedPO> findbytime(String timebegin,String timeend);
 	
 	public ArrayList<EarnedPO> findall() ;
 	
 	public ArrayList<EarnedPO> findbyID(String bussID);
+	
+	public ArrayList<EarnedPO> findbydate(String date);
 }
