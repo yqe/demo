@@ -19,5 +19,5 @@ public interface InputStorageService {
 
 	public ArrayList<InputStorageDocuPO> StorageDataSee(String transcenterID);
 	
-	public int storagenum(String transcenterID,String time);
+	public int storagenum(String transcenterID,String timebegin,String timeend);
 }

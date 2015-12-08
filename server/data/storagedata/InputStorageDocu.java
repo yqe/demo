@@ -116,14 +116,15 @@ public class InputStorageDocu implements InputStorageService{
 	}
 	
 	//一段时间内某个中转中心的入库数量
+	
 	@Override
-	public int storagenum(String transcenterID, String time) {
+	public int storagenum(String transcenterID, String timebegin,String timeend) {
 		// TODO Auto-generated method stub
 		//	返回某一时间段入库单数量
 		try {
 			int num=0;
 			mysqlimp=new MySqlImp();
-			String findbytime="SELECT 快递编号,入库日期,目的地,区号,排号,架号,位号,中转中心编号"+" FROM 入库单"+" WHERE 入库日期='"+time+"' and WHERE 中转中心编号='"+transcenterID+"'";
+			String findbytime="SELECT 快递编号,入库日期,目的地,区号,排号,架号,位号,中转中心编号"+" FROM 入库单"+" WHERE 入库日期>='"+timebegin+"' and WHERE 入库日期<='"+timeend+"' and WHERE 中转中心编号='"+transcenterID+"'";
 			ResultSet rs=mysqlimp.query(findbytime);
 			while(rs.next()){
 			num++;

@@ -111,12 +111,12 @@ public class OutStorageDocu implements OutStorageService{
 //
 	//得到一段时间内的出库数量
 	@Override
-	public int OutStorageNum(String transcenterID, String time) {
+	public int OutStorageNum(String transcenterID, String timebegin,String timeend) {
 		// TODO Auto-generated method stub
 		try {
 			int num=0;
 			mysqlimp=new MySqlImp();
-			String findbytime="SELECT 快递编号,出库日期,目的地,装运形式,中转中心编号"+" FROM 出库单"+" WHERE 出库日期='"+time+"' and WHERE 中转中心编号='"+transcenterID+"'";
+			String findbytime="SELECT 快递编号,出库日期,目的地,装运形式,中转中心编号"+" FROM 出库单"+" WHERE 出库日期>='"+timebegin+"' and WHERE 出库日期 <='"+timeend+"' and WHERE 中转中心编号='"+transcenterID+"'";
 			ResultSet rs=mysqlimp.query(findbytime);
 			while(rs.next()){
 			num++;

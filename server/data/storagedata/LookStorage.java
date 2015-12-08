@@ -27,18 +27,18 @@ public class LookStorage implements LookStorageService {
 
 	// 一段时间内的入库数量
 	@Override
-	public int inputStorageDataSeeNum(String transcenterID, String time) {
+	public int inputStorageDataSeeNum(String transcenterID, String timebegin,String timeend) {
 		// TODO Auto-generated method stub
-		int num = inputdocu.storagenum(transcenterID, time);
+		int num = inputdocu.storagenum(transcenterID, timebegin,timeend);
 		return num;
 	}
 
 	// 一段时间内的出库数量
 	@Override
-	public int outStorageDataSeeNum(String transID, String time) {
+	public int outStorageDataSeeNum(String transID, String timebegin,String timeend) {
 		// TODO Auto-generated method stub
 
-		int num = outdocu.OutStorageNum(transID, time);
+		int num = outdocu.OutStorageNum(transID, timebegin,timeend);
 		return num;
 	}
 
