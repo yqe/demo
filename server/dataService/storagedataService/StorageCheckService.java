@@ -9,6 +9,7 @@ public interface StorageCheckService {
 	public void insert(StorageCheckPO po);
 	public void delete(String ID);
 	public  StorageCheckPO find(String ID);
+	public int getnum(String transcenterID);
 	public ArrayList<StorageCheckPO> findbydate(String date,String transID);
 	
 }
