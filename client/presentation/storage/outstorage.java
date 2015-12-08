@@ -120,9 +120,9 @@ public class outstorage {
 	JButton b4=new JButton("添加");
 	b4.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-			final String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();
-			final String place=(String) sitebox.getSelectedItem();
-			final String type=(String) typebox.getSelectedItem();
+			String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();
+			String place=(String) sitebox.getSelectedItem();
+			String type=(String) typebox.getSelectedItem();
 			OutStorageDocuPO am=new OutStorageDocuPO(t1.getText(),date,place,type,t2.getText());
 			oslt.addOutStoragePO(am);
 			Object[] add={t1.getText(),date,place,type,t2.getText()};

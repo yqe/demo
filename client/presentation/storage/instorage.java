@@ -120,8 +120,8 @@ public class instorage {
 	JButton b4=new JButton("添加");
 	b4.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-			final String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();
-			final String place=(String) sitebox.getSelectedItem();
+			String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();
+			String place=(String) sitebox.getSelectedItem();
 			InputStorageDocuPO insto=new InputStorageDocuPO(id.getText(), date, place, qu.getText(), pai.getText(), jia.getText(), wei.getText(), zzzxid.getText());
 			islt.addInputStoragePO(insto);
 			Object[] add={id.getText(),date,place,qu.getText(),pai.getText(),jia.getText(),wei.getText(),zzzxid.getText()};
