@@ -228,7 +228,7 @@ public class ManagerInfoStream {
 	 *                zxc
 	 */
 	private void CheckBill(ObjectInputStream ois, ObjectOutputStream oos) {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**

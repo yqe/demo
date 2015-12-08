@@ -223,12 +223,7 @@ public class FinanceInfoStream {
 		try {
 			ArrayList<CostManagePO> costpolist;
 			String[] data = ((String) ois.readObject()).split(" ");
-			// if(data[0].equals("ID"))
-			// costpolist = costdata.find(data[2]);
-			// else if(data[1].equals("day"))
-			// costpolist = costdata.find(data[2]);
-			// else
-			costpolist = costdata.find();
+			costpolist = costdata.findbytime(data[0], data[1]);
 			oos.writeObject(costpolist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -250,8 +245,14 @@ public class FinanceInfoStream {
 	private void GetEarnedDocu(ObjectInputStream ois, ObjectOutputStream oos) {
 		EarnedDocu ed = new EarnedDocu();
 		try {
+			ArrayList<EarnedPO> epolist;
 			String[] data = ((String) ois.readObject()).split(" ");
-			ArrayList<EarnedPO> epolist = ed.findall();
+			if (data[0].equals("ID"))
+				epolist = ed.findbyID(data[2]);
+			else if (data[1].equals("day"))
+				epolist = ed.findbyday(data[2]);
+			else
+				epolist = ed.findbydate(data[0], data[1]);
 			oos.writeObject(epolist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
