@@ -19,26 +19,47 @@ public class CheckProfit implements CheckProfitService{
 			mysqlimp=new MySqlImp();
 			String getsum="SELECT SUM(收入) FROM 利润表";
 			ResultSet rs=mysqlimp.query(getsum);
+			rs.next();
+			double result=rs.getDouble(1);
+			return result;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return 0;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return 0;
 		}
-		return 0;
+		
 	}
 
 	@Override
 	public double getcosttotal() {
 		// TODO Auto-generated method stub
-		return 0;
+		try {
+			mysqlimp=new MySqlImp();
+			String getsum="SELECT SUM(支出) FROM 利润表";
+			ResultSet rs=mysqlimp.query(getsum);
+			rs.next();
+			double result=rs.getDouble(1);
+			return result;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	@Override
 	public double profittotal() {
 		// TODO Auto-generated method stub
-		return 0;
+		double profit=this.getearnedtotal()-this.getcosttotal();
+		return profit;
 	}
 
 	@Override

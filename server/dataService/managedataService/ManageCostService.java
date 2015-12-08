@@ -20,6 +20,6 @@ public interface ManageCostService {
 	public void delete(String date)throws RemoteException;
 	public void update(CostManagePO po)throws RemoteException;
 	public void insert(CostManagePO po);
-	public CostManagePO find(String timebegin,String timeend) throws RemoteException;
+	public CostManagePO findbytime(String timebegin,String timeend) throws RemoteException;
 }
 

@@ -83,5 +83,26 @@ public class StrategyData implements StrategyDataService{
 			System.out.println("Some MySql problem has happened in StrategyData!");
 		}
 	}
-
+		
+	public double getconstance(){
+		try {
+			mysqlimp=new MySqlImp();
+			String getcons="SELECT 快递费价格计算常量"+" FROM 经营策略";
+			ResultSet rs=mysqlimp.query(getcons);
+			rs.next();
+			double cons=rs.getDouble(1);
+			return cons;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+		
+		
+		
+	}
 }

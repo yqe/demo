@@ -13,7 +13,7 @@ public class DistanceData implements DistanceDataService{
 		private double distance;//距离
 		private String departureplace;//出发地
 		private String destination;//目的地
-	public DistancePO getdistance(String departureplace, String destination) throws RemoteException {
+	public double getdistance(String departureplace, String destination) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
 			this.departureplace=departureplace;
@@ -24,18 +24,17 @@ public class DistanceData implements DistanceDataService{
 			rs.next();
 			distance=rs.getDouble(1);
 			//System.out.println(distance);
-			DistancePO dispo=new DistancePO(departureplace,destination,distance);
-			return dispo;
+			return distance;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Class has some problem in getdistance!");
-			return new DistancePO("不存在","",0);
+			return 0;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in getdistance!");
-			return new DistancePO("不存在","",0);
+			return 0;
 		}
 			
 	}

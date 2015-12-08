@@ -41,4 +41,9 @@ public class MySqlImp{
 		int result = stmt.executeUpdate(sql);
 		return result;
 	}
+	
+//	public double getsum(String sql)throws SQLException {
+//		int result = stmt.
+//		return result;
+//		}
 }

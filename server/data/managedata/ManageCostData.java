@@ -29,7 +29,7 @@ public class ManageCostData implements ManageCostService{
 			String findall="SELECT * FROM 成本管理";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
-				costList.add(new CostManagePO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
+				costList.add(new CostManagePO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
 				//System.out.println(rs.getString(1)+rs.getDouble(2)+rs.getString(3)+rs.getString(4)+rs.getDouble(5)+rs.getDouble(6)+rs.getDouble(7)+rs.getDouble(8));
 				//System.out.println(date+" "+payment+" "+payer+" "+payaccount+" "+rent+" "+transfee+" "+rentyear+" "+yundan+" "+" ");
 			}
@@ -71,6 +71,8 @@ public class ManageCostData implements ManageCostService{
 			this.tip=po.getTip();
 			String insert="INSERT INTO 成本管理"+" (付款日期,付款金额,付款人,付款账号,条目,备注)"+" VALUES('"+date+"',"+payment+",'"+payer+"','"+payaccount+"','"+tiaomu+"','"+tip+"')";
 			mysqlimp.update(insert);
+			CheckProfit check=new CheckProfit();
+			check.setcost(payment);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,14 +86,14 @@ public class ManageCostData implements ManageCostService{
 	}
 	
 	
-	public CostManagePO find(String timebegin,String timeend) throws RemoteException {
+	public CostManagePO findbytime(String timebegin,String timeend) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
 			String findall="SELECT * FROM 成本管理"+" WHERE 付款日期>='"+timebegin+"' AND 付款日期<='"+timeend+"'";
 			ResultSet rs=mysqlimp.query(findall);
 			rs.next();
-			CostManagePO cost=new CostManagePO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+			CostManagePO cost=new CostManagePO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
 			return cost;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

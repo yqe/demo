@@ -63,11 +63,11 @@ public class GoodsDocu implements GoodsDocuService {
 			this.receivermobile = rs.getString(8);
 			this.wrappedfee = rs.getDouble(9);
 			this.totalfee = rs.getDouble(10);
-			this.expresstype=rs.getString(11);
+			this.expresstype = rs.getString(11);
 			this.goodsID = rs.getString(12);
-			this.weight=rs.getDouble(13);
-			this.goodsname=rs.getString(14);
-			this.goodsnumber=rs.getInt(15);
+			this.weight = rs.getDouble(13);
+			this.goodsname = rs.getString(14);
+			this.goodsnumber = rs.getInt(15);
 			this.length = rs.getDouble(16);
 			this.width = rs.getDouble(17);
 			this.height = rs.getDouble(18);
@@ -77,7 +77,7 @@ public class GoodsDocu implements GoodsDocuService {
 			this.expectedtime = rs.getString(22);
 			this.generatetime = rs.getString(23);
 			this.courier = rs.getString(24);
-			
+
 			GoodsDocuPO goodsdocuPO = new GoodsDocuPO(dilivername, diliveraddress, diliverworkspace, dilivermobile,
 					receivername, receiveraddress, receiverworkspace, receivermobile, wrappedfee, totalfee, expresstype,
 					goodsID, weight, goodsname, goodsnumber, length, width, height, v, goodsinfo, wrappedtype,
@@ -87,13 +87,13 @@ public class GoodsDocu implements GoodsDocuService {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Class has some problem in GoodsDocu!");
-			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0,0,"", "", 0, "",0, 0, 0, 0, 0, "", "", "",
+			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
 					"", "");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Some MySql problem has happened in GoodsDocu!");
-			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0,0,"", "", 0, "",0, 0, 0, 0, 0, "", "", "",
+			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
 					"", "");
 		}
 
@@ -115,7 +115,7 @@ public class GoodsDocu implements GoodsDocuService {
 			this.totalfee = po.getTotalfee();
 			this.expresstype = po.getExpresstype();
 			this.goodsID = po.getGoodsID();
-			this.weight=po.getWeight();
+			this.weight = po.getWeight();
 			this.goodsname = po.getGoodsname();
 			this.goodsnumber = po.getGoodsnumber();
 			this.length = po.getLength();
@@ -131,11 +131,11 @@ public class GoodsDocu implements GoodsDocuService {
 			String insert = "INSERT INTO 快递单" + " (寄件人姓名,寄件人住址,寄件人单位,寄件人手机,收件人姓名,收件人住址,收件人单位,收件人手机,"
 					+ "包装费,费用合计,快递类型,订单条形码号,重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名)" + " VALUES('"
 					+ dilivername + "','" + diliveraddress + "','" + diliverworkspace + "','" + dilivermobile + "','"
-					+ receivername + "','" + receiveraddress + "','" + receiverworkspace + "','" + receivermobile
-					+ "'," + wrappedfee + "," + totalfee + ",'" + expresstype + "','" + goodsID
-					+ "'," + weight + "," + "'" + goodsname + "'," + goodsnumber + "," + length + "," + width
-					+ "," + height + "," + v + ",'" + goodsinfo + "','" + wrappedtype + "','" + expectedtime + "','"
-					+ generatetime + "','" + courier + "')";
+					+ receivername + "','" + receiveraddress + "','" + receiverworkspace + "','" + receivermobile + "',"
+					+ wrappedfee + "," + totalfee + ",'" + expresstype + "','" + goodsID + "'," + weight + "," + "'"
+					+ goodsname + "'," + goodsnumber + "," + length + "," + width + "," + height + "," + v + ",'"
+					+ goodsinfo + "','" + wrappedtype + "','" + expectedtime + "','" + generatetime + "','" + courier
+					+ "')";
 			System.out.println(insert);
 			mysqlimp = new MySqlImp();
 			mysqlimp.update(insert);
@@ -192,11 +192,11 @@ public class GoodsDocu implements GoodsDocuService {
 				this.receivermobile = rs.getString(8);
 				this.wrappedfee = rs.getDouble(9);
 				this.totalfee = rs.getDouble(10);
-				this.expresstype=rs.getString(11);
+				this.expresstype = rs.getString(11);
 				this.goodsID = rs.getString(12);
-				this.weight=rs.getDouble(13);
-				this.goodsname=rs.getString(14);
-				this.goodsnumber=rs.getInt(15);
+				this.weight = rs.getDouble(13);
+				this.goodsname = rs.getString(14);
+				this.goodsnumber = rs.getInt(15);
 				this.length = rs.getDouble(16);
 				this.width = rs.getDouble(17);
 				this.height = rs.getDouble(18);
@@ -206,11 +206,11 @@ public class GoodsDocu implements GoodsDocuService {
 				this.expectedtime = rs.getString(22);
 				this.generatetime = rs.getString(23);
 				this.courier = rs.getString(24);
-				
+
 				goodsList.add(new GoodsDocuPO(dilivername, diliveraddress, diliverworkspace, dilivermobile,
-						receivername, receiveraddress, receiverworkspace, receivermobile, wrappedfee, totalfee, expresstype,
-						goodsID, weight,goodsname, goodsnumber, length, width, height, v, goodsinfo, wrappedtype,
-						expectedtime, generatetime, courier));
+						receivername, receiveraddress, receiverworkspace, receivermobile, wrappedfee, totalfee,
+						expresstype, goodsID, weight, goodsname, goodsnumber, length, width, height, v, goodsinfo,
+						wrappedtype, expectedtime, generatetime, courier));
 			}
 			return goodsList;
 		} catch (ClassNotFoundException e) {

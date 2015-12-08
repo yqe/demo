@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import documentdataService.EarnedDocuService;
+import managedata.CheckProfit;
 import mysqlimp.MySqlImp;
 import po.CondemnDocuPO;
 import po.EarnedPO;
@@ -35,6 +36,8 @@ public class EarnedDocu implements EarnedDocuService{
 			String insert="INSERT INTO 收款单"+" (收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号)"
 			+" VALUES('"+paydate+"',"+earnedmoney+",'"+dilivername+"','"+orderID+"','"+bussinessID+"')";
 			mysqlimp.update(insert);
+			CheckProfit check=new CheckProfit();
+			check.setearned(earnedmoney);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +86,7 @@ public class EarnedDocu implements EarnedDocuService{
 			String find="SELECT 收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号"+" FROM 收款单"+" WHERE 收款日期>='"+timebegin+"' AND 收款日期<='"+timeend+"'";
 			ResultSet rs=mysqlimp.query(find);
 			while(rs.next()){
-			earnList.add(new EarnedPO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+			earnList.add(new EarnedPO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
 			return earnList;
 		} catch (ClassNotFoundException e) {
@@ -114,7 +117,7 @@ public class EarnedDocu implements EarnedDocuService{
 			String findall="SELECT *"+" FROM 收款单";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
-				earnedList.add(new EarnedPO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+				earnedList.add(new EarnedPO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
 			return earnedList;
 		} catch (ClassNotFoundException e) {
@@ -143,7 +146,7 @@ public class EarnedDocu implements EarnedDocuService{
 			String findbyID="SELECT *"+" FROM 收款单"+" WHERE 所属营业厅编号='"+bussID+"'";
 			ResultSet rs=mysqlimp.query(findbyID);
 			while(rs.next()){
-				earnedList.add(new EarnedPO(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+				earnedList.add(new EarnedPO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
 			return earnedList;
 		} catch (ClassNotFoundException e) {
