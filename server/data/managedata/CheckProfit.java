@@ -21,6 +21,7 @@ public class CheckProfit implements CheckProfitService{
 			ResultSet rs=mysqlimp.query(getsum);
 			rs.next();
 			double result=rs.getDouble(1);
+			rs.close();
 			return result;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -43,6 +44,7 @@ public class CheckProfit implements CheckProfitService{
 			ResultSet rs=mysqlimp.query(getsum);
 			rs.next();
 			double result=rs.getDouble(1);
+			rs.close();
 			return result;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

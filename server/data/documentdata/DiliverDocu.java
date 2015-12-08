@@ -29,6 +29,7 @@ public class DiliverDocu implements DiliverDocuService{
 			ResultSet rs=mysqlimp.query(find);
 			rs.next();
 			dipo=new DiliverDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+			rs.close();
 			return dipo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -55,6 +56,7 @@ public class DiliverDocu implements DiliverDocuService{
 			while(rs.next()){
 			dipoList.add(new DiliverDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
 			}
+			rs.close();
 			return dipoList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

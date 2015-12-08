@@ -43,6 +43,7 @@ public class TransData implements TransDataService{
 			this.fee=rs.getDouble(8);
 			this.orderID=rs.getString(9);
 			TransPO trapo=new TransPO(date,bussinessID,expreID,destination,carsID,monitor,supercargo,fee,orderID);
+			rs.close();
 			return trapo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -118,6 +119,7 @@ public class TransData implements TransDataService{
 				while(rs.next()){
 					transList.add(new TransPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getString(9)));
 				}
+				rs.close();
 				return transList;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

@@ -42,6 +42,7 @@ public class EmploeeData implements EmploeeDataService {
 			area=rs.getString(9);
 			EmploeePO emppo = new EmploeePO(position, empID, name, salary, sex, age, phonenum, id, address,area);
 			// System.out.println(name+age+position+id);
+			rs.close();
 			return emppo;
 
 		} catch (ClassNotFoundException e) {
@@ -124,6 +125,7 @@ public class EmploeeData implements EmploeeDataService {
 				empList.add(new EmploeePO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4),
 						rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10)));
 			}
+			rs.close();
 			return empList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -153,6 +155,7 @@ public class EmploeeData implements EmploeeDataService {
 						rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10)));
 			//System.out.println(rs.getString(2)+rs.getString(3));
 			}
+			rs.close();
 			return empList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

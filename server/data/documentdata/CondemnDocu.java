@@ -22,6 +22,7 @@ public class CondemnDocu {
 			while(rs.next()){
 				conList.add(new CondemnDocuPO(rs.getString(1),rs.getString(2),rs.getString(3)));
 			}
+			rs.close();
 			return conList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -98,6 +98,7 @@ public class InputStorageDocu implements InputStorageService{
 			while(rs.next()){
 				insee.add(new InputStorageDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)));
 			}
+			rs.close();
 			return insee;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -127,6 +128,7 @@ public class InputStorageDocu implements InputStorageService{
 			while(rs.next()){
 			num++;
 			}
+			rs.close();
 			return num;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -93,6 +93,7 @@ public class OutStorageDocu implements OutStorageService{
 			while(rs.next()){
 				outsee.add(new OutStorageDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
+			rs.close();
 			return outsee;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -120,6 +121,7 @@ public class OutStorageDocu implements OutStorageService{
 			while(rs.next()){
 			num++;
 			}
+			rs.close();
 			return num;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -45,25 +45,11 @@ public class LookStorage implements LookStorageService{
 	@Override
 	public double findmoney(String transcenterID) {
 		// TODO Auto-generated method stub
-		switch(transcenterID){
-		case "025000":
-			 this.transcentercheckname="南京库存盘点";
-			 break;
-		case "010000":
-			 this.transcentercheckname="北京库存盘点";
-			 break;
-		case "020000":
-			 this.transcentercheckname="广州库存盘点";
-			 break;
-		case "021000":
-			 this.transcentercheckname="上海库存盘点";
-			 break;
-		}
 		
 		try {
 			double sum=0;
 			mysqlimp=new MySqlImp();
-			String find="SELECT 快递编号"+" FROM "+transcentercheckname+"";
+			String find="SELECT 快递编号"+" FROM 库存盘点"+" WHERE 中转中心编号='"+transcenterID+"'";
 			ResultSet rs=mysqlimp.query(find);
 			while(rs.next()){
 				try {
@@ -73,6 +59,7 @@ public class LookStorage implements LookStorageService{
 					e.printStackTrace();
 				}
 			}
+			rs.close();
 			return sum;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

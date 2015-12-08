@@ -33,6 +33,7 @@ public class ManageCostData implements ManageCostService{
 				//System.out.println(rs.getString(1)+rs.getDouble(2)+rs.getString(3)+rs.getString(4)+rs.getDouble(5)+rs.getDouble(6)+rs.getDouble(7)+rs.getDouble(8));
 				//System.out.println(date+" "+payment+" "+payer+" "+payaccount+" "+rent+" "+transfee+" "+rentyear+" "+yundan+" "+" ");
 			}
+			rs.close();
 			return costList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -94,6 +95,7 @@ public class ManageCostData implements ManageCostService{
 			ResultSet rs=mysqlimp.query(findall);
 			rs.next();
 			CostManagePO cost=new CostManagePO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+			rs.close();
 			return cost;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -32,6 +32,7 @@ public class Initialaccount implements InitialAccountService{
 			String find="SELECT 银行账户ID,机构名称,人员,车辆,库存,银行账户余额"+" FROM 期初建账信息"+" WHERE 银行账户ID='"+bankaccountid+"'";
 			ResultSet rs=mysqlimp.query(find);
 			accpo=new InitializeAccountPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getDouble(6));
+			rs.close();
 			return accpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -99,6 +100,7 @@ public class Initialaccount implements InitialAccountService{
 			while(rs.next()){
 				accList.add(new InitializeAccountPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getDouble(6)));
 			}
+			rs.close();
 			return accList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

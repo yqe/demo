@@ -29,6 +29,7 @@ public class StrategyData implements StrategyDataService{
 			straList.add(new StrategyPO(rs.getString(1),rs.getInt(2),rs.getInt(3)));
 			System.out.println("薪水"+rs.getString(1)+"薪水"+rs.getInt(2)+rs.getInt(3));
 			}
+			rs.close();
 			return straList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -91,6 +92,7 @@ public class StrategyData implements StrategyDataService{
 			ResultSet rs=mysqlimp.query(getcons);
 			rs.next();
 			double cons=rs.getDouble(1);
+			rs.close();
 			return cons;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

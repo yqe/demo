@@ -92,6 +92,7 @@ public class StorageCheck implements StorageCheckService{
 			while(rs.next()){
 				stoList.add(new StorageCheckPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)));
 			}
+			rs.close();
 			return stoList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -118,6 +119,7 @@ public class StorageCheck implements StorageCheckService{
 			while(rs.next()){
 				stoList.add(new StorageCheckPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)));
 			}
+			rs.close();
 			return stoList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -141,6 +143,7 @@ public class StorageCheck implements StorageCheckService{
 			ResultSet rs=mysqlimp.query(find);
 			rs.next();
 			StorageCheckPO spo=new StorageCheckPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
+			rs.close();
 			return spo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

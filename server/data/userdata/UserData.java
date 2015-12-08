@@ -28,6 +28,7 @@ public class UserData implements UserDataService{
 				this.position=rs.getString(3);
 				UserInfoPO userinfo=new UserInfoPO(userID,password,username,position);
 				//System.out.println(password+username+position);
+				rs.close();
 				return userinfo;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

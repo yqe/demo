@@ -48,6 +48,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in BussinessArrivalDocu!");
 		}
+		
 	}
 
 	@Override
@@ -85,6 +86,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 			rs.next();
 			BussinessArrivalDocuPO busspo = new BussinessArrivalDocuPO(rs.getString(1), rs.getString(2),
 					rs.getString(3), rs.getString(4), rs.getString(5));
+			rs.close();
 			return busspo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -112,6 +114,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 				busspoList.add(new BussinessArrivalDocuPO(rs.getString(1), rs.getString(2), rs.getString(3),
 						rs.getString(4), rs.getString(5)));
 			}
+			rs.close();
 			return busspoList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

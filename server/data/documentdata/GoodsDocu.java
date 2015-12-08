@@ -77,11 +77,12 @@ public class GoodsDocu implements GoodsDocuService {
 			this.expectedtime = rs.getString(22);
 			this.generatetime = rs.getString(23);
 			this.courier = rs.getString(24);
-
+			rs.close();
 			GoodsDocuPO goodsdocuPO = new GoodsDocuPO(dilivername, diliveraddress, diliverworkspace, dilivermobile,
 					receivername, receiveraddress, receiverworkspace, receivermobile, wrappedfee, totalfee, expresstype,
 					goodsID, weight, goodsname, goodsnumber, length, width, height, v, goodsinfo, wrappedtype,
 					expectedtime, generatetime, courier);
+			
 			return goodsdocuPO;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -212,6 +213,7 @@ public class GoodsDocu implements GoodsDocuService {
 						expresstype, goodsID, weight, goodsname, goodsnumber, length, width, height, v, goodsinfo,
 						wrappedtype, expectedtime, generatetime, courier));
 			}
+			rs.close();
 			return goodsList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

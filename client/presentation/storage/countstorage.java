@@ -32,7 +32,7 @@ public class countstorage {
 	private ImageIcon button1;
 	
 	public JPanel Panel() throws IOException{
-	BufferedImage bgp=ImageIO.read(new File("D:/test_eclipse/workspace/Frame/src/background.png"));
+	BufferedImage bgp=ImageIO.read(new File("presentation/background.png"));
 	background = new ImageIcon(bgp);
 
 	JPanel p1 = new JPanel();

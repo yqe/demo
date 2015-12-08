@@ -24,6 +24,7 @@ public class DistanceData implements DistanceDataService{
 			rs.next();
 			distance=rs.getDouble(1);
 			//System.out.println(distance);
+			rs.close();
 			return distance;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

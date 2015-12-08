@@ -37,6 +37,7 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 				this.goodsState=rs.getString(5);
 				zzzxpo.add(new ZzzxArrivalDocuPO(transferCenterNum,arrivalDate,transferNumber,startPlace,goodsState));
 			}
+			rs.close();
 			return zzzxpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -115,6 +116,7 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 			this.startPlace=rs.getString(4);
 			this.goodsState=rs.getString(5);
 			ZzzxArrivalDocuPO zzzxpo=new ZzzxArrivalDocuPO(transferCenterNum,arrivalDate,transferNumber,startPlace,goodsState);
+			rs.close();
 			return zzzxpo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

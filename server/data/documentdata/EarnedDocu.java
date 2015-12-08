@@ -88,6 +88,7 @@ public class EarnedDocu implements EarnedDocuService{
 			while(rs.next()){
 			earnList.add(new EarnedPO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
+			rs.close();
 			return earnList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -119,6 +120,7 @@ public class EarnedDocu implements EarnedDocuService{
 			while(rs.next()){
 				earnedList.add(new EarnedPO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
+			rs.close();
 			return earnedList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -148,6 +150,7 @@ public class EarnedDocu implements EarnedDocuService{
 			while(rs.next()){
 				earnedList.add(new EarnedPO(rs.getDate(1).toString(),rs.getDouble(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
+			rs.close();
 			return earnedList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
