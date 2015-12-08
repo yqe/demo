@@ -117,87 +117,90 @@ public class Send {
 		final JTextField exceptedtime = new JTextField();
 		// JTextField t17=new JTextField();
 		final JTextField courier = new JTextField();
-		
+
 		V.setOpaque(false);
 		V.setEditable(false);
-//		exceptedtime.setOpaque(false);
-//		exceptedtime.setEditable(false);
-		
-		
+		// exceptedtime.setOpaque(false);
+		// exceptedtime.setEditable(false);
+
 		String[] num = new String[500];
 		for (int i = 1; i < 500; i++) {
 			num[i - 1] = String.valueOf(i);
 		}
 		final JComboBox numbox = new JComboBox(num);
-//		 numbox.addItemListener(new ItemListener()
-//		  {
-//		   public void itemStateChanged(ItemEvent e)
-//		   {
-//		    if (e.getStateChange() == ItemEvent.SELECTED)
-//		 {
-//		      String goodsnum=(String) numbox.getSelectedItem();  }
-//		   }
-//		  });
+		// numbox.addItemListener(new ItemListener()
+		// {
+		// public void itemStateChanged(ItemEvent e)
+		// {
+		// if (e.getStateChange() == ItemEvent.SELECTED)
+		// {
+		// String goodsnum=(String) numbox.getSelectedItem(); }
+		// }
+		// });
 
 		String[] type = { "普通快递", "经济快递", "次晨特快" };
 		final JComboBox typebox = new JComboBox(type);
-//		 typebox.addItemListener(new ItemListener()
-//		  {
-//		   public void itemStateChanged(ItemEvent e)
-//		   {
-//		    if (e.getStateChange() == ItemEvent.SELECTED)
-//		 {
-//		      String type=(String)typebox.getSelectedItem();  }
-//		   }
-//		  });
+		// typebox.addItemListener(new ItemListener()
+		// {
+		// public void itemStateChanged(ItemEvent e)
+		// {
+		// if (e.getStateChange() == ItemEvent.SELECTED)
+		// {
+		// String type=(String)typebox.getSelectedItem(); }
+		// }
+		// });
 
 		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
 		final JComboBox packagebox = new JComboBox(pack);
-//		   packagebox.addItemListener(new ItemListener()
-//		  {
-//		   public void itemStateChanged(ItemEvent e)
-//		   {
-//		    if (e.getStateChange() == ItemEvent.SELECTED)
-//		 {
-//		      String pack=(String) packagebox.getSelectedItem(); 
-//		        
-//		 }
-//		   }
-//		  });
+		// packagebox.addItemListener(new ItemListener()
+		// {
+		// public void itemStateChanged(ItemEvent e)
+		// {
+		// if (e.getStateChange() == ItemEvent.SELECTED)
+		// {
+		// String pack=(String) packagebox.getSelectedItem();
+		//
+		// }
+		// }
+		// });
 		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
 		final JComboBox depaturebox = new JComboBox(depature);
-//		 depaturebox.addItemListener(new ItemListener()
-//		  {
-//		   public void itemStateChanged(ItemEvent e)
-//		   {
-//		    if (e.getStateChange() == ItemEvent.SELECTED)
-//		 {
-//		      String depature=(String) depaturebox.getSelectedItem();  }
-//		   }
-//		  });
+		// depaturebox.addItemListener(new ItemListener()
+		// {
+		// public void itemStateChanged(ItemEvent e)
+		// {
+		// if (e.getStateChange() == ItemEvent.SELECTED)
+		// {
+		// String depature=(String) depaturebox.getSelectedItem(); }
+		// }
+		// });
 
 		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
 		final JComboBox destinationbox = new JComboBox(destination);
-		 destinationbox.addItemListener(new ItemListener()
-		  {
-		   public void itemStateChanged(ItemEvent e)
-		   {
-		    if (e.getStateChange() == ItemEvent.SELECTED)
-		 {
-		        GoodsBl goodsbl=new GoodsBl();    
-		        System.out.println(goodsweight.getText());
-		        System.out.println(typebox.getSelectedItem().toString());
-		        System.out.println(packagebox.getSelectedItem().toString());
-		        System.out.println(depaturebox.getSelectedItem().toString());
-		        String fee=goodsbl.Goodsgetfee(Double.valueOf(goodsweight.getText()), packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(), destinationbox.getSelectedItem().toString());
-		        double goodsprice=Double.valueOf(numbox.getSelectedItem().toString())*Double.valueOf(fee);
-		        System.out.println(goodsprice);
-		        price.setText(String.valueOf(goodsprice));    
-		 
-		 }
-		   }
-		  });
-		
+		destinationbox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					GoodsBl goodsbl = new GoodsBl();
+					// System.out.println(goodsweight.getText());
+					// System.out.println(typebox.getSelectedItem().toString());
+					// System.out.println(packagebox.getSelectedItem().toString());
+					// System.out
+					// .println(depaturebox.getSelectedItem().toString());
+					double weight = Double.valueOf(goodsweight.getText());
+					String fee = goodsbl.Goodsgetfee(weight,typebox.getSelectedItem().toString(), packagebox
+							.getSelectedItem().toString(), depaturebox
+							.getSelectedItem().toString(), destinationbox
+							.getSelectedItem().toString());
+					double feedou = Double.valueOf(fee);
+					double goodsprice = (Double.valueOf(numbox
+							.getSelectedItem().toString())) * feedou;
+//					System.out.println(goodsprice);
+					price.setText(String.valueOf(goodsprice));
+
+				}
+			}
+		});
+
 		String[] year = new String[100];
 		for (int i = 2015; i < 2115; i++) {
 			year[i - 2015] = i + "年";
@@ -216,7 +219,6 @@ public class Send {
 
 		}
 		final JComboBox daybox2 = new JComboBox(day);
-		
 
 		length.getDocument().addDocumentListener(new DocumentListener() {
 			String goodslength;
@@ -253,19 +255,18 @@ public class Send {
 					double v = Double.valueOf(length.getText())
 							* Double.valueOf(width.getText())
 							* Double.valueOf(height.getText());
-//					System.out.println(v);
+					// System.out.println(v);
 					V.setText(String.valueOf(v));
-					double weight=Double.valueOf(goodsweight.getText());
+					double weight = Double.valueOf(goodsweight.getText());
 					System.out.println(weight);
-					if(weight<(v/5000)){
-						weight=v/5000;
+					if (weight < (v / 5000)) {
+						weight = v / 5000;
 					}
 					goodsweight.setText(String.valueOf(weight));
-				}			
-				catch (Exception e1) {
+				} catch (Exception e1) {
 					return;
 				}
-				
+
 			}
 
 			public void insertUpdate(DocumentEvent e) {
@@ -273,17 +274,16 @@ public class Send {
 					double v = Double.valueOf(length.getText())
 							* Double.valueOf(width.getText())
 							* Double.valueOf(height.getText());
-				
+
 					V.setText(String.valueOf(v));
-					double weight=Double.valueOf(goodsweight.getText());
-//					System.out.println(weight);
-					if(weight<(v/5000)){
-						weight=v/5000;
+					double weight = Double.valueOf(goodsweight.getText());
+					// System.out.println(weight);
+					if (weight < (v / 5000)) {
+						weight = v / 5000;
 					}
-					
+
 					goodsweight.setText(String.valueOf(weight));
-				}			
-				catch (Exception e1) {
+				} catch (Exception e1) {
 					return;
 				}
 			}
@@ -295,7 +295,7 @@ public class Send {
 		goodsweight.getDocument().addDocumentListener(new DocumentListener() {
 
 			public void removeUpdate(DocumentEvent e) {
-		
+
 			}
 
 			public void insertUpdate(DocumentEvent e) {
@@ -309,7 +309,7 @@ public class Send {
 		price.getDocument().addDocumentListener(new DocumentListener() {
 
 			public void removeUpdate(DocumentEvent e) {
-		
+
 			}
 
 			public void insertUpdate(DocumentEvent e) {
@@ -320,67 +320,75 @@ public class Send {
 
 			}
 		});
-		
-		
-	
-		
-		
-		JButton b4 = new JButton("生成寄件单");
-		b4.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-			 
-			 boolean senderisempty=sender.getText().equals("");
-			 boolean senderinfoisempty=senderinfo.getText().equals("");
-			 boolean sendertelisempty=sendertel.getText().equals("");
-			 boolean sendersiteisempty=sendersite.getText().equals("");
-			 
-			 boolean getterisempty=getter.getText().equals("");
-			 boolean getterinfoisempty=getterinfo.getText().equals("");
-			 boolean gettertelisempty=sendertel.getText().equals("");
-			 boolean gettersiteisempty=sendersite.getText().equals("");
-			 
-			 boolean goodsnameisempty=goodsname.getText().equals("");
-			 boolean goodsweightisempty=goodsweight.getText().equals("");
-			 boolean lengthisempty=length.getText().equals("");
-			 boolean widthisempty=width.getText().equals("");
-			 boolean heightisempty=height.getText().equals("");			 
-			 boolean goodsinfoisempty=goodsinfo.getText().equals("");
-			 boolean courierisempty=courier.getText().equals("");
-			 
-			 
-			 boolean isempty=senderisempty||senderinfoisempty||sendertelisempty||sendersiteisempty||getterisempty||getterinfoisempty||gettertelisempty||gettersiteisempty
-		||goodsnameisempty||goodsweightisempty||lengthisempty||widthisempty||heightisempty||goodsinfoisempty||courierisempty;
 
-//			 String exceptedtime=yearbox1.getSelectedItem().toString()+monthbox1.getSelectedItem().toString()+daybox1.getSelectedItem().toString();
-			 String generatetime=yearbox2.getSelectedItem().toString()+monthbox2.getSelectedItem().toString()+daybox2.getSelectedItem().toString();
-			 
-			 
-			 
-			 
-			 
-			 if(!isempty){				 
-			 GoodsBl goodsbl=new GoodsBl();
-			 GoodsDocuPO gpo=new GoodsDocuPO(sender.getText(), senderinfo.getText(),
-					 sendertel.getText(), sendersite.getText(), getter.getText(), getterinfo.getText(), 
-					 gettertel.getText(), gettersite.getText(),
-					 Double.valueOf(price.getText()),//此处应为包装费
-					 Double.valueOf(price.getText()),//此处应为总快递费
-					 typebox.getSelectedItem().toString(),null,Double.valueOf(goodsweight.getText()),goodsname.getText(),
-					 Integer.valueOf(numbox.getSelectedItem().toString()), Double.valueOf(length.getText()),
-					 Double.valueOf(width.getText()),Double.valueOf(height.getText()),Double.valueOf(V.getText()),goodsinfo.getText(),
-					 packagebox.getSelectedItem().toString(), exceptedtime.getText(), generatetime,courier.getText());
-			          
-			        goodsbl.BuildGoodsDocu(gpo);
-			 JOptionPane.showMessageDialog(null, "成功生成寄件单!");
-			 }
-			 else{
-				 JOptionPane.showMessageDialog(null, "信息未填写完整!");
-			 }
-			 
-			 
+		JButton b4 = new JButton("生成寄件单");
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				boolean senderisempty = sender.getText().equals("");
+				boolean senderinfoisempty = senderinfo.getText().equals("");
+				boolean sendertelisempty = sendertel.getText().equals("");
+				boolean sendersiteisempty = sendersite.getText().equals("");
+
+				boolean getterisempty = getter.getText().equals("");
+				boolean getterinfoisempty = getterinfo.getText().equals("");
+				boolean gettertelisempty = sendertel.getText().equals("");
+				boolean gettersiteisempty = sendersite.getText().equals("");
+
+				boolean goodsnameisempty = goodsname.getText().equals("");
+				boolean goodsweightisempty = goodsweight.getText().equals("");
+				boolean lengthisempty = length.getText().equals("");
+				boolean widthisempty = width.getText().equals("");
+				boolean heightisempty = height.getText().equals("");
+				boolean goodsinfoisempty = goodsinfo.getText().equals("");
+				boolean courierisempty = courier.getText().equals("");
+
+				boolean isempty = senderisempty || senderinfoisempty
+						|| sendertelisempty || sendersiteisempty
+						|| getterisempty || getterinfoisempty
+						|| gettertelisempty || gettersiteisempty
+						|| goodsnameisempty || goodsweightisempty
+						|| lengthisempty || widthisempty || heightisempty
+						|| goodsinfoisempty || courierisempty;
+
+				// String
+				// exceptedtime=yearbox1.getSelectedItem().toString()+monthbox1.getSelectedItem().toString()+daybox1.getSelectedItem().toString();
+				String generatetime = yearbox2.getSelectedItem().toString()
+						+ monthbox2.getSelectedItem().toString()
+						+ daybox2.getSelectedItem().toString();
+                 double j=0;
+				if (packagebox.equals("纸箱(5元)")) {
+					j = 5.0;
+				} else if (packagebox.equals("木箱(10元)")) {
+					j = 10.0;
+				} else {
+					j = 1.0;
+				}
+				
+				
+				
+				GoodsBl goodsbl = new GoodsBl();
+				GoodsDocuPO gpo = new GoodsDocuPO(sender.getText(),
+						senderinfo.getText(), sendertel.getText(),sendersite.getText(),
+						getter.getText(),getterinfo.getText(),gettertel.getText(),gettersite.getText(),
+						j,Double.valueOf(price.getText()),
+						typebox.getSelectedItem().toString(), null, Double.valueOf(goodsweight.getText()),
+						goodsname.getText(), Integer.valueOf(numbox.getSelectedItem().toString()), 
+						Double.valueOf(length.getText()), Double.valueOf(width.getText()), 
+						Double.valueOf(height.getText()), Double.valueOf(V.getText()), goodsinfo.getText(),
+						packagebox.getSelectedItem().toString(),
+						exceptedtime.getText(), generatetime, courier
+								.getText());
+				if (!isempty&&goodsbl.BuildGoodsDocu(gpo)) {
+							
+//					goodsbl.BuildGoodsDocu(gpo);
+					JOptionPane.showMessageDialog(null, "成功生成寄件单!");
+				} else {
+					JOptionPane.showMessageDialog(null, "信息未填写完整!");
+				}
 
 			}
-			
+
 		});
 
 		p1.setOpaque(false);
@@ -442,9 +450,9 @@ public class Send {
 		p1.add(typebox);
 		p1.add(packagebox);
 		p1.add(exceptedtime);
-//		p1.add(yearbox1);
-//		p1.add(monthbox1);
-//		p1.add(daybox1);// ����
+		// p1.add(yearbox1);
+		// p1.add(monthbox1);
+		// p1.add(daybox1);// ����
 		p1.add(yearbox2);
 		p1.add(monthbox2);
 		p1.add(daybox2);
@@ -517,9 +525,9 @@ public class Send {
 		packagebox.setBounds(t1xloc + 200, t1yloc + 7 * interval, 120, 30);
 		price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
 		exceptedtime.setBounds(t1xloc + 50, t1yloc + 8 * interval, 180, 30);
-//		yearbox1.setBounds(t1xloc + 30, t1yloc + 8 * interval, 80, 30);
-//		monthbox1.setBounds(t1xloc + 120, t1yloc + 8 * interval, 80, 30);
-//		daybox1.setBounds(t1xloc + 210, t1yloc + 8 * interval, 80, 30);
+		// yearbox1.setBounds(t1xloc + 30, t1yloc + 8 * interval, 80, 30);
+		// monthbox1.setBounds(t1xloc + 120, t1yloc + 8 * interval, 80, 30);
+		// daybox1.setBounds(t1xloc + 210, t1yloc + 8 * interval, 80, 30);
 		depaturebox.setBounds(t1xloc + 380, t1yloc + 7 * interval, 80, 30);
 		destinationbox.setBounds(t1xloc + 530, t1yloc + 7 * interval, 80, 30);
 

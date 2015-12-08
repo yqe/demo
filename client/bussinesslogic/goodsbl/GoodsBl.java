@@ -27,8 +27,7 @@ public class GoodsBl implements GoodsBLService {
 	 * @param EarnedPO
 	 *            earnpo;
 	 * @return
-	 * @exception @author
-	 *                zxc
+	 * @exception @author zxc
 	 */
 	public boolean BuildGoodsDocu(GoodsDocuPO gdpo) {
 		IsOk = false;
@@ -55,8 +54,7 @@ public class GoodsBl implements GoodsBLService {
 	 * @param String
 	 *            ID;
 	 * @return String;
-	 * @exception @author
-	 *                zxc
+	 * @exception @author zxc
 	 */
 	public String GoodsInquiry(String ID) {
 		String route = "";
@@ -84,8 +82,7 @@ public class GoodsBl implements GoodsBLService {
 	 * @param String
 	 *            ID;
 	 * @return String[];
-	 * @exception @author
-	 *                zxc
+	 * @exception @author zxc
 	 */
 	public String[] Goodsgetinfo(String ID) {
 		String[] re = null;
@@ -100,7 +97,8 @@ public class GoodsBl implements GoodsBLService {
 			ois.close();
 			oos.close();
 			socket.close();
-			re = new String[] { gdpo.getReceivername(), gdpo.getReceiveraddress(), gdpo.getReceiverworkspace(),
+			re = new String[] { gdpo.getReceivername(),
+					gdpo.getReceiveraddress(), gdpo.getReceiverworkspace(),
 					gdpo.getReceivermobile() };
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -114,17 +112,19 @@ public class GoodsBl implements GoodsBLService {
 	 * @param String
 	 *            ID;
 	 * @return String;
-	 * @exception @author
-	 *                zxc
+	 * @exception @author zxc
 	 */
-	
-//	String[] type=new String[]{"普通快递","经济快递","次晨特快"};
-//	double[] typeprice=new double[]{23.0,18.0,25.0};
-//	String[] pack=new String[]{"纸箱(5元)","木箱(10元)","快递袋(1元)"};
-//	double[] packprice=new double[]{5.0,10.0,1.0};
-	public String Goodsgetfee(Double weight,String typebox, String packbox, String depatureplace, String destination) {
-		String priceStr = null;
+
+	// String[] type=new String[]{"普通快递","经济快递","次晨特快"};
+	// double[] typeprice=new double[]{23.0,18.0,25.0};
+	// String[] pack=new String[]{"纸箱(5元)","木箱(10元)","快递袋(1元)"};
+	// double[] packprice=new double[]{5.0,10.0,1.0};
+	public String Goodsgetfee(Double weight, String typebox, String packbox,
+			String depatureplace, String destination) {
+		String priceStr = "";
+//		System.out.println(weight);
 		try {
+			System.out.println(weight);
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
@@ -132,30 +132,29 @@ public class GoodsBl implements GoodsBLService {
 			oos.writeUTF("AboutPrice");
 			oos.writeObject(new String(depatureplace + " " + destination));
 			double discon = (double) ois.readObject();
-//			System.out.println(pack);
-			double i=0,j=0;
-			if(typebox.equals("普通快递")){
-				i=23.0;
-			}else if(typebox.equals("经济快递")){
-				i=18.0;
-			}else{
-				i=25.0;
+//			System.out.println(discon);
+			double i = 0, j = 0;
+			if (typebox.equals("普通快递")) {
+				i = 23.0;
+			} else if (typebox.equals("经济快递")) {
+				i = 18.0;
+			} else {
+				i = 25.0;
 			}
-			
-			if(packbox.equals("纸箱(5元)")){
-				j=5.0;
-			}else if(packbox.equals("木箱(10元)")){
-				j=10.0;
-			}else{
-				j=1.0;
-			}
-              
-	       System.out.println(i);		
-			System.out.println(j);
 
-			double price = i*(weight * discon)/1000+j;
+			if (packbox.equals("纸箱(5元)")) {
+				j = 5.0;
+			} else if (packbox.equals("木箱(10元)")) {
+				j = 10.0;
+			} else {
+				j = 1.0;
+			}
+//			System.out.println(i);
+//			System.out.println(j); 
+//            System.out.println(discon);
+			double price = i * (weight * discon) / 30000 + j;
 			System.out.println(price);
-			priceStr=price+"";
+			priceStr = price + "";
 			ois.close();
 			oos.close();
 			socket.close();
@@ -170,10 +169,4 @@ public class GoodsBl implements GoodsBLService {
 		return destination;
 	}
 
-	@Override
-	public String Goodsgetfee(Double weight, String packtype,
-			String depatureplace, String destination) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

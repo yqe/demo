@@ -63,9 +63,9 @@ public class CourierInfoStream {
 		try {
 			double re=0.0;
 			String[] cityn=((String) ois.readObject()).split(" ");
-			System.out.println(disdata.getdistance(cityn[0], cityn[1])+" "+strdata.getconstance());
 			re=disdata.getdistance(cityn[0], cityn[1])*strdata.getconstance();
-			oos.writeObject(re);
+			oos.writeObject(new Double(re));
+			System.out.println(re);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
