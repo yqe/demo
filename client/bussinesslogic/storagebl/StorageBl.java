@@ -4,20 +4,22 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import po.InputStorageDocuPO;
 import po.InputStorageList;
 import po.OutStorageList;
-import po.StorageList;
 import storageblService.StorageBlService;
 
 public class StorageBl implements StorageBlService {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
-	String hostid="localhost";
+	String hostid = "localhost";
+
 	/**
 	 * 入库登记
 	 * 
-	 * @param InputStorageList slt;
+	 * @param InputStorageList
+	 *            slt;
 	 * @return boolean
 	 * @exception @author
 	 *                zxc
@@ -42,10 +44,12 @@ public class StorageBl implements StorageBlService {
 		System.out.println("StorageBl.InStorageInputSuccess");
 		return IsOk;
 	}
+
 	/**
 	 * 出库登记
 	 * 
-	 * @param OutStorageList oslt;
+	 * @param OutStorageList
+	 *            oslt;
 	 * @return boolean
 	 * @exception @author
 	 *                zxc
@@ -71,24 +75,89 @@ public class StorageBl implements StorageBlService {
 		return IsOk;
 	}
 
-	public InputStorageList StorageCheck() {
-		// InputStorageDocuPO a = new
-		// InputStorageDocuPO("nanjing","210046","2015.10.11","beijing","01",23,12,23);
-
-		InputStorageList n = new InputStorageList();
-		// n.addInputStoragePO(a);;
-		System.out.println("StorageBl.StorageCheckSuccess");
-		return n;
+	/**
+	 * 库存信息盘点;
+	 * 
+	 * @param String
+	 *            centerid; centerid:中转中心编号;
+	 * @return InputStorageList;
+	 * @exception @author
+	 *                zxc
+	 */
+	public InputStorageList StorageCheck(String centerid) {
+		InputStorageList Stolist = new InputStorageList();
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Storage");
+			oos.writeUTF("SeeStorage");
+			oos.writeObject(new String(centerid));
+			Stolist = (InputStorageList) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Stolist;
 	}
 
-	public String[] StorageSee() {
-		String[] str = { "100", "100", "100" };
-		return str;
+	/**
+	 * 库存信息查看
+	 * 
+	 * @param String
+	 *            centerid,String rtime,String ltime;
+	 *            centerid:中转中心编号;rtime:前时间;ltime:后时间;
+	 * @return String[] re;re[0]:出库数量;re[1]:入库数量;re[2]:金额;re[3]:库存数量;
+	 * @exception @author
+	 *                zxc
+	 */
+	public String[] StorageSee(String centerid, String rtime, String ltime) {
+		String[] re = null;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Storage");
+			oos.writeUTF("SeeStorage");
+			oos.writeObject(new String(centerid + " " + rtime + " " + ltime));
+			re = ((String) ois.readObject()).split(" ");
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return re;
 	}
 
-	public void StorageUpdate(InputStorageList svo) {
-		// TODO Auto-generated method stub
-
+	/**
+	 * 库存信息更新;
+	 * 
+	 * @param InputStorageDocuPO
+	 *            svo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean StorageUpdate(InputStorageDocuPO svo) {
+		boolean IsOk = false;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Storage");
+			oos.writeUTF("ChangeStorage");
+			oos.writeObject(svo);
+			IsOk = (boolean) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return IsOk;
 	}
 
 }

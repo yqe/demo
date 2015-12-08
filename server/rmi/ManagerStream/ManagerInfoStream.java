@@ -55,7 +55,14 @@ public class ManagerInfoStream {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 增加员工信息
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
 	private void AddEmpInfo(ObjectInputStream ois, ObjectOutputStream oos) {
 		EmploeeData emdata = new EmploeeData();
 		try {

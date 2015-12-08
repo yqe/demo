@@ -120,7 +120,6 @@ public class loginframe {
 					e1.printStackTrace();
 				}
 			}
-
 		});
 		// b1.setEnabled(true);
 		JButton b2 = new JButton("免登录物流信息查询");
