@@ -15,7 +15,7 @@ public class CostManage {
 	String hostid = "localhost";
 
 	/**
-	 * 得到所给日期之间的所有收款单
+	 * 得到所给日期之间的所有付款单
 	 * 
 	 * @param EarnedPO
 	 *            earnpo;
