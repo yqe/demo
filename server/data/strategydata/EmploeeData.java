@@ -21,13 +21,13 @@ public class EmploeeData implements EmploeeDataService {
 	private String empID;
 	private String id;
 	private String address;
-	private String institution;
+	private String area;
 
 	public EmploeePO find(String ID) throws RemoteException {
 		try {
 			empID = ID;
 			mysqlimp = new MySqlImp();
-			String find = "SELECT 员工职位,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址,机构" + " FROM 员工信息" + " WHERE 员工编号='" + empID
+			String find = "SELECT 员工职位,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址,地区" + " FROM 员工信息" + " WHERE 员工编号='" + empID
 					+ "'";
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
@@ -39,8 +39,8 @@ public class EmploeeData implements EmploeeDataService {
 			phonenum = rs.getString(6);
 			id = rs.getString(7);
 			address = rs.getString(8);
-			institution=rs.getString(9);
-			EmploeePO emppo = new EmploeePO(position, empID, name, salary, sex, age, phonenum, id, address,institution);
+			area=rs.getString(9);
+			EmploeePO emppo = new EmploeePO(position, empID, name, salary, sex, age, phonenum, id, address,area);
 			// System.out.println(name+age+position+id);
 			return emppo;
 
@@ -69,12 +69,12 @@ public class EmploeeData implements EmploeeDataService {
 		this.address = po.getAddress();
 		this.id = po.getIdendity();
 		this.empID = po.getempID();
-		this.institution=po.getInstitution();
+		this.area=po.getArea();
 		try {
 			mysqlimp = new MySqlImp();
-			String insert = "INSERT INTO 员工信息" + " (员工职位,员工编号,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址,机构)" + " VALUES('"
+			String insert = "INSERT INTO 员工信息" + " (员工职位,员工编号,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址,地区)" + " VALUES('"
 					+ position + "','" + empID + "','" + name + "'," + salary + ",'" + sex + "'," + age + ",'"
-					+ phonenum + "','" + id + "','" + address + "','"+institution+"')";
+					+ phonenum + "','" + id + "','" + address + "','"+area+"')";
 			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -140,18 +140,18 @@ public class EmploeeData implements EmploeeDataService {
 	}
 
 	@Override
-	public ArrayList<EmploeePO> findbypos(String institution) {
+	public ArrayList<EmploeePO> findbypos(String position) {
 		// TODO Auto-generated method stub
 
 		try {
 			ArrayList<EmploeePO> empList = new ArrayList<EmploeePO>();
 			mysqlimp = new MySqlImp();
-			String findmore = "SELECT * FROM 员工信息"+" WHERE 机构='"+institution+"'";
+			String findmore = "SELECT * FROM 员工信息"+" WHERE 员工职位='"+position+"'";
 			ResultSet rs = mysqlimp.query(findmore);
 			while (rs.next()) {
 				empList.add(new EmploeePO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4),
 						rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10)));
-			System.out.println(rs.getString(1));
+			//System.out.println(rs.getString(2)+rs.getString(3));
 			}
 			return empList;
 		} catch (ClassNotFoundException e) {
