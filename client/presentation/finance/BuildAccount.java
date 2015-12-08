@@ -50,7 +50,7 @@ public class BuildAccount {
 			public void actionPerformed(ActionEvent e) {			
 				boolean isnum=true;			
 				for(int i=0;i<textfield[5].getText().length();i++){
-					if(textfield[5].getText().charAt(i)>'9'||textfield[5].getText().charAt(i)<'1'){
+					if(textfield[5].getText().charAt(i)>'9'||textfield[5].getText().charAt(i)<'0'){
 	                         				isnum=false;	
 					}
 				}
@@ -66,7 +66,8 @@ public class BuildAccount {
 				 InitializeAccountPO ipo=new InitializeAccountPO(textfield[0].getText(),textfield[1].getText(),textfield[2].getText(),
 						 Integer.parseInt(textfield[3].getText()),Integer.parseInt(textfield[4].getText()),Double.parseDouble(textfield[5].getText()));
 				boolean isOk=m.BuildAccount(ipo);
-				 if (isOk)
+				System.out.println(isOk);
+				if (isOk)
 				     JOptionPane.showMessageDialog(null, "成功建账!");			
 				 else
 					 JOptionPane.showMessageDialog(null, "建账失败!");	

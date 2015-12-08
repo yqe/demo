@@ -115,7 +115,7 @@ public class deleteemployee {
 				EmploeePO fc=jk.IDGetEmp(id.getText());
 				System.out.println(fc.getName());
 				name.setText(fc.getName());
-				place.setText(fc.getInstitution());
+				place.setText(fc.getArea());
 				age.setText(String.valueOf(fc.getAge()));
 				sex.setText(fc.getSex());
 				tel.setText(fc.getPhonenum());

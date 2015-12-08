@@ -1,17 +1,17 @@
 package org.server;
 
-import distancedata.DistanceData;
-import documentdata.EarnedDocu;
-import documentdata.GoodsDocu;
+import po.InitializeAccountPO;
 import managedata.CheckProfit;
 import managedata.ManageCostData;
-import po.EarnedPO;
-import po.EmploeePO;
 import storagedata.InputStorageDocu;
 import strategydata.EmploeeData;
 import strategydata.StrategyData;
 import transdata.VehicleMaintance;
 import userdata.UserData;
+import distancedata.DistanceData;
+import documentdata.EarnedDocu;
+import documentdata.GoodsDocu;
+import financedata.Initialaccount;
 
 /**
  * Hello world!
@@ -31,6 +31,7 @@ public class App
         GoodsDocu g=new GoodsDocu();
         CheckProfit check=new CheckProfit();
         EarnedDocu ea=new EarnedDocu();
+        Initialaccount in=new Initialaccount();
         try {
 			//s.observe(); 
 			//s.updatesalary("总经理", 50000);
@@ -38,7 +39,7 @@ public class App
 			//d.find("114500");
 			//d.delete("114500");
 			//d.insertEmp(new EmploeePO("营业厅业务员","124500","啊皮豪",50000,"男",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号","营业厅"));
-			//d.findbypos("营业厅业务员");
+			//d.findbypos("营业厅");
 			//d.update(new EmploeePO("总经理","114500","啊皮豪",50000,"女",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号"));
         	//System.out.println(dis.getdistance("天津", "北京"));
 			//u.getLoginPO("24");
@@ -54,6 +55,7 @@ public class App
 //        	System.out.println(check.profittotal());
         	//ea.insert(new EarnedPO("2015-11-12", 20, "张三", "114500", "025000"));
         	//System.out.println(s.getconstance());
+        	//in.insert(new InitializeAccountPO("112355", "营业厅", 30, 20, 80, 100));
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
