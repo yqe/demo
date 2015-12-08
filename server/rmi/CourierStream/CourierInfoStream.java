@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import distancedata.DistanceData;
 import documentdata.DiliverDocu;
 import documentdata.GoodsDocu;
 import po.DiliverDocuPO;
 import po.GoodsDocuPO;
+import strategydata.StrategyData;
 
 public class CourierInfoStream {
 
@@ -23,10 +25,52 @@ public class CourierInfoStream {
 			case "QueryOrder":
 				QueryOrder(ois, oos);
 				break;
+			case "AboutPrice":
+				AboutPrice(ois, oos);
+				break;
+			case "GetRoute":
+				GetRoute(ois, oos);
+				break;
 			default:
 				break;
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 返回给客户端快递的货运轨迹;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void GetRoute(ObjectInputStream ois, ObjectOutputStream oos) {
+		
+	}
+	/**
+	 * 返回给客户端价格相关的常量;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void AboutPrice(ObjectInputStream ois, ObjectOutputStream oos) {
+		DistanceData disdata=new DistanceData();
+		StrategyData strdata=new StrategyData();
+		try {
+			double[] re=new double[2];
+			String[] cityn=((String) ois.readObject()).split(" ");
+			re[0]=disdata.getdistance(cityn[0], cityn[1]);
+			re[1]=strdata.getconstance();
+			oos.writeObject(re);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -44,8 +88,6 @@ public class CourierInfoStream {
 		try {
 			String goodid =(String)ois.readObject();
 			GoodsDocuPO gdpo = gd.find(goodid);
-			System.out.println(gdpo.getCourier());
-			System.out.println(gdpo);
 			oos.writeObject(gdpo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,7 +108,7 @@ public class CourierInfoStream {
 			DiliverDocuPO gdpo = (DiliverDocuPO) ois.readObject();
 			ddp.insert(gdpo);
 			oos.writeBoolean(true);
-			oos.writeObject(gdpo);
+			oos.writeObject(new Boolean(true));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -85,7 +127,7 @@ public class CourierInfoStream {
 		try {
 			GoodsDocuPO gdpo = (GoodsDocuPO) ois.readObject();
 			gd.insert(gdpo);
-			oos.writeBoolean(true);
+			oos.writeObject(new Boolean(true));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

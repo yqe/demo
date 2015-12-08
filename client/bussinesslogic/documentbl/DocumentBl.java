@@ -59,8 +59,7 @@ public class DocumentBl implements DocumentBlService{
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Manager");
 			oos.writeUTF("ApproveBill");
-			IsOk=((String)ois.readObject()).equals("OK");
-			ois.readObject();
+			IsOk=(boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

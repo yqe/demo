@@ -30,7 +30,7 @@ public class Imexportdocu extends DocumentBl {
 			oos.writeUTF("Finance");
 			oos.writeUTF("PaymentBill");
 			oos.writeObject(ispo);
-			IsOk = ois.readBoolean();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

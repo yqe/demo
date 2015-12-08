@@ -31,7 +31,7 @@ public class Goodsdocu extends DocumentBl {
 			oos.writeUTF("Courier");
 			oos.writeUTF("SendBill");
 			oos.writeObject(gdpo);
-			IsOk = ois.readBoolean();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

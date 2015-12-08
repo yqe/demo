@@ -39,7 +39,7 @@ public class GoodsBl implements GoodsBLService {
 			oos.writeUTF("Courier");
 			oos.writeUTF("SendBill");
 			oos.writeObject(gdpo);
-			IsOk = ois.readBoolean();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -53,22 +53,37 @@ public class GoodsBl implements GoodsBLService {
 	 * 显示该ID快件的物流信息 客户使用
 	 * 
 	 * @param String
-	 *            ID
-	 * @return String
+	 *            ID;
+	 * @return String;
 	 * @exception @author
 	 *                zxc
 	 */
 	public String GoodsInquiry(String ID) {
+		String route = "";
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Courier");
+			oos.writeUTF("GetRoute");
+			oos.writeObject(new String(ID));
+			route = (String) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
 
-		return ID;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return route;
 	}
 
 	/**
 	 * 显示该ID快件的托运信息（收件人姓名，电话等） 快递员使用
 	 * 
 	 * @param String
-	 *            ID
-	 * @return String[]
+	 *            ID;
+	 * @return String[];
 	 * @exception @author
 	 *                zxc
 	 */
@@ -93,9 +108,36 @@ public class GoodsBl implements GoodsBLService {
 		return re;
 	}
 
-	// 显示快件的运费
-	public String Goodsgetfee(Double weight, String depatureplace, String destination) {
-		return destination;
+	/**
+	 * 显示快件的运费
+	 * 
+	 * @param String
+	 *            ID;
+	 * @return String;
+	 * @exception @author
+	 *                zxc
+	 */
+	String[] type=new String[]{"纸箱","木箱","快递袋"};
+	double[] typeprice=new double[]{5.0,10.0,1.0};
+	public String Goodsgetfee(Double weight, String type, String depatureplace, String destination) {
+		String priceStr = null;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Courier");
+			oos.writeUTF("AboutPrice");
+			oos.writeObject(new String(depatureplace + " " + destination));
+			double[] discon = (double[]) ois.readObject();
+			double price = weight * discon[0] * discon[1]*typeprice[type.indexOf(type)];
+			priceStr=price+"";
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return priceStr;
 	}
 
 	// 显示快件的预计到达日期

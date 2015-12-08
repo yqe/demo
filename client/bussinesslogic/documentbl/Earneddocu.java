@@ -64,8 +64,7 @@ public class Earneddocu extends DocumentBl {
 			oos.writeUTF("HallClerk");
 			oos.writeUTF("ReceiveBill");
 			oos.writeObject(earnpo);
-			IsOk = ois.readBoolean();
-			ois.readObject();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

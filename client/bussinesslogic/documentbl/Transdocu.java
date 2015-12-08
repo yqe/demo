@@ -29,8 +29,7 @@ public class Transdocu extends DocumentBl {
 			oos.writeUTF("HallClerk");
 			oos.writeUTF("LoadingList");
 			oos.writeObject(tpo);
-			IsOk = ois.readBoolean();
-			ois.readObject();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

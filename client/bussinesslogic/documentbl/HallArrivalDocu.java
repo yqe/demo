@@ -31,7 +31,7 @@ public class HallArrivalDocu extends DocumentBl {
 			oos.writeUTF("HallClerk");
 			oos.writeUTF("ArrivalBill");
 			oos.writeObject(bapo);
-			IsOk = ois.readBoolean();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

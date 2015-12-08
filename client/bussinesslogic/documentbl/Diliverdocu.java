@@ -31,8 +31,7 @@ public class Diliverdocu extends DocumentBl {
 			oos.writeUTF("Courier");
 			oos.writeUTF("DeliveryBill");
 			oos.writeObject(ddpo);
-			IsOk = ois.readBoolean();
-			ois.readObject();
+			IsOk =(boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

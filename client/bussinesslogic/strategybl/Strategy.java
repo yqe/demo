@@ -54,7 +54,7 @@ public class Strategy implements StrategyBlService{
 			oos.writeUTF("Manager");
 			oos.writeUTF("FormulateStrategy");
 			oos.writeObject(spo);
-			IsOk = ois.readBoolean();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

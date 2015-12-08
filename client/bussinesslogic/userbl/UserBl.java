@@ -18,10 +18,10 @@ public class UserBl implements UserBlService {
 	ObjectInputStream ois;
 	String hostid = "localhost";
 	/**
-	 * 根据id，密码，查找用户登录信息
+	 * 根据id，密码，查找用户登录信息;
 	 * 
-	 * @param String id, String password
-	 * @return String
+	 * @param String id, String password;
+	 * @return String;
 	 * @exception @author
 	 *                zxc
 	 */
@@ -49,10 +49,10 @@ public class UserBl implements UserBlService {
 		return null;
 	}
 	/**
-	 * 根据id查找用户信息
+	 * 根据id查找用户信息;
 	 * 
-	 * @param String id
-	 * @return UserInfoPO
+	 * @param String id;
+	 * @return UserInfoPO;
 	 * @exception @author
 	 *                zxc
 	 */
@@ -75,9 +75,9 @@ public class UserBl implements UserBlService {
 		return upo;
 	}
 	/**
-	 * 根据id查找用户信息
-	 * @param String id, String password
-	 * @return String
+	 * 根据id查找用户信息;
+	 * @param String id, String password;
+	 * @return String;
 	 * @exception @author
 	 *                zxc
 	 */
@@ -100,9 +100,9 @@ public class UserBl implements UserBlService {
 		return upo;
 	}
 	/**
-	 * 权限调整
-	 * @param UserInfoPO upo
-	 * @return boolean
+	 * 权限调整;
+	 * @param UserInfoPO upo;
+	 * @return boolean;
 	 * @exception @author
 	 *                zxc
 	 */
@@ -115,7 +115,7 @@ public class UserBl implements UserBlService {
 			oos.writeUTF("Admin");
 			oos.writeUTF("PowerChange");
 			oos.writeObject(upo);
-			IsOk = ois.readBoolean();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -125,9 +125,9 @@ public class UserBl implements UserBlService {
 		return IsOk;
 	}
 	/**
-	 * 修改密码
-	 * @param UserInfoPO upo
-	 * @return boolean
+	 * 修改密码;
+	 * @param UserInfoPO upo;
+	 * @return boolean;
 	 * @exception @author
 	 *                zxc
 	 */
@@ -140,8 +140,7 @@ public class UserBl implements UserBlService {
 			oos.writeUTF("Admin");
 			oos.writeUTF("PasswordChange");
 			oos.writeObject(upo);
-			IsOk = ois.readBoolean();
-			ois.readObject();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -152,7 +151,13 @@ public class UserBl implements UserBlService {
 		return IsOk;
 	}
 
-	// 注销账户
+	/**
+	 * 删除用户;
+	 * @param UserInfoPO upo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
 	public boolean cancellation(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
@@ -162,7 +167,7 @@ public class UserBl implements UserBlService {
 			oos.writeUTF("Admin");
 			oos.writeUTF("DeleteAcc");
 			oos.writeObject(upo);
-			IsOk = ois.readBoolean();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -171,5 +176,29 @@ public class UserBl implements UserBlService {
 		}
 		return IsOk;
 	}
-
+	/**
+	 * 增加用户;
+	 * @param UserInfoPO upo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean AddUser(UserInfoPO upo) {
+		boolean IsOk = false;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Admin");
+			oos.writeUTF("AddAccount");
+			oos.writeObject(upo);
+			IsOk = (boolean) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return IsOk;
+	}
 }

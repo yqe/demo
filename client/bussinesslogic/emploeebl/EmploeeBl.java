@@ -90,7 +90,7 @@ public class EmploeeBl implements EmploeeBlService {
 			oos.writeUTF("Manager");
 			oos.writeUTF("ModifyOrAddEmpInfo");
 			oos.writeObject(empo);
-			IsOk=((String)ois.readObject()).equals("OK");
+			IsOk=(boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -115,7 +115,7 @@ public class EmploeeBl implements EmploeeBlService {
 			oos.writeUTF("Manager");
 			oos.writeUTF("DeleteEmpInfo");
 			oos.writeObject(new String(ID));
-			IsOk=((String)ois.readObject()).equals("OK");
+			IsOk=(boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

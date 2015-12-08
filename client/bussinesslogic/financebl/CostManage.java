@@ -61,8 +61,7 @@ public class CostManage {
 			oos.writeUTF("Finance");
 			oos.writeUTF("PaymentBill");
 			oos.writeObject(cmpo);
-			IsOk = ois.readBoolean();
-			ois.close();
+			IsOk = (boolean) ois.readObject();
 			oos.close();
 			socket.close();
 		} catch (Exception e) {

@@ -31,7 +31,7 @@ public class Turndocu extends DocumentBl {
 			oos.writeUTF("Transit");
 			oos.writeUTF("ShipmentBill");
 			oos.writeObject(tspo);
-			IsOk = ois.readBoolean();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

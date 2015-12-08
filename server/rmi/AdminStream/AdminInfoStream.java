@@ -36,7 +36,14 @@ public class AdminInfoStream {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 返回给客户端用户信息;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
 	private void GetAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO upoCilent = (UserInfoPO) ois.readObject();
@@ -48,12 +55,19 @@ public class AdminInfoStream {
 		}
 
 	}
-
+	/**
+	 * 增加用户到数据库;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
 	private void AddAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
 			ud.insert(up);
-			oos.writeBoolean(true);
+			oos.writeObject(new Boolean(true));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,14 +76,21 @@ public class AdminInfoStream {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 用户权限调整;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
 	private void PowerChange(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
 			UserInfoPO up2 = ud.getLoginPO(up.getUserID());
 			UserInfoPO upo = new UserInfoPO(up.getUserID(), up2.getPassword(), up2.getUsername(), up.getPosition());
 			ud.update(upo);
-			oos.writeBoolean(true);
+			oos.writeObject(new Boolean(true));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,33 +100,41 @@ public class AdminInfoStream {
 		}
 	}
 
+	/**
+	 * 在数据库删除用户信息;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
 	private void DeleteAcc(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
-			if (ud.getLoginPO(up.getUserID()) == null) {
-				oos.writeBoolean(false);
-			} else {
-				ud.delete(up.getUserID());
-				oos.writeBoolean(true);
-			}
+			ud.delete(up.getUserID());
+			oos.writeObject(new Boolean(true));
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-
+	/**
+	 * 在数据库修改用户密码;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
 	private void PasswordChange(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
 			UserInfoPO up2 = ud.getLoginPO(up.getUserID());
 			UserInfoPO upo = new UserInfoPO(up.getUserID(), up.getPassword(), up2.getUsername(), up2.getPosition());
 			ud.update(upo);
-			oos.writeBoolean(true);
-			oos.writeObject(upo);
+			oos.writeObject(new Boolean(true));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

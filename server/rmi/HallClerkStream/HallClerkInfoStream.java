@@ -76,8 +76,8 @@ public class HallClerkInfoStream {
 		BussinessArrivalDocu bad = new BussinessArrivalDocu();
 		try {
 			BussinessArrivalDocuPO badpo = (BussinessArrivalDocuPO) ois.readObject();
-			// bad.insert(badpo);
-			oos.writeBoolean(true);
+			 bad.insert(badpo);
+			oos.writeBoolean(new Boolean(true));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

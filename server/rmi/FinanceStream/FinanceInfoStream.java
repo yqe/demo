@@ -100,7 +100,7 @@ public class FinanceInfoStream {
 			ManageCostData mcost = new ManageCostData();
 			CostManagePO costpo = (CostManagePO) ois.readObject();
 			mcost.insert(costpo);
-			oos.writeObject(new String("true"));
+			oos.writeObject(new Boolean(true));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

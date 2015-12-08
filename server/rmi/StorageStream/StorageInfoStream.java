@@ -39,8 +39,7 @@ public class StorageInfoStream {
 			InputStorageList islt = (InputStorageList) ois.readObject();
 			InputStorageDocu insto=new InputStorageDocu();
 			insto.InputStorageAdd(islt);
-			oos.writeBoolean(true);
-			oos.writeObject(islt);
+			oos.writeObject(new Boolean(true));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,8 +50,7 @@ public class StorageInfoStream {
 			OutStorageList oslt = (OutStorageList) ois.readObject();
 			OutStorageDocu osto=new OutStorageDocu();
 			osto.StorageDataAdd(oslt);
-			oos.writeBoolean(true);
-			oos.writeObject(oslt);
+			oos.writeObject(new Boolean(true));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

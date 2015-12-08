@@ -30,8 +30,7 @@ public class Zzzxarrivaldocu extends DocumentBl {
 			oos.writeUTF("Transit");
 			oos.writeUTF("TransitReceive");
 			oos.writeObject(zzzxpo);
-			IsOk = ois.readBoolean();
-			ois.readObject();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
