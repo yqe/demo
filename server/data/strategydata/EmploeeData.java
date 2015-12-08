@@ -21,12 +21,13 @@ public class EmploeeData implements EmploeeDataService {
 	private String empID;
 	private String id;
 	private String address;
+	private String institution;
 
 	public EmploeePO find(String ID) throws RemoteException {
 		try {
 			empID = ID;
 			mysqlimp = new MySqlImp();
-			String find = "SELECT 员工职位,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址" + " FROM 员工信息" + " WHERE 员工编号='" + empID
+			String find = "SELECT 员工职位,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址,机构" + " FROM 员工信息" + " WHERE 员工编号='" + empID
 					+ "'";
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
@@ -38,7 +39,8 @@ public class EmploeeData implements EmploeeDataService {
 			phonenum = rs.getString(6);
 			id = rs.getString(7);
 			address = rs.getString(8);
-			EmploeePO emppo = new EmploeePO(position, empID, name, salary, sex, age, phonenum, id, address);
+			institution=rs.getString(9);
+			EmploeePO emppo = new EmploeePO(position, empID, name, salary, sex, age, phonenum, id, address,institution);
 			// System.out.println(name+age+position+id);
 			return emppo;
 
@@ -51,7 +53,7 @@ public class EmploeeData implements EmploeeDataService {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EmploeeData!");
-			return new EmploeePO("不存在", empID, name, salary, sex, age, phonenum, id, address);
+			return new EmploeePO("不存在", empID, name, salary, sex, age, phonenum, id, address," ");
 		}
 
 	}
@@ -67,11 +69,12 @@ public class EmploeeData implements EmploeeDataService {
 		this.address = po.getAddress();
 		this.id = po.getIdendity();
 		this.empID = po.getempID();
+		this.institution=po.getInstitution();
 		try {
 			mysqlimp = new MySqlImp();
-			String insert = "INSERT INTO 员工信息" + " (员工职位,员工编号,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址)" + " VALUES('"
+			String insert = "INSERT INTO 员工信息" + " (员工职位,员工编号,员工姓名,员工薪水,员工性别,员工年龄,员工手机号,员工身份证号,员工家庭住址,机构)" + " VALUES('"
 					+ position + "','" + empID + "','" + name + "'," + salary + ",'" + sex + "'," + age + ",'"
-					+ phonenum + "','" + id + "','" + address + "')";
+					+ phonenum + "','" + id + "','" + address + "','"+institution+"')";
 			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -119,7 +122,7 @@ public class EmploeeData implements EmploeeDataService {
 			ResultSet rs = mysqlimp.query(findmore);
 			while (rs.next()) {
 				empList.add(new EmploeePO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4),
-						rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+						rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10)));
 			}
 			return empList;
 		} catch (ClassNotFoundException e) {
@@ -147,7 +150,8 @@ public class EmploeeData implements EmploeeDataService {
 			ResultSet rs = mysqlimp.query(findmore);
 			while (rs.next()) {
 				empList.add(new EmploeePO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4),
-						rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+						rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10)));
+			System.out.println(rs.getString(1));
 			}
 			return empList;
 		} catch (ClassNotFoundException e) {
