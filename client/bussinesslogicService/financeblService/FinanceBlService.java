@@ -7,25 +7,57 @@
  */
 package financeblService;
 
+import po.InitializeAccountPO;
+import po.ManageAccountPO;
+
 public interface FinanceBlService {
-	// 计算总收入
-	public void getIncome(long inNumber[]);
-
-	// 计算总支出及总利润
-	public void getProfit(long outNumber[]);
-
+	
+	/**
+	 * 得到总收入,总支出,总利润;
+	 * 
+	 * @param
+	 * @return String[] costinfo; costinfo[0]总收入,costinfo[1]总支出,costinfo[2]总利润.
+	 * @exception @author
+	 *                zxc
+	 */
+	public String[] GetCostInfo();
 	// 期初建账
-	public void account(String name);
+	public boolean InitAccount(InitializeAccountPO initacc);
 
-	// 增加账户
-	public void add(long id);
-
-	// 删除账户
-	public void delete(long id);
-
-	// 修改账户
-	public void modify(long id);
-
-	// 查询账户
-	public void look(long id);
+	/**
+	 * 建立增加账户
+	 * 
+	 * @param ManageAccountPO accpo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean BuildBankAccount(ManageAccountPO accpo);
+	/**
+	 * 删除该id表示的银行账户
+	 * 
+	 * @param String id;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean DeleteBankAccount(String id);
+	/**
+	 * 修改银行账户信息
+	 * 
+	 * @param ManageAccountPO accpo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean ModifyBankAccount(ManageAccountPO accpo);
+	/**
+	 * 修改银行账户信息
+	 * 
+	 * @param ManageAccountPO accpo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean CheckBankAccount(String id);
 }

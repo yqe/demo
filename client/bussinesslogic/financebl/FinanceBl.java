@@ -7,27 +7,188 @@
  */
 package financebl;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
 import financeblService.FinanceBlService;
+import po.InitializeAccountPO;
+import po.ManageAccountPO;
 
-public class FinanceBl implements FinanceBlService{
-	// 计算总收入
-	public void getIncome(long inNumber[]){}
+public class FinanceBl implements FinanceBlService {
 
-	// 计算总支出及总利润
-	public void getProfit(long outNumber[]){}
+	/**
+	 * 期初建账;
+	 * 
+	 * @param InitializeAccountPO initacc
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean InitAccount(InitializeAccountPO initacc) {
+		IsOk=false;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Finance");
+			oos.writeUTF("InitAccount");
+			oos.writeObject(initacc);
+			IsOk = (boolean) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return IsOk;
+	}
 
-	// 期初建账
-	public void account(String name){}
+	Socket socket;
+	ObjectOutputStream oos;
+	ObjectInputStream ois;
+	boolean IsOk;
+	String hostid = "localhost";
 
-	// 增加账户
-	public void add(long id){}
+	/**
+	 * 得到总收入,总支出,总利润;
+	 * 
+	 * @param
+	 * @return String[] costinfo; costinfo[0]总收入,costinfo[1]总支出,costinfo[2]总利润.
+	 * @exception @author
+	 *                zxc
+	 */
+	public String[] GetCostInfo() {
+		String[] costinfo = new String[3];
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Finance");
+			oos.writeUTF("CostCheck");
+			costinfo = ((String) ois.readObject()).split(" ");
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return costinfo;
+	}
 
-	// 删除账户
-	public void delete(long id){}
+	/**
+	 * 建立增加账户
+	 * 
+	 * @param ManageAccountPO
+	 *            accpo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean BuildBankAccount(ManageAccountPO accpo) {
+		IsOk = false;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Finance");
+			oos.writeUTF("BankAccount");
+			oos.writeUTF("BuildBankAccount");
+			oos.writeObject(accpo);
+			IsOk = (boolean) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return IsOk;
+	}
 
-	// 修改账户
-	public void modify(long id){}
+	/**
+	 * 删除该id表示的银行账户
+	 * 
+	 * @param String
+	 *            id;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean DeleteBankAccount(String id) {
+		IsOk = false;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Finance");
+			oos.writeUTF("BankAccount");
+			oos.writeUTF("DeleteBankAccount");
+			oos.writeObject(new String(id));
+			IsOk = (boolean) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return IsOk;
+	}
 
-	// 查询账户
-	public void look(long id){}
+	/**
+	 * 修改银行账户信息
+	 * 
+	 * @param ManageAccountPO
+	 *            accpo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean ModifyBankAccount(ManageAccountPO accpo) {
+		IsOk = false;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Finance");
+			oos.writeUTF("BankAccount");
+			oos.writeUTF("ChangeBankAccount");
+			oos.writeObject(accpo);
+			IsOk = (boolean) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return IsOk;
+	}
+
+	/**
+	 * 修改银行账户信息
+	 * 
+	 * @param ManageAccountPO
+	 *            accpo;
+	 * @return boolean;
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean CheckBankAccount(String id) {
+		IsOk = false;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Finance");
+			oos.writeUTF("BankAccount");
+			oos.writeUTF("CheckBankAccount");
+			oos.writeObject(new String(id));
+			ManageAccountPO accpo = (ManageAccountPO) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return IsOk;
+	}
 }
