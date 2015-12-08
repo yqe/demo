@@ -1,28 +1,18 @@
 package storage;
 
-import java.awt.Button;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+
+import storagebl.StorageBl;
 
 
 public class checkstorage {
@@ -77,6 +67,8 @@ public class checkstorage {
 	JButton b4=new JButton("查 看");
 	b4.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+		StorageBl stobl=new StorageBl();
+		
 		t1.setText("100");
 		t2.setText("50");
 		t3.setText("500");
