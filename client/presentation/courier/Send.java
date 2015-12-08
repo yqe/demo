@@ -112,8 +112,15 @@ public class Send {
 		final JTextField V = new JTextField();
 		final JTextField goodsinfo = new JTextField();
 		final JTextField price = new JTextField();
+		final JTextField exceptedtime = new JTextField();
 		// JTextField t17=new JTextField();
 		final JTextField courier = new JTextField();
+		
+		V.setOpaque(false);
+		V.setEditable(false);
+//		exceptedtime.setOpaque(false);
+//		exceptedtime.setEditable(false);
+		
 
 		length.getDocument().addDocumentListener(new DocumentListener() {
 			String goodslength;
@@ -150,11 +157,19 @@ public class Send {
 					double v = Double.valueOf(length.getText())
 							* Double.valueOf(width.getText())
 							* Double.valueOf(height.getText());
+//					System.out.println(v);
 					V.setText(String.valueOf(v));
-					
-				} catch (Exception e1) {
+					double weight=Double.valueOf(goodsweight.getText());
+					System.out.println(weight);
+					if(weight<(v/5000)){
+						weight=v/5000;
+					}
+					goodsweight.setText(String.valueOf(weight));
+				}			
+				catch (Exception e1) {
 					return;
 				}
+				
 			}
 
 			public void insertUpdate(DocumentEvent e) {
@@ -162,8 +177,17 @@ public class Send {
 					double v = Double.valueOf(length.getText())
 							* Double.valueOf(width.getText())
 							* Double.valueOf(height.getText());
+				
 					V.setText(String.valueOf(v));
-				} catch (Exception e1) {
+					double weight=Double.valueOf(goodsweight.getText());
+					System.out.println(weight);
+					if(weight<(v/5000)){
+						weight=v/5000;
+					}
+					
+					goodsweight.setText(String.valueOf(weight));
+				}			
+				catch (Exception e1) {
 					return;
 				}
 			}
@@ -172,7 +196,25 @@ public class Send {
 
 			}
 		});
+		goodsweight.getDocument().addDocumentListener(new DocumentListener() {
 
+			public void removeUpdate(DocumentEvent e) {
+		
+			}
+
+			public void insertUpdate(DocumentEvent e) {
+
+			}
+
+			public void changedUpdate(DocumentEvent e) {
+
+			}
+		});
+		
+		
+		
+		
+		
 
 		
 		String[] num = new String[500];
@@ -199,21 +241,18 @@ public class Send {
 			year[i - 2015] = i + "年";
 
 		}
-		final JComboBox yearbox1 = new JComboBox(year);
 		final JComboBox yearbox2 = new JComboBox(year);
 		String[] month = new String[12];
 		for (int i = 1; i <= 12; i++) {
 			month[i - 1] = i + "月";
 
 		}
-		final JComboBox monthbox1 = new JComboBox(month);
 		final JComboBox monthbox2 = new JComboBox(month);
 		String[] day = new String[31];
 		for (int i = 1; i <= 31; i++) {
 			day[i - 1] = i + "日";
 
 		}
-		final JComboBox daybox1 = new JComboBox(day);
 		final JComboBox daybox2 = new JComboBox(day);
 		
 		
@@ -242,10 +281,11 @@ public class Send {
 			 boolean goodsinfoisempty=goodsinfo.getText().equals("");
 			 boolean courierisempty=courier.getText().equals("");
 			 
+			 
 			 boolean isempty=senderisempty||senderinfoisempty||sendertelisempty||sendersiteisempty||getterisempty||getterinfoisempty||gettertelisempty||gettersiteisempty
 		||goodsnameisempty||goodsweightisempty||lengthisempty||widthisempty||heightisempty||goodsinfoisempty||courierisempty;
 
-			 String exceptedtime=yearbox1.getSelectedItem().toString()+monthbox1.getSelectedItem().toString()+daybox1.getSelectedItem().toString();
+//			 String exceptedtime=yearbox1.getSelectedItem().toString()+monthbox1.getSelectedItem().toString()+daybox1.getSelectedItem().toString();
 			 String generatetime=yearbox2.getSelectedItem().toString()+monthbox2.getSelectedItem().toString()+daybox2.getSelectedItem().toString();
 			 
 			 
@@ -262,7 +302,7 @@ public class Send {
 					 typebox.getSelectedItem().toString(),null,Double.valueOf(goodsweight.getText()),goodsname.getText(),
 					 Integer.valueOf(numbox.getSelectedItem().toString()), Double.valueOf(length.getText()),
 					 Double.valueOf(width.getText()),Double.valueOf(height.getText()),Double.valueOf(V.getText()),goodsinfo.getText(),
-					 packagebox.getSelectedItem().toString(), exceptedtime, generatetime,courier.getText());
+					 packagebox.getSelectedItem().toString(), exceptedtime.getText(), generatetime,courier.getText());
 			          
 			        goodsbl.BuildGoodsDocu(gpo);
 			 JOptionPane.showMessageDialog(null, "成功生成寄件单!");
@@ -335,9 +375,10 @@ public class Send {
 		p1.add(courier);
 		p1.add(typebox);
 		p1.add(packagebox);
-		p1.add(yearbox1);
-		p1.add(monthbox1);
-		p1.add(daybox1);// ����
+		p1.add(exceptedtime);
+//		p1.add(yearbox1);
+//		p1.add(monthbox1);
+//		p1.add(daybox1);// ����
 		p1.add(yearbox2);
 		p1.add(monthbox2);
 		p1.add(daybox2);
@@ -409,9 +450,10 @@ public class Send {
 		typebox.setBounds(t1xloc, t1yloc + 7 * interval, 80, 30);
 		packagebox.setBounds(t1xloc + 200, t1yloc + 7 * interval, 120, 30);
 		price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
-		yearbox1.setBounds(t1xloc + 30, t1yloc + 8 * interval, 80, 30);
-		monthbox1.setBounds(t1xloc + 120, t1yloc + 8 * interval, 80, 30);
-		daybox1.setBounds(t1xloc + 210, t1yloc + 8 * interval, 80, 30);
+		exceptedtime.setBounds(t1xloc + 50, t1yloc + 8 * interval, 180, 30);
+//		yearbox1.setBounds(t1xloc + 30, t1yloc + 8 * interval, 80, 30);
+//		monthbox1.setBounds(t1xloc + 120, t1yloc + 8 * interval, 80, 30);
+//		daybox1.setBounds(t1xloc + 210, t1yloc + 8 * interval, 80, 30);
 		depaturebox.setBounds(t1xloc + 380, t1yloc + 7 * interval, 80, 30);
 		destinationbox.setBounds(t1xloc + 530, t1yloc + 7 * interval, 80, 30);
 
