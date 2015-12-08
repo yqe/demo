@@ -36,6 +36,7 @@ public class AdminInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 返回给客户端用户信息;
 	 * 
@@ -55,6 +56,7 @@ public class AdminInfoStream {
 		}
 
 	}
+
 	/**
 	 * 增加用户到数据库;
 	 * 
@@ -66,8 +68,11 @@ public class AdminInfoStream {
 	private void AddAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
-			ud.insert(up);
-			oos.writeObject(new Boolean(true));
+			if (ud.getLoginPO(up.getUserID()).getUserID().equals("不存在")) {
+				ud.insert(up);
+				oos.writeObject(new Boolean(true));
+			} else
+				oos.writeObject(new Boolean(false));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,6 +81,7 @@ public class AdminInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 用户权限调整;
 	 * 
@@ -120,6 +126,7 @@ public class AdminInfoStream {
 		}
 
 	}
+
 	/**
 	 * 在数据库修改用户密码;
 	 * 
