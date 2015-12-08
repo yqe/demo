@@ -22,6 +22,7 @@ public class LookStorage implements LookStorageService {
 	OutStorageDocu outdocu = new OutStorageDocu();
 	GoodsDocu goodsdocu = new GoodsDocu();
 	LookStorage look = new LookStorage();
+	StorageCheck stocheck=new StorageCheck();
 	MySqlImp mysqlimp;
 
 	// 一段时间内的入库数量
@@ -72,6 +73,11 @@ public class LookStorage implements LookStorageService {
 			return 0;
 		}
 
+	}
+	public int getstorednum(String transcenterID) {
+		// TODO Auto-generated method stub
+		int num=stocheck.getnum(transcenterID);
+		return num;
 	}
 
 }
