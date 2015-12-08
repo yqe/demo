@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import po.CostManagePO;
+import po.EarnedPO;
 import documentbl.Earneddocu;
 import financebl.CostManage;
 
@@ -80,24 +81,29 @@ public class StateOfRun {
 				
 				CostManage costmanage=new CostManage(); 
 				Earneddocu earneddocu=new Earneddocu();
-//				this.date=date;
-//		    	this.payment=payment;
-//		    	this.payer=payer;
-//		    	this.payaccount=payaccount;
-//		    	this.tiaomu=tiaomu;
-//		    	this.tip=tip;
+
 				
-				ArrayList<CostManagePO> cpolist =costmanage.GetCostManageDocu(startdate, enddate);
-				earneddocu.GetEarnedDocu(startdate, enddate);
+				ArrayList<CostManagePO> cpolist = costmanage.GetCostManageDocu(startdate, enddate);
 				for (int i = 0; i < cpolist.size(); i++) {
-					Object[] add={cpolist.get(i).getDate(),cpolist.get(i).getPayment(),
-				cpolist.get(i).getPayer(),cpolist.get(i).getPayaccount(),cpolist.get(i).getTiaomu(),};
-				}
+				Object[] add={cpolist.get(i).getDate(),cpolist.get(i).getPayment(),
+				cpolist.get(i).getPayer(),cpolist.get(i).getPayaccount(),cpolist.get(i).getTiaomu(),cpolist.get(i).getTip()};
 				DefaultTableModel model = (DefaultTableModel) table.getModel();            
 				model.insertRow(model.getRowCount(), add);
+				}
+//				this.paydate=paydate;//收款日期
+//				this.earnedmoney=money;//收款金额
+//				this.dilivername=dname;//收款快递员姓名
+//				this.orderID=ID;//订单条形码号
+//				this.bussinessID=buID;//所属营业厅ID
 				
-				
-				
+				ArrayList<EarnedPO> epolist = earneddocu.GetEarnedDocu(startdate, enddate);
+				for (int i = 0; i < epolist.size(); i++) {
+					Object[] add={epolist.get(i).getPaydate(),epolist.get(i).getEarnedmoney(),
+			epolist.get(i).getDilivername(),epolist.get(i).getOrderID(),epolist.get(i).getBussinessID()};
+					DefaultTableModel model = (DefaultTableModel) table2.getModel();            
+					model.insertRow(model.getRowCount(), add);
+					}
+		
 			}
 			
 		});
