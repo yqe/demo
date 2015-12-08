@@ -16,7 +16,7 @@ import po.TransPO;
 public class Initialaccount implements InitialAccountService{
 	private String bankaccountid;//银行账户id
 	private String jigou;
-	private String affair;//人员
+	private int affair;//人员
 	private int car;//车辆数
 	private int storage;//库存量
 	private double money;//银行账户余额
@@ -31,7 +31,7 @@ public class Initialaccount implements InitialAccountService{
 			mysqlimp=new MySqlImp();
 			String find="SELECT 银行账户ID,机构名称,人员,车辆,库存,银行账户余额"+" FROM 期初建账信息"+" WHERE 银行账户ID='"+bankaccountid+"'";
 			ResultSet rs=mysqlimp.query(find);
-			accpo=new InitializeAccountPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getDouble(6));
+			accpo=new InitializeAccountPO(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getDouble(6));
 			rs.close();
 			return accpo;
 		} catch (ClassNotFoundException e) {
@@ -43,7 +43,7 @@ public class Initialaccount implements InitialAccountService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in Initialaccount!");
-			return new InitializeAccountPO("不存在","","",4,5,5);
+			return new InitializeAccountPO("不存在","",3,4,5,5);
 		}
 		
 	
@@ -98,7 +98,7 @@ public class Initialaccount implements InitialAccountService{
 			String findmore="SELECT * FROM 期初建账信息";
 			ResultSet rs=mysqlimp.query(findmore);
 			while(rs.next()){
-				accList.add(new InitializeAccountPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getDouble(6)));
+				accList.add(new InitializeAccountPO(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getDouble(6)));
 			}
 			rs.close();
 			return accList;
