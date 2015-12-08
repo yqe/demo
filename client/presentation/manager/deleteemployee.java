@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import emploeebl.EmploeeBl;
+import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
 
@@ -109,7 +111,18 @@ public class deleteemployee {
 		JButton b4 = new JButton("查询ID");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-							
+				EmploeeBl jk= new EmploeeBl();
+				EmploeePO fc=jk.IDGetEmp(id.getText());
+				System.out.println(fc.getName());
+				name.setText(fc.getName());
+				place.setText(fc.getInstitution());
+				age.setText(String.valueOf(fc.getAge()));
+				sex.setText(fc.getSex());
+				tel.setText(fc.getPhonenum());
+				address.setText(fc.getAddress());
+				salary.setText(String.valueOf(fc.getSalary()));
+			     job.setText(fc.getPosition());
+			     identity.setText(fc.getIdendity());
 			}
 
 		});
@@ -130,10 +143,9 @@ public class deleteemployee {
 		    	boolean idisempty=id.getText().equals("");
 				boolean nameisempty=name.getText().equals("");
 				boolean isempty= idisempty||nameisempty;
-				
-				
-				
-				if(!isempty)
+				EmploeeBl ac =new EmploeeBl();
+				boolean isOk=ac.DeleteEmp(id.getText());
+				if(!isempty&&isOk)
 				JOptionPane.showMessageDialog(null, "删除成功!");
 				else
 				JOptionPane.showMessageDialog(null, "删除失败，请重试!");

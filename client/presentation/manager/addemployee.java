@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import emploeebl.EmploeeBl;
+import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
 
@@ -76,7 +78,7 @@ public class addemployee {
 		jb1.setOpaque(false);
 		final JRadioButton jb2 = new JRadioButton("女");
 		jb2.setOpaque(false);
-		ButtonGroup bg = new ButtonGroup();
+		final ButtonGroup bg = new ButtonGroup();
 		bg.add(jb1);
 		bg.add(jb2);
 
@@ -95,10 +97,11 @@ public class addemployee {
 		    	boolean idisempty=id.getText().equals("");
 				boolean nameisempty=name.getText().equals("");
 				boolean isempty= idisempty||nameisempty;
+				EmploeePO epo =new EmploeePO(job.getSelectedItem().toString(),id.getText(),name.getText(),Integer.parseInt(salary.getText()),bg.getElements().toString(),Integer.parseInt(age.getText()),tel.getText(),identity.getText(),address.getText(),place.getSelectedItem().toString());
+				EmploeeBl ac =new EmploeeBl();
+				boolean isOk=ac.AddEmpInfo(epo);
 				
-				
-				
-				if(!isempty)
+				if(!isempty&&isOk)
 				JOptionPane.showMessageDialog(null, "添加成功!");
 				else
 				JOptionPane.showMessageDialog(null, "添加失败，请确认信息填写完整!");

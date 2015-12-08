@@ -74,7 +74,7 @@ public class CostMan {
 				boolean tipsisempty=textfield[5].getText().equals("");
 
 				boolean isempty=priceisempty||payerisempty||idisempty||infoisempty||tipsisempty;
-				
+
 				if(isid&&isnum&&!isempty){					
 				JOptionPane.showMessageDialog(null, "成功付款!");			
 				}

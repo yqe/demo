@@ -11,12 +11,12 @@ public class InitializeAccountPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String bankaccountid;//银行 账户ID
 	private String jigou;
-	private String affair;//人员数
+	private int affair;//人员数
 	private int car;//车辆数
 	private int storage;//库存量
 	private double money;//账户余额
 	private ArrayList<InitializeAccountPO> account;
-	public InitializeAccountPO(String bankaccountid,String jigou,String affair,int car,int storage, double money)
+	public InitializeAccountPO(String bankaccountid,String jigou,int affair,int car,int storage, double money)
 	{ 
 		this.bankaccountid=bankaccountid;
 		this.jigou=jigou;
@@ -28,7 +28,7 @@ public class InitializeAccountPO implements Serializable {
 	}
      public String getId(){return bankaccountid;}
      public String getJigou(){return jigou;}
-     public String getAffair(){return affair;}
+     public int getAffair(){return affair;}
      public int getCar(){return car;}
      public int getStorage(){return storage;}
      public double getMoney(){return money;}
