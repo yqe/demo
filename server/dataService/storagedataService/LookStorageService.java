@@ -12,4 +12,6 @@ public interface LookStorageService {
 	public int  outStorageDataSeeNum(String transID,String time);
 	
 	public double findmoney(String ID );
+	
+	public int getstorednum(String ID);
 }

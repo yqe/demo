@@ -17,12 +17,13 @@ import storagedataService.LookStorageService;
  *查看库存
  */
 public class LookStorage implements LookStorageService{
-	//查看一段时间内的入库/出库/金额
+	//查看一段时间内的入库/出库/金额/库存数量
 	private String transcentercheckname;//库存盘点中数据库的表单名字
 	InputStorageDocu inputdocu=new InputStorageDocu();
 	OutStorageDocu outdocu=new OutStorageDocu();
 	GoodsDocu goodsdocu=new GoodsDocu();
 	LookStorage look=new LookStorage();
+	StorageCheck stocheck=new StorageCheck();
 	MySqlImp mysqlimp;
 	//一段时间内的入库数量
 	@Override
@@ -74,5 +75,14 @@ public class LookStorage implements LookStorageService{
 		}
 		
 	}
+	
+	//根据中转中心编号得到该中转中心的库存数量
+	@Override
+	public int getstorednum(String transcenterID) {
+		// TODO Auto-generated method stub
+		int num=stocheck.getnum(transcenterID);
+		return num;
+	}
+	
 
 }
