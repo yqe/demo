@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import financebl.FinanceBl;
 import financebl.SetAccount;
 import po.InitializeAccountPO;
 
@@ -40,7 +41,7 @@ public class BuildAccount {
 		}
 		
 		String[]organ={"营业厅","中转中心", "总部"};	    
-	    JComboBox organbox = new JComboBox(organ);
+	    final JComboBox organbox = new JComboBox(organ);
 	    
 	    context.add(organbox);
 		organbox.setBounds(180 + gap + labelw, 60, textw, texth);
@@ -62,11 +63,11 @@ public class BuildAccount {
 				
 			    boolean isempty=personisempty||carisempty||storageisempty||banknameisempty||bankmoneyisempty;
 				if(isnum&&!isempty){
-				 SetAccount m =new SetAccount();
-				 InitializeAccountPO ipo=new InitializeAccountPO(textfield[0].getText(),textfield[1].getText(),textfield[2].getText(),
-						 Integer.parseInt(textfield[3].getText()),Integer.parseInt(textfield[4].getText()),Double.parseDouble(textfield[5].getText()));
-				boolean isOk=m.BuildAccount(ipo);
-				System.out.println(isOk);
+				 FinanceBl m =new FinanceBl();
+				 InitializeAccountPO ipo=new InitializeAccountPO(textfield[4].getText(),organbox.getSelectedItem().toString(),Integer.parseInt(textfield[1].getText()),
+						 Integer.parseInt(textfield[2].getText()),Integer.parseInt(textfield[3].getText()),Double.parseDouble(textfield[5].getText()));
+				boolean isOk=m.InitAccount(ipo);
+				
 				if (isOk)
 				     JOptionPane.showMessageDialog(null, "成功建账!");			
 				 else

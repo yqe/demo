@@ -80,6 +80,7 @@ public class FinanceInfoStream {
 			Initialaccount init = new Initialaccount();
 			InitializeAccountPO initpo = (InitializeAccountPO) ois.readObject();
 			init.insert(initpo);
+			oos.writeObject(new Boolean(true));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
