@@ -117,9 +117,12 @@ public class GoodsBl implements GoodsBLService {
 	 * @exception @author
 	 *                zxc
 	 */
-	String[] type=new String[]{"纸箱","木箱","快递袋"};
-	double[] typeprice=new double[]{5.0,10.0,1.0};
-	public String Goodsgetfee(Double weight, String type, String depatureplace, String destination) {
+	
+//	String[] type=new String[]{"普通快递","经济快递","次晨特快"};
+//	double[] typeprice=new double[]{23.0,18.0,25.0};
+//	String[] pack=new String[]{"纸箱(5元)","木箱(10元)","快递袋(1元)"};
+//	double[] packprice=new double[]{5.0,10.0,1.0};
+	public String Goodsgetfee(Double weight,String typebox, String packbox, String depatureplace, String destination) {
 		String priceStr = null;
 		try {
 			socket = new Socket(hostid, 8888);
@@ -128,8 +131,30 @@ public class GoodsBl implements GoodsBLService {
 			oos.writeUTF("Courier");
 			oos.writeUTF("AboutPrice");
 			oos.writeObject(new String(depatureplace + " " + destination));
-			double[] discon = (double[]) ois.readObject();
-			double price = weight * discon[0] * discon[1]*typeprice[type.indexOf(type)];
+			double discon = (double) ois.readObject();
+//			System.out.println(pack);
+			double i=0,j=0;
+			if(typebox.equals("普通快递")){
+				i=23.0;
+			}else if(typebox.equals("经济快递")){
+				i=18.0;
+			}else{
+				i=25.0;
+			}
+			
+			if(packbox.equals("纸箱(5元)")){
+				j=5.0;
+			}else if(packbox.equals("木箱(10元)")){
+				j=10.0;
+			}else{
+				j=1.0;
+			}
+              
+	       System.out.println(i);		
+			System.out.println(j);
+
+			double price = i*(weight * discon)/1000+j;
+			System.out.println(price);
 			priceStr=price+"";
 			ois.close();
 			oos.close();
@@ -143,5 +168,12 @@ public class GoodsBl implements GoodsBLService {
 	// 显示快件的预计到达日期
 	public String Goodsgetdate(String depatureplace, String destination) {
 		return destination;
+	}
+
+	@Override
+	public String Goodsgetfee(Double weight, String packtype,
+			String depatureplace, String destination) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

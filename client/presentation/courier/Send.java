@@ -5,6 +5,8 @@ import goodsbl.GoodsBl;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -121,6 +123,100 @@ public class Send {
 //		exceptedtime.setOpaque(false);
 //		exceptedtime.setEditable(false);
 		
+		
+		String[] num = new String[500];
+		for (int i = 1; i < 500; i++) {
+			num[i - 1] = String.valueOf(i);
+		}
+		final JComboBox numbox = new JComboBox(num);
+//		 numbox.addItemListener(new ItemListener()
+//		  {
+//		   public void itemStateChanged(ItemEvent e)
+//		   {
+//		    if (e.getStateChange() == ItemEvent.SELECTED)
+//		 {
+//		      String goodsnum=(String) numbox.getSelectedItem();  }
+//		   }
+//		  });
+
+		String[] type = { "普通快递", "经济快递", "次晨特快" };
+		final JComboBox typebox = new JComboBox(type);
+//		 typebox.addItemListener(new ItemListener()
+//		  {
+//		   public void itemStateChanged(ItemEvent e)
+//		   {
+//		    if (e.getStateChange() == ItemEvent.SELECTED)
+//		 {
+//		      String type=(String)typebox.getSelectedItem();  }
+//		   }
+//		  });
+
+		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
+		final JComboBox packagebox = new JComboBox(pack);
+//		   packagebox.addItemListener(new ItemListener()
+//		  {
+//		   public void itemStateChanged(ItemEvent e)
+//		   {
+//		    if (e.getStateChange() == ItemEvent.SELECTED)
+//		 {
+//		      String pack=(String) packagebox.getSelectedItem(); 
+//		        
+//		 }
+//		   }
+//		  });
+		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
+		final JComboBox depaturebox = new JComboBox(depature);
+//		 depaturebox.addItemListener(new ItemListener()
+//		  {
+//		   public void itemStateChanged(ItemEvent e)
+//		   {
+//		    if (e.getStateChange() == ItemEvent.SELECTED)
+//		 {
+//		      String depature=(String) depaturebox.getSelectedItem();  }
+//		   }
+//		  });
+
+		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
+		final JComboBox destinationbox = new JComboBox(destination);
+		 destinationbox.addItemListener(new ItemListener()
+		  {
+		   public void itemStateChanged(ItemEvent e)
+		   {
+		    if (e.getStateChange() == ItemEvent.SELECTED)
+		 {
+		        GoodsBl goodsbl=new GoodsBl();    
+		        System.out.println(goodsweight.getText());
+		        System.out.println(typebox.getSelectedItem().toString());
+		        System.out.println(packagebox.getSelectedItem().toString());
+		        System.out.println(depaturebox.getSelectedItem().toString());
+		        String fee=goodsbl.Goodsgetfee(Double.valueOf(goodsweight.getText()), packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(), destinationbox.getSelectedItem().toString());
+		        double goodsprice=Double.valueOf(numbox.getSelectedItem().toString())*Double.valueOf(fee);
+		        System.out.println(goodsprice);
+		        price.setText(String.valueOf(goodsprice));    
+		 
+		 }
+		   }
+		  });
+		
+		String[] year = new String[100];
+		for (int i = 2015; i < 2115; i++) {
+			year[i - 2015] = i + "年";
+
+		}
+		final JComboBox yearbox2 = new JComboBox(year);
+		String[] month = new String[12];
+		for (int i = 1; i <= 12; i++) {
+			month[i - 1] = i + "月";
+
+		}
+		final JComboBox monthbox2 = new JComboBox(month);
+		String[] day = new String[31];
+		for (int i = 1; i <= 31; i++) {
+			day[i - 1] = i + "日";
+
+		}
+		final JComboBox daybox2 = new JComboBox(day);
+		
 
 		length.getDocument().addDocumentListener(new DocumentListener() {
 			String goodslength;
@@ -180,7 +276,7 @@ public class Send {
 				
 					V.setText(String.valueOf(v));
 					double weight=Double.valueOf(goodsweight.getText());
-					System.out.println(weight);
+//					System.out.println(weight);
 					if(weight<(v/5000)){
 						weight=v/5000;
 					}
@@ -210,53 +306,23 @@ public class Send {
 
 			}
 		});
-		
-		
-		
-		
-		
+		price.getDocument().addDocumentListener(new DocumentListener() {
 
+			public void removeUpdate(DocumentEvent e) {
 		
-		String[] num = new String[500];
-		for (int i = 1; i < 500; i++) {
-			num[i - 1] = String.valueOf(i);
-		}
-		final JComboBox numbox = new JComboBox(num);
+			}
 
-		String[] type = { "普通快递", "经济快递", "次晨特快" };
-		final JComboBox typebox = new JComboBox(type);
+			public void insertUpdate(DocumentEvent e) {
 
-		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
-		final JComboBox depaturebox = new JComboBox(depature);
+			}
 
-		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
-		final JComboBox destinationbox = new JComboBox(destination);
+			public void changedUpdate(DocumentEvent e) {
 
-		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
-		final JComboBox packagebox = new JComboBox(pack);
-
-		
-		String[] year = new String[100];
-		for (int i = 2015; i < 2115; i++) {
-			year[i - 2015] = i + "年";
-
-		}
-		final JComboBox yearbox2 = new JComboBox(year);
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
-
-		}
-		final JComboBox monthbox2 = new JComboBox(month);
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
-
-		}
-		final JComboBox daybox2 = new JComboBox(day);
+			}
+		});
 		
 		
-		
+	
 		
 		
 		JButton b4 = new JButton("生成寄件单");
