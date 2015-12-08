@@ -6,6 +6,7 @@ import java.net.Socket;
 
 import po.InputStorageDocuPO;
 import po.InputStorageList;
+import po.LookStoragePO;
 import po.OutStorageList;
 import storageblService.StorageBlService;
 
@@ -113,8 +114,8 @@ public class StorageBl implements StorageBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public String[] StorageSee(String centerid, String rtime, String ltime) {
-		String[] re = null;
+	public LookStoragePO StorageSee(String centerid, String rtime, String ltime) {
+		LookStoragePO re = null;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -122,7 +123,7 @@ public class StorageBl implements StorageBlService {
 			oos.writeUTF("Storage");
 			oos.writeUTF("SeeStorage");
 			oos.writeObject(new String(centerid + " " + rtime + " " + ltime));
-			re = ((String) ois.readObject()).split(" ");
+			re = (LookStoragePO) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

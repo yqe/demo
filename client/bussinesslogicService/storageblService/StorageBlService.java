@@ -2,6 +2,7 @@ package storageblService;
 
 import po.InputStorageDocuPO;
 import po.InputStorageList;
+import po.LookStoragePO;
 import po.OutStorageList;
 
 public interface StorageBlService {
@@ -49,7 +50,7 @@ public interface StorageBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public String[] StorageSee(String centerid, String rtime, String ltime);
+	public LookStoragePO StorageSee(String centerid, String rtime, String ltime);
 	/**
 	 * 库存信息更新
 	 * 
