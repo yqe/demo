@@ -23,5 +23,6 @@ public interface GoodsDocuService {
 
 	public ArrayList<GoodsDocuPO> findmore() throws RemoteException;
 
+	public String getgoodsidmax();
 }
 

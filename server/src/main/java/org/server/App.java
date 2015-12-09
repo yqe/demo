@@ -39,7 +39,7 @@ public class App
 			//s.updateconstant(30);
 			//d.find("114500");
 			//d.delete("114500");
-			//d.insertEmp(new EmploeePO("营业厅业务员","1243500","啊皮豪",50000,"男",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号","营业厅","025000"));
+			//d.insertEmp(new EmploeePO("营业厅业务员","1298500","啊皮豪",50000,"男",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号","南京","025000"));
 			//System.out.println(d.findbyname("啊皮豪"));
         	//d.findbypos("营业厅");
 			//d.update(new EmploeePO("总经理","114500","啊皮豪",50000,"女",20,"15111001110","321282199605111140","江苏省常熟市虞山镇大皮村1号"));
@@ -58,6 +58,7 @@ public class App
         	//ea.insert(new EarnedPO("2015-11-12", 20, "张三", "114500", "025000"));
         	//System.out.println(s.getconstance());
         	//in.insert(new InitializeAccountPO("112355", "营业厅", 30, 20, 80, 100));
+        	System.out.println(g.getgoodsidmax());
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -228,4 +228,26 @@ public class GoodsDocu implements GoodsDocuService {
 		}
 
 	}
+
+	@Override
+	public String getgoodsidmax() {
+		// TODO Auto-generated method stub
+		try {
+			mysqlimp=new MySqlImp();
+			String getnum="SELECT MAX(订单条形码号) FROM 快递单";
+			ResultSet rs=mysqlimp.query(getnum);
+			rs.next();
+			String max=rs.getString(1);
+			return max;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "出错啦";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "出错啦";
+		}
+		
+	}
 }
