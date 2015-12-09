@@ -46,7 +46,7 @@ public class deleteemployee {
 		JLabel l10 = new JLabel("地址:");
 		JLabel l11 = new JLabel("性别:");
 		JLabel l12 = new JLabel("地区:");
-
+		JLabel posIDlabel = new JLabel("机构编号:");
 		l3.setFont(new Font("", Font.PLAIN, b2size));
 		l4.setFont(new Font("", Font.PLAIN, b2size));
 		l5.setFont(new Font("", Font.PLAIN, b2size));
@@ -57,7 +57,7 @@ public class deleteemployee {
 		l10.setFont(new Font("", Font.PLAIN, b2size));
 		l11.setFont(new Font("", Font.PLAIN, b2size));
 		l12.setFont(new Font("", Font.PLAIN, b2size));
-
+		posIDlabel.setFont(new Font("", Font.PLAIN, b2size));
 		final JTextField id = new JTextField();
 		final JTextField name = new JTextField();
 		final JTextField age = new JTextField();
@@ -68,7 +68,7 @@ public class deleteemployee {
 		final JTextField job = new JTextField();
 		final JTextField place = new JTextField();
 		final JTextField sex = new JTextField();
-		
+		final JTextField posidtext = new JTextField();
 		name.setOpaque(false);
 		name.setEditable(false);
 		age.setOpaque(false);
@@ -87,32 +87,36 @@ public class deleteemployee {
 		place.setEditable(false);
 		sex.setOpaque(false);
 		sex.setEditable(false);
-//		final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
-//
-//		final JComboBox job = new JComboBox(jobs);
-//		final String[] places = {"南京","北京","杭州","深圳","广州"};
-//		
-//		final JComboBox place = new JComboBox(places);
-//		
-//		final JRadioButton jb1 = new JRadioButton("男");
-//		jb1.setSelected(true);
-//		jb1.setOpaque(false);
-//		final JRadioButton jb2 = new JRadioButton("女");
-//		jb2.setOpaque(false);
-//		ButtonGroup bg = new ButtonGroup();
-//		bg.add(jb1);
-//		bg.add(jb2);
+		posidtext.setOpaque(false);
+		posidtext.setEditable(false);
+		
+		// final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员",
+		// "总经理", "财务人员", "管理员" };
+		//
+		// final JComboBox job = new JComboBox(jobs);
+		// final String[] places = {"南京","北京","杭州","深圳","广州"};
+		//
+		// final JComboBox place = new JComboBox(places);
+		//
+		// final JRadioButton jb1 = new JRadioButton("男");
+		// jb1.setSelected(true);
+		// jb1.setOpaque(false);
+		// final JRadioButton jb2 = new JRadioButton("女");
+		// jb2.setOpaque(false);
+		// ButtonGroup bg = new ButtonGroup();
+		// bg.add(jb1);
+		// bg.add(jb2);
 
-//		t2.setOpaque(false);
-//		t3.setOpaque(false);
-//		t2.setEditable(false);
-//		t3.setEditable(false);
+		// t2.setOpaque(false);
+		// t3.setOpaque(false);
+		// t2.setEditable(false);
+		// t3.setEditable(false);
 
 		JButton b4 = new JButton("查询ID");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EmploeeBl jk= new EmploeeBl();
-				EmploeePO fc=jk.IDGetEmp(id.getText());
+				EmploeeBl jk = new EmploeeBl();
+				EmploeePO fc = jk.IDGetEmp(id.getText());
 				System.out.println(fc.getName());
 				name.setText(fc.getName());
 				place.setText(fc.getArea());
@@ -121,35 +125,29 @@ public class deleteemployee {
 				tel.setText(fc.getPhonenum());
 				address.setText(fc.getAddress());
 				salary.setText(String.valueOf(fc.getSalary()));
-			     job.setText(fc.getPosition());
-			     identity.setText(fc.getIdendity());
+				job.setText(fc.getPosition());
+				identity.setText(fc.getIdendity());
 			}
 
 		});
-		
-		
-		
-		
-		
-		
-		
+
 		JButton b5 = new JButton("确认删除");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// PO传数据
-//				UserBl userbl = new UserBl();
-//				UserInfoPO userpotemp = userbl.CheckUserInfoPO(t1.getText());
-//				boolean IsOk=userbl.cancellation(userpotemp);
-		    	boolean idisempty=id.getText().equals("");
-				boolean nameisempty=name.getText().equals("");
-				boolean isempty= idisempty||nameisempty;
-				EmploeeBl ac =new EmploeeBl();
-				boolean isOk=ac.DeleteEmp(id.getText());
-				if(!isempty&&isOk)
-				JOptionPane.showMessageDialog(null, "删除成功!");
+				// UserBl userbl = new UserBl();
+				// UserInfoPO userpotemp = userbl.CheckUserInfoPO(t1.getText());
+				// boolean IsOk=userbl.cancellation(userpotemp);
+				boolean idisempty = id.getText().equals("");
+				boolean nameisempty = name.getText().equals("");
+				boolean isempty = idisempty || nameisempty;
+				EmploeeBl ac = new EmploeeBl();
+				boolean isOk = ac.DeleteEmp(id.getText());
+				if (!isempty && isOk)
+					JOptionPane.showMessageDialog(null, "删除成功!");
 				else
-				JOptionPane.showMessageDialog(null, "删除失败，请重试!");
-				
+					JOptionPane.showMessageDialog(null, "删除失败，请重试!");
+
 			}
 
 		});
@@ -168,6 +166,7 @@ public class deleteemployee {
 		p1.add(l10);
 		p1.add(l11);
 		p1.add(l12);
+		p1.add(posIDlabel);
 
 		p1.add(id);
 		p1.add(name);
@@ -177,9 +176,8 @@ public class deleteemployee {
 		p1.add(identity);
 		p1.add(address);
 		p1.add(sex);
-		
 		p1.add(place);
-		
+		p1.add(posidtext);
 		p1.add(job);
 
 		p1.add(b4);
@@ -189,39 +187,42 @@ public class deleteemployee {
 		int b1yloc = p1.getHeight() * 2 / 15;
 		int b4xloc = p1.getWidth() * 2 / 5;
 		int b4yloc = 650, b4ysize = p1.getHeight() * 1 / 5 + 10;
-
+		int labelw = 150;
+		int labelh = 30;
 		l1.setBounds(220, -20, 180, 80);
 
-		l2.setBounds(50, 50, 150, 30);
+		l2.setBounds(50, 50, labelw, labelh);
 
-		l3.setBounds(150, 100, 150, 30);
+		l3.setBounds(150, 100, labelw, labelh);
 
-		l4.setBounds(150, 200, 150, 30);
-		l5.setBounds(150, 300, 150, 30);
-		l6.setBounds(150, 350, 150, 30);
-		l7.setBounds(150, 400, 150, 30);
-		l8.setBounds(150, 450, 150, 30);
-		l9.setBounds(150, 500, 150, 30);
-		l10.setBounds(150, 550, 150, 30);
-		l11.setBounds(150, 600, 150, 30);
-		l12.setBounds(150, 250, 150, 30);
+		l4.setBounds(150, 150, labelw, labelh);
+		l5.setBounds(150, 300, labelw, labelh);
+		l6.setBounds(150, 350, labelw, labelh);
+		l7.setBounds(150, 400, labelw, labelh);
+		l8.setBounds(150, 450, labelw, labelh);
+		l9.setBounds(150, 500, labelw, labelh);
+		l10.setBounds(150, 550, labelw, labelh);
+		l11.setBounds(150, 600, labelw, labelh);
+		l12.setBounds(150, 200, labelw, labelh);
+		posIDlabel.setBounds(150, 250, labelw, labelh);
+		int textw = 150;
+		int texth = 30;
+		id.setBounds(300, 100, textw, texth);
+		name.setBounds(300, 150, textw, texth);
+		job.setBounds(300, 300, textw, texth);
+		age.setBounds(300, 350, textw, texth);
+		tel.setBounds(300, 400, textw, texth);
+		salary.setBounds(300, 450, textw, texth);
+		identity.setBounds(300, 500, textw, texth);
+		address.setBounds(300, 550, textw, texth);
+		sex.setBounds(300, 600, textw, texth);
+		place.setBounds(300, 200, textw, texth);
+		posidtext.setBounds(300, 250, textw, texth);
 
-		id.setBounds(300, 100, 150, 30);
-		name.setBounds(300, 200, 150, 30);
-		job.setBounds(300, 300, 150, 30);
-		age.setBounds(300, 350, 150, 30);
-		tel.setBounds(300, 400, 150, 30);
-		salary.setBounds(300, 450, 150, 30);
-		identity.setBounds(300, 500, 150, 30);
-	    address.setBounds(300, 550, 150, 30);
-	    sex.setBounds(300, 600, 150, 30);
-		place.setBounds(300, 250, 150, 30);
-		
-		b4.setBounds(300, 150, 150, 30);
-		
+		b4.setBounds(150 + labelw + textw + 30, 100, 150, 30);
+
 		b5.setBounds(300, b4yloc, 150, 30);
 		return p1;
 
 	}
 }
-
