@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import po.CostManList;
 import po.CostManagePO;
 
 public class CostManage {
@@ -24,8 +25,8 @@ public class CostManage {
 	 *                zxc
 	 */
 	@SuppressWarnings("unchecked")
-	public ArrayList<CostManagePO> GetCostManageDocu(String datal, String datar) {
-		ArrayList<CostManagePO> cpolist = null;
+	public CostManList GetCostManageDocu(String datal, String datar) {
+		CostManList cpolist = null;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -33,7 +34,7 @@ public class CostManage {
 			oos.writeUTF("Finance");
 			oos.writeUTF("GetCostManageDocu");
 			oos.writeObject(new String(datal + " " + datar));
-			cpolist = (ArrayList<CostManagePO>) ois.readObject();
+			cpolist = (CostManList) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

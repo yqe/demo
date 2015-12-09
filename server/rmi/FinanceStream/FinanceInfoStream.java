@@ -10,8 +10,10 @@ import financedata.Initialaccount;
 import managedata.CheckProfit;
 import managedata.ManageAccount;
 import managedata.ManageCostData;
+import po.CostManList;
 import po.CostManagePO;
 import po.EarnedPO;
+import po.EarnedPOList;
 import po.InitializeAccountPO;
 import po.ManageAccountPO;
 
@@ -222,9 +224,13 @@ public class FinanceInfoStream {
 		ManageCostData costdata = new ManageCostData();
 		try {
 			ArrayList<CostManagePO> costpolist;
+			CostManList costlist=new CostManList();
 			String[] data = ((String) ois.readObject()).split(" ");
 			costpolist = costdata.findbytime(data[0], data[1]);
-			oos.writeObject(costpolist);
+			for (int i = 0; i < costpolist.size(); i++) {
+				costlist.AddCostManage(costpolist.get(i));
+			}
+			oos.writeObject(costlist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -246,6 +252,7 @@ public class FinanceInfoStream {
 		EarnedDocu ed = new EarnedDocu();
 		try {
 			ArrayList<EarnedPO> epolist;
+			EarnedPOList earnlist=new EarnedPOList();
 			String[] data = ((String) ois.readObject()).split(" ");
 			if (data[0].equals("ID"))
 				epolist = ed.findbyID(data[2]);
@@ -253,7 +260,10 @@ public class FinanceInfoStream {
 				epolist = ed.findbydate(data[2]);
 			else
 				epolist = ed.findbytime(data[0], data[1]);
-			oos.writeObject(epolist);
+			for (int i = 0; i < epolist.size(); i++) {
+				earnlist.addEarnedPO(epolist.get(i));
+			}
+			oos.writeObject(earnlist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

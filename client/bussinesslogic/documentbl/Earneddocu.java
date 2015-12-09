@@ -3,10 +3,9 @@ package documentbl;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 
-import po.CostManagePO;
 import po.EarnedPO;
+import po.EarnedPOList;
 
 public class Earneddocu extends DocumentBl {
 
@@ -27,8 +26,8 @@ public class Earneddocu extends DocumentBl {
 	 *                zxc
 	 */
 	@SuppressWarnings("unchecked")
-	public ArrayList<EarnedPO> GetEarnedDocu(String datal, String datar) {
-		ArrayList<EarnedPO> epolist = null;
+	public EarnedPOList GetEarnedDocu(String datal, String datar) {
+		EarnedPOList epolist = null;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -36,7 +35,7 @@ public class Earneddocu extends DocumentBl {
 			oos.writeUTF("Finance");
 			oos.writeUTF("GetEarnedDocu");
 			oos.writeObject(new String(datal + " " + datar));
-			epolist = (ArrayList<EarnedPO>) ois.readObject();
+			epolist =  (EarnedPOList) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
