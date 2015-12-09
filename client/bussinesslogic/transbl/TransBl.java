@@ -66,8 +66,7 @@ public class TransBl implements TransBlService {
 				oos.writeUTF("HallClerk");
 				oos.writeUTF("CarInfoChange");
 				oos.writeObject(vpo);
-				IsOk = ois.readBoolean();
-				ois.readObject();
+				IsOk = (boolean) ois.readObject();
 				ois.close();
 				oos.close();
 				socket.close();

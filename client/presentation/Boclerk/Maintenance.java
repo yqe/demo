@@ -71,7 +71,6 @@ public class Maintenance {
 		driversfz.setOpaque(false);
 		tel.setOpaque(false);
 		date.setOpaque(false);
-		
 
 		final String[] time = new String[20];
 		for (int i = 1; i <= 20; i++) {
@@ -80,7 +79,7 @@ public class Maintenance {
 		final JComboBox timebox1 = new JComboBox(time);
 
 		final JComboBox timebox2 = new JComboBox(time);
-		
+
 		final JRadioButton jb1 = new JRadioButton("男");
 		jb1.setSelected(true);
 		jb1.setOpaque(false);
@@ -89,22 +88,15 @@ public class Maintenance {
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(jb1);
 		bg.add(jb2);
-		
-		
-		
-		
-		
-		
 
 		JButton b1 = new JButton("查询车辆信息");
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TransBl trans = new TransBl();
-//				System.out.println(carid.getText());
-				VehicleMaintanceInfoPO vpo = trans.GetVehicleInfoPO(carid
-						.getText());
+				// System.out.println(carid.getText());
+				VehicleMaintanceInfoPO vpo = trans.GetVehicleInfoPO(carid.getText());
 				String ss = vpo.getVehicleID();
-//				System.out.println(ss);
+				// System.out.println(ss);
 				if (vpo.getVehicleID().equals("不存在")) {
 					JOptionPane.showMessageDialog(null, "所输入车辆ID不存在");
 				} else {
@@ -113,30 +105,29 @@ public class Maintenance {
 					drivername.setText(vpo.getDrivername());
 					driversfz.setText(vpo.getIdendity());
 					tel.setText(vpo.getMobile());
-                    date.setText(vpo.getBirthday());
-                
-                    String sex=jb1.getText();
-                    System.out.println(sex);
-                    if(!jb1.getText().equals(vpo.getSex())){
-                    	jb1.setSelected(false);
-                    	jb2.setSelected(true);
-                    }
-					
-                    for(int i=0;i<time.length;i++){
-                    	if(time[i].equals(vpo.getLimittime())){
-                    		timebox1.setSelectedIndex(i);
-                    		break;
-                    	}
-                    }
-                                  
-                    for(int i=0;i<time.length;i++){
-                    	if(time[i].equals(vpo.getWorktime())){
-                    		timebox2.setSelectedIndex(i);
-                    		break;
-                    	}
-                    }
-                    
-					
+					date.setText(vpo.getBirthday());
+
+					String sex = jb1.getText();
+					System.out.println(sex);
+					if (!jb1.getText().equals(vpo.getSex())) {
+						jb1.setSelected(false);
+						jb2.setSelected(true);
+					}
+
+					for (int i = 0; i < time.length; i++) {
+						if (time[i].equals(vpo.getLimittime())) {
+							timebox1.setSelectedIndex(i);
+							break;
+						}
+					}
+
+					for (int i = 0; i < time.length; i++) {
+						if (time[i].equals(vpo.getWorktime())) {
+							timebox2.setSelectedIndex(i);
+							break;
+						}
+					}
+
 				}
 
 			}
@@ -156,19 +147,20 @@ public class Maintenance {
 				boolean driversfzisempty = driversfz.getText().equals("");
 				boolean telisempty = tel.getText().equals("");
 
-				boolean isempty = caridisempty || carnumberisempty
-						|| driveridisempty || drivernameisempty
+				boolean isempty = caridisempty || carnumberisempty || driveridisempty || drivernameisempty
 						|| driversfzisempty || telisempty;
 
-				TransBl trans = new TransBl();
-				String s = jb1.isSelected() ? "男" : "女"; 
-				VehicleMaintanceInfoPO vpo = new VehicleMaintanceInfoPO(carid.getText(),null,carnumber.getText(),timebox2.getSelectedItem().toString(),driverid.getText(),drivername.getText(),date.getText(),driversfz.getText(),tel.getText(),s,timebox1.getSelectedItem().toString());
-				if (trans.ChangeVehicleInfoPO(vpo) && iscarid && iscarnumber
-						&& isdriverid && !isempty) {
-					JOptionPane.showMessageDialog(null, "更新成功!");				
-					trans.ChangeVehicleInfoPO(vpo);
-							
-					
+				String s = jb1.isSelected() ? "男" : "女";
+				if (iscarid && iscarnumber && isdriverid && !isempty) {
+					VehicleMaintanceInfoPO vpo = new VehicleMaintanceInfoPO(carid.getText(), null, carnumber.getText(),
+							timebox2.getSelectedItem().toString(), driverid.getText(), drivername.getText(),
+							date.getText(), driversfz.getText(), tel.getText(), s,
+							timebox1.getSelectedItem().toString());
+					TransBl trans = new TransBl();
+					if (trans.ChangeVehicleInfoPO(vpo))
+						JOptionPane.showMessageDialog(null, "更新成功!");
+					else
+						JOptionPane.showMessageDialog(null, "抱歉，更新失败!");
 				} else if (!iscarid && !caridisempty) {
 					JOptionPane.showMessageDialog(null, "请输入正确的车辆代号!");
 				} else if (!iscarnumber && !carnumberisempty) {
@@ -181,8 +173,6 @@ public class Maintenance {
 
 			}
 		});
-
-		
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
@@ -226,7 +216,6 @@ public class Maintenance {
 		l3.setBounds(100, 100, 150, 30);
 		l4.setBounds(100, 150, 150, 30);
 		date.setBounds(275, 300, 150, 30);
-	
 
 		l5.setBounds(100, 200, 150, 30);
 		l6.setBounds(100, 250, 150, 30);

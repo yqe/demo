@@ -101,8 +101,7 @@ public class HallClerkInfoStream {
 		try {
 			VehicleMaintanceInfoPO vmpo = (VehicleMaintanceInfoPO) ois.readObject();
 			vm.update(vmpo);
-			oos.writeBoolean(true);
-			oos.writeObject(vmpo);
+			oos.writeObject(new Boolean(true));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,8 +126,7 @@ public class HallClerkInfoStream {
 			EarnedDocu earn = new EarnedDocu();
 			EarnedPO up = (EarnedPO) ois.readObject();
 			earn.insert(up);
-			oos.writeBoolean(true);
-			oos.writeObject(up);
+			oos.writeObject(new Boolean(true));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -152,8 +150,7 @@ public class HallClerkInfoStream {
 		try {
 			TransPO up = (TransPO) ois.readObject();
 			td.insert(up);
-			oos.writeBoolean(true);
-			oos.writeObject(up);
+			oos.writeObject(new Boolean(true));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
