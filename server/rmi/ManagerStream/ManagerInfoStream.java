@@ -208,7 +208,7 @@ public class ManagerInfoStream {
 	private void ShowStrategy(ObjectInputStream ois, ObjectOutputStream oos) {
 		StrategyData sd = new StrategyData();
 		try {
-			ArrayList<StrategyPO> spolist = sd.observe();
+			StrategyPO spolist = sd.observe();
 			oos.writeObject(spolist);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

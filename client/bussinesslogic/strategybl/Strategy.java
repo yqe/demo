@@ -3,11 +3,9 @@ package strategybl;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 
 import po.StrategyPO;
 import strategyblService.StrategyBlService;
-import vo.StrategyVO;
 
 public class Strategy implements StrategyBlService{
 	Socket socket;
@@ -21,15 +19,15 @@ public class Strategy implements StrategyBlService{
 	 * @exception @author
 	 *                zxc
 	 */
-	public ArrayList<StrategyPO> show() {
-		ArrayList<StrategyPO> spolist=null;
+	public StrategyPO show() {
+		StrategyPO spolist=null;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Manager");
 			oos.writeUTF("ShowStrategy");
-			spolist = (ArrayList<StrategyPO>) ois.readObject();
+			spolist = (StrategyPO) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

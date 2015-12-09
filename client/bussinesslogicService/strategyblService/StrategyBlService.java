@@ -14,7 +14,7 @@ import po.StrategyPO;
 
 public interface StrategyBlService{
 		
-	public ArrayList<StrategyPO> show();
+	public StrategyPO show();
 	//显示查看内容
 	
 	public boolean modifySalary(StrategyPO spo);
