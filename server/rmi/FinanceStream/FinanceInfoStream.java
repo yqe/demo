@@ -74,7 +74,8 @@ public class FinanceInfoStream {
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
-	 * @exception @author zxc
+	 * @exception @author
+	 *                zxc
 	 */
 	private void InitAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
@@ -96,18 +97,19 @@ public class FinanceInfoStream {
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
-	 * @exception @author zxc
+	 * @exception @author
+	 *                zxc
 	 */
 	private void CostCheck(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
-			String coststr = "";
-			System.out.println(coststr+" .....");
+			String coststr = (String) ois.readObject();
 			CheckProfit cp = new CheckProfit();
 			double profit = cp.getearnedtotal() - cp.getcosttotal();
-			coststr = cp.getearnedtotal() + " " + cp.getcosttotal() + " "
-					+ profit;
-			System.out.println(coststr);
+			coststr = cp.getearnedtotal() + " " + cp.getcosttotal() + " " + profit;
 			oos.writeObject(new String(coststr));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,7 +121,8 @@ public class FinanceInfoStream {
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
-	 * @exception @author zxc
+	 * @exception @author
+	 *                zxc
 	 */
 	private void BuildBankAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
@@ -144,7 +147,8 @@ public class FinanceInfoStream {
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
-	 * @exception @author zxc
+	 * @exception @author
+	 *                zxc
 	 */
 	private void ChangeBankAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
@@ -166,7 +170,8 @@ public class FinanceInfoStream {
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
-	 * @exception @author zxc
+	 * @exception @author
+	 *                zxc
 	 */
 	private void CheckBankAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
@@ -188,7 +193,8 @@ public class FinanceInfoStream {
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
-	 * @exception @author zxc
+	 * @exception @author
+	 *                zxc
 	 */
 	private void DeleteBankAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
@@ -214,7 +220,8 @@ public class FinanceInfoStream {
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
-	 * @exception @author zxc
+	 * @exception @author
+	 *                zxc
 	 */
 	private void GetCostManageDocu(ObjectInputStream ois, ObjectOutputStream oos) {
 		ManageCostData costdata = new ManageCostData();
@@ -241,7 +248,8 @@ public class FinanceInfoStream {
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
-	 * @exception @author zxc
+	 * @exception @author
+	 *                zxc
 	 */
 	private void GetEarnedDocu(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
@@ -277,7 +285,8 @@ public class FinanceInfoStream {
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
-	 * @exception @author zxc
+	 * @exception @author
+	 *                zxc
 	 */
 	public void PaymentBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
