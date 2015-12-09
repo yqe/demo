@@ -37,6 +37,7 @@ public class collection {
 		JLabel l6 = new JLabel("快递员:");
 
 		JLabel l7 = new JLabel("元");
+		JLabel l8 = new JLabel("营业厅编号:");
 		int lmain = 16;
 		l3.setFont(new Font("", Font.PLAIN, lmain));
 		l4.setFont(new Font("", Font.PLAIN, lmain));
@@ -47,7 +48,11 @@ public class collection {
 		final JTextField id = new JTextField();
 		final JTextField profit = new JTextField();
 		final JTextField courier = new JTextField();
+		final JTextField yyt = new JTextField();
 
+		yyt.setOpaque(false);
+		yyt.setEditable(false);
+		
 		String[] year = new String[201];
 		for (int i = 2000; i < 2100; i++) {
 			year[i - 2000] = i + "年";
@@ -114,10 +119,12 @@ public class collection {
 		p1.add(l5);
 		p1.add(l6);
 		p1.add(l7);
+		p1.add(l8);
 
 		p1.add(id);
 		p1.add(profit);
 		p1.add(courier);
+		p1.add(yyt);
 
 		p1.add(b4);
 		p1.add(yearbox);
@@ -134,18 +141,21 @@ public class collection {
 		l1.setBounds(180, -20, 180, 80);
 		l2.setBounds(50, b1yloc, 150, 30);
 		l3.setBounds(100, 200, 150, 30);
-		l4.setBounds(100, 300, 150, 30);
-		yearbox.setBounds(275, 300, 80, 30);
-		monthbox.setBounds(375, 300, 80, 30);
-		daybox.setBounds(475, 300, 80, 30);
+		l4.setBounds(100, 250, 150, 30);
+		yearbox.setBounds(275, 250, 80, 30);
+		monthbox.setBounds(375, 250, 80, 30);
+		daybox.setBounds(475, 250, 80, 30);
 
-		l5.setBounds(100, 400, 150, 30);
-		l7.setBounds(450, 400, 200, 30);
-		l6.setBounds(100, 500, 150, 30);
+		l5.setBounds(100, 300, 150, 30);
+		l7.setBounds(450, 300, 200, 30);
+		
+		l6.setBounds(100, 350, 150, 30);
+		l8.setBounds(100, 400, 150, 30);
 
 		id.setBounds(275, 200, 150, 30);
-		profit.setBounds(275, 400, 150, 30);
-		courier.setBounds(275, 500, 150, 30);
+		profit.setBounds(275, 300, 150, 30);
+		courier.setBounds(275, 350, 150, 30);
+		yyt.setBounds(275, 400, 150, 30);
 
 		b4.setBounds(b4xloc, b4yloc, 180, 40);
 
