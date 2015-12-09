@@ -250,9 +250,9 @@ public class FinanceInfoStream {
 			if (data[0].equals("ID"))
 				epolist = ed.findbyID(data[2]);
 			else if (data[1].equals("day"))
-				epolist = ed.findbyday(data[2]);
+				epolist = ed.findbydate(data[2]);
 			else
-				epolist = ed.findbydate(data[0], data[1]);
+				epolist = ed.findbytime(data[0], data[1]);
 			oos.writeObject(epolist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
