@@ -3,12 +3,16 @@ package StorageStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import po.InputStorageList;
+import po.LookStoragePO;
 import po.OutStorageList;
+import po.StorageCheckPO;
 import storagedata.InputStorageDocu;
 import storagedata.LookStorage;
 import storagedata.OutStorageDocu;
+import storagedata.StorageCheck;
 
 public class StorageInfoStream {
 
@@ -94,7 +98,14 @@ public class StorageInfoStream {
 	 *                zxc
 	 */
 	public void StorageCheckInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
-
+		try {
+			StorageCheck stocheck = new StorageCheck();
+			String transID=(String)ois.readObject();
+			ArrayList<StorageCheckPO> stolist=stocheck.findall(transID);
+			oos.writeObject(stolist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -108,8 +119,13 @@ public class StorageInfoStream {
 	public void StorageSeeInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			LookStorage looksto = new LookStorage();
-			
-			oos.writeObject(new Boolean(true));
+			String[] info=((String)ois.readObject()).split(" ");
+			int insto=looksto.inputStorageDataSeeNum(info[0], info[1], info[2]);
+			int outsto=looksto.outStorageDataSeeNum(info[0], info[1], info[2]);
+			int storednum=looksto.getstorednum(info[0]);
+			double money=looksto.findmoney(info[0]);
+			LookStoragePO stopo=new LookStoragePO(insto, outsto, storednum, money);
+			oos.writeObject(stopo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -28,14 +28,12 @@ public class StorageCheck implements StorageCheckService {
 	public String transcenterID;// 中装中心编号
 
 	public void update(StorageCheckPO po) {
-		// TODO Auto-generated method stub
 		StorageCheck scheck = new StorageCheck();
 		scheck.delete(po.getGoodno());
 		scheck.insert(po);
 	}
 
 	public void insert(StorageCheckPO po) {
-		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
 			this.goodsID = po.goodsID;
