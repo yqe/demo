@@ -16,6 +16,7 @@ public class StrategyData implements StrategyDataService{
 	private int storagesal;//中转中心业务员月薪
 	private int financesal;//财务人员月薪
 	private int diliversal;//快递员
+	private int managersal;
 	private double constance;//价格计算常量
 		private ArrayList<StrategyPO> straList;
 		MySqlImp mysqlimp;
@@ -28,7 +29,7 @@ public class StrategyData implements StrategyDataService{
 			String observe="SELECT *"+" FROM 经营策略";
 			ResultSet rs=mysqlimp.query(observe);
 			rs.next();
-			StrategyPO strapo=new StrategyPO(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDouble(7));
+			StrategyPO strapo=new StrategyPO(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getDouble(8));
 			System.out.println("薪水"+rs.getString(1)+"薪水"+rs.getInt(2)+rs.getInt(3));
 			
 			rs.close();
@@ -62,9 +63,10 @@ public class StrategyData implements StrategyDataService{
 			this.storagesal=po.getStoragesal();
 			this.financesal=po.getFinancesal();
 			this.diliversal=po.getDiliversal();
+			this.managersal=po.getManagersal();
 			this.constance=po.getConstance();
-			String insert="INSERT INTO 经营策略"+" (总经理,营业厅业务员,中转中心业务员,中转中心库存管理人员,快递员,财务人员,快递费价格计算常量)"+" VALUES("+topsal+","+busssal+","+
-					storagemanagersal+","+storagesal+","+financesal+","+diliversal+","+constance+")";
+			String insert="INSERT INTO 经营策略"+" (总经理,营业厅业务员,中转中心业务员,中转中心库存管理人员,快递员,财务人员,管理员,快递费价格计算常量)"+" VALUES("+topsal+","+busssal+","+
+					storagemanagersal+","+storagesal+","+financesal+","+diliversal+","+managersal+","+constance+")";
 			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

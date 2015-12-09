@@ -10,8 +10,9 @@ public class StrategyPO implements Serializable {
 		private int storagesal;//中转中心业务员月薪
 		private int financesal;//财务人员月薪
 		private int diliversal;//快递员
+		private int managersal;//管理员
 		private double constance;//价格计算常量
-		public StrategyPO(int top,int buss,int stom,int sto,int fina,int dili,double con) {
+		public StrategyPO(int top,int buss,int stom,int sto,int fina,int dili,int manager,double con) {
 			this.topsal=top;
 			this.busssal=buss;
 			this.storagemanagersal=stom;
@@ -19,6 +20,10 @@ public class StrategyPO implements Serializable {
 			this.financesal=fina;
 			this.diliversal=dili;
 			this.constance=con;
+			this.managersal=manager;
+		}
+		public int getManagersal() {
+			return managersal;
 		}
 		public int getTopsal() {
 			return topsal;
