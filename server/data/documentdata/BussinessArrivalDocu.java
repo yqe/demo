@@ -128,8 +128,8 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 			return null;
 		}
 	}
-
-	// 营业厅到达单
-
+	
+	
+	
 
 }

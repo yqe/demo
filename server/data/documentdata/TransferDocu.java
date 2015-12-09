@@ -16,7 +16,7 @@ public class TransferDocu implements TransferDocuService {
 	MySqlImp mysqlimp;
 	private String transportType;// 交通工具种类
 	private String date;// 装车日期
-	private String transferNumber;// 本中转中心编号
+	private String transferNumber;// 本中转单编号
 	private String flightNumber;// 航班号
 	private String startPlace;// 出发地
 	private String destination;// 目的地
@@ -30,7 +30,7 @@ public class TransferDocu implements TransferDocuService {
 		ArrayList<TransferDocuPO> transpo = new ArrayList<TransferDocuPO>();
 		try {
 			mysqlimp = new MySqlImp();
-			String findall = "SELECT *" + " FROM 中转单" + " WHERE 本中转中心编号='" + transID + "'";
+			String findall = "SELECT *" + " FROM 中转单" + " WHERE 中转单编号='" + transID + "'";
 			ResultSet rs = mysqlimp.query(findall);
 			while (rs.next()) {
 				this.transportType = rs.getString(1);
@@ -95,7 +95,7 @@ public class TransferDocu implements TransferDocuService {
 			this.carryNumber = po.getCarryNumber();
 			this.money = po.getMoney();
 			condocu.insert(new CondemnDocuPO("中转单", transferNumber, "未审批"));
-			String insert = "INSERT INTO 中转单" + " (交通工具种类,装车日期,本中转中心编号,航班号,出发地,到达地,货柜号,监装员,本次装箱托运单号,运费)" + " VALUES('"
+			String insert = "INSERT INTO 中转单" + " (交通工具种类,装车日期,中转单编号,航班号,出发地,到达地,货柜号,监装员,本次装箱托运单号,运费)" + " VALUES('"
 					+ transportType + "','" + date + "','" + transferNumber + "','" + flightNumber + "','" + startPlace
 					+ "','" + destination + "','" + goodsNumber + "','" + monitor + "','" + carryNumber + "'," + money
 					+ ")";
@@ -118,12 +118,12 @@ public class TransferDocu implements TransferDocuService {
 		trans.insert(po);
 	}
 
-	// 根据中转单编号找到中单信息
+	// 快递编号找打快递信息
 	public TransferDocuPO find(String carryNumber) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
-			String find = "SELECT 交通工具种类,装车日期,本中转中心编号,航班号,出发地,到达地,货柜号,监装员,本次装箱托运单号,运费" + " FROM 中转单"
+			String find = "SELECT 交通工具种类,装车日期,中转单编号,航班号,出发地,到达地,货柜号,监装员,本次装箱托运单号,运费" + " FROM 中转单"
 					+ " WHERE 本次装箱托运单号='" + carryNumber + "'";
 			ResultSet rs = mysqlimp.query(find);
 			this.transportType = rs.getString(1);
@@ -153,6 +153,5 @@ public class TransferDocu implements TransferDocuService {
 		}
 
 	}
-	// 根据中转中心编号找到名字
-
+	
 }

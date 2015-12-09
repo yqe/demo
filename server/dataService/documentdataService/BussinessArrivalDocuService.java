@@ -10,4 +10,6 @@ public interface BussinessArrivalDocuService {
 		public void update(BussinessArrivalDocuPO po);
 		public BussinessArrivalDocuPO find(String ID,String bussinessID);
 		public ArrayList<BussinessArrivalDocuPO> findmore(String bussinessID);
+		
+		
 }

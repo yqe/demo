@@ -91,7 +91,7 @@ public class OutStorageDocu implements OutStorageService{
 			String findall="SELECT *"+" FROM 出库单"+" WHERE 中转中心编号='"+transID+"'";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
-				outsee.add(new OutStorageDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+				outsee.add(new OutStorageDocuPO(rs.getString(1),rs.getDate(2).toString(),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
 			rs.close();
 			return outsee;
@@ -116,7 +116,7 @@ public class OutStorageDocu implements OutStorageService{
 		try {
 			int num=0;
 			mysqlimp=new MySqlImp();
-			String findbytime="SELECT 快递编号,出库日期,目的地,装运形式,中转中心编号"+" FROM 出库单"+" WHERE 出库日期>='"+timebegin+"' and WHERE 出库日期 <='"+timeend+"' and WHERE 中转中心编号='"+transcenterID+"'";
+			String findbytime="SELECT 快递编号,出库日期,目的地,装运形式,中转中心编号"+" FROM 出库单"+" WHERE 出库日期>='"+timebegin+"' and 出库日期 <='"+timeend+"' and 中转中心编号='"+transcenterID+"'";
 			ResultSet rs=mysqlimp.query(findbytime);
 			while(rs.next()){
 			num++;

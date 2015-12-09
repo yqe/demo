@@ -96,7 +96,7 @@ public class InputStorageDocu implements InputStorageService{
 			String findall="SELECT *"+" FROM 入库单"+" WHERE 中转中心编号='"+transcenterID+"'";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
-				insee.add(new InputStorageDocuPO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)));
+				insee.add(new InputStorageDocuPO(rs.getString(1),rs.getDate(2).toString(),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)));
 			}
 			rs.close();
 			return insee;
@@ -124,7 +124,7 @@ public class InputStorageDocu implements InputStorageService{
 		try {
 			int num=0;
 			mysqlimp=new MySqlImp();
-			String findbytime="SELECT 快递编号,入库日期,目的地,区号,排号,架号,位号,中转中心编号"+" FROM 入库单"+" WHERE 入库日期>='"+timebegin+"' and WHERE 入库日期<='"+timeend+"' and WHERE 中转中心编号='"+transcenterID+"'";
+			String findbytime="SELECT 快递编号,入库日期,目的地,区号,排号,架号,位号,中转中心编号"+" FROM 入库单"+" WHERE 入库日期>='"+timebegin+"' and 入库日期<='"+timeend+"' and 中转中心编号='"+transcenterID+"'";
 			ResultSet rs=mysqlimp.query(findbytime);
 			while(rs.next()){
 			num++;

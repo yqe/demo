@@ -10,7 +10,7 @@ public class TransferDocuPO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	 private String transportType;//交通工具种类
 	 private String date;//装车日期
-	 private String transferNumber;//本中转中心单编号
+	 private String transferNumber;//本中转单编号
 	 private String flightNumber;//航班号
 	 private String startPlace;//出发地
 	 private String destination;//目的地

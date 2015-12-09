@@ -1,7 +1,10 @@
 package org.server;
 
-import po.EmploeePO;
-import po.InitializeAccountPO;
+import distancedata.DistanceData;
+import documentdata.EarnedDocu;
+import documentdata.GoodsDocu;
+import documentdata.TransferDocu;
+import financedata.Initialaccount;
 import managedata.CheckProfit;
 import managedata.ManageCostData;
 import storagedata.InputStorageDocu;
@@ -9,10 +12,6 @@ import strategydata.EmploeeData;
 import strategydata.StrategyData;
 import transdata.VehicleMaintance;
 import userdata.UserData;
-import distancedata.DistanceData;
-import documentdata.EarnedDocu;
-import documentdata.GoodsDocu;
-import financedata.Initialaccount;
 
 /**
  * Hello world!
@@ -33,6 +32,7 @@ public class App
         CheckProfit check=new CheckProfit();
         EarnedDocu ea=new EarnedDocu();
         Initialaccount in=new Initialaccount();
+        TransferDocu tran=new TransferDocu();
         try {
 			//s.observe(); 
 			//s.updatesalary("总经理", 50000);
@@ -58,7 +58,8 @@ public class App
         	//ea.insert(new EarnedPO("2015-11-12", 20, "张三", "114500", "025000"));
         	//System.out.println(s.getconstance());
         	//in.insert(new InitializeAccountPO("112355", "营业厅", 30, 20, 80, 100));
-        	System.out.println(g.getgoodsidmax());
+        	//System.out.println(g.getgoodsidmax());
+        	//System.out.println(tran.isArrivaltransfer("025000", "1111"));
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
