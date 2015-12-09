@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import login.Tran;
 import po.InputStorageDocuPO;
 import po.InputStorageList;
 import po.StoragePO;
@@ -83,13 +84,19 @@ public class instorage {
    final   JComboBox yearbox = new JComboBox(year);
     String[] month = new String[12];
     for (int i = 1; i <= 12; i++) {
-        month[i-1] = i+"月";
+    	if(i<10)
+			month[i - 1] = "0"+ i + "月";
+			else
+			month[i - 1] = i + "月";
     
     }
     final JComboBox monthbox = new JComboBox(month);
     String[] day = new String[31];
     for (int i = 1; i <= 31; i++) {
-        day[i-1] = i+"日";
+    	if(i<10)
+			day[i - 1] = "0"+ i + "日";
+			else
+			day[i - 1] = i + "日";
     
     }
    final JComboBox daybox = new JComboBox(day);
@@ -127,6 +134,8 @@ public class instorage {
 	b4.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
 			String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();
+			Tran tran=new Tran();
+			tran.Tran(date);
 			String place=(String) sitebox.getSelectedItem();
 			InputStorageDocuPO insto=new InputStorageDocuPO(id.getText(), date, place, qu.getText(), pai.getText(), jia.getText(), wei.getText(), zzzxid.getText());
 			islt.addInputStoragePO(insto);

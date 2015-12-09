@@ -79,13 +79,19 @@ public class load {
 		final JComboBox yearbox = new JComboBox(year);
 		String[] month = new String[12];
 		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
+		    	if(i<10)
+				month[i - 1] = "0"+ i + "月";
+				else
+				month[i - 1] = i + "月";
 
 		}
 		final JComboBox monthbox = new JComboBox(month);
 		String[] day = new String[31];
 		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
+			if(i<10)
+				day[i - 1] = "0"+ i + "日";
+				else
+				day[i - 1] = i + "日";
 
 		}
 		final JComboBox daybox = new JComboBox(day);

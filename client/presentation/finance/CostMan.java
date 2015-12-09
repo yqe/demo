@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import login.Tran;
 import financebl.CostManage;
 import financebl.FinanceBl;
 import po.CostManagePO;
@@ -49,13 +50,19 @@ public class CostMan {
 		   final  JComboBox yearbox = new JComboBox(year);
 		    String[] month = new String[12];
 		    for (int i = 1; i <= 12; i++) {
-		        month[i-1] = i+"月";
+		    	if(i<10)
+					month[i - 1] = "0"+ i + "月";
+					else
+					month[i - 1] = i + "月";
 		    
 		    }
 		   final  JComboBox monthbox = new JComboBox(month);
 		    String[] day = new String[31];
 		    for (int i = 1; i <= 31; i++) {
-		        day[i-1] = i+"日";
+		    	if(i<10)
+					day[i - 1] = "0"+ i + "日";
+					else
+					day[i - 1] = i + "日";
 		    }
 		    final JComboBox daybox = new JComboBox(day);
 			context.add(yearbox);   yearbox.setBounds(200+gap+labelw, 30, 80, texth);
@@ -82,7 +89,8 @@ public class CostMan {
 				FinanceBl finance =new FinanceBl();
 				ManageAccountPO check=finance.CheckBankAccount(textfield[3].getText());
 				String date=yearbox.getSelectedItem().toString()+monthbox.getSelectedItem().toString()+daybox.getSelectedItem().toString();
-				
+				Tran tran=new Tran();
+				tran.Tran(date);
 				CostManage cost=new CostManage();
 				
 				boolean isid=!check.getAccountname().equals("不存在");//根据银行账户PO判断ID是否合法

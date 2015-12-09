@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import login.Tran;
 import documentbl.Earneddocu;
 import po.EarnedPO;
 
@@ -67,14 +68,18 @@ public class collection {
 		final JComboBox yearbox = new JComboBox(year);
 		String[] month = new String[12];
 		for (int i = 1; i <= 12; i++) {
+			if(i<10)
+			month[i - 1] = "0"+ i + "月";
+			else
 			month[i - 1] = i + "月";
-
 		}
 		final JComboBox monthbox = new JComboBox(month);
 		String[] day = new String[31];
 		for (int i = 1; i <= 31; i++) {
+			if(i<10)
+			day[i - 1] = "0"+ i + "日";
+			else
 			day[i - 1] = i + "日";
-
 		}
 		final JComboBox daybox = new JComboBox(day);
 
@@ -83,6 +88,8 @@ public class collection {
 			public void actionPerformed(ActionEvent e) {
 				String date = (String) (yearbox.getSelectedItem()) + (String) (monthbox.getSelectedItem())
 						+ daybox.getSelectedItem().toString();
+				Tran tran=new Tran();
+				tran.Tran(date);
 				boolean isnum = true;
 				for (int i = 0; i < profit.getText().length(); i++) {
 					if (profit.getText().charAt(i) > '9' || profit.getText().charAt(i) < '1') {

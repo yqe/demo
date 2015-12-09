@@ -33,6 +33,8 @@ import storagebl.StorageBl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import login.Tran;
+
 public class outstorage {
 	private JPanel imagePanel;
 	private ImageIcon Sbackground;
@@ -83,13 +85,19 @@ public class outstorage {
 		final JComboBox yearbox = new JComboBox(year);
 		String[] month = new String[12];
 		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
+			if(i<10)
+				month[i - 1] = "0"+ i + "月";
+				else
+				month[i - 1] = i + "月";
 
 		}
 		final JComboBox monthbox = new JComboBox(month);
 		String[] day = new String[31];
 		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
+			if(i<10)
+				day[i - 1] = "0"+ i + "日";
+				else
+				day[i - 1] = i + "日";
 
 		}
 		final JComboBox daybox = new JComboBox(day);
@@ -122,6 +130,8 @@ public class outstorage {
 			public void actionPerformed(ActionEvent e) {
 				String date = (String) yearbox.getSelectedItem() + monthbox.getSelectedItem()
 						+ daybox.getSelectedItem();
+				Tran tran=new Tran();
+				tran.Tran(date);
 				String place = (String) sitebox.getSelectedItem();
 				String type = (String) typebox.getSelectedItem();
 				OutStorageDocuPO am = new OutStorageDocuPO(t1.getText(), date, place, type, t2.getText());
