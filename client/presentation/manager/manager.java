@@ -41,7 +41,7 @@ public class manager {
 		g.drawImage(background.getImage(), 0, 0, null);
 		}
 		};
-		manager.setBounds(0, 0,830, 700);
+		manager.setBounds(0, 0,900, 700);
 	
 
     manager.setOpaque(false);
@@ -106,7 +106,8 @@ public class manager {
 		public void actionPerformed(ActionEvent e) {
 		
 			try {	
-	         	changepanel(cd.Panel());
+				new checkdocuments().Panel(content).repaint();
+				content.setBounds(size, 0, content.getWidth(), content.getHeight());
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

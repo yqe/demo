@@ -108,7 +108,7 @@ public class StateOfRun {
 			
 		});
 		
-		okbtn.setBounds(650, 50, 100, 30);
+		okbtn.setBounds(635, 50, 70, 30);
 		context.add(okbtn);
 
 	}

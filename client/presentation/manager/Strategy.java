@@ -34,7 +34,7 @@ public class Strategy {
 	public JPanel Panel() throws IOException {
 
 		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 650, 700);
+		p1.setBounds(0, 0, 720, 700);
 		JLabel l1 = new JLabel("快递物流系统");
 		int l1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, l1size));

@@ -33,12 +33,9 @@ public class checkdocuments {
 	private ImageIcon background;
 	private ImageIcon button1;
 	
-	public JPanel Panel() throws IOException{
-
-
-
-	JPanel p1 = new JPanel();
-	p1.setBounds(0,0,650,700);
+	public JPanel Panel(final JPanel p1) throws IOException{
+		p1.removeAll();
+		p1.setBounds(0, 0, 770, 700);
 	JLabel l1=new JLabel("快递物流系统");
 	int b1size=30;
 	l1.setFont(new Font("快递物流系统",Font.PLAIN,b1size));
@@ -51,27 +48,23 @@ public class checkdocuments {
     final StateOfRun sr=new StateOfRun();
     final CostIncome cic=new CostIncome();
     final JPanel contain = new JPanel();
-    contain.setBounds(0, 0, 650, 700);
+    contain.setBounds(0, 0, 720, 700);
     
-	JButton b4=new JButton("查看经营情况表");
-//       b4.addActionListener(new ActionListener(){
-//	   public void actionPerformed(ActionEvent e) {	
-//		sr.stateofrun(contain);
-//	        }
-//           });                      这一部分家族企业和我Panel实现方法不同  
-	JButton b5=new JButton("查看成本收益表");
-//	b5.addActionListener(new ActionListener(){
-//		public void actionPerformed(ActionEvent e) {
-//			dispatch dispatch=new dispatch();
-//			try {
-//				dispatch.Frame();
-//			} catch (IOException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//		}
-//		
-//	});
+    JButton b4 = new JButton("查看经营情况表");
+	b4.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+//			new CheckBill().CheckBill(p1);
+			new StateOfRun().stateofrun(p1);
+			p1.repaint();
+		}
+	}); // 这一部分家族企业和我Panel实现方法不同
+	JButton b5 = new JButton("查看成本收益表");
+	b5.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			new CostIncome().costincome(p1);
+			p1.repaint();
+		}
+	});
 
 	String[] columnnames = {"日期","表单类型"};
 	Object[][] data =
@@ -114,7 +107,7 @@ public class checkdocuments {
 	
 	l1.setBounds(220, -20, 180, 80);
 
-	l2.setBounds(50, b1yloc, 80, 30);
+	l2.setBounds(50, b1yloc, 180, 30);
 	l3.setBounds(50, b4yloc+50, 180, 30);
 
 
