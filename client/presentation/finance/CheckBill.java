@@ -21,25 +21,28 @@ public class CheckBill {
 		int wordsize = 16;
 		int buttonw = 120;
 		int buttonh = 30;
-		int boxwidth = 100;
+		int boxwidth = 60;
 		int boxheight = 30;
 		int boxgap = 10;
+		JLabel timelabel=new JLabel("选择时间：");
 		JLabel yytlabel = new JLabel("营业厅编号:");
 		JButton timecheck = new JButton("按天查询");
 		JButton hallcheck = new JButton("按营业厅查询");
+		timelabel.setFont(new Font("", Font.PLAIN, 15));
+		yytlabel.setFont(new Font("", Font.PLAIN, 15));
 		context.removeAll();
 		JComboBox[] box = new JComboBox[] { new JComboBox(GetBoxStr(200, "年")), new JComboBox(GetBoxStr(12, "月")),
 				new JComboBox(GetBoxStr(31, "日")) };
 		for (int i = 0; i < box.length; i++) {
-			box[i].setBounds(sw + 10 + (boxgap + boxwidth) * i, sh, boxwidth, boxheight);
+			box[i].setBounds(100+sw + 10 + (boxgap + boxwidth) * i, sh, boxwidth, boxheight);
 			context.add(box[i]);
 		}
-		timecheck.setBounds(sw + 10 + (boxgap + boxwidth) * 3 + 200, sh, buttonw, buttonh);
-
+		timecheck.setBounds(sw + 10 + (boxgap + boxwidth) * 3 + 120, sh, buttonw, buttonh);
 		JTextField hallno = new JTextField();
-		yytlabel.setBounds(sw + 10, sh + gap, 100, boxheight);
-		hallno.setBounds(sw + 150, sh + gap, 200, boxheight);
-		hallcheck.setBounds(sw + 10 + (boxgap + boxwidth) * 3 + 200, sh + gap, buttonw, buttonh);
+		timelabel.setBounds(sw + 10, sh, 80, boxheight);
+		yytlabel.setBounds(sw + 10, sh + gap, 80, boxheight);
+		hallno.setBounds(sw + 110, sh + gap, 200, boxheight);
+		hallcheck.setBounds(sw + 10 + (boxgap + boxwidth) * 3 + 120, sh + gap, buttonw, buttonh);
 
 		String[] columnnames = { "营业厅编号", "订单条形码号", "收款日期", "收款金额", "收款快递员" };
 		Object[][] data = {};
@@ -47,12 +50,13 @@ public class CheckBill {
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
 		JTable bill = new JTable(model);
 		bill.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		bill.setFont(new Font("", Font.PLAIN, 20));
 		JScrollPane jp = new JScrollPane(bill);
-
+		
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
-		jp.setBounds(sw, 120, 528, 500);
-
+		jp.setBounds(sw+90, 120, 378, 500);
+		context.add(timelabel);
 		context.add(yytlabel);
 		context.add(jp);
 		context.add(timecheck);
