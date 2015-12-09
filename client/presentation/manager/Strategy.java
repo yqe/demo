@@ -162,7 +162,7 @@ public class Strategy {
 		l13.setBounds(50, 100 + 8 * lysize, 150, 30);
 
 		l14.setBounds(l4xloc, 100 + 8 * lysize, 150, 30);
-		l15.setBounds(380, 100 + 8 * lysize, 200, 30);
+		l15.setBounds(420, 100 + 8 * lysize, 200, 30);
 
 		int t1xloc = 7 * p1.getWidth() / 12;
 		int tysize = 50;
