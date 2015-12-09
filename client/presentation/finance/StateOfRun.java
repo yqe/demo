@@ -30,22 +30,18 @@ public class StateOfRun {
 		int boxh = 30;
 		int boxgap = 10;
 		final JComboBox[][] box = new JComboBox[][] {
-				{ new JComboBox(GetBoxStr(200, "年")),
-						new JComboBox(GetBoxStr(12, "月")),
+				{ new JComboBox(GetBoxStr(200, "年")), new JComboBox(GetBoxStr(12, "月")),
 						new JComboBox(GetBoxStr(31, "日")) },
-				{ new JComboBox(GetBoxStr(200, "年")),
-						new JComboBox(GetBoxStr(12, "月")),
+				{ new JComboBox(GetBoxStr(200, "年")), new JComboBox(GetBoxStr(12, "月")),
 						new JComboBox(GetBoxStr(31, "日")) } };
-		JLabel[] label = new JLabel[] { new JLabel("开始日期:"),
-				new JLabel("结束日期:") };
+		JLabel[] label = new JLabel[] { new JLabel("开始日期:"), new JLabel("结束日期:") };
 		for (int i = 0; i < label.length; i++) {
 			label[i].setFont(new Font("", Font.PLAIN, 15));
-			label[i].setBounds(40 + (labelw + boxgap * 4 + boxw * 3) * i, 50,
-					labelw, labelh);
+			label[i].setBounds(40 + (labelw + boxgap * 4 + boxw * 3) * i, 50, labelw, labelh);
 			context.add(label[i]);
 			for (int j = 0; j < box[i].length; j++) {
-				box[i][j].setBounds(40 + labelw + (boxgap + boxw) * j
-						+ (labelw + boxw * 3 + boxgap * 5) * i, 50, boxw, boxh);
+				box[i][j].setBounds(40 + labelw + (boxgap + boxw) * j + (labelw + boxw * 3 + boxgap * 5) * i, 50, boxw,
+						boxh);
 				context.add(box[i][j]);
 			}
 		}
@@ -57,7 +53,7 @@ public class StateOfRun {
 		DefaultTableModel model2 = new DefaultTableModel(data2, columnnames2);
 		final JTable table = new JTable(model1);
 		final JTable table2 = new JTable(model2);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+	    table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		JScrollPane jp1 = new JScrollPane(table);
@@ -69,61 +65,50 @@ public class StateOfRun {
 		jp2.getViewport().setOpaque(false);
 
 		jp1.setBounds(40, 100, 300, 500);
-		jp2.setBounds(40 + 350 , 100, 300, 500);
+		jp2.setBounds(40 + 350 + 20, 100, 300, 500);
 		context.add(jp1);
 		context.add(jp2);
-
+		
+		
+		
 		JButton okbtn = new JButton("确定");
-		okbtn.addActionListener(new ActionListener() {
+		okbtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				String startdate = box[0][0].getSelectedItem().toString()
-						+ box[0][1].getSelectedItem().toString()
-						+ box[0][2].getSelectedItem().toString();
-				String enddate = box[1][0].getSelectedItem().toString()
-						+ box[1][1].getSelectedItem().toString()
-						+ box[1][2].getSelectedItem().toString();
-				// System.out.println(startdate);
-				// System.out.println(enddate);
+				String startdate=box[0][0].getSelectedItem().toString()+box[0][1].getSelectedItem().toString()+box[0][2].getSelectedItem().toString();
+				String enddate=box[1][0].getSelectedItem().toString()+box[1][1].getSelectedItem().toString()+box[1][2].getSelectedItem().toString();
+//			    System.out.println(startdate);
+//				System.out.println(enddate);
+				
+				CostManage costmanage=new CostManage(); 
+				Earneddocu earneddocu=new Earneddocu();
 
-				CostManage costmanage = new CostManage();
-				Earneddocu earneddocu = new Earneddocu();
-
-				ArrayList<CostManagePO> cpolist = costmanage.GetCostManageDocu(
-						startdate, enddate);
+				
+				ArrayList<CostManagePO> cpolist = costmanage.GetCostManageDocu(startdate, enddate);
 				for (int i = 0; i < cpolist.size(); i++) {
-					Object[] add = { cpolist.get(i).getDate(),
-							cpolist.get(i).getPayment(),
-							cpolist.get(i).getPayer(),
-							cpolist.get(i).getPayaccount(),
-							cpolist.get(i).getTiaomu(), cpolist.get(i).getTip() };
-					DefaultTableModel model = (DefaultTableModel) table
-							.getModel();
-					model.insertRow(model.getRowCount(), add);
+				Object[] add={cpolist.get(i).getDate(),cpolist.get(i).getPayment(),
+				cpolist.get(i).getPayer(),cpolist.get(i).getPayaccount(),cpolist.get(i).getTiaomu(),cpolist.get(i).getTip()};
+				DefaultTableModel model = (DefaultTableModel) table.getModel();            
+				model.insertRow(model.getRowCount(), add);
 				}
-				// this.paydate=paydate;//收款日期
-				// this.earnedmoney=money;//收款金额
-				// this.dilivername=dname;//收款快递员姓名
-				// this.orderID=ID;//订单条形码号
-				// this.bussinessID=buID;//所属营业厅ID
-
-				ArrayList<EarnedPO> epolist = earneddocu.GetEarnedDocu(
-						startdate, enddate);
+//				this.paydate=paydate;//收款日期
+//				this.earnedmoney=money;//收款金额
+//				this.dilivername=dname;//收款快递员姓名
+//				this.orderID=ID;//订单条形码号
+//				this.bussinessID=buID;//所属营业厅ID
+				
+				ArrayList<EarnedPO> epolist = earneddocu.GetEarnedDocu(startdate, enddate);
 				for (int i = 0; i < epolist.size(); i++) {
-					Object[] add = { epolist.get(i).getPaydate(),
-							epolist.get(i).getEarnedmoney(),
-							epolist.get(i).getDilivername(),
-							epolist.get(i).getOrderID(),
-							epolist.get(i).getBussinessID() };
-					DefaultTableModel model = (DefaultTableModel) table2
-							.getModel();
+					Object[] add={epolist.get(i).getPaydate(),epolist.get(i).getEarnedmoney(),
+			epolist.get(i).getDilivername(),epolist.get(i).getOrderID(),epolist.get(i).getBussinessID()};
+					DefaultTableModel model = (DefaultTableModel) table2.getModel();            
 					model.insertRow(model.getRowCount(), add);
-				}
-
+					}
+		
 			}
-
+			
 		});
-
-		okbtn.setBounds(635, 50, 80, 30);
+		
+		okbtn.setBounds(650, 50, 100, 30);
 		context.add(okbtn);
 
 	}

@@ -34,7 +34,7 @@ public class Strategy {
 	public JPanel Panel() throws IOException {
 
 		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 720, 700);
+		p1.setBounds(0, 0, 650, 700);
 		JLabel l1 = new JLabel("快递物流系统");
 		int l1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, l1size));
@@ -162,7 +162,7 @@ public class Strategy {
 		l13.setBounds(50, 100 + 8 * lysize, 150, 30);
 
 		l14.setBounds(l4xloc, 100 + 8 * lysize, 150, 30);
-		l15.setBounds(410, 100 + 8 * lysize, 200, 30);
+		l15.setBounds(380, 100 + 8 * lysize, 200, 30);
 
 		int t1xloc = 7 * p1.getWidth() / 12;
 		int tysize = 50;
