@@ -101,10 +101,12 @@ public class FinanceInfoStream {
 	private void CostCheck(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			String coststr = "";
+			System.out.println(coststr+" .....");
 			CheckProfit cp = new CheckProfit();
 			double profit = cp.getearnedtotal() - cp.getcosttotal();
 			coststr = cp.getearnedtotal() + " " + cp.getcosttotal() + " "
 					+ profit;
+			System.out.println(coststr);
 			oos.writeObject(new String(coststr));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

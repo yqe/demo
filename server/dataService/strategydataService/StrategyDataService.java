@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import po.StrategyPO;
 
 public interface StrategyDataService{
-	public ArrayList<StrategyPO> observe() throws RemoteException;
+	public StrategyPO observe() throws RemoteException;
 	
 
 	public void updatesalary(StrategyPO po) throws RemoteException;
 	
-	public void updateconstant(int cons) throws RemoteException;
+	public void updateconstant(double cons) throws RemoteException;
 	
 	
 }

@@ -19,22 +19,20 @@ public class StrategyData implements StrategyDataService{
 	private double constance;//价格计算常量
 		private ArrayList<StrategyPO> straList;
 		MySqlImp mysqlimp;
-	public ArrayList<StrategyPO> observe() throws RemoteException {
+	public StrategyPO observe() throws RemoteException {
 		// TODO Auto-generated method stub
 		//返回了一个strategy的Arraylist，其中每个PO包含了职位，职位对应的月薪，价格计算常量
 		try {
-			int i=0;
-			straList=new ArrayList<StrategyPO>();
+			
 			mysqlimp=new MySqlImp();
 			String observe="SELECT *"+" FROM 经营策略";
 			ResultSet rs=mysqlimp.query(observe);
-			while(rs.next()){
-			i++;
-			straList.add(new StrategyPO(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDouble(7)));
+			rs.next();
+			StrategyPO strapo=new StrategyPO(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDouble(7));
 			System.out.println("薪水"+rs.getString(1)+"薪水"+rs.getInt(2)+rs.getInt(3));
-			}
+			
 			rs.close();
-			return straList;
+			return strapo;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,12 +79,12 @@ public class StrategyData implements StrategyDataService{
 	}
 
 
-	public void updateconstant(int cons) throws RemoteException{
+	public void updateconstant(double cons) throws RemoteException{
 		// TODO Auto-generated method stub
 		//更新价格计算常量，所有行都被设置为相同值
 		try {
 			mysqlimp=new MySqlImp();
-			String updatecons="UPDATE 经营策略"+" SET 快递费价格计算常量="+cons;
+			String updatecons="UPDATE 经营策略"+" SET 快递费价格计算常量="+cons+"";
 			mysqlimp.update(updatecons);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
