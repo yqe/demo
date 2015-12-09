@@ -15,6 +15,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import po.CondemnList;
+import documentbl.DocumentBl;
+
 public class approve {
 	public JPanel Panel() throws IOException{
 
@@ -29,20 +32,13 @@ public class approve {
 	    int b2size=16;
 	    l2.setFont(new Font("",Font.PLAIN,b2size));
 		
-		
-		
+	    
 		String[] columnnames ={ "单据名称","编号"};
 		Object[][] data =
-	{
-		{"装车单","123456"},
-			{"收款单","654321"},
-			     {"寄件单","132456"},
-			         {"派件单","546132"}		        
-			};
-		
-		DefaultTableModel model=new  DefaultTableModel(data,columnnames);
-		final JTable table=new JTable(model);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+	{	{"aq","123"},{"21","21"}		        		};
+	    DefaultTableModel model=new  DefaultTableModel(data,columnnames);
+	    final JTable table=new JTable(model);
+	    table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.getColumnModel().getColumn(0).setPreferredWidth(200);//设置宽度
 		table.getColumnModel().getColumn(1).setPreferredWidth(200);
 
@@ -51,6 +47,18 @@ public class approve {
         
         jp.setOpaque(false);
         jp.getViewport().setOpaque(false);
+	
+	    DocumentBl dbl=new DocumentBl();
+		 CondemnList alist= dbl.GetUnapproveBill();
+		int item=alist.GetSize();
+		for (int i = 0; i < item; i++) {
+//			System.out.println(i);
+			Object[] add={alist.GetIndexOf(i).getType(),alist.GetIndexOf(i).getID()};
+			
+			DefaultTableModel model1 = (DefaultTableModel) table.getModel();            
+			model1.insertRow(model1.getRowCount(), add);
+			}
+		 
         
         
     	JButton b4=new JButton("确认通过");
