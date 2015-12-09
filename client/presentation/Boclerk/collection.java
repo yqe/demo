@@ -44,13 +44,14 @@ public class collection {
 		l5.setFont(new Font("", Font.PLAIN, lmain));
 		l6.setFont(new Font("", Font.PLAIN, lmain));
 		l7.setFont(new Font("", Font.PLAIN, lmain));
+		l8.setFont(new Font("", Font.PLAIN, lmain));
 
 		final JTextField id = new JTextField();
 		final JTextField profit = new JTextField();
 		final JTextField courier = new JTextField();
 		final JTextField yyt = new JTextField();
 
-		yyt.setOpaque(false);
+//		yyt.setOpaque(false);
 		yyt.setEditable(false);
 		
 		String[] year = new String[201];
