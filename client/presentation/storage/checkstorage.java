@@ -19,7 +19,11 @@ public class checkstorage {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	
+	String posid;//中转中心编号
+	public checkstorage(String posid) {
+		this.posid=posid;
+	}
+
 	public JPanel Panel() throws IOException{
 
 	JPanel p1 = new JPanel() ;

@@ -65,7 +65,7 @@ public class loginframe {
 				courier c = new courier();
 				manager m = new manager();
 				transitmain t = new transitmain();
-				storagemain s = new storagemain();
+//				storagemain s = new storagemain();
 				financemainui f = new financemainui();
 				char[] pass = password.getPassword();
 				String passwordstr = new String(pass);
@@ -100,6 +100,7 @@ public class loginframe {
 						break;
 					case "中转中心库存管理人员":
 						frame.remove(p1);
+						storagemain s = new storagemain(userui.GetPosID(id.getText()));
 						frame.setBounds(500, 100, s.Panel().getWidth(), s.Panel().getHeight());
 						frame.add(s.Panel());
 						break;
@@ -193,11 +194,5 @@ public class loginframe {
 		b1.setBounds(240, 160, 80, 35);
 		b2.setBounds(240, 240, 160, 40);
 		b3.setBounds(540, 1, 60, 30);
-	}
-
-	public static void main(String[] args) throws IOException {
-		loginframe f1 = new loginframe();
-		f1.Frame();
-
 	}
 }

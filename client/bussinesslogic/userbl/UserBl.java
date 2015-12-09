@@ -9,6 +9,8 @@ package userbl;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import po.EmploeePO;
 import po.UserInfoPO;
 import userblService.UserBlService;
 
@@ -200,5 +202,31 @@ public class UserBl implements UserBlService {
 			e.printStackTrace();
 		}
 		return IsOk;
+	}
+	/**
+	 * 根据姓名返回给客户端雇员信息;
+	 * @param String name;
+	 * @return String;
+	 * @exception @author
+	 *                zxc
+	 */
+	public String GetPosID(String userid) {
+		String posid = "";
+		try {
+			String name=GetUserAccount(userid).getUsername();
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Admin");
+			oos.writeUTF("GetEmloyeePO");
+			oos.writeObject(new String(name));
+			posid=(String)ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return posid;
 	}
 }

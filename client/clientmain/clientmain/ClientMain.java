@@ -1,16 +1,17 @@
 package clientmain;
 
-import po.InputStorageDocuPO;
-import po.InputStorageList;
-import po.OutStorageDocuPO;
-import po.OutStorageList;
-import storagebl.StorageBl;
-import userbl.UserBl;
+import java.io.IOException;
+
+import login.loginframe;
 
 public class ClientMain {
 	
 	public static void main(String[] args) {
-		//TODO
-		
+		loginframe login=new loginframe();
+		try {
+			login.Frame();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

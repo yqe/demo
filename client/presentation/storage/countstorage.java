@@ -30,7 +30,11 @@ public class countstorage {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	
+	String posid;//中转中心编号
+	public countstorage(String posid) {
+		 this.posid=posid;
+	}
+
 	public JPanel Panel() throws IOException{
 	BufferedImage bgp=ImageIO.read(new File("presentation/background.png"));
 	background = new ImageIcon(bgp);

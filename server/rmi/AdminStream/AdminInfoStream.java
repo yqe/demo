@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import po.EmploeePO;
 import po.UserInfoPO;
+import strategydata.EmploeeData;
 import userdata.UserData;
 
 public class AdminInfoStream {
@@ -28,6 +30,9 @@ public class AdminInfoStream {
 			case "GetAccount":
 				GetAccount(ois, oos);
 				break;
+			case "GetEmloyeePO":
+				GetEmloyeePO(ois, oos);
+				break;
 			default:
 				System.out.println("NJ");
 				break;
@@ -35,6 +40,26 @@ public class AdminInfoStream {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * 根据姓名返回给客户端雇员信息;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void GetEmloyeePO(ObjectInputStream ois, ObjectOutputStream oos) {
+		try {
+			String name = (String) ois.readObject();
+			EmploeeData emdata = new EmploeeData();
+			String posid=emdata.findbyname(name);
+			oos.writeObject(new String(posid));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -54,7 +79,6 @@ public class AdminInfoStream {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	/**

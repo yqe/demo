@@ -27,7 +27,11 @@ public class instorage {
 	private JPanel imagePanel;
 	private ImageIcon Sbackground;
 	private ImageIcon button1;
-	
+	String posid;
+	public instorage(String posid) {
+		this.posid=posid;
+	}
+
 	public JPanel Panel() throws IOException{
 	
 
@@ -68,7 +72,9 @@ public class instorage {
     final JTextField jia=new JTextField();
     final JTextField wei=new JTextField();
     final JTextField zzzxid=new JTextField();
-    
+    zzzxid.setText(posid);
+    zzzxid.setOpaque(false);
+    zzzxid.setEditable(false);
     String[] year = new String[201];
     for (int i = 2000; i < 2100; i++) {
         year[i-2000] = i+"年";
