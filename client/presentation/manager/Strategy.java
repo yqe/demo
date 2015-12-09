@@ -89,7 +89,7 @@ public class Strategy {
 		boclerk.setText(String.valueOf(spo.getBusssal()));
 		courier.setText(String.valueOf(spo.getDiliversal()));
 		financer.setText(String.valueOf(spo.getFinancesal()));
-//		controller.setText(String.valueOf());
+		controller.setText(String.valueOf(spo.getManagersal()));
 		price.setText(String.valueOf(spo.getConstance()));// 暂时随意初始化了一下 到时候根据传数据直接.get
 
 		JButton b4 = new JButton("确认修改");
@@ -103,21 +103,16 @@ public class Strategy {
 			String newcontroller = controller.getText();
 			String newprice = price.getText(); // StrategyPO传入新的数据
 
+			strategybl.Strategy stra=new strategybl.Strategy();
+			StrategyPO spo=new StrategyPO(Integer.valueOf(newmanager),Integer.valueOf(newtransitman),
+			Integer.valueOf(newstorager),Integer.valueOf(newboclerk),Integer.valueOf(newcourier),Integer.valueOf(newfinancer),
+				Integer.valueOf(newcontroller), Double.valueOf(newprice));
 			public void actionPerformed(ActionEvent e) {
-				strategybl.Strategy stra=new strategybl.Strategy();
-//				StrategyPO spo=new StrategyPO(Double.valueOf(newmanager),Double.valueOf(newtransitman),
-//				Double.valueOf(newstorager),Double.valueOf(newboclerk),Double.valueOf(newfinancer),
-//				Double.valueOf(newcontroller),Double.valueOf(newprice));
-//				stra.modify(spo);			
-				
-				
-				
-				
-				
-				
-				
-				//boolean IsOk=stra.modify(new StrategyPO(pos, , cons));
+				if(stra.modify(spo))					
 				JOptionPane.showMessageDialog(null, "修改成功!");
+				else
+				JOptionPane.showMessageDialog(null, "修改失败!");
+				
 			}
 		});
 
