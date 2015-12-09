@@ -10,9 +10,13 @@ import po.StrategyPO;
 import strategydataService.StrategyDataService;
 
 public class StrategyData implements StrategyDataService{
-		private String position;
-		private int salary;
-		private int constant;
+	private int  topsal;//总经理月薪
+	private int busssal;//营业厅业务员月薪
+	private int storagemanagersal;//中转中心仓库管理员月薪
+	private int storagesal;//中转中心业务员月薪
+	private int financesal;//财务人员月薪
+	private int diliversal;//快递员
+	private double constance;//价格计算常量
 		private ArrayList<StrategyPO> straList;
 		MySqlImp mysqlimp;
 	public ArrayList<StrategyPO> observe() throws RemoteException {
@@ -26,7 +30,7 @@ public class StrategyData implements StrategyDataService{
 			ResultSet rs=mysqlimp.query(observe);
 			while(rs.next()){
 			i++;
-			straList.add(new StrategyPO(rs.getString(1),rs.getInt(2),rs.getInt(3)));
+			straList.add(new StrategyPO(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDouble(7)));
 			System.out.println("薪水"+rs.getString(1)+"薪水"+rs.getInt(2)+rs.getInt(3));
 			}
 			rs.close();
@@ -47,13 +51,23 @@ public class StrategyData implements StrategyDataService{
 	}
 
 
-	public void updatesalary(String pos, int sal) throws RemoteException{
+	public void updatesalary(StrategyPO po) throws RemoteException{
 		// TODO Auto-generated method stub
 		//更新职位相对应的月薪
 		try {
 			mysqlimp=new MySqlImp();
-			String updatesal="UPDATE 经营策略"+" SET 月薪='"+sal+"' WHERE 职位='"+pos+"'";
-			mysqlimp.update(updatesal);
+			String delete="DELETE FROM 经营策略";
+			mysqlimp.update(delete);
+			this.topsal=po.getTopsal();
+			this.busssal=po.getBusssal();
+			this.storagemanagersal=po.getStoragemanagersal();
+			this.storagesal=po.getStoragesal();
+			this.financesal=po.getFinancesal();
+			this.diliversal=po.getDiliversal();
+			this.constance=po.getConstance();
+			String insert="INSERT INTO 经营策略"+" (总经理,营业厅业务员,中转中心业务员,中转中心库存管理人员,快递员,财务人员,快递费价格计算常量)"+" VALUES("+topsal+","+busssal+","+
+					storagemanagersal+","+storagesal+","+financesal+","+diliversal+","+constance+")";
+			mysqlimp.update(insert);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -4,22 +4,41 @@ import java.io.Serializable;
 
 public class StrategyPO implements Serializable {
 	private static final long serialVersionUID = 1L;
-		private String position;//职位
-		private int salary;//对应职位薪水
-		private int constant;//价格计算公式常量
-		public StrategyPO(String pos,int sal,int cons){
-			this.position=pos;
-			this.salary=sal;
-			this.constant=cons;
+		private int  topsal;//总经理月薪
+		private int busssal;//营业厅业务员月薪
+		private int storagemanagersal;//中转中心仓库管理员月薪
+		private int storagesal;//中转中心业务员月薪
+		private int financesal;//财务人员月薪
+		private int diliversal;//快递员
+		private double constance;//价格计算常量
+		public StrategyPO(int top,int buss,int stom,int sto,int fina,int dili,double con) {
+			this.topsal=top;
+			this.busssal=buss;
+			this.storagemanagersal=stom;
+			this.storagesal=sto;
+			this.financesal=fina;
+			this.diliversal=dili;
+			this.constance=con;
 		}
-		public String getPosition() {
-			return position;
+		public int getTopsal() {
+			return topsal;
 		}
-		public int getSalary() {
-			return salary;
+		public int getBusssal() {
+			return busssal;
 		}
-		public int getConstant() {
-			return constant;
+		public int getStoragemanagersal() {
+			return storagemanagersal;
 		}
-		
+		public int getStoragesal() {
+			return storagesal;
+		}
+		public int getFinancesal() {
+			return financesal;
+		}
+		public int getDiliversal() {
+			return diliversal;
+		}
+		public double getConstance() {
+			return constance;
+		}
 }

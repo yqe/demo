@@ -16,7 +16,7 @@ public interface StrategyDataService{
 	public ArrayList<StrategyPO> observe() throws RemoteException;
 	
 
-	public void updatesalary(String pos,int sal) throws RemoteException;
+	public void updatesalary(StrategyPO po) throws RemoteException;
 	
 	public void updateconstant(int cons) throws RemoteException;
 	
