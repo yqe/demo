@@ -80,14 +80,17 @@ public class Strategy {
 		final JTextField controller = new JTextField();
 		final JTextField price = new JTextField();
 
-		manager.setText("15000");
-		transitman.setText("8000");
-		storager.setText("6000");
-		boclerk.setText("8000");
-		courier.setText("8000");
-		financer.setText("8000");
-		controller.setText("7000");
-		price.setText("23");// 暂时随意初始化了一下 到时候根据传数据直接.get
+		
+		strategybl.Strategy stra=new strategybl.Strategy();
+		StrategyPO spo=stra.show();	
+		manager.setText(String.valueOf(spo.getTopsal()));
+		transitman.setText(String.valueOf(spo.getStoragesal()));
+		storager.setText(String.valueOf(spo.getStoragemanagersal()));
+		boclerk.setText(String.valueOf(spo.getBusssal()));
+		courier.setText(String.valueOf(spo.getDiliversal()));
+		financer.setText(String.valueOf(spo.getFinancesal()));
+//		controller.setText(String.valueOf());
+		price.setText(String.valueOf(spo.getConstance()));// 暂时随意初始化了一下 到时候根据传数据直接.get
 
 		JButton b4 = new JButton("确认修改");
 		b4.addActionListener(new ActionListener() {
@@ -102,6 +105,17 @@ public class Strategy {
 
 			public void actionPerformed(ActionEvent e) {
 				strategybl.Strategy stra=new strategybl.Strategy();
+//				StrategyPO spo=new StrategyPO(Double.valueOf(newmanager),Double.valueOf(newtransitman),
+//				Double.valueOf(newstorager),Double.valueOf(newboclerk),Double.valueOf(newfinancer),
+//				Double.valueOf(newcontroller),Double.valueOf(newprice));
+//				stra.modify(spo);			
+				
+				
+				
+				
+				
+				
+				
 				//boolean IsOk=stra.modify(new StrategyPO(pos, , cons));
 				JOptionPane.showMessageDialog(null, "修改成功!");
 			}
