@@ -66,6 +66,7 @@ public class FinanceBl implements FinanceBlService {
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("CostCheck");
+			oos.writeObject(new String(""));
 			costinfo = ((String) ois.readObject()).split(" ");
 			ois.close();
 			oos.close();
