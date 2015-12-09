@@ -16,8 +16,8 @@ public class EmploeePO implements Serializable {
 	private ArrayList<EmploeePO> emploee;
 	private String idendity;//身份证
 	private String address;//住址
-	
-	public EmploeePO(String position,String empID,String name,int salary,String sex,int age,String phonenum,String idendity,String address,String area){
+	private String posID;//机构编号
+	public EmploeePO(String position,String empID,String name,int salary,String sex,int age,String phonenum,String idendity,String address,String area,String posID){
 		this.area=area;
 		this.empID=empID;
 		this.name=name;
@@ -28,8 +28,13 @@ public class EmploeePO implements Serializable {
 		this.salary=salary;
 		this.idendity=idendity;
 		this.address=address;
+		this.posID=posID;
 	}
 	
+	public String getPosID() {
+		return posID;
+	}
+
 	public String getempID(){
 		return empID;
 	}
