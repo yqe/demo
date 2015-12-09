@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import documentdataService.DiliverDocuService;
+import goodsdata.ExpressTrail;
 import mysqlimp.MySqlImp;
 import po.CondemnDocuPO;
 import po.DiliverDocuPO;
@@ -75,6 +76,7 @@ public class DiliverDocu implements DiliverDocuService{
 	public void insert(DiliverDocuPO po) {
 		// TODO Auto-generated method stub
 		CondemnDocu condocu=new CondemnDocu();
+		ExpressTrail expre=new ExpressTrail();
 		try {
 			this.orderID=po.getOrderID();
 			this.arrivaltime=po.getArrivaltime();
@@ -84,6 +86,8 @@ public class DiliverDocu implements DiliverDocuService{
 			condocu.insert(new CondemnDocuPO("派件单", orderID, "未审批"));
 			String insert="INSERT INTO 派件单"+" (订单条形码号,到达日期,收件人姓名,派送员)"+" VALUES('"+orderID+"','"+arrivaltime+"','"+receivername+"','"+courier+"')";
 			mysqlimp.update(insert);
+			String track="快件已到达目的地,快递员"+courier+"正在派送中";
+			expre.set(po.getOrderID(), "目的地轨迹", track);//插入一条货运轨迹记录
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

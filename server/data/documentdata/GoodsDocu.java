@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import documentdataService.GoodsDocuService;
+import goodsdata.ExpressTrail;
 import mysqlimp.MySqlImp;
 import po.CondemnDocuPO;
 import po.GoodsDocuPO;
@@ -103,6 +104,7 @@ public class GoodsDocu implements GoodsDocuService {
 	public void insert(GoodsDocuPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		CondemnDocu condocu = new CondemnDocu();
+		ExpressTrail expre=new ExpressTrail();
 		try {
 			this.dilivername = po.getDilivername();
 			this.diliveraddress = po.getDiliveraddress();
@@ -137,9 +139,11 @@ public class GoodsDocu implements GoodsDocuService {
 					+ goodsname + "'," + goodsnumber + "," + length + "," + width + "," + height + "," + v + ",'"
 					+ goodsinfo + "','" + wrappedtype + "','" + expectedtime + "','" + generatetime + "','" + courier
 					+ "')";
-			System.out.println(insert);
+			//System.out.println(insert);
 			mysqlimp = new MySqlImp();
 			mysqlimp.update(insert);
+			String track="快递编号为"+goodsID+"已出发";
+			expre.insert(goodsID, track);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

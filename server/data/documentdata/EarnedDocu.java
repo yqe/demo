@@ -5,10 +5,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import documentdataService.EarnedDocuService;
+import goodsdata.ExpressTrail;
 import managedata.CheckProfit;
 import mysqlimp.MySqlImp;
 import po.CondemnDocuPO;
 import po.EarnedPO;
+import po.ExpressTrailPO;
 
 /**
  * @author jjlb
@@ -21,11 +23,14 @@ public class EarnedDocu implements EarnedDocuService{
 	private String dilivername;//收款快递员姓名
 	private String orderID;//订单条形码号
 	private String bussinessID;//所属营业厅编号
+	private String bussinessname;//营业厅名字
 	MySqlImp mysqlimp;
 	@Override
 	public void insert(EarnedPO po) {
 		// TODO Auto-generated method stub
+		this.findnamebyID(po.getBussinessID());
 		CondemnDocu condocu=new CondemnDocu();
+		ExpressTrail expre=new ExpressTrail();
 		try {
 			mysqlimp=new MySqlImp();
 			this.paydate=po.getPaydate();
@@ -38,7 +43,9 @@ public class EarnedDocu implements EarnedDocuService{
 			+" VALUES('"+paydate+"',"+earnedmoney+",'"+dilivername+"','"+orderID+"','"+bussinessID+"')";
 			mysqlimp.update(insert);
 			CheckProfit check=new CheckProfit();
-			check.setearned(earnedmoney);
+			check.setearned(earnedmoney);//总收入增加一条收入
+			String track="快件已到达"+bussinessname;
+			expre.set(orderID, "营业厅轨迹", track);//插入一条货运轨迹记录
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -199,7 +206,23 @@ public class EarnedDocu implements EarnedDocuService{
 			return earnList;
 		}
 	}
-	
-	
+//根据营业厅编号找名字
+	public void findnamebyID(String bussID) {
+		switch (bussID) {
+		case "025000":
+			bussinessname = "南京营业厅";
+			break;
+		case "010000":
+			bussinessname = "北京营业厅";
+			break;
+		case "020000":
+			bussinessname = "广州营业厅";
+			break;
+		case "021000":
+			bussinessname = "上海营业厅";
+			break;
+		}
+	}
+
 	
 }
