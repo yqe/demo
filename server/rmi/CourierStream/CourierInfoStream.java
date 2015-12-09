@@ -7,7 +7,9 @@ import java.io.ObjectOutputStream;
 import distancedata.DistanceData;
 import documentdata.DiliverDocu;
 import documentdata.GoodsDocu;
+import goodsdata.ExpressTrail;
 import po.DiliverDocuPO;
+import po.ExpressTrailPO;
 import po.GoodsDocuPO;
 import strategydata.StrategyData;
 
@@ -38,6 +40,7 @@ public class CourierInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 返回给客户端快递的货运轨迹;
 	 * 
@@ -47,8 +50,18 @@ public class CourierInfoStream {
 	 *                zxc
 	 */
 	private void GetRoute(ObjectInputStream ois, ObjectOutputStream oos) {
-		
+		try {
+			ExpressTrail trail = new ExpressTrail();
+			String goodid= (String) ois.readObject();
+			ExpressTrailPO trailpo = trail.find(goodid);
+			oos.writeObject(trailpo);
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
+
 	/**
 	 * 返回给客户端价格相关的常量;
 	 * 
@@ -58,12 +71,12 @@ public class CourierInfoStream {
 	 *                zxc
 	 */
 	private void AboutPrice(ObjectInputStream ois, ObjectOutputStream oos) {
-		DistanceData disdata=new DistanceData();
-		StrategyData strdata=new StrategyData();
+		DistanceData disdata = new DistanceData();
+		StrategyData strdata = new StrategyData();
 		try {
-			double re=0.0;
-			String[] cityn=((String) ois.readObject()).split(" ");
-			re=disdata.getdistance(cityn[0], cityn[1])*strdata.getconstance();
+			double re = 0.0;
+			String[] cityn = ((String) ois.readObject()).split(" ");
+			re = disdata.getdistance(cityn[0], cityn[1]) * strdata.getconstance();
 			oos.writeObject(new Double(re));
 			System.out.println(re);
 		} catch (ClassNotFoundException e) {
@@ -86,7 +99,7 @@ public class CourierInfoStream {
 	private void QueryOrder(ObjectInputStream ois, ObjectOutputStream oos) {
 		GoodsDocu gd = new GoodsDocu();
 		try {
-			String goodid =(String)ois.readObject();
+			String goodid = (String) ois.readObject();
 			GoodsDocuPO gdpo = gd.find(goodid);
 			oos.writeObject(gdpo);
 		} catch (Exception e) {
