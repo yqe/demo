@@ -46,7 +46,7 @@ public class admin {
 		final changepasswordmain change = new changepasswordmain();
 		final logoff logoff = new logoff();
 		final authority au = new authority();
-		final adduser add=new adduser();
+		final adduser add = new adduser();
 
 		control.setBounds(0, 0, size, 500);
 		content.setBounds(size, 0, 600, 500);
@@ -97,7 +97,7 @@ public class admin {
 			}
 
 		});
-		
+
 		JButton b7 = new JButton("增加用户");
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,12 +111,6 @@ public class admin {
 			}
 
 		});
-		
-		
-		
-		
-		
-		
 
 		control.setLayout(null);
 		control.setOpaque(false);

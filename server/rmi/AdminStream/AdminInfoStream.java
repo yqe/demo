@@ -41,6 +41,7 @@ public class AdminInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 根据姓名返回给客户端雇员信息;
 	 * 
@@ -53,13 +54,13 @@ public class AdminInfoStream {
 		try {
 			String name = (String) ois.readObject();
 			EmploeeData emdata = new EmploeeData();
-			String posid=emdata.findbyname(name);
+			String posid = emdata.findbyname(name);
 			oos.writeObject(new String(posid));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -163,9 +164,12 @@ public class AdminInfoStream {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
 			UserInfoPO up2 = ud.getLoginPO(up.getUserID());
-			UserInfoPO upo = new UserInfoPO(up.getUserID(), up.getPassword(), up2.getUsername(), up2.getPosition());
-			ud.update(upo);
-			oos.writeObject(new Boolean(true));
+			if (!up2.getUserID().equals("不存在")) {
+				UserInfoPO upo = new UserInfoPO(up.getUserID(), up.getPassword(), up2.getUsername(), up2.getPosition());
+				ud.update(upo);
+				oos.writeObject(new Boolean(true));
+			} else
+				oos.writeObject(new Boolean(false));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

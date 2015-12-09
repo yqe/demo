@@ -53,14 +53,14 @@ public class logoff {
 			public void actionPerformed(ActionEvent e) {
 				// PO传给数据
 				UserBl userbl = new UserBl();
-				UserInfoPO userpo = userbl.CheckUserInfoPO(t1.getText());
+				UserInfoPO userpo = userbl.GetUserAccount(t1.getText());
 				String username = userpo.getUsername();
 				String userposition = userpo.getPosition();
 				if (!t1.getText().equals("")) {
 					if (userpo != null) {
 						t2.setText(username);
 						t3.setText(userposition);
-					}else{
+					} else {
 						JOptionPane.showMessageDialog(null, "账号有误!");
 					}
 				} else {
@@ -73,15 +73,17 @@ public class logoff {
 		JButton b5 = new JButton("确认注销");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// PO传数据
-				UserBl userbl = new UserBl();
-				UserInfoPO userpotemp = userbl.CheckUserInfoPO(t1.getText());
-				boolean IsOk=userbl.cancellation(userpotemp);
-				if(IsOk){
-				JOptionPane.showMessageDialog(null, "注销成功!");
-				}else{
-					JOptionPane.showMessageDialog(null, "注销失败，请重新再试一次!");
-				}
+				if (!t2.getText().equals("")) {
+					UserBl userbl = new UserBl();
+					UserInfoPO userpotemp = userbl.GetUserAccount(t1.getText());
+					boolean IsOk = userbl.cancellation(userpotemp);
+					if (IsOk) {
+						JOptionPane.showMessageDialog(null, "注销成功!");
+					} else {
+						JOptionPane.showMessageDialog(null, "注销失败，请重新再试一次!");
+					}
+				}else
+					JOptionPane.showMessageDialog(null, "注销失败，请确认输入的账户!");
 			}
 
 		});

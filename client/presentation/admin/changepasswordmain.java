@@ -56,10 +56,10 @@ public class changepasswordmain {
 				if (!id.getText().equals("")) {
 					if (!password1.equals("")) {
 						if (equal) {
-							UserBl userbl=new UserBl();
-							boolean IsOk=userbl.changePassword(new UserInfoPO(id.getText(), password1, "", ""));
-							if(IsOk)  
-							JOptionPane.showMessageDialog(null, "修改成功!");// 将新密码传入所对应PO
+							UserBl userbl = new UserBl();
+							boolean IsOk = userbl.changePassword(new UserInfoPO(id.getText(), password1, "", ""));
+							if (IsOk)
+								JOptionPane.showMessageDialog(null, "修改成功!");// 将新密码传入所对应PO
 							else
 								JOptionPane.showMessageDialog(null, "修改失败!");
 						} else {

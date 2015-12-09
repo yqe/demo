@@ -35,14 +35,14 @@ public class adduser {
 
 		JLabel l4 = new JLabel("姓名:");
 		JLabel l5 = new JLabel("职位:");
-		
+
 		JLabel l6 = new JLabel("设置密码:");
 
 		l3.setFont(new Font("", Font.PLAIN, b2size));
 		l4.setFont(new Font("", Font.PLAIN, b2size));
 		l5.setFont(new Font("", Font.PLAIN, b2size));
 		l6.setFont(new Font("", Font.PLAIN, b2size));
-		
+
 		final JTextField t1 = new JTextField();
 		final JTextField t2 = new JTextField();
 		final JTextField t3 = new JTextField();
@@ -50,25 +50,26 @@ public class adduser {
 
 		final JComboBox job = new JComboBox(jobs);
 
-
-
 		JButton b5 = new JButton("确认新建");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
-			boolean idisempty=t1.getText().equals("");
-				boolean nameisempty=t2.getText().equals("");
-				boolean passwordisempty=t3.getText().equals("");
-				boolean isempty= idisempty||nameisempty||passwordisempty;
-				
-				UserInfoPO user=new UserInfoPO(t1.getText(), t3.getText(), t2.getText(), job.getSelectedItem().toString());
-				UserBl userbl=new UserBl();		
-				
-				if(!isempty&&userbl.AddUser(user))
-				JOptionPane.showMessageDialog(null, "新建成功!");
-				else
-				JOptionPane.showMessageDialog(null, "新建失败，请确认信息填写完整!");
-				
+
+				boolean idisempty = t1.getText().equals("");
+				boolean nameisempty = t2.getText().equals("");
+				boolean passwordisempty = t3.getText().equals("");
+				boolean isempty = idisempty || nameisempty || passwordisempty;
+
+				if (!isempty) {
+					UserInfoPO user = new UserInfoPO(t1.getText(), t3.getText(), t2.getText(),
+							job.getSelectedItem().toString());
+					UserBl userbl = new UserBl();
+					if (userbl.AddUser(user))
+						JOptionPane.showMessageDialog(null, "新建成功!");
+					else
+						JOptionPane.showMessageDialog(null, "抱歉，新建失败!");
+				} else
+					JOptionPane.showMessageDialog(null, "新建失败，请确认信息填写完整!");
+
 			}
 
 		});
@@ -105,9 +106,9 @@ public class adduser {
 		l6.setBounds(150, 200, 150, 30);
 
 		t1.setBounds(300, 150, 180, 30);
-        t2.setBounds(300, 250, 180, 30);
-        t3.setBounds(300, 200, 180, 30);
-        job.setBounds(300, 300, 180, 30);
+		t2.setBounds(300, 250, 180, 30);
+		t3.setBounds(300, 200, 180, 30);
+		job.setBounds(300, 300, 180, 30);
 
 		b5.setBounds(b4xloc, b4yloc, 150, 30);
 		return p1;

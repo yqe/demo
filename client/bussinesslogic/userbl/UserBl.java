@@ -19,10 +19,12 @@ public class UserBl implements UserBlService {
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	String hostid = "localhost";
+
 	/**
 	 * 根据id，密码，查找用户登录信息;
 	 * 
-	 * @param String id, String password;
+	 * @param String
+	 *            id, String password;
 	 * @return String;
 	 * @exception @author
 	 *                zxc
@@ -50,35 +52,12 @@ public class UserBl implements UserBlService {
 		}
 		return null;
 	}
+
 	/**
 	 * 根据id查找用户信息;
 	 * 
-	 * @param String id;
-	 * @return UserInfoPO;
-	 * @exception @author
-	 *                zxc
-	 */
-	public UserInfoPO CheckUserInfoPO(String id){
-		UserInfoPO upo=null;
-		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
-			oos.writeUTF("Admin");
-			oos.writeUTF("GetAccount");
-			oos.writeObject(new UserInfoPO(id, "", "", ""));
-			upo = (UserInfoPO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return upo;
-	}
-	/**
-	 * 根据id查找用户信息;
-	 * @param String id, String password;
+	 * @param String
+	 *            id, String password;
 	 * @return String;
 	 * @exception @author
 	 *                zxc
@@ -101,9 +80,12 @@ public class UserBl implements UserBlService {
 		}
 		return upo;
 	}
+
 	/**
 	 * 权限调整;
-	 * @param UserInfoPO upo;
+	 * 
+	 * @param UserInfoPO
+	 *            upo;
 	 * @return boolean;
 	 * @exception @author
 	 *                zxc
@@ -126,9 +108,12 @@ public class UserBl implements UserBlService {
 		}
 		return IsOk;
 	}
+
 	/**
 	 * 修改密码;
-	 * @param UserInfoPO upo;
+	 * 
+	 * @param UserInfoPO
+	 *            upo;
 	 * @return boolean;
 	 * @exception @author
 	 *                zxc
@@ -155,7 +140,9 @@ public class UserBl implements UserBlService {
 
 	/**
 	 * 删除用户;
-	 * @param UserInfoPO upo;
+	 * 
+	 * @param UserInfoPO
+	 *            upo;
 	 * @return boolean;
 	 * @exception @author
 	 *                zxc
@@ -178,9 +165,12 @@ public class UserBl implements UserBlService {
 		}
 		return IsOk;
 	}
+
 	/**
 	 * 增加用户;
-	 * @param UserInfoPO upo;
+	 * 
+	 * @param UserInfoPO
+	 *            upo;
 	 * @return boolean;
 	 * @exception @author
 	 *                zxc
@@ -203,9 +193,12 @@ public class UserBl implements UserBlService {
 		}
 		return IsOk;
 	}
+
 	/**
 	 * 根据姓名返回给客户端雇员信息;
-	 * @param String name;
+	 * 
+	 * @param String
+	 *            name;
 	 * @return String;
 	 * @exception @author
 	 *                zxc
@@ -213,14 +206,14 @@ public class UserBl implements UserBlService {
 	public String GetPosID(String userid) {
 		String posid = "";
 		try {
-			String name=GetUserAccount(userid).getUsername();
+			String name = GetUserAccount(userid).getUsername();
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
 			oos.writeUTF("GetEmloyeePO");
 			oos.writeObject(new String(name));
-			posid=(String)ois.readObject();
+			posid = (String) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();

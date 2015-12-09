@@ -20,5 +20,5 @@ public interface UserBlService {
 
 	public boolean cancellation(UserInfoPO upo);// 注销账户
 
-	public UserInfoPO CheckUserInfoPO(String id);
+	public UserInfoPO GetUserAccount(String id);//根据id查找用户信息;
 }

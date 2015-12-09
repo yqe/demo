@@ -55,38 +55,40 @@ public class authority {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// PO传数据
-//				
-					UserBl m=new UserBl();
-				    UserInfoPO a=m.GetUserAccount(t1.getText());
-				     if (a.getUserID().equals("不存在")) JOptionPane.showMessageDialog(null, "请输入正确账号!");
-				    System.out.println(a.getUsername());
-				     if (!t1.getText().equals("")) {
-						
-						t2.setText(a.getUsername());
-						for(int i=0;i<7;i++){
-							if (jobs[i].equals(a.getPosition()))
-						job.setSelectedIndex(i);}// 参照String的jobs
-					} 
-				    
-				  
- }
-				
+				//
+				UserBl m = new UserBl();
+				UserInfoPO a = m.GetUserAccount(t1.getText());
+				if (a.getUserID().equals("不存在"))
+					JOptionPane.showMessageDialog(null, "请输入正确账号!");
+				if (!t1.getText().equals("")) {
+					t2.setText(a.getUsername());
+					for (int i = 0; i < 7; i++) {
+						if (jobs[i].equals(a.getPosition()))
+							job.setSelectedIndex(i);
+					} // 参照String的jobs
+				}
+			}
 
 		});
 
 		JButton b5 = new JButton("确认修改");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserBl userbl=new UserBl();
-				UserInfoPO usertemp=userbl.CheckUserInfoPO(t1.getText());
-				String ID=usertemp.getUserID();
-				String name=usertemp.getUsername();
-				String pass=usertemp.getPassword();
-				boolean isOk=userbl.positionTransfer(new UserInfoPO(ID, pass, name, job.getSelectedItem().toString()));
-				if (isOk)
-				JOptionPane.showMessageDialog(null, "修改成功!");
+				if (!t2.getText().equals("")) {
+					UserBl userbl = new UserBl();
+					UserInfoPO usertemp = userbl.GetUserAccount(t1.getText());
+					String ID = usertemp.getUserID();
+					String name = usertemp.getUsername();
+					String pass = usertemp.getPassword();
+					boolean isOk = userbl
+							.positionTransfer(new UserInfoPO(ID, pass, name, job.getSelectedItem().toString()));
+					if (isOk)
+						JOptionPane.showMessageDialog(null, "修改成功!");
+					else
+						JOptionPane.showMessageDialog(null, "修改失败!");
+				} else
+					JOptionPane.showMessageDialog(null, "请确认员工信息!");
 			}
-
 		});
 
 		p1.setOpaque(false);
