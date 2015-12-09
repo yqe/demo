@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import financebl.FinanceBl;
+
 public class CostIncome {
 
 	public void costincome(JPanel context) {
@@ -29,6 +31,12 @@ public class CostIncome {
 			textfield[i].setBounds(80+gap+labelw, 100+(texth+gaph)*i, textw, texth);
 			context.add(textfield[i]);
 		}
+		FinanceBl finance=new FinanceBl();
+		String s[]=finance.GetCostInfo();
+		textfield[0].setText(s[0]);
+		textfield[1].setText(s[1]);
+		textfield[2].setText(s[2]);//得到支出收入利润
+		
 	}
 
 }

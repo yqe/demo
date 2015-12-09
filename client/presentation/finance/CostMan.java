@@ -11,6 +11,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import financebl.CostManage;
+import financebl.FinanceBl;
+import po.CostManagePO;
+import po.ManageAccountPO;
+
 public class CostMan {
 
 	public void costMan(JPanel context) {
@@ -41,18 +46,18 @@ public class CostMan {
 		        year[i-2000] = i+"年";
 		    
 		    }
-		    JComboBox yearbox = new JComboBox(year);
+		   final  JComboBox yearbox = new JComboBox(year);
 		    String[] month = new String[12];
 		    for (int i = 1; i <= 12; i++) {
 		        month[i-1] = i+"月";
 		    
 		    }
-		    JComboBox monthbox = new JComboBox(month);
+		   final  JComboBox monthbox = new JComboBox(month);
 		    String[] day = new String[31];
 		    for (int i = 1; i <= 31; i++) {
 		        day[i-1] = i+"日";
 		    }
-		    JComboBox daybox = new JComboBox(day);
+		    final JComboBox daybox = new JComboBox(day);
 			context.add(yearbox);   yearbox.setBounds(200+gap+labelw, 30, 80, texth);
 			context.add(monthbox);  monthbox.setBounds(200+gap+labelw+90, 30, 80, texth);
 			context.add(daybox);    daybox.setBounds(200+gap+labelw+180, 30, 80, texth);
@@ -66,7 +71,6 @@ public class CostMan {
 	                         				isnum=false;	
 					}
 				}
-				boolean isid=true;
 				boolean priceisempty=textfield[1].getText().equals("");
 			    boolean payerisempty=textfield[2].getText().equals("");
 			    boolean idisempty=textfield[3].getText().equals("");
@@ -75,8 +79,17 @@ public class CostMan {
 
 				boolean isempty=priceisempty||payerisempty||idisempty||infoisempty||tipsisempty;
 
-				if(isid&&isnum&&!isempty){					
-				JOptionPane.showMessageDialog(null, "成功付款!");			
+				FinanceBl finance =new FinanceBl();
+				ManageAccountPO check=finance.CheckBankAccount(textfield[3].getText());
+				String date=yearbox.getSelectedItem().toString()+monthbox.getSelectedItem().toString()+daybox.getSelectedItem().toString();
+				
+				CostManage cost=new CostManage();
+				
+				boolean isid=!check.getAccountname().equals("不存在");//根据银行账户PO判断ID是否合法
+				CostManagePO cmpo=new CostManagePO(date,Double.valueOf(textfield[1].getText()),textfield[2].getText(),textfield[3].getText(),textfield[4].getText(),textfield[5].getText());
+				
+				if(isid&&isnum&&!isempty&& cost.BuildCostManage(cmpo)){								
+					JOptionPane.showMessageDialog(null, "成功付款!");			
 				}
 				else if(!isempty&&!isid){
 					JOptionPane.showMessageDialog(null, "所输入账户ID非法!");

@@ -90,11 +90,6 @@ public class StateOfRun {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();            
 				model.insertRow(model.getRowCount(), add);
 				}
-//				this.paydate=paydate;//收款日期
-//				this.earnedmoney=money;//收款金额
-//				this.dilivername=dname;//收款快递员姓名
-//				this.orderID=ID;//订单条形码号
-//				this.bussinessID=buID;//所属营业厅ID
 				
 				ArrayList<EarnedPO> epolist = earneddocu.GetEarnedDocu(startdate, enddate);
 				for (int i = 0; i < epolist.size(); i++) {
