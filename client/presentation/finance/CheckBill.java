@@ -24,19 +24,24 @@ public class CheckBill {
 		int boxwidth = 100;
 		int boxheight = 30;
 		int boxgap = 10;
+		
+		JLabel timelabel = new JLabel("时间:");
 		JLabel yytlabel = new JLabel("营业厅编号:");
+		 timelabel.setFont(new Font("",Font.PLAIN,18));
+		 yytlabel.setFont(new Font("",Font.PLAIN,18));
 		JButton timecheck = new JButton("按天查询");
 		JButton hallcheck = new JButton("按营业厅查询");
 		context.removeAll();
 		JComboBox[] box = new JComboBox[] { new JComboBox(GetBoxStr(200, "年")), new JComboBox(GetBoxStr(12, "月")),
 				new JComboBox(GetBoxStr(31, "日")) };
 		for (int i = 0; i < box.length; i++) {
-			box[i].setBounds(sw + 10 + (boxgap + boxwidth) * i, sh, boxwidth, boxheight);
+			box[i].setBounds(sw + 110 + (boxgap + boxwidth) * i, sh, boxwidth, boxheight);
 			context.add(box[i]);
 		}
 		timecheck.setBounds(sw + 10 + (boxgap + boxwidth) * 3 + 200, sh, buttonw, buttonh);
 
 		JTextField hallno = new JTextField();
+	    timelabel.setBounds(sw + 10, sh , 100, boxheight);
 		yytlabel.setBounds(sw + 10, sh + gap, 100, boxheight);
 		hallno.setBounds(sw + 150, sh + gap, 200, boxheight);
 		hallcheck.setBounds(sw + 10 + (boxgap + boxwidth) * 3 + 200, sh + gap, buttonw, buttonh);
@@ -51,8 +56,10 @@ public class CheckBill {
 
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
-		jp.setBounds(sw, 120, 528, 500);
+		jp.setBounds(sw, 120, 378, 500);
 
+		
+		context.add(timelabel);
 		context.add(yytlabel);
 		context.add(jp);
 		context.add(timecheck);
