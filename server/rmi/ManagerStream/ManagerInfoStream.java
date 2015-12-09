@@ -6,12 +6,13 @@ import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import documentdata.CondemnDocu;
 import po.CondemnDocuPO;
+import po.CondemnList;
 import po.EmploeePO;
 import po.StrategyPO;
 import strategydata.EmploeeData;
 import strategydata.StrategyData;
+import documentdata.CondemnDocu;
 
 public class ManagerInfoStream {
 
@@ -185,6 +186,7 @@ public class ManagerInfoStream {
 	private void ApproveBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		CondemnDocu cd = new CondemnDocu();
 		try {
+			ois.readObject();
 			cd.update();
 			oos.writeBoolean(true);
 			oos.writeObject(new String("OK"));
@@ -192,6 +194,9 @@ public class ManagerInfoStream {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -243,7 +248,11 @@ public class ManagerInfoStream {
 		CondemnDocu cd = new CondemnDocu();
 		try {
 			ArrayList<CondemnDocuPO> cdpolist = cd.findall();
-			oos.writeObject(cdpolist);
+			CondemnList cdlist=new CondemnList();
+			for (int i = 0; i < cdpolist.size(); i++) {
+				cdlist.AddCondemnDocuPO(cdpolist.get(i));
+			}
+			oos.writeObject(cdlist);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
