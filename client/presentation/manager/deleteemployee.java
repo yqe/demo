@@ -116,17 +116,23 @@ public class deleteemployee {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EmploeeBl jk = new EmploeeBl();
-				EmploeePO fc = jk.IDGetEmp(id.getText());
-				System.out.println(fc.getName());
-				name.setText(fc.getName());
-				place.setText(fc.getArea());
-				age.setText(String.valueOf(fc.getAge()));
-				sex.setText(fc.getSex());
-				tel.setText(fc.getPhonenum());
-				address.setText(fc.getAddress());
-				salary.setText(String.valueOf(fc.getSalary()));
-				job.setText(fc.getPosition());
-				identity.setText(fc.getIdendity());
+				EmploeePO empo = jk.IDGetEmp(id.getText());
+				
+				if(empo.getPosition().equals("不存在")){
+					JOptionPane.showMessageDialog(null, "没有该员工ID!");
+		     	}
+				else{
+					name.setText(empo.getName());
+					place.setText(empo.getArea());
+					age.setText(String.valueOf(empo.getAge()));
+					sex.setText(empo.getSex());
+					tel.setText(empo.getPhonenum());
+					address.setText(empo.getAddress());
+					salary.setText(String.valueOf(empo.getSalary()));
+					job.setText(empo.getPosition());
+					identity.setText(empo.getIdendity());
+					posidtext.setText(empo.getPosID());
+				}
 			}
 
 		});

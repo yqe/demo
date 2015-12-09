@@ -45,7 +45,7 @@ public class EmploeeBl implements EmploeeBlService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return empo;
 	}
 	/**
 	 * 根据机构得到此机构所有员工信息

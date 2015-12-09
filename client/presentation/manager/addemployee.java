@@ -91,26 +91,35 @@ public class addemployee {
 		JButton b5 = new JButton("确认添加");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// PO传数据
-				// UserBl userbl = new UserBl();
-				// UserInfoPO userpotemp = userbl.CheckUserInfoPO(t1.getText());
-				// boolean IsOk=userbl.cancellation(userpotemp);
+	
 				boolean idisempty = id.getText().equals("");
 				boolean nameisempty = name.getText().equals("");
-				boolean isempty = idisempty || nameisempty;
-				EmploeePO epo = new EmploeePO(job.getSelectedItem().toString(), id.getText(), name.getText(),
-						Integer.parseInt(salary.getText()), bg.getElements().toString(),
-						Integer.parseInt(age.getText()), tel.getText(), identity.getText(), address.getText(),
-						place.getSelectedItem().toString(), posidtext.getText());
-				EmploeeBl ac = new EmploeeBl();
-				boolean isOk = ac.AddEmpInfo(epo);
+				boolean ageisempty = age.getText().equals("");
+				boolean telisempty = tel.getText().equals("");
+				boolean salaryisempty = salary.getText().equals("");
+				boolean identityisempty = identity.getText().equals("");
+				boolean addressisempty = address.getText().equals("");
+				boolean posidtextisempty = posidtext.getText().equals("");
+				
+				
+				boolean isempty = idisempty || nameisempty||ageisempty||telisempty||salaryisempty||identityisempty
+						||addressisempty||posidtextisempty;
 
-				if (!isempty && isOk)
-					JOptionPane.showMessageDialog(null, "添加成功!");
-				else
+				if (!isempty ){
+					EmploeePO epo = new EmploeePO(job.getSelectedItem().toString(), id.getText(), name.getText(),
+							Integer.parseInt(salary.getText()), bg.getElements().toString(),
+							Integer.parseInt(age.getText()), tel.getText(), identity.getText(), address.getText(),
+							place.getSelectedItem().toString(), posidtext.getText());
+					EmploeeBl ac = new EmploeeBl();
+					boolean isOk = ac.AddEmpInfo(epo);
+					if(isOk){
+					   JOptionPane.showMessageDialog(null, "添加成功!");
+					   }
+					}
+				else{
 					JOptionPane.showMessageDialog(null, "添加失败，请确认信息填写完整!");
-
-			}
+				   }
+			} 
 
 		});
 
