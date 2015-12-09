@@ -265,10 +265,8 @@ public class ManagerInfoStream {
 		StrategyData sd = new StrategyData();
 		try {
 			StrategyPO spo = (StrategyPO) ois.readObject();
-			sd.updatesalary(spo.getPosition(), spo.getSalary());
-			sd.updateconstant(spo.getConstant());
-			oos.writeBoolean(true);
-			oos.writeObject(spo);
+			sd.updatesalary(spo);
+			oos.writeObject(new Boolean(true));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

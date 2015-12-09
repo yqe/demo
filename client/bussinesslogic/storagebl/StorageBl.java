@@ -4,10 +4,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import po.InputStorageDocuPO;
 import po.InputStorageList;
 import po.LookStoragePO;
 import po.OutStorageList;
+import po.StorageCheckPO;
+import po.StorageList;
 import storageblService.StorageBlService;
 
 public class StorageBl implements StorageBlService {
@@ -85,8 +86,8 @@ public class StorageBl implements StorageBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public InputStorageList StorageCheck(String centerid) {
-		InputStorageList Stolist = new InputStorageList();
+	public StorageList StorageCheck(String centerid) {
+		StorageList Stolist = new StorageList();
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -94,7 +95,7 @@ public class StorageBl implements StorageBlService {
 			oos.writeUTF("Storage");
 			oos.writeUTF("SeeStorage");
 			oos.writeObject(new String(centerid));
-			Stolist = (InputStorageList) ois.readObject();
+			Stolist = (StorageList) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -136,13 +137,12 @@ public class StorageBl implements StorageBlService {
 	/**
 	 * 库存信息更新;
 	 * 
-	 * @param InputStorageDocuPO
-	 *            svo;
+	 * @param StorageCheckPO svo;
 	 * @return boolean;
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean StorageUpdate(InputStorageDocuPO svo) {
+	public boolean StorageUpdate(StorageCheckPO svo) {
 		boolean IsOk = false;
 		try {
 			socket = new Socket(hostid, 8888);
@@ -160,5 +160,30 @@ public class StorageBl implements StorageBlService {
 		}
 		return IsOk;
 	}
-
+	/**
+	 * 根据Id查找库存信息;
+	 * 
+	 * @param String ID;
+	 * @return StorageCheckPO;
+	 * @exception @author
+	 *                zxc
+	 */
+	public StorageCheckPO IDStorageGet(String ID) {
+		StorageCheckPO stopo=null;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Storage");
+			oos.writeUTF("ChangeStorage");
+			oos.writeObject(new String(ID));
+			stopo=(StorageCheckPO) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return stopo;
+	}
 }

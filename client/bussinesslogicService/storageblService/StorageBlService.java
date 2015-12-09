@@ -1,9 +1,10 @@
 package storageblService;
 
-import po.InputStorageDocuPO;
 import po.InputStorageList;
 import po.LookStoragePO;
 import po.OutStorageList;
+import po.StorageCheckPO;
+import po.StorageList;
 
 public interface StorageBlService {
 
@@ -38,7 +39,7 @@ public interface StorageBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public InputStorageList StorageCheck(String centerid);
+	public StorageList StorageCheck(String centerid);
 
 	/**
 	 * 库存信息查看
@@ -59,5 +60,14 @@ public interface StorageBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean StorageUpdate(InputStorageDocuPO svo) ;
+	public boolean StorageUpdate(StorageCheckPO svo) ;
+	/**
+	 * 根据Id查找库存信息;
+	 * 
+	 * @param String ID;
+	 * @return StorageCheckPO;
+	 * @exception @author
+	 *                zxc
+	 */
+	public StorageCheckPO IDStorageGet(String ID);
 }

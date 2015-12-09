@@ -31,11 +31,31 @@ public class StorageInfoStream {
 			case "SeeStorage":
 				StorageSeeInfoGet(ois, oos);
 				break;
+			case "IDCheckStorage":
+				IDCheckStorage(ois, oos);
+				break;	
 			default:
 				ChangeStorage(ois, oos);
 				break;
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void IDCheckStorage(ObjectInputStream ois, ObjectOutputStream oos) {
+		try {
+			String ID = (String) ois.readObject();
+			StorageCheck stocheck=new StorageCheck();
+			StorageCheckPO stopo=stocheck.find(ID);
+			oos.writeObject(stopo);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -47,8 +67,14 @@ public class StorageInfoStream {
 	 *                zxc
 	 */
 	private void ChangeStorage(ObjectInputStream ois, ObjectOutputStream oos) {
-		
-		
+		try {
+			StorageCheckPO islt = (StorageCheckPO) ois.readObject();
+			StorageCheck stocheck=new StorageCheck();
+			stocheck.update(islt);
+			oos.writeObject(new Boolean(true));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
