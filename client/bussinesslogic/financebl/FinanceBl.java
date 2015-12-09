@@ -11,9 +11,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import financeblService.FinanceBlService;
 import po.InitializeAccountPO;
 import po.ManageAccountPO;
+import financeblService.FinanceBlService;
 
 public class FinanceBl implements FinanceBlService {
 
@@ -172,8 +172,8 @@ public class FinanceBl implements FinanceBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean CheckBankAccount(String id) {
-		IsOk = false;
+	public ManageAccountPO CheckBankAccount(String id) {
+		ManageAccountPO accpo = null;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -182,13 +182,13 @@ public class FinanceBl implements FinanceBlService {
 			oos.writeUTF("BankAccount");
 			oos.writeUTF("CheckBankAccount");
 			oos.writeObject(new String(id));
-			ManageAccountPO accpo = (ManageAccountPO) ois.readObject();
+			accpo=(ManageAccountPO) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return IsOk;
+		return accpo;
 	}
 }

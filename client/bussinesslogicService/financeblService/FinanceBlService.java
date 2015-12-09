@@ -59,5 +59,5 @@ public interface FinanceBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean CheckBankAccount(String id);
+	public ManageAccountPO CheckBankAccount(String id);
 }

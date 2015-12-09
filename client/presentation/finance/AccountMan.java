@@ -82,17 +82,17 @@ public class AccountMan {
 		JButton delbtn = new JButton("确定删除");
 		delbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			boolean isid=true;//到时候根据po是否有数据判断
 				boolean isempty=accname.getText().equals("");
-				if(!isempty&&isid){
-					//这边将所属ID的po删除
+				FinanceBl adacc=new FinanceBl();
+				
+				if(!isempty&&adacc.DeleteBankAccount(accname.getText())){
 				JOptionPane.showMessageDialog(null, "删除成功!");
 				}
-				else if(!isempty&&!isid){
-				JOptionPane.showMessageDialog(null, "未查询到该账户!");
+				else if(isempty) {
+					JOptionPane.showMessageDialog(null, "请填写所需要删除的账户!");
 				}
 				else{
-				JOptionPane.showMessageDialog(null, "请填写所需要删除的账户!");
+					JOptionPane.showMessageDialog(null, "未查询到该账户!");
 				}
 			
 			}
@@ -144,8 +144,10 @@ public class AccountMan {
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!accname.getText().equals("")){
-			text[0].setText("12345");
-			text[2].setText("100");//到时候根据PO数据set
+					  FinanceBl finance=new FinanceBl();
+					    ManageAccountPO	mapo=finance.CheckBankAccount(accname.getText());										
+			text[0].setText(mapo.getAccountname());
+			text[2].setText(String.valueOf(mapo.getBalance()));
 			        }
 				else{
 			JOptionPane.showMessageDialog(null, "请输入要搜索的账户ID!");
@@ -168,7 +170,10 @@ public class AccountMan {
 				boolean numisempty=text[3].getText().equals("");
 				boolean isempty=idisempty||numisempty;
 				
+			    FinanceBl finance=new FinanceBl();
+//			    ManageAccountPO	mapo=finance.CheckBankAccount(accname.getText());	
 				if(!isempty&&isnum){
+					 ManageAccountPO  mapo=new  ManageAccountPO(text[1].getText(),Double.valueOf(text[3].getText()),accname.getText(),null);
 					JOptionPane.showMessageDialog(null, "修改成功!");
 				}
 				else if(!isempty&&!isnum){
@@ -218,8 +223,10 @@ public class AccountMan {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!textfield[0].getText().equals("")){
-					textfield[1].setText("12345");
-					textfield[2].setText("100");//到时候根据PO数据set
+				    FinanceBl finance=new FinanceBl();				    
+				    ManageAccountPO	mapo=finance.CheckBankAccount(textfield[0].getText());		
+					textfield[1].setText(mapo.getAccountname());
+					textfield[2].setText(String.valueOf(mapo.getBalance()));
 					        }
 						else{
 					JOptionPane.showMessageDialog(null, "请输入要查询的账户ID!");
