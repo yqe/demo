@@ -9,30 +9,9 @@ package documentdataService;
 
 import java.rmi.RemoteException;
 
-import po.CondemnList;
 import po.DocumentPO;
 
 public interface DocumentDataService{
-	/**
-	 * 返回未审批的单据
-	 * 
-	 * @param 
-	 * @return ArrayList<CondemnDocuPO>
-	 * @exception @author
-	 *                zxc
-	 */
-	public CondemnList GetUnapproveBill();
-	
-	/**
-	 * 批量审批单据
-	 * 
-	 * @param 
-	 * @return boolean
-	 * @exception @author
-	 *                zxc
-	 */
-	public boolean ApproveBill();
-	
 	public String[] getAll( ) throws RemoteException;
 	//得到所有单据类型
 	
