@@ -247,6 +247,7 @@ public class ManagerInfoStream {
 	private void GetUnapproveBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		CondemnDocu cd = new CondemnDocu();
 		try {
+			ois.readObject();
 			ArrayList<CondemnDocuPO> cdpolist = cd.findall();
 			CondemnList cdlist=new CondemnList();
 			for (int i = 0; i < cdpolist.size(); i++) {
@@ -257,6 +258,9 @@ public class ManagerInfoStream {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
