@@ -22,6 +22,11 @@ public class Maintenance {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	String PosId;
+
+	public Maintenance(String posId) {
+		this.PosId = posId;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -42,7 +47,6 @@ public class Maintenance {
 		JLabel l9 = new JLabel("手机:");
 		JLabel l10 = new JLabel("性别:");
 		JLabel l11 = new JLabel("行驶证期限:");
-
 		JLabel l12 = new JLabel("司机服役时间:");
 
 		int lmain = 16;

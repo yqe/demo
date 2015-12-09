@@ -61,7 +61,7 @@ public class loginframe {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				admin ad = new admin();
-				Boclerk bo = new Boclerk();
+//				Boclerk bo = new Boclerk();
 				courier c = new courier();
 				manager m = new manager();
 				transitmain t = new transitmain();
@@ -80,6 +80,7 @@ public class loginframe {
 						break;
 					case "营业厅业务员":
 						frame.remove(p1);
+						Boclerk bo = new Boclerk(userui.GetPosID(id.getText()));
 						frame.setBounds(500, 100, bo.Panel().getWidth(), bo.Panel().getHeight());
 						frame.add(bo.Panel());
 						break;

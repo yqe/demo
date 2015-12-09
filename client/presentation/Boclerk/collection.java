@@ -20,6 +20,11 @@ public class collection {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	String PosId;
+
+	public collection(String PosID) {
+		this.PosId = PosID;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -50,10 +55,10 @@ public class collection {
 		final JTextField profit = new JTextField();
 		final JTextField courier = new JTextField();
 		final JTextField yyt = new JTextField();
-
-//		yyt.setOpaque(false);
+		yyt.setText(PosId);
+		yyt.setOpaque(false);
 		yyt.setEditable(false);
-		
+
 		String[] year = new String[201];
 		for (int i = 2000; i < 2100; i++) {
 			year[i - 2000] = i + "年";
@@ -149,7 +154,7 @@ public class collection {
 
 		l5.setBounds(100, 300, 150, 30);
 		l7.setBounds(450, 300, 200, 30);
-		
+
 		l6.setBounds(100, 350, 150, 30);
 		l8.setBounds(100, 400, 150, 30);
 

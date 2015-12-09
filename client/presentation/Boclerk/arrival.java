@@ -24,7 +24,11 @@ public class arrival {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	String PosId;
 
+	public arrival(String posId) {
+		this.PosId = posId;
+	}
 	public JPanel Panel() throws IOException {
 
 		final JPanel p1 = new JPanel();
@@ -51,6 +55,9 @@ public class arrival {
 		l8.setFont(new Font("", Font.PLAIN, b2size));
 
 		final JTextField t1 = new JTextField();
+		t1.setText(PosId);
+		t1.setOpaque(false);
+		t1.setEditable(false);
 		final JTextField t2 = new JTextField();
 
 		String[] year = new String[201];

@@ -20,6 +20,11 @@ public class load {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	String PosId;
+
+	public load(String PosID) {
+		this.PosId = PosID;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -63,6 +68,9 @@ public class load {
 		final JTextField yy = new JTextField();// Ѻ��Ա
 		final JTextField price = new JTextField();
 		final JTextField yyt = new JTextField();
+		yyt.setText(PosId);
+		yyt.setOpaque(false);
+		yyt.setEditable(false);
 		String[] year = new String[201];
 		for (int i = 2000; i < 2100; i++) {
 			year[i - 2000] = i + "年";
