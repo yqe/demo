@@ -3,6 +3,8 @@ package CourierStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.LongBuffer;
+import java.util.function.DoublePredicate;
 
 import distancedata.DistanceData;
 import documentdata.DiliverDocu;
@@ -34,6 +36,7 @@ public class CourierInfoStream {
 				GetRoute(ois, oos);
 				break;
 			default:
+				GetExpressID(ois,oos);
 				break;
 			}
 		} catch (IOException e) {
@@ -41,6 +44,30 @@ public class CourierInfoStream {
 		}
 	}
 
+	/**
+	 * 得到数据库中最大的快递单号+1返回客户端;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void GetExpressID(ObjectInputStream ois, ObjectOutputStream oos) {
+		try {
+			ois.readObject();
+			GoodsDocu gooddata=new GoodsDocu();
+			String maxid=gooddata.getgoodsidmax();
+			long temp=Long.parseLong(maxid);
+			String reid=String.valueOf(temp+1);
+			oos.writeObject(new String(reid));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 返回给客户端快递的货运轨迹;
 	 * 

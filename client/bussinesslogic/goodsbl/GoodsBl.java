@@ -21,7 +21,33 @@ public class GoodsBl implements GoodsBLService {
 	ObjectInputStream ois;
 	boolean IsOk;
 	String hostid = "localhost";
-
+	/**
+	 * 建立寄件单
+	 * 
+	 * @param EarnedPO
+	 *            earnpo;
+	 * @return
+	 * @exception @author
+	 *                zxc
+	 */
+	public String GetExpressID() {
+		String reid=null;
+		try {
+			socket = new Socket(hostid, 8888);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeUTF("Courier");
+			oos.writeUTF("GetExpressID");
+			oos.writeObject(new String("OK"));
+			reid = (String) ois.readObject();
+			ois.close();
+			oos.close();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reid;
+	}
 	/**
 	 * 建立寄件单
 	 * 
@@ -72,7 +98,6 @@ public class GoodsBl implements GoodsBLService {
 			ois.close();
 			oos.close();
 			socket.close();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
