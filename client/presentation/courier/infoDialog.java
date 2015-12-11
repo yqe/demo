@@ -29,7 +29,7 @@ public class infoDialog extends JDialog implements ActionListener {
 
 	// JButton ok=new JButton("ȷ��");
 	infoDialog(String name,String home,String workspace,String tel) throws IOException {
-		BufferedImage bgp = ImageIO.read(new File("presentation/Cbackground.jpg"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Cbackground.jpg"));
 		background = new ImageIcon(bgp);
 		JPanel back = new JPanel() {
 			public void paintComponent(Graphics g) {

@@ -31,7 +31,7 @@ public class staffchange extends JDialog implements ActionListener {
 	private ImageIcon background;
 	private ImageIcon button1;
 	    staffchange() throws IOException{
-	BufferedImage bgp=ImageIO.read(new File("D:/test_eclipse/workspace/Frame/src/Mbackground.jpg"));
+	BufferedImage bgp=ImageIO.read(getClass().getResource("/presentation/Mbackground.jpg"));
 	background = new ImageIcon(bgp);
 
 	setTitle("人员调度"); 

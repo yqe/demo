@@ -32,7 +32,7 @@ public class stafforgan extends JDialog implements ActionListener {
 	private ImageIcon button1;
 	
       stafforgan() throws IOException{
-	BufferedImage bgp=ImageIO.read(new File("presentation/Mbackground.jpg"));
+	BufferedImage bgp=ImageIO.read(getClass().getResource("/presentation/Mbackground.jpg"));
 	background = new ImageIcon(bgp);
 
 	setTitle("人员机构调度");

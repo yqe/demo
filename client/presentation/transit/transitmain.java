@@ -31,7 +31,7 @@ public class transitmain {
 	JPanel content = new JPanel();
 	final JPanel control = new JPanel();
 	public JPanel Panel() throws IOException{
-	BufferedImage bgp=ImageIO.read(new File("presentation/tbackground.jpg"));
+	BufferedImage bgp=ImageIO.read(getClass().getResource("/presentation/tbackground.jpg"));
 	background = new ImageIcon(bgp);
 
 	JPanel transitmain = new JPanel() {

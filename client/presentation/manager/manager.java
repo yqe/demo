@@ -33,7 +33,7 @@ public class manager {
 	final JPanel control = new JPanel();
 	
 	public JPanel Panel() throws IOException{
-	BufferedImage bgp=ImageIO.read(new File("presentation/Mbackground.jpg"));
+	BufferedImage bgp=ImageIO.read(getClass().getResource("/presentation/Mbackground.jpg"));
 	background = new ImageIcon(bgp);
 	JPanel manager = new JPanel() {
 		public void paintComponent(Graphics g) {

@@ -37,7 +37,7 @@ public class Boclerk {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(new File("presentation/Bbackground.jpg"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Bbackground.jpg"));
 		background = new ImageIcon(bgp);
 
 		JPanel Boclerk = new JPanel() {

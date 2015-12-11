@@ -38,7 +38,7 @@ public class storagemain {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(new File("presentation/Sbackground.jpg"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Sbackground.jpg"));
 		Sbackground = new ImageIcon(bgp);
 
 		JPanel storagemain = new JPanel() {

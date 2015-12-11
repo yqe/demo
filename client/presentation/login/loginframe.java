@@ -38,7 +38,7 @@ public class loginframe {
 	private boolean isDraging;
 
 	public void Frame() throws IOException {
-		BufferedImage bgp = ImageIO.read(new File("presentation/background.png"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/background.png"));
 		background = new ImageIcon(bgp);
 
 		final JFrame frame = new JFrame("快递物流系统");
