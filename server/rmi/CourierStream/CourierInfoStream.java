@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.LongBuffer;
-import java.util.function.DoublePredicate;
+
 
 import distancedata.DistanceData;
 import documentdata.DiliverDocu;
