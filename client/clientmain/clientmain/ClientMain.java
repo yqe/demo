@@ -6,16 +6,38 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import login.loginframe;
 
 public class ClientMain {
 	public static void main(String[] args) {
+		try {
+			javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String hostid = "localhost";
 		try {
 			Socket socket = new Socket(hostid, 8888);
-			ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());;
-			ObjectInputStream ois=new ObjectInputStream(socket.getInputStream());;
-			loginframe login = new loginframe(socket,oos,ois);
+			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			;
+			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+			;
+			loginframe login = new loginframe(socket, oos, ois);
 			login.Frame();
 		} catch (UnknownHostException e1) {
 			// TODO Auto-generated catch block
@@ -25,4 +47,5 @@ public class ClientMain {
 			e1.printStackTrace();
 		}
 	}
+
 }
