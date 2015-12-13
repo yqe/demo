@@ -31,7 +31,9 @@ public class CondemnDocu {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			ArrayList<CondemnDocuPO> conList=new ArrayList<CondemnDocuPO>();
+			conList.add(new CondemnDocuPO("不存在","",""));
+			return conList;
 		}
 		
 		

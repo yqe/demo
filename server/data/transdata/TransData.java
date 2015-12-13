@@ -130,7 +130,9 @@ public class TransData implements TransDataService{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("Some MySql problem has happened in TransData!");
-				return null;
+				ArrayList<TransPO> errtransList=new ArrayList<TransPO>();
+				errtransList.add(new TransPO("不存在",bussinessID,expreID,destination,carsID,monitor,supercargo,fee,orderID));
+				return errtransList;
 			}
 			
 		}

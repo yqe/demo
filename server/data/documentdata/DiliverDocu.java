@@ -68,6 +68,8 @@ public class DiliverDocu implements DiliverDocuService{
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in getdistance!");
+			ArrayList<DiliverDocuPO> dipoList=new ArrayList<DiliverDocuPO>();
+			dipoList.add(new DiliverDocuPO("不存在","","",""));
 			return null;
 		}
 	}

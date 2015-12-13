@@ -39,10 +39,8 @@ public class EarnedDocu implements EarnedDocuService {
 			this.orderID = po.getOrderID();
 			this.bussinessID = po.getBussinessID();
 			condocu.insert(new CondemnDocuPO("收款单", orderID, "未审批"));
-			String insert = "INSERT INTO 收款单"
-					+ " (收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号)" + " VALUES('"
-					+ paydate + "'," + earnedmoney + ",'" + dilivername + "','"
-					+ orderID + "','" + bussinessID + "')";
+			String insert = "INSERT INTO 收款单" + " (收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号)" + " VALUES('" + paydate + "',"
+					+ earnedmoney + ",'" + dilivername + "','" + orderID + "','" + bussinessID + "')";
 			mysqlimp.update(insert);
 			CheckProfit check = new CheckProfit();
 			check.setearned(earnedmoney);// 总收入增加一条收入
@@ -55,8 +53,7 @@ public class EarnedDocu implements EarnedDocuService {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out
-					.println("Some MySql problem has happened in EarnedDocu!");
+			System.out.println("Some MySql problem has happened in EarnedDocu!");
 		}
 	}
 
@@ -65,8 +62,7 @@ public class EarnedDocu implements EarnedDocuService {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
-			String delete = "DELETE FROM 收款单" + " WHERE 订单条形码号='" + goodsID
-					+ "'";
+			String delete = "DELETE FROM 收款单" + " WHERE 订单条形码号='" + goodsID + "'";
 			mysqlimp.update(delete);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -75,8 +71,7 @@ public class EarnedDocu implements EarnedDocuService {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out
-					.println("Some MySql problem has happened in EarnedDocu!");
+			System.out.println("Some MySql problem has happened in EarnedDocu!");
 		}
 	}
 
@@ -97,14 +92,12 @@ public class EarnedDocu implements EarnedDocuService {
 			ArrayList<EarnedPO> earnList = new ArrayList<EarnedPO>();
 			EarnedPO earnedpo;
 			mysqlimp = new MySqlImp();
-			String find = "SELECT 收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号"
-					+ " FROM 收款单" + " WHERE 收款日期>='" + timebegin
+			String find = "SELECT 收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号" + " FROM 收款单" + " WHERE 收款日期>='" + timebegin
 					+ "' and 收款日期<='" + timeend + "'";
 			ResultSet rs = mysqlimp.query(find);
 			while (rs.next()) {
-				earnList.add(new EarnedPO(rs.getDate(1).toString(), rs
-						.getDouble(2), rs.getString(3), rs.getString(4), rs
-						.getString(5)));
+				earnList.add(new EarnedPO(rs.getDate(1).toString(), rs.getDouble(2), rs.getString(3), rs.getString(4),
+						rs.getString(5)));
 			}
 			rs.close();
 			return earnList;
@@ -118,8 +111,7 @@ public class EarnedDocu implements EarnedDocuService {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
-			System.out
-					.println("Some MySql problem has happened in EarnedDocu!");
+			System.out.println("Some MySql problem has happened in EarnedDocu!");
 			ArrayList<EarnedPO> earnList = new ArrayList<EarnedPO>();
 			earnList.add(new EarnedPO("不存在", 2, "", "", ""));
 			return earnList;
@@ -136,9 +128,8 @@ public class EarnedDocu implements EarnedDocuService {
 			String findall = "SELECT *" + " FROM 收款单";
 			ResultSet rs = mysqlimp.query(findall);
 			while (rs.next()) {
-				earnedList.add(new EarnedPO(rs.getDate(1).toString(), rs
-						.getDouble(2), rs.getString(3), rs.getString(4), rs
-						.getString(5)));
+				earnedList.add(new EarnedPO(rs.getDate(1).toString(), rs.getDouble(2), rs.getString(3), rs.getString(4),
+						rs.getString(5)));
 			}
 			rs.close();
 			return earnedList;
@@ -146,12 +137,13 @@ public class EarnedDocu implements EarnedDocuService {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Class has some problem in EarnedDocu!");
-			return null;
+			ArrayList<EarnedPO> earnList = new ArrayList<EarnedPO>();
+			earnList.add(new EarnedPO("不存在", 2, "", "", ""));
+			return earnList;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
-			System.out
-					.println("Some MySql problem has happened in EarnedDocu!");
+			System.out.println("Some MySql problem has happened in EarnedDocu!");
 			ArrayList<EarnedPO> earnList = new ArrayList<EarnedPO>();
 			earnList.add(new EarnedPO("不存在", 2, "", "", ""));
 			return earnList;
@@ -165,13 +157,11 @@ public class EarnedDocu implements EarnedDocuService {
 		try {
 			mysqlimp = new MySqlImp();
 			ArrayList<EarnedPO> earnedList = new ArrayList<EarnedPO>();
-			String findbyID = "SELECT *" + " FROM 收款单" + " WHERE 所属营业厅编号='"
-					+ bussID + "'";
+			String findbyID = "SELECT *" + " FROM 收款单" + " WHERE 所属营业厅编号='" + bussID + "'";
 			ResultSet rs = mysqlimp.query(findbyID);
 			while (rs.next()) {
-				earnedList.add(new EarnedPO(rs.getDate(1).toString(), rs
-						.getDouble(2), rs.getString(3), rs.getString(4), rs
-						.getString(5)));
+				earnedList.add(new EarnedPO(rs.getDate(1).toString(), rs.getDouble(2), rs.getString(3), rs.getString(4),
+						rs.getString(5)));
 			}
 			rs.close();
 			return earnedList;
@@ -198,13 +188,11 @@ public class EarnedDocu implements EarnedDocuService {
 			System.out.println(date);
 			ArrayList<EarnedPO> earnList = new ArrayList<EarnedPO>();
 			mysqlimp = new MySqlImp();
-			String find = "SELECT 收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号"
-					+ " FROM 收款单" + " WHERE 收款日期='" + date + "'";
+			String find = "SELECT 收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号" + " FROM 收款单" + " WHERE 收款日期='" + date + "'";
 			ResultSet rs = mysqlimp.query(find);
 			while (rs.next()) {
-				earnList.add(new EarnedPO(rs.getDate(1).toString(), rs
-						.getDouble(2), rs.getString(3), rs.getString(4), rs
-						.getString(5)));
+				earnList.add(new EarnedPO(rs.getDate(1).toString(), rs.getDouble(2), rs.getString(3), rs.getString(4),
+						rs.getString(5)));
 			}
 			rs.close();
 			return earnList;
@@ -218,8 +206,7 @@ public class EarnedDocu implements EarnedDocuService {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
-			System.out
-					.println("Some MySql problem has happened in EarnedDocu!");
+			System.out.println("Some MySql problem has happened in EarnedDocu!");
 			ArrayList<EarnedPO> earnList = new ArrayList<EarnedPO>();
 			earnList.add(new EarnedPO("不存在", 2, "", "", ""));
 			return earnList;

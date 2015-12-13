@@ -120,12 +120,18 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Class has some problem in BussinessArrivalDocu!");
-			return null;
+			ArrayList<BussinessArrivalDocuPO> busspoList = new ArrayList<BussinessArrivalDocuPO>();
+			busspoList.add(new BussinessArrivalDocuPO("不存在", "","",
+					"", ""));
+			return busspoList;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in BussinessArrivalDocu!");
-			return null;
+			ArrayList<BussinessArrivalDocuPO> busspoList = new ArrayList<BussinessArrivalDocuPO>();
+			busspoList.add(new BussinessArrivalDocuPO("不存在", "","",
+					"", ""));
+			return busspoList;
 		}
 	}
 	

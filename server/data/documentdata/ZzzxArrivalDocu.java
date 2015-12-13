@@ -48,7 +48,9 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ZzzxArrivalDocu!");
-			return null;
+			ArrayList<ZzzxArrivalDocuPO> zzzxpoList=new ArrayList<ZzzxArrivalDocuPO>();
+			zzzxpoList.add(new ZzzxArrivalDocuPO("不存在","","",startPlace,goodsState));
+			return zzzxpoList;
 		}
 		
 	}

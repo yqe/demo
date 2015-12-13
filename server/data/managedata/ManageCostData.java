@@ -44,7 +44,9 @@ public class ManageCostData implements ManageCostService{
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ManageCostData!");
-			return null;
+			ArrayList<CostManagePO> errcostList=new ArrayList<CostManagePO>();
+			errcostList.add(new CostManagePO("不存在",20,"","","",""));
+			return errcostList;
 		}
 		
 		

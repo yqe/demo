@@ -228,7 +228,10 @@ public class GoodsDocu implements GoodsDocuService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in GoodsDocu!");
-			return null;
+			goodsList = new ArrayList<GoodsDocuPO>();
+			goodsList.add(new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
+					"", ""));
+			return goodsList;
 		}
 
 	}

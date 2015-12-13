@@ -111,7 +111,9 @@ public class Initialaccount implements InitialAccountService{
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in Initialaccount!");
-			return null;
+			ArrayList<InitializeAccountPO> erraccList=new ArrayList<InitializeAccountPO>();
+			erraccList.add(new InitializeAccountPO("不存在","",3,4,5,5));
+			return erraccList;
 		}
 		
 		

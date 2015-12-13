@@ -57,7 +57,9 @@ public class TransferDocu implements TransferDocuService {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Some MySql problem has happened in TransferDocu!");
-			return null;
+			ArrayList<TransferDocuPO> transpoList = new ArrayList<TransferDocuPO>();
+			transpoList.add(new TransferDocuPO("不存在", "", "", "", "", "", "", "", "", 0));
+			return transpoList;
 		}
 
 	}

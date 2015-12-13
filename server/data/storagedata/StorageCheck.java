@@ -100,7 +100,9 @@ public class StorageCheck implements StorageCheckService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StorageCheck!");
-			return null;
+			ArrayList<StorageCheckPO> stoList = new ArrayList<StorageCheckPO>();
+			stoList.add(new StorageCheckPO("不存在", "", "", "", "", "", ""));
+			return stoList;
 		}
 
 	}
@@ -127,7 +129,9 @@ public class StorageCheck implements StorageCheckService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StorageCheck!");
-			return null;
+			ArrayList<StorageCheckPO> stoList = new ArrayList<StorageCheckPO>();
+			stoList.add(new StorageCheckPO("不存在", "", "", "", "", "", ""));
+			return stoList;
 		}
 
 	}

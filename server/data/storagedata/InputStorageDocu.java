@@ -115,7 +115,9 @@ public class InputStorageDocu implements InputStorageService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in InputStorageDocu!");
-			return null;
+			ArrayList<InputStorageDocuPO> insee=new ArrayList<InputStorageDocuPO>();
+			insee.add(new InputStorageDocuPO("不存在", "", "", "", "", "", "", ""));
+			return insee;
 		}
 	
 		

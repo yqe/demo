@@ -104,7 +104,9 @@ public class OutStorageDocu implements OutStorageService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in OutStorageDocu!");
-			return null;
+			ArrayList<OutStorageDocuPO> outsee=new ArrayList<OutStorageDocuPO>();
+			outsee.add(new OutStorageDocuPO("不存在", "", "", "", ""));
+			return outsee;
 		}
 		
 	}

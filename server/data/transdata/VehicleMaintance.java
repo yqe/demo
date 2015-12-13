@@ -138,7 +138,9 @@ public class VehicleMaintance implements VehicleMaintanceService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in VehicleMaintance!");
-			return null;
+			ArrayList<VehicleMaintanceInfoPO> errvehicleList=new ArrayList<VehicleMaintanceInfoPO>();
+			errvehicleList.add(new VehicleMaintanceInfoPO("不存在",bussinessID,carsID,worktime,driverID,drivername,birthday,idendity,mobile,sex,limittime));
+			return errvehicleList;
 		}
 		
 	}
