@@ -7,11 +7,14 @@ import java.net.Socket;
 import po.BussinessArrivalDocuPO;
 
 public class HallArrivalDocu extends DocumentBl {
-	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
-	String hostid = "localhost";
+
+	public HallArrivalDocu(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.ois=ois;
+		this.oos=oos;
+	}
 
 	/**
 	 * 建立营业厅到达单
@@ -25,16 +28,10 @@ public class HallArrivalDocu extends DocumentBl {
 	public boolean BuildHallArrivalDocu(BussinessArrivalDocuPO bapo) {
 		IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("HallClerk");
 			oos.writeUTF("ArrivalBill");
 			oos.writeObject(bapo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

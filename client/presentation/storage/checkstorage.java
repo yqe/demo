@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,16 +14,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import po.EmploeePO;
 import storagebl.StorageBl;
 
 public class checkstorage {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	String posid;// 中转中心编号
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
 
-	public checkstorage(String posid) {
-		this.posid = posid;
+	public checkstorage(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos = oos;
+		this.ois = ois;
+		this.emPO = emPO;
 	}
 
 	public JPanel Panel() throws IOException {
@@ -69,8 +76,7 @@ public class checkstorage {
 		JButton b4 = new JButton("查 看");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StorageBl stobl = new StorageBl();
-
+				StorageBl stobl = new StorageBl(oos, ois);
 				t1.setText("100");
 				t2.setText("50");
 				t3.setText("500");

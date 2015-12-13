@@ -54,15 +54,40 @@ public class AdminInfoStream {
 		try {
 			String name = (String) ois.readObject();
 			EmploeeData emdata = new EmploeeData();
-			String posid = emdata.findbyname(name);
-			oos.writeObject(new String(posid));
+			EmploeePO empo = emdata.findbyname(name);
+			oos.writeObject(empo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-
+	/**
+	 * 返回给客户端用户信息;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	public String Login(ObjectInputStream ois, ObjectOutputStream oos) {
+		String re=null;
+		try {
+			UserInfoPO upoClient = (UserInfoPO) ois.readObject();
+			UserInfoPO upo = ud.getLoginPO(upoClient.getUserID());
+			if (upoClient.getPassword().equals(upo.getPassword()))
+				re= upo.getPosition();
+			else if (upo == null)
+				re= "NoAccount";// 无账户
+			else
+				re= "PasswordError";// 密码错误
+			oos.writeObject(new String(re));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return re;
+	}
 	/**
 	 * 返回给客户端用户信息;
 	 * 

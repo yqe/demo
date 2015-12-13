@@ -3,6 +3,8 @@ package finance;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.channels.SelectableChannel;
 import java.util.ArrayList;
 
@@ -20,10 +22,21 @@ import login.Tran;
 import po.CostManagePO;
 import po.EarnedPO;
 import po.EarnedPOList;
+import po.EmploeePO;
 import documentbl.Earneddocu;
 import financebl.CostManage;
 
 public class CheckBill {
+
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public CheckBill(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
+	}
 
 	public void CheckBill(JPanel context) {
 		int sw = 40;
@@ -75,7 +88,7 @@ public class CheckBill {
 				Tran tran=new Tran();
 				String date=tran.Tran(olddate);
 				System.out.println(date+"&&&");
-				Earneddocu earneddocu = new Earneddocu();
+				Earneddocu earneddocu = new Earneddocu(oos,ois);
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("day", date);
                  if(epolist.GetIndex(0).getPaydate().equals("不存在")){
                 	 JOptionPane.showMessageDialog(null, "当天没有收款单!");
@@ -103,7 +116,7 @@ public class CheckBill {
 			public void actionPerformed(ActionEvent e) {
 				String id = hallno.getText();
 //				System.out.println(id);
-				Earneddocu earneddocu = new Earneddocu();
+				Earneddocu earneddocu = new Earneddocu(oos,ois);
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("ID", id);
 				
 				  if(epolist.GetIndex(0).getPaydate().equals("不存在")){

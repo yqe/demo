@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
 
@@ -20,6 +23,15 @@ public class adduser {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private EmploeePO empPO;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+
+	public adduser(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO empPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.empPO=empPO;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -62,7 +74,7 @@ public class adduser {
 				if (!isempty) {
 					UserInfoPO user = new UserInfoPO(t1.getText(), t3.getText(), t2.getText(),
 							job.getSelectedItem().toString());
-					UserBl userbl = new UserBl();
+					UserBl userbl = new UserBl(oos,ois);
 					if (userbl.AddUser(user))
 						JOptionPane.showMessageDialog(null, "新建成功!");
 					else

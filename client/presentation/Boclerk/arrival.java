@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,15 +21,20 @@ import javax.swing.table.TableColumn;
 
 import documentbl.HallArrivalDocu;
 import po.BussinessArrivalDocuPO;
+import po.EmploeePO;
 
 public class arrival {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	String PosId;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+	private EmploeePO emPO;
 
-	public arrival(String posId) {
-		this.PosId = posId;
+	public arrival(ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
+		this.ois=ois;
+		this.oos=oos;
+		this.emPO=emPO;
 	}
 	public JPanel Panel() throws IOException {
 
@@ -55,7 +62,7 @@ public class arrival {
 		l8.setFont(new Font("", Font.PLAIN, b2size));
 
 		final JTextField t1 = new JTextField();
-		t1.setText(PosId);
+		t1.setText(emPO.getPosID());
 		t1.setOpaque(false);
 		t1.setEditable(false);
 		final JTextField t2 = new JTextField();
@@ -109,7 +116,7 @@ public class arrival {
 						+ daybox.getSelectedItem();
 				String place = (String) sitebox.getSelectedItem();
 				String state = (String) statebox.getSelectedItem();
-				HallArrivalDocu bussari = new HallArrivalDocu();
+				HallArrivalDocu bussari = new HallArrivalDocu(oos,ois);
 				boolean IsOk = bussari.BuildHallArrivalDocu(
 						new BussinessArrivalDocuPO(date, t2.getText(), place, state, t1.getText()));
 				if (IsOk) {

@@ -1,5 +1,6 @@
 package servermain;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -38,7 +39,7 @@ public class ServerThread implements Runnable {
 				socket = server.accept();
 				if (socket != null) {
 					Receiver r = new Receiver(socket);
-					r.dealcmd();
+					r.login();
 				}
 			}
 		} catch (Exception e) {
@@ -55,39 +56,64 @@ public class ServerThread implements Runnable {
 			this.socket = socket;
 		}
 
-		public void dealcmd() {
+		public void login() {
+			String logininfo = null;
 			try {
 				oos = new ObjectOutputStream(socket.getOutputStream());
 				ois = new ObjectInputStream(socket.getInputStream());
-				switch (ois.readUTF()) {
-				case "Storage":
-					new StorageInfoStream().JudgeCmd(ois, oos);
-					break;
-				case "Admin":
-					new AdminInfoStream().JudgeCmd(ois, oos);
-					break;
-				case "Courier":
-					new CourierInfoStream().JudgeCmd(ois, oos);
-					break;
-				case "Finance":
-					new FinanceInfoStream().JudgeCmd(ois, oos);
-					break;
-				case "HallClerk":
-					new HallClerkInfoStream().JudgeCmd(ois, oos);
-					break;
-				case "Manager":
-					new ManagerInfoStream().JudgeCmd(ois, oos);
-					break;
-				case "Transit":
-					new TransitInfoStream().JudgeCmd(ois, oos);
-					break;
-				default:
-					break;
-				}
-				ois.close();
-				oos.close();
-				socket.close();
+				if (((String) ois.readObject()).equals("login"))
+					logininfo = new AdminInfoStream().Login(ois, oos);
+				if (!logininfo.equals("NoAccount") && !logininfo.equals("PasswordError"))
+					dealcmd(ois,oos);
+				else
+					login();
 			} catch (Exception e) {
+				login();
+			}
+		}
+
+		public void dealcmd(ObjectInputStream ois,ObjectOutputStream oos) {
+			 System.out.println("csd");
+			while (true) {
+				try {
+					switch (ois.readUTF()) {
+					case "Storage":
+						new StorageInfoStream().JudgeCmd(ois, oos);
+						break;
+					case "Admin":
+						new AdminInfoStream().JudgeCmd(ois, oos);
+						break;
+					case "Courier":
+						new CourierInfoStream().JudgeCmd(ois, oos);
+						break;
+					case "Finance":
+						new FinanceInfoStream().JudgeCmd(ois, oos);
+						break;
+					case "HallClerk":
+						new HallClerkInfoStream().JudgeCmd(ois, oos);
+						break;
+					case "Manager":
+						new ManagerInfoStream().JudgeCmd(ois, oos);
+						break;
+					case "Transit":
+						new TransitInfoStream().JudgeCmd(ois, oos);
+						break;
+					default:
+						break;
+					}
+//					ois.close();
+//					oos.close();
+//					socket.close();
+				} catch (Exception e) {
+					try {
+						ois.close();
+						oos.close();
+						socket.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 			}
 		}
 	}

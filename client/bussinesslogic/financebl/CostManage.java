@@ -9,11 +9,15 @@ import po.CostManList;
 import po.CostManagePO;
 
 public class CostManage {
-	Socket socket;
+
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
-	String hostid = "localhost";
+
+	public CostManage(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.oos=oos;
+		this.ois=ois;
+	}
 
 	/**
 	 * 得到所给日期之间的所有付款单
@@ -28,16 +32,10 @@ public class CostManage {
 	public CostManList GetCostManageDocu(String datal, String datar) {
 		CostManList cpolist = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("GetCostManageDocu");
 			oos.writeObject(new String(datal + " " + datar));
 			cpolist = (CostManList) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,15 +54,10 @@ public class CostManage {
 	public boolean BuildCostManage(CostManagePO cmpo) {
 		IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("PaymentBill");
 			oos.writeObject(cmpo);
 			IsOk = (boolean) ois.readObject();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

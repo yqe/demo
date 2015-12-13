@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -21,10 +23,21 @@ import po.CostManList;
 import po.CostManagePO;
 import po.EarnedPO;
 import po.EarnedPOList;
+import po.EmploeePO;
 import documentbl.Earneddocu;
 import financebl.CostManage;
 
 public class StateOfRun {
+
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public StateOfRun(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
+	}
 
 	public void stateofrun(JPanel context) {
 		context.removeAll();
@@ -95,8 +108,8 @@ public class StateOfRun {
 				// System.out.println(startdate);
 				// System.out.println(enddate);
 
-				CostManage costmanage = new CostManage();
-				Earneddocu earneddocu = new Earneddocu();
+				CostManage costmanage = new CostManage(oos,ois);
+				Earneddocu earneddocu = new Earneddocu(oos,ois);
 
 				CostManList cpolist = costmanage.GetCostManageDocu(startdate,
 						enddate);

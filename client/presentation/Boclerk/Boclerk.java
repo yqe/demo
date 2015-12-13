@@ -12,6 +12,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -22,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import login.loginframe;
+import po.EmploeePO;
 
 public class Boclerk {
 	private JPanel imagePanel;
@@ -30,10 +34,16 @@ public class Boclerk {
 	int size = 180;
 	JPanel content = new JPanel();
 	final JPanel control = new JPanel();
-	String PosId;
+	private ObjectOutputStream oos;
+	private Socket socket;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
 
-	public Boclerk(String PosID) {
-		this.PosId = PosID;
+	public Boclerk(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
+		this.socket = socket;
+		this.ois = ois;
+		this.oos = oos;
+		this.emPO = emPO;
 	}
 
 	public JPanel Panel() throws IOException {
@@ -50,7 +60,7 @@ public class Boclerk {
 
 		Boclerk.setOpaque(false);
 		Boclerk.setLayout(null);
-		load load = new load(PosId);
+		load load = new load(ois, oos, emPO);
 		control.setBounds(0, 0, size, 700);
 		content.setBounds(size, 0, 600, 700);
 
@@ -64,6 +74,14 @@ public class Boclerk {
 		JButton b3 = new JButton("退出");
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					ois.close();
+					oos.close();
+					socket.close();
+				} catch (IOException e1) {
+					// TODO
+					e1.printStackTrace();
+				}
 				System.exit(0);
 			}
 		});
@@ -72,10 +90,10 @@ public class Boclerk {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					load load = new load(PosId);
+					load load = new load(ois, oos, emPO);
 					changepanel(load.Panel());
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+					// TODO
 					e1.printStackTrace();
 				}
 			}
@@ -84,9 +102,8 @@ public class Boclerk {
 		JButton b5 = new JButton("建立收款单");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				try {
-					collection collection = new collection(PosId);
+					collection collection = new collection(ois, oos, emPO);
 					changepanel(collection.Panel());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -99,7 +116,7 @@ public class Boclerk {
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Maintenance m = new Maintenance(PosId);
+					Maintenance m = new Maintenance(ois, oos, emPO);
 					changepanel(m.Panel());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -112,7 +129,7 @@ public class Boclerk {
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					arrival a = new arrival(PosId);
+					arrival a = new arrival(ois, oos, emPO);
 					changepanel(a.Panel());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block

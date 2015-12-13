@@ -7,11 +7,16 @@ import java.net.Socket;
 import po.InitializeAccountPO;
 
 public class SetAccount {
-	Socket socket;
+
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
-	String hostid = "localhost";
+
+	public SetAccount(ObjectOutputStream oos,ObjectInputStream ois) {
+		this.oos=oos;
+		this.ois=ois;
+	}
+
 	/**
 	 * 建立期初建账
 	 * 
@@ -21,23 +26,16 @@ public class SetAccount {
 	 * @exception @author
 	 *                zxc
 	 */
-   public boolean BuildAccount(InitializeAccountPO apo){
+	public boolean BuildAccount(InitializeAccountPO apo) {
 		IsOk = false;
-	try {
-		socket = new Socket(hostid, 8888);
-		oos = new ObjectOutputStream(socket.getOutputStream());
-		ois = new ObjectInputStream(socket.getInputStream());
-		oos.writeUTF("Finance");
-		//todo
-		oos.writeUTF("ShipmentBill");
-		oos.writeObject(apo);
-		IsOk = ois.readBoolean();
-		ois.close();
-		oos.close();
-		socket.close();
-	} catch (Exception e) {
-		e.printStackTrace();
+		try {
+			oos.writeUTF("Finance");
+			oos.writeUTF("ShipmentBill");
+			oos.writeObject(apo);
+			IsOk = ois.readBoolean();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return IsOk;
 	}
-	return IsOk;
-   }
 }

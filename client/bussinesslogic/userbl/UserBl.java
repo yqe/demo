@@ -15,10 +15,15 @@ import po.UserInfoPO;
 import userblService.UserBlService;
 
 public class UserBl implements UserBlService {
-	Socket socket;
+//	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
-	String hostid = "localhost";
+//	String hostid = "localhost";
+
+	public UserBl(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.ois=ois;
+		this.oos=oos;
+	}
 
 	/**
 	 * 根据id，密码，查找用户登录信息;
@@ -31,22 +36,10 @@ public class UserBl implements UserBlService {
 	 */
 	public String look(String id, String password) {
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
-			oos.writeUTF("Admin");
-			oos.writeUTF("GetAccount");
+			oos.writeObject(new String("login"));
 			oos.writeObject(new UserInfoPO(id, password, "", ""));
-			UserInfoPO upo = (UserInfoPO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
-			if (password.equals(upo.getPassword()))
-				return upo.getPosition();
-			else if (upo == null)
-				return "NoAccount";// 无账户
-			else
-				return "PasswordError";// 密码错误
+			String re = (String) ois.readObject();
+			return re;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,16 +58,10 @@ public class UserBl implements UserBlService {
 	public UserInfoPO GetUserAccount(String id) {
 		UserInfoPO upo = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
 			oos.writeUTF("GetAccount");
 			oos.writeObject(new UserInfoPO(id, "", "", ""));
 			upo = (UserInfoPO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -93,16 +80,10 @@ public class UserBl implements UserBlService {
 	public boolean positionTransfer(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
 			oos.writeUTF("PowerChange");
 			oos.writeObject(upo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -121,16 +102,10 @@ public class UserBl implements UserBlService {
 	public boolean changePassword(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
 			oos.writeUTF("PasswordChange");
 			oos.writeObject(upo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 			return IsOk;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,16 +125,10 @@ public class UserBl implements UserBlService {
 	public boolean cancellation(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
 			oos.writeUTF("DeleteAcc");
 			oos.writeObject(upo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -178,16 +147,10 @@ public class UserBl implements UserBlService {
 	public boolean AddUser(UserInfoPO upo) {
 		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
 			oos.writeUTF("AddAccount");
 			oos.writeObject(upo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -203,23 +166,17 @@ public class UserBl implements UserBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public String GetPosID(String userid) {
-		String posid = "";
+	public EmploeePO GetEmployeePO(String userid) {
+		EmploeePO empo = null;
 		try {
 			String name = GetUserAccount(userid).getUsername();
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Admin");
 			oos.writeUTF("GetEmloyeePO");
 			oos.writeObject(new String(name));
-			posid = (String) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
+			empo = (EmploeePO) ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return posid;
+		return empo;
 	}
 }

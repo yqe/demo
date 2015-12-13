@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -25,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import po.EmploeePO;
 import po.InputStorageList;
 import po.OutStorageDocuPO;
 import po.OutStorageList;
@@ -39,10 +42,14 @@ public class outstorage {
 	private JPanel imagePanel;
 	private ImageIcon Sbackground;
 	private ImageIcon button1;
-	String posid;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
 
-	public outstorage(String posid) {
-		this.posid = posid;
+	public outstorage(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
 	}
 
 	public JPanel Panel() throws IOException {
@@ -74,7 +81,7 @@ public class outstorage {
 
 		final JTextField t1 = new JTextField();
 		final JTextField t2 = new JTextField();
-		t2.setText(posid);
+		t2.setText(emPO.getPosID());
 		t2.setOpaque(false);
 		t2.setEditable(false);
 		String[] year = new String[201];
@@ -163,7 +170,7 @@ public class outstorage {
 		JButton b6 = new JButton("完成出库");
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StorageBl k = new StorageBl();
+				StorageBl k = new StorageBl(oos,ois);
 				boolean isOk = k.OutStorageInput(oslt);
 				if (isOk)
 					JOptionPane.showMessageDialog(null, "成功完成出库!");

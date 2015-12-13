@@ -16,11 +16,16 @@ import po.ExpressTrailPO;
 import po.GoodsDocuPO;
 
 public class GoodsBl implements GoodsBLService {
-	Socket socket;
+
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
-	String hostid = "localhost";
+
+	public GoodsBl(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.oos = oos;
+		this.ois = ois;
+	}
+
 	/**
 	 * 建立寄件单
 	 * 
@@ -31,23 +36,18 @@ public class GoodsBl implements GoodsBLService {
 	 *                zxc
 	 */
 	public String GetExpressID() {
-		String reid=null;
+		String reid = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Courier");
 			oos.writeUTF("GetExpressID");
 			oos.writeObject(new String("OK"));
 			reid = (String) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return reid;
 	}
+
 	/**
 	 * 建立寄件单
 	 * 
@@ -60,16 +60,10 @@ public class GoodsBl implements GoodsBLService {
 	public boolean BuildGoodsDocu(GoodsDocuPO gdpo) {
 		IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Courier");
 			oos.writeUTF("SendBill");
 			oos.writeObject(gdpo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,16 +82,10 @@ public class GoodsBl implements GoodsBLService {
 	public ExpressTrailPO GoodsInquiry(String ID) {
 		ExpressTrailPO route = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Courier");
 			oos.writeUTF("GetRoute");
 			oos.writeObject(new String(ID));
 			route = (ExpressTrailPO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,16 +104,10 @@ public class GoodsBl implements GoodsBLService {
 	public String[] Goodsgetinfo(String ID) {
 		String[] re = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Courier");
 			oos.writeUTF("QueryOrder");
 			oos.writeObject(new String(ID));
 			GoodsDocuPO gdpo = (GoodsDocuPO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 			re = new String[] { gdpo.getReceivername(), gdpo.getReceiveraddress(), gdpo.getReceiverworkspace(),
 					gdpo.getReceivermobile() };
 		} catch (Exception e) {
@@ -153,9 +135,6 @@ public class GoodsBl implements GoodsBLService {
 		// System.out.println(weight);
 		try {
 			System.out.println(weight);
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Courier");
 			oos.writeUTF("AboutPrice");
 			oos.writeObject(new String(depatureplace + " " + destination));
@@ -183,9 +162,6 @@ public class GoodsBl implements GoodsBLService {
 			double price = i * (weight * discon) / 30000 + j;
 			System.out.println(price);
 			priceStr = price + "";
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

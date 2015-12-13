@@ -7,11 +7,16 @@ import java.net.Socket;
 import po.DiliverDocuPO;
 
 public class Diliverdocu extends DocumentBl {
-	Socket socket;
+
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
-	String hostid = "localhost";
+
+	public Diliverdocu(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.oos = oos;
+		this.ois = ois;
+	}
+
 	/**
 	 * 建立派件单
 	 * 
@@ -21,24 +26,18 @@ public class Diliverdocu extends DocumentBl {
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean BuildDiliverDocu(DiliverDocuPO ddpo){
+	public boolean BuildDiliverDocu(DiliverDocuPO ddpo) {
 		IsOk = false;
 		System.out.println(ddpo.getCourier());
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Courier");
 			oos.writeUTF("DeliveryBill");
 			oos.writeObject(ddpo);
-			IsOk =(boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
+			IsOk = (boolean) ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return IsOk;
-		
+
 	}
 }

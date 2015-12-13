@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,16 +16,22 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import documentbl.Transdocu;
+import po.EmploeePO;
 import po.TransPO;
 
 public class load {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	String PosId;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+	private EmploeePO emPO;
 
-	public load(String PosID) {
-		this.PosId = PosID;
+
+	public load(ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
+		this.ois=ois;
+		this.oos=oos;
+		this.emPO=emPO;
 	}
 
 	public JPanel Panel() throws IOException {
@@ -68,7 +76,7 @@ public class load {
 		final JTextField yy = new JTextField();// Ѻ��Ա
 		final JTextField price = new JTextField();
 		final JTextField yyt = new JTextField();
-		yyt.setText(PosId);
+		yyt.setText(emPO.getPosID());
 		yyt.setOpaque(false);
 		yyt.setEditable(false);
 		String[] year = new String[201];
@@ -140,7 +148,7 @@ public class load {
 				else if (isempty)
 					JOptionPane.showMessageDialog(null, "请完整填写信息!");
 				else {
-					Transdocu trans = new Transdocu();
+					Transdocu trans = new Transdocu(oos,ois);
 					boolean IsOk = trans.BuildTransDocu(new TransPO(date, yyt.getText(), transid.getText(),
 							(String) (sitebox.getSelectedItem()), carid.getText(), jz.getText(), yy.getText(),
 							Double.parseDouble(price.getText()), id.getText()));

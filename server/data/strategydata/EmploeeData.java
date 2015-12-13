@@ -172,28 +172,28 @@ public class EmploeeData implements EmploeeDataService {
 	}
 
 	@Override
-	public String findbyname(String name) throws RemoteException {
+	public EmploeePO findbyname(String name) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
-			String find = "SELECT 机构编号" + " FROM 员工信息" + " WHERE 员工姓名='" + name
+			String find = "SELECT *" + " FROM 员工信息" + " WHERE 员工姓名='" + name
 					+ "'";
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
-			String posname=rs.getString(1);
+			EmploeePO emppo=new EmploeePO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11));
 			rs.close();
-			return posname;
+			return emppo;
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in EmploeeData!");
-			return "不存在";
+			return new EmploeePO("不存在","","",1,"",12,"","","","","");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EmploeeData!");
-			return "不存在";
+			return new EmploeePO("不存在","","",1,"",12,"","","","","");
 		}
 		
 	}

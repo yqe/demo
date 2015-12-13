@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -14,14 +17,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import po.EmploeePO;
+
 public class financemainui {
 
-	JButton[] cmdbutton = new JButton[] { new JButton("账户管理"),
-			new JButton("查看收款单"), new JButton("成本管理"), new JButton("成本收益表"),
-			new JButton("经营情况表"), new JButton("期初建账"), new JButton("导出表单"),
-			new JButton("退出") };
-	JButton[] account = new JButton[] { new JButton("增加账户"),
-			new JButton("删除账户"), new JButton("修改账户"), new JButton("查询账户") };
+	JButton[] cmdbutton = new JButton[] { new JButton("账户管理"), new JButton("查看收款单"), new JButton("成本管理"),
+			new JButton("成本收益表"), new JButton("经营情况表"), new JButton("期初建账"), new JButton("导出表单"), new JButton("退出") };
+	JButton[] account = new JButton[] { new JButton("增加账户"), new JButton("删除账户"), new JButton("修改账户"),
+			new JButton("查询账户") };
 	JPanel cmdpanel = new JPanel();
 	JPanel context = new JPanel();
 	private ImageIcon background;
@@ -36,27 +39,28 @@ public class financemainui {
 	int bw = 0, bh = 0;
 	int mbw = 0, mbh = 0;
 	boolean cc = false;
+	private Socket socket;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
 
-	// public static void main(String[] args) {
-	// financemainui fui = new financemainui();
-	// }
-	
+	public financemainui(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
+		this.socket = socket;
+		this.oos = oos;
+		this.ois = ois;
+		this.emPO = emPO;
+	}
+
 	public JPanel financemainui() throws IOException {
-		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// setLayout(null);
-		// setVisible(true);
-		// setBounds(40, 0, width, height);
-		// this.add(contain);
-		
-		BufferedImage bgp=ImageIO.read(getClass().getResource("/presentation/Fbackground.jpg"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Fbackground.jpg"));
 		background = new ImageIcon(bgp);
-		
+
 		JPanel contain = new JPanel() {
-				public void paintComponent(Graphics g) {
+			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				g.drawImage(background.getImage(), 0, 0, null);
-				}
-				};
+			}
+		};
 		contain.setOpaque(false);
 		contain.setBounds(0, 0, width, height);
 		contain.setLayout(null);
@@ -69,7 +73,7 @@ public class financemainui {
 		this.CmdButtonShow(bw, bh, mbw, mbh);
 		contain.add(cmdpanel);
 		contain.add(context);
-		new CheckBill().CheckBill(context);
+		new CheckBill(oos,ois,emPO).CheckBill(context);
 		context.repaint();
 		return contain;
 	}
@@ -96,7 +100,7 @@ public class financemainui {
 					CmdButtonShow(bw, bh, 0, 0);
 					cc = false;
 				}
-				new CheckBill().CheckBill(context);
+				new CheckBill(oos,ois,emPO).CheckBill(context);
 				context.repaint();
 				break;
 			case "成本管理":
@@ -104,7 +108,7 @@ public class financemainui {
 					CmdButtonShow(bw, bh, 0, 0);
 					cc = false;
 				}
-				new CostMan().costMan(context);
+				new CostMan(oos,ois,emPO).costMan(context);
 				context.repaint();
 				break;
 			case "成本收益表":
@@ -112,8 +116,8 @@ public class financemainui {
 					CmdButtonShow(bw, bh, 0, 0);
 					cc = false;
 				}
-				
-				new CostIncome().costincome(context);
+
+				new CostIncome(oos,ois,emPO).costincome(context);
 				context.repaint();
 				break;
 			case "经营情况表":
@@ -122,7 +126,7 @@ public class financemainui {
 					cc = false;
 				}
 				OperateState();
-				new StateOfRun().stateofrun(context);
+				new StateOfRun(oos,ois,emPO).stateofrun(context);
 				context.repaint();
 				break;
 			case "期初建账":
@@ -130,7 +134,7 @@ public class financemainui {
 					CmdButtonShow(bw, bh, 0, 0);
 					cc = false;
 				}
-				new BuildAccount().buildaccount(context);
+				new BuildAccount(oos,ois,emPO).buildaccount(context);
 				context.repaint();
 				break;
 			case "导出表单":
@@ -148,19 +152,19 @@ public class financemainui {
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
 			case "增加账户":
-				new AccountMan().AddAcc(context);
+				new AccountMan(oos,ois,emPO).AddAcc(context);
 				context.repaint();
 				break;
 			case "删除账户":
-				new AccountMan().DeleteAcc(context);
+				new AccountMan(oos,ois,emPO).DeleteAcc(context);
 				context.repaint();
 				break;
 			case "修改账户":
-				new AccountMan().ChangeAcc(context);
+				new AccountMan(oos,ois,emPO).ChangeAcc(context);
 				context.repaint();
 				break;
 			case "查询账户":
-				new AccountMan().CheckAcc(context);
+				new AccountMan(oos,ois,emPO).CheckAcc(context);
 				context.repaint();
 				break;
 			default:
@@ -180,15 +184,13 @@ public class financemainui {
 		for (int i = 0; i < cmdbutton.length; i++) {
 			if (i == 1 && mbw != 0) {
 				for (int j = 0; j < account.length; j++) {
-					account[j].setBounds(mgapw, gaph + mgaph * (j + 1) + mbh
-							* j + bh, mbw, mbh);
+					account[j].setBounds(mgapw, gaph + mgaph * (j + 1) + mbh * j + bh, mbw, mbh);
 					cmdpanel.add(account[j]);
 					account[j].addActionListener(new AccountCmd());
 				}
 				temp = 5 * mgaph + (mbh << 2) - gaph;
 			}
-			cmdbutton[i]
-					.setBounds(gapw, gaph * (i + 1) + bh * i + temp, bw, bh);
+			cmdbutton[i].setBounds(gapw, gaph * (i + 1) + bh * i + temp, bw, bh);
 			cmdpanel.add(cmdbutton[i]);
 			cmdbutton[i].addActionListener(new CmdActionListener());
 		}
@@ -202,8 +204,8 @@ public class financemainui {
 		int bh = mbh + 5;
 		CmdButtonShow(bw, bh, mbw, mbh);
 	}
-	public void OperateState(){
-		
+
+	public void OperateState() {
+
 	}
 }
-

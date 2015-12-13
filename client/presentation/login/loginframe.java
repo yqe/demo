@@ -9,6 +9,10 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -36,6 +40,15 @@ public class loginframe {
 	private ImageIcon button1;
 	private int xx, yy;
 	private boolean isDraging;
+	public Socket socket;
+	public ObjectOutputStream oos;
+	public ObjectInputStream ois;
+
+	public loginframe(Socket socket, ObjectOutputStream oos, ObjectInputStream ois) {
+		this.socket=socket;
+		this.oos=oos;
+		this.ois=ois;
+	}
 
 	public void Frame() throws IOException {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/background.png"));
@@ -60,53 +73,52 @@ public class loginframe {
 		// final String passwordinfo=password.getText();
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				admin ad = new admin();
-//				Boclerk bo = new Boclerk();
-				courier c = new courier();
-				manager m = new manager();
-				transitmain t = new transitmain();
-//				storagemain s = new storagemain();
-				financemainui f = new financemainui();
 				char[] pass = password.getPassword();
 				String passwordstr = new String(pass);
 				try {
-					UserBl userui = new UserBl();
-					String cmdui = userui.look(id.getText(), passwordstr);
+					UserBl userui = new UserBl(oos,ois);
+					String userid=id.getText();
+					String cmdui = userui.look(userid, passwordstr);
 					switch (cmdui) {
 					case "管理员":
+						admin ad = new admin(socket,ois,oos,userui.GetEmployeePO(userid));
 						frame.remove(p1);
 						frame.setBounds(500, 100, ad.Panel().getWidth(), ad.Panel().getHeight());
 						frame.add(ad.Panel());
 						break;
 					case "营业厅业务员":
 						frame.remove(p1);
-						Boclerk bo = new Boclerk(userui.GetPosID(id.getText()));
+						Boclerk bo = new Boclerk(socket,ois,oos,userui.GetEmployeePO(userid));
 						frame.setBounds(500, 100, bo.Panel().getWidth(), bo.Panel().getHeight());
 						frame.add(bo.Panel());
 						break;
 					case "快递员":
 						frame.remove(p1);
+						courier c = new courier(socket,ois,oos,userui.GetEmployeePO(userid));
 						frame.setBounds(400, 100, c.Panel().getWidth(), c.Panel().getHeight());
 						frame.add(c.Panel());
 						break;
 					case "总经理":
 						frame.remove(p1);
+						manager m = new manager(socket,ois,oos,userui.GetEmployeePO(userid));
 						frame.setBounds(500, 100, m.Panel().getWidth(), m.Panel().getHeight());
 						frame.add(m.Panel());
 						break;
 					case "中转中心业务员":
 						frame.remove(p1);
+						transitmain t = new transitmain(socket,ois,oos,userui.GetEmployeePO(userid));
 						frame.setBounds(500, 100, t.Panel().getWidth(), t.Panel().getHeight());
 						frame.add(t.Panel());
 						break;
 					case "中转中心库存管理人员":
 						frame.remove(p1);
-						storagemain s = new storagemain(userui.GetPosID(id.getText()));
+						storagemain s = new storagemain(socket,ois,oos,userui.GetEmployeePO(userid));
 						frame.setBounds(500, 100, s.Panel().getWidth(), s.Panel().getHeight());
 						frame.add(s.Panel());
 						break;
 					case "财务人员":
 						frame.remove(p1);
+						financemainui f = new financemainui(socket,ois,oos,userui.GetEmployeePO(userid));
 						frame.setBounds(500, 100, f.financemainui().getWidth(), f.financemainui().getHeight());
 						frame.add(f.financemainui());
 						break;
@@ -144,6 +156,15 @@ public class loginframe {
 		JButton b3 = new JButton("退出");
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					oos.close();
+					ois.close();
+					socket.close();
+				} catch (IOException e1) {
+					// TODO
+					e1.printStackTrace();
+				}
+				
 				System.exit(0);
 			}
 
@@ -187,7 +208,6 @@ public class loginframe {
 				}
 			}
 		});
-
 		l1.setBounds(150, 50, 40, 30);
 		id.setBounds(240, 50, 120, 30);
 		l2.setBounds(150, 100, 80, 30);
@@ -196,4 +216,5 @@ public class loginframe {
 		b2.setBounds(240, 240, 160, 40);
 		b3.setBounds(540, 1, 60, 30);
 	}
+
 }

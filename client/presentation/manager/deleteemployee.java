@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -24,6 +26,15 @@ public class deleteemployee {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public deleteemployee(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -115,7 +126,7 @@ public class deleteemployee {
 		JButton b4 = new JButton("查询ID");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EmploeeBl jk = new EmploeeBl();
+				EmploeeBl jk = new EmploeeBl(oos,ois);
 				EmploeePO empo = jk.IDGetEmp(id.getText());
 				
 				if(empo.getPosition().equals("不存在")){
@@ -147,7 +158,7 @@ public class deleteemployee {
 				boolean idisempty = id.getText().equals("");
 				boolean nameisempty = name.getText().equals("");
 				boolean isempty = idisempty || nameisempty;
-				EmploeeBl ac = new EmploeeBl();
+				EmploeeBl ac = new EmploeeBl(oos,ois);
 				boolean isOk = ac.DeleteEmp(id.getText());
 				if (!isempty && isOk)
 					JOptionPane.showMessageDialog(null, "删除成功!");

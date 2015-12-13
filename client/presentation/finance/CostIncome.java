@@ -1,14 +1,26 @@
 package finance;
 
 import java.awt.Font;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import financebl.FinanceBl;
+import po.EmploeePO;
 
 public class CostIncome {
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public CostIncome(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
+	}
 
 	public void costincome(JPanel context) {
 		context.removeAll();
@@ -34,7 +46,7 @@ public class CostIncome {
 					textw, texth);
 			context.add(textfield[i]);
 		}
-		FinanceBl finance = new FinanceBl();
+		FinanceBl finance = new FinanceBl(oos,ois);
 		String s[] = finance.GetCostInfo();
 		textfield[0].setText(s[0]);
 		textfield[1].setText(s[1]);

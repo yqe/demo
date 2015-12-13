@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,15 +18,20 @@ import javax.swing.JTextField;
 import login.Tran;
 import documentbl.Earneddocu;
 import po.EarnedPO;
+import po.EmploeePO;
 
 public class collection {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	String PosId;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+	private EmploeePO emPO;
 
-	public collection(String PosID) {
-		this.PosId = PosID;
+	public collection(ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
+		this.ois=ois;
+		this.oos=oos;
+		this.emPO=emPO;
 	}
 
 	public JPanel Panel() throws IOException {
@@ -56,7 +63,7 @@ public class collection {
 		final JTextField profit = new JTextField();
 		final JTextField courier = new JTextField();
 		final JTextField yyt = new JTextField();
-		yyt.setText(PosId);
+		yyt.setText(emPO.getPosID());
 		yyt.setOpaque(false);
 		yyt.setEditable(false);
 
@@ -111,7 +118,7 @@ public class collection {
 				else if (pisempty)
 					JOptionPane.showMessageDialog(null, "抱歉，请输入正确的收款金额!");
 				else {
-					Earneddocu edocu = new Earneddocu();
+					Earneddocu edocu = new Earneddocu(oos,ois);
 					boolean IsOk = edocu
 							.BuildEarnedDocu(new EarnedPO(date, rececash, courier.getText(), id.getText(), ""));
 					if (IsOk) {

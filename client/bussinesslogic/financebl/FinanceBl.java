@@ -17,6 +17,15 @@ import financeblService.FinanceBlService;
 
 public class FinanceBl implements FinanceBlService {
 
+	ObjectOutputStream oos;
+	ObjectInputStream ois;
+	boolean IsOk;
+	
+	public FinanceBl(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.oos=oos;
+		this.ois=ois;
+	}
+
 	/**
 	 * 期初建账;
 	 * 
@@ -28,27 +37,15 @@ public class FinanceBl implements FinanceBlService {
 	public boolean InitAccount(InitializeAccountPO initacc) {
 		IsOk=false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("InitAccount");
 			oos.writeObject(initacc);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return IsOk;
 	}
-
-	Socket socket;
-	ObjectOutputStream oos;
-	ObjectInputStream ois;
-	boolean IsOk;
-	String hostid = "localhost";
 
 	/**
 	 * 得到总收入,总支出,总利润;
@@ -61,15 +58,9 @@ public class FinanceBl implements FinanceBlService {
 	public String[] GetCostInfo() {
 		String[] costinfo = new String[3];
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("CostCheck");
 			costinfo = ((String) ois.readObject()).split(" ");
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,17 +79,11 @@ public class FinanceBl implements FinanceBlService {
 	public boolean BuildBankAccount(ManageAccountPO accpo) {
 		IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("BankAccount");
 			oos.writeUTF("BuildBankAccount");
 			oos.writeObject(accpo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -117,17 +102,11 @@ public class FinanceBl implements FinanceBlService {
 	public boolean DeleteBankAccount(String id) {
 		IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("BankAccount");
 			oos.writeUTF("DeleteBankAccount");
 			oos.writeObject(new String(id));
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -146,17 +125,11 @@ public class FinanceBl implements FinanceBlService {
 	public boolean ModifyBankAccount(ManageAccountPO accpo) {
 		IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("BankAccount");
 			oos.writeUTF("ChangeBankAccount");
 			oos.writeObject(accpo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -175,17 +148,11 @@ public class FinanceBl implements FinanceBlService {
 	public ManageAccountPO CheckBankAccount(String id) {
 		ManageAccountPO accpo = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("BankAccount");
 			oos.writeUTF("CheckBankAccount");
 			oos.writeObject(new String(id));
 			accpo=(ManageAccountPO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

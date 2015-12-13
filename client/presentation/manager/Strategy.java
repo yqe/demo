@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -24,12 +26,22 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import po.EmploeePO;
 import po.StrategyPO;
 
 public class Strategy {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public Strategy(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos = oos;
+		this.ois = ois;
+		this.emPO = emPO;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -80,9 +92,8 @@ public class Strategy {
 		final JTextField controller = new JTextField();
 		final JTextField price = new JTextField();
 
-		
-		strategybl.Strategy stra=new strategybl.Strategy();
-		StrategyPO spo=stra.show();	
+		strategybl.Strategy stra = new strategybl.Strategy(oos, ois);
+		StrategyPO spo = stra.show();
 		manager.setText(String.valueOf(spo.getTopsal()));
 		transitman.setText(String.valueOf(spo.getStoragesal()));
 		storager.setText(String.valueOf(spo.getStoragemanagersal()));
@@ -90,7 +101,8 @@ public class Strategy {
 		courier.setText(String.valueOf(spo.getDiliversal()));
 		financer.setText(String.valueOf(spo.getFinancesal()));
 		controller.setText(String.valueOf(spo.getManagersal()));
-		price.setText(String.valueOf(spo.getConstance()));// 暂时随意初始化了一下 到时候根据传数据直接.get
+		price.setText(String.valueOf(spo.getConstance()));// 暂时随意初始化了一下
+															// 到时候根据传数据直接.get
 
 		JButton b4 = new JButton("确认修改");
 		b4.addActionListener(new ActionListener() {
@@ -103,16 +115,17 @@ public class Strategy {
 			String newcontroller = controller.getText();
 			String newprice = price.getText(); // StrategyPO传入新的数据
 
-			strategybl.Strategy stra=new strategybl.Strategy();
-			StrategyPO spo=new StrategyPO(Integer.valueOf(newmanager),Integer.valueOf(newtransitman),
-			Integer.valueOf(newstorager),Integer.valueOf(newboclerk),Integer.valueOf(newcourier),Integer.valueOf(newfinancer),
-				Integer.valueOf(newcontroller), Double.valueOf(newprice));
+			strategybl.Strategy stra = new strategybl.Strategy(oos, ois);
+			StrategyPO spo = new StrategyPO(Integer.valueOf(newmanager), Integer.valueOf(newtransitman),
+					Integer.valueOf(newstorager), Integer.valueOf(newboclerk), Integer.valueOf(newcourier),
+					Integer.valueOf(newfinancer), Integer.valueOf(newcontroller), Double.valueOf(newprice));
+
 			public void actionPerformed(ActionEvent e) {
-				if(stra.modify(spo))					
-				JOptionPane.showMessageDialog(null, "修改成功!");
+				if (stra.modify(spo))
+					JOptionPane.showMessageDialog(null, "修改成功!");
 				else
-				JOptionPane.showMessageDialog(null, "修改失败!");
-				
+					JOptionPane.showMessageDialog(null, "修改失败!");
+
 			}
 		});
 

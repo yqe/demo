@@ -15,6 +15,11 @@ public class Earneddocu extends DocumentBl {
 	boolean IsOk;
 	String hostid = "localhost";
 
+	public Earneddocu(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.ois=ois;
+		this.oos=oos;
+	}
+
 	/**
 	 * 得到所给日期之间的所有收款单
 	 * 如果是按ID查询 那么data1=="ID",则datar就是营业厅text的值;为得到所给营业厅ID的所有收款单
@@ -29,16 +34,10 @@ public class Earneddocu extends DocumentBl {
 	public EarnedPOList GetEarnedDocu(String datal, String datar) {
 		EarnedPOList epolist = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Finance");
 			oos.writeUTF("GetEarnedDocu");
 			oos.writeObject(new String(datal + " " + datar));
 			epolist =  (EarnedPOList) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,16 +56,10 @@ public class Earneddocu extends DocumentBl {
 	public boolean BuildEarnedDocu(EarnedPO earnpo) {
 		IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("HallClerk");
 			oos.writeUTF("ReceiveBill");
 			oos.writeObject(earnpo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

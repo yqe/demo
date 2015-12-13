@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
 
@@ -20,6 +23,15 @@ public class changepasswordmain {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO empPO;
+
+	public changepasswordmain(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO empPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.empPO=empPO;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -56,7 +68,7 @@ public class changepasswordmain {
 				if (!id.getText().equals("")) {
 					if (!password1.equals("")) {
 						if (equal) {
-							UserBl userbl = new UserBl();
+							UserBl userbl = new UserBl(oos,ois);
 							boolean IsOk = userbl.changePassword(new UserInfoPO(id.getText(), password1, "", ""));
 							if (IsOk)
 								JOptionPane.showMessageDialog(null, "修改成功!");// 将新密码传入所对应PO

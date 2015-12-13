@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -16,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import login.loginframe;
+import po.EmploeePO;
 import courier.Send;
 import courier.check;
 import courier.dispatch;
@@ -27,9 +31,19 @@ public class admin {
 	int size = 180;
 	JPanel content = new JPanel();
 	final JPanel control = new JPanel();
+	public Socket socket;
+	public ObjectOutputStream oos;
+	public ObjectInputStream ois;
+	public EmploeePO empPO;
+
+	public admin(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
+		this.socket = socket;
+		this.ois = ois;
+		this.oos = oos;
+		this.empPO = emPO;
+	}
 
 	public JPanel Panel() throws IOException {
-
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Abackground.jpg"));
 		background = new ImageIcon(bgp);
 		JPanel admin = new JPanel() {
@@ -43,10 +57,7 @@ public class admin {
 		admin.setOpaque(false);
 		admin.setLayout(null);
 
-		final changepasswordmain change = new changepasswordmain();
-		final logoff logoff = new logoff();
-		final authority au = new authority();
-		final adduser add = new adduser();
+		final changepasswordmain change = new changepasswordmain(oos,ois,empPO);
 
 		control.setBounds(0, 0, size, 500);
 		content.setBounds(size, 0, 600, 500);
@@ -54,6 +65,14 @@ public class admin {
 		JButton b3 = new JButton("退出");
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					oos.close();
+					ois.close();
+					socket.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				System.exit(0);
 			}
 		});
@@ -73,8 +92,8 @@ public class admin {
 		JButton b5 = new JButton("注销账户");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				try {
+					final logoff logoff = new logoff(oos,ois,empPO);
 					changepanel(logoff.Panel());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -87,8 +106,8 @@ public class admin {
 		JButton b6 = new JButton("修改权限");
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				try {
+					final authority au = new authority(oos,ois,empPO);
 					changepanel(au.Panel());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -103,6 +122,7 @@ public class admin {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
+					final adduser add = new adduser(oos,ois,empPO);
 					changepanel(add.Panel());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block

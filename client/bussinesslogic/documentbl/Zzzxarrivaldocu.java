@@ -7,11 +7,14 @@ import java.net.Socket;
 import po.ZzzxArrivalDocuPO;
 
 public class Zzzxarrivaldocu extends DocumentBl {
-	Socket socket;
+
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
-	boolean IsOk;
-	String hostid = "localhost";
+	
+	public Zzzxarrivaldocu(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.oos=oos;
+		this.ois=ois;
+	}
 	/**
 	 * 建立中转中心到达单
 	 * 
@@ -22,18 +25,12 @@ public class Zzzxarrivaldocu extends DocumentBl {
 	 *                zxc
 	 */
 	public boolean BuildZzzxarrivalDocu(ZzzxArrivalDocuPO zzzxpo){
-		IsOk = false;
+		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Transit");
 			oos.writeUTF("TransitReceive");
 			oos.writeObject(zzzxpo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

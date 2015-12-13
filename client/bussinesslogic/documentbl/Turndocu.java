@@ -7,11 +7,14 @@ import java.net.Socket;
 import po.TransferDocuPO;
 
 public class Turndocu extends DocumentBl {
-	Socket socket;
+
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
-	boolean IsOk;
-	String hostid = "localhost";
+
+	public Turndocu(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.ois = ois;
+		this.oos = oos;
+	}
 
 	/**
 	 * 建立装运单
@@ -23,18 +26,12 @@ public class Turndocu extends DocumentBl {
 	 *                zxc
 	 */
 	public boolean BuildTurnDocu(TransferDocuPO tspo) {
-		IsOk = false;
+		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Transit");
 			oos.writeUTF("ShipmentBill");
 			oos.writeObject(tspo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

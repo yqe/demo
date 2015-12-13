@@ -3,6 +3,8 @@ package finance;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,6 +15,7 @@ import javax.swing.JTextField;
 
 import financebl.FinanceBl;
 import financebl.SetAccount;
+import po.EmploeePO;
 import po.InitializeAccountPO;
 
 public class BuildAccount {
@@ -22,6 +25,15 @@ public class BuildAccount {
 	int texth = 30;
 	int gap = 20;
 	int gaph = 30;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public BuildAccount(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
+	}
 
 	public void buildaccount(JPanel context) {
 		context.removeAll();
@@ -63,7 +75,7 @@ public class BuildAccount {
 				
 			    boolean isempty=personisempty||carisempty||storageisempty||banknameisempty||bankmoneyisempty;
 				if(isnum&&!isempty){
-				 FinanceBl m =new FinanceBl();
+				 FinanceBl m =new FinanceBl(oos,ois);
 				 InitializeAccountPO ipo=new InitializeAccountPO(textfield[4].getText(),organbox.getSelectedItem().toString(),Integer.parseInt(textfield[1].getText()),
 						 Integer.parseInt(textfield[2].getText()),Integer.parseInt(textfield[3].getText()),Double.parseDouble(textfield[5].getText()));
 				boolean isOk=m.InitAccount(ipo);

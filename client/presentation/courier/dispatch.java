@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,11 +17,21 @@ import javax.swing.JTextField;
 
 import documentbl.Diliverdocu;
 import po.DiliverDocuPO;
+import po.EmploeePO;
 
 public class dispatch {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public dispatch(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos = oos;
+		this.ois = ois;
+		this.emPO = emPO;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -79,7 +91,7 @@ public class dispatch {
 
 				boolean isempty = idisempty || nameisempty || courierisempty;
 				if (isid && !isempty) {
-					Diliverdocu dili=new Diliverdocu();
+					Diliverdocu dili=new Diliverdocu(oos,ois);
 					boolean IsOk=dili.BuildDiliverDocu(new DiliverDocuPO(id.getText(), time, name.getText(), courier.getText()));
 					if(IsOk){
 						JOptionPane.showMessageDialog(null, "生成派件单成功!");

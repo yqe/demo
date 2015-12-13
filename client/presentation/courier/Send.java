@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import po.EmploeePO;
 import po.GoodsDocuPO;
 import documentbl.Goodsdocu;
 
@@ -26,6 +29,15 @@ public class Send {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public Send(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos = oos;
+		this.ois = ois;
+		this.emPO = emPO;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -180,21 +192,19 @@ public class Send {
 		destinationbox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
-					GoodsBl goodsbl = new GoodsBl();
+					GoodsBl goodsbl = new GoodsBl(oos, ois);
 					// System.out.println(goodsweight.getText());
 					// System.out.println(typebox.getSelectedItem().toString());
 					// System.out.println(packagebox.getSelectedItem().toString());
 					// System.out
 					// .println(depaturebox.getSelectedItem().toString());
 					double weight = Double.valueOf(goodsweight.getText());
-					String fee = goodsbl.Goodsgetfee(weight,typebox.getSelectedItem().toString(), packagebox
-							.getSelectedItem().toString(), depaturebox
-							.getSelectedItem().toString(), destinationbox
-							.getSelectedItem().toString());
+					String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+							packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+							destinationbox.getSelectedItem().toString());
 					double feedou = Double.valueOf(fee);
-					double goodsprice = (Double.valueOf(numbox
-							.getSelectedItem().toString())) * feedou;
-//					System.out.println(goodsprice);
+					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+					// System.out.println(goodsprice);
 					price.setText(String.valueOf(goodsprice));
 
 				}
@@ -252,8 +262,7 @@ public class Send {
 
 			public void removeUpdate(DocumentEvent e) {
 				try {
-					double v = Double.valueOf(length.getText())
-							* Double.valueOf(width.getText())
+					double v = Double.valueOf(length.getText()) * Double.valueOf(width.getText())
 							* Double.valueOf(height.getText());
 					// System.out.println(v);
 					V.setText(String.valueOf(v));
@@ -271,8 +280,7 @@ public class Send {
 
 			public void insertUpdate(DocumentEvent e) {
 				try {
-					double v = Double.valueOf(length.getText())
-							* Double.valueOf(width.getText())
+					double v = Double.valueOf(length.getText()) * Double.valueOf(width.getText())
 							* Double.valueOf(height.getText());
 
 					V.setText(String.valueOf(v));
@@ -343,20 +351,16 @@ public class Send {
 				boolean goodsinfoisempty = goodsinfo.getText().equals("");
 				boolean courierisempty = courier.getText().equals("");
 
-				boolean isempty = senderisempty || senderinfoisempty
-						|| sendertelisempty || sendersiteisempty
-						|| getterisempty || getterinfoisempty
-						|| gettertelisempty || gettersiteisempty
-						|| goodsnameisempty || goodsweightisempty
-						|| lengthisempty || widthisempty || heightisempty
+				boolean isempty = senderisempty || senderinfoisempty || sendertelisempty || sendersiteisempty
+						|| getterisempty || getterinfoisempty || gettertelisempty || gettersiteisempty
+						|| goodsnameisempty || goodsweightisempty || lengthisempty || widthisempty || heightisempty
 						|| goodsinfoisempty || courierisempty;
 
 				// String
 				// exceptedtime=yearbox1.getSelectedItem().toString()+monthbox1.getSelectedItem().toString()+daybox1.getSelectedItem().toString();
-				String generatetime = yearbox2.getSelectedItem().toString()
-						+ monthbox2.getSelectedItem().toString()
+				String generatetime = yearbox2.getSelectedItem().toString() + monthbox2.getSelectedItem().toString()
 						+ daybox2.getSelectedItem().toString();
-                 double j=0;
+				double j = 0;
 				if (packagebox.equals("纸箱(5元)")) {
 					j = 5.0;
 				} else if (packagebox.equals("木箱(10元)")) {
@@ -364,24 +368,19 @@ public class Send {
 				} else {
 					j = 1.0;
 				}
-				
-				
-				
-				GoodsBl goodsbl = new GoodsBl();
-				GoodsDocuPO gpo = new GoodsDocuPO(sender.getText(),
-						senderinfo.getText(), sendertel.getText(),sendersite.getText(),
-						getter.getText(),getterinfo.getText(),gettertel.getText(),gettersite.getText(),
-						j,Double.valueOf(price.getText()),
-						typebox.getSelectedItem().toString(), null, Double.valueOf(goodsweight.getText()),
-						goodsname.getText(), Integer.valueOf(numbox.getSelectedItem().toString()), 
-						Double.valueOf(length.getText()), Double.valueOf(width.getText()), 
-						Double.valueOf(height.getText()), Double.valueOf(V.getText()), goodsinfo.getText(),
-						packagebox.getSelectedItem().toString(),
-						exceptedtime.getText(), generatetime, courier
-								.getText());
-				if (!isempty&&goodsbl.BuildGoodsDocu(gpo)) {
-							
-//					goodsbl.BuildGoodsDocu(gpo);
+
+				GoodsBl goodsbl = new GoodsBl(oos, ois);
+				GoodsDocuPO gpo = new GoodsDocuPO(sender.getText(), senderinfo.getText(), sendertel.getText(),
+						sendersite.getText(), getter.getText(), getterinfo.getText(), gettertel.getText(),
+						gettersite.getText(), j, Double.valueOf(price.getText()), typebox.getSelectedItem().toString(),
+						null, Double.valueOf(goodsweight.getText()), goodsname.getText(),
+						Integer.valueOf(numbox.getSelectedItem().toString()), Double.valueOf(length.getText()),
+						Double.valueOf(width.getText()), Double.valueOf(height.getText()), Double.valueOf(V.getText()),
+						goodsinfo.getText(), packagebox.getSelectedItem().toString(), exceptedtime.getText(),
+						generatetime, courier.getText());
+				if (!isempty && goodsbl.BuildGoodsDocu(gpo)) {
+
+					// goodsbl.BuildGoodsDocu(gpo);
 					JOptionPane.showMessageDialog(null, "成功生成寄件单!");
 				} else {
 					JOptionPane.showMessageDialog(null, "信息未填写完整!");

@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -16,9 +18,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import po.CondemnList;
+import po.EmploeePO;
 import documentbl.DocumentBl;
 
 public class approve {
+	
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public approve(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
+	}
+
 	public JPanel Panel() throws IOException{
 
 

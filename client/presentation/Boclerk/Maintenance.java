@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -15,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import po.EmploeePO;
 import po.VehicleMaintanceInfoPO;
 import transbl.TransBl;
 
@@ -22,10 +25,14 @@ public class Maintenance {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	String PosId;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+	private EmploeePO emPO;
 
-	public Maintenance(String posId) {
-		this.PosId = posId;
+	public Maintenance(ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
+		this.ois=ois;
+		this.oos=oos;
+		this.emPO=emPO;
 	}
 
 	public JPanel Panel() throws IOException {
@@ -96,7 +103,7 @@ public class Maintenance {
 		JButton b1 = new JButton("查询车辆信息");
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TransBl trans = new TransBl();
+				TransBl trans = new TransBl(oos,ois);
 				// System.out.println(carid.getText());
 				VehicleMaintanceInfoPO vpo = trans.GetVehicleInfoPO(carid.getText());
 				String ss = vpo.getVehicleID();
@@ -160,7 +167,7 @@ public class Maintenance {
 							timebox2.getSelectedItem().toString(), driverid.getText(), drivername.getText(),
 							date.getText(), driversfz.getText(), tel.getText(), s,
 							timebox1.getSelectedItem().toString());
-					TransBl trans = new TransBl();
+					TransBl trans = new TransBl(oos,ois);
 					if (trans.ChangeVehicleInfoPO(vpo))
 						JOptionPane.showMessageDialog(null, "更新成功!");
 					else

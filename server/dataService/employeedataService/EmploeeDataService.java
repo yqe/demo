@@ -27,5 +27,5 @@ public interface EmploeeDataService{
 	
 	public ArrayList<EmploeePO> findbypos(String postion);
 	
-	public String findbyname(String name ) throws RemoteException;
+	public EmploeePO findbyname(String name ) throws RemoteException;
 }

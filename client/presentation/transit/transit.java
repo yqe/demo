@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import documentbl.Zzzxarrivaldocu;
+import po.EmploeePO;
 import po.ZzzxArrivalDocuPO;
 
 /**
@@ -30,6 +33,15 @@ public class transit {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public transit(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -110,7 +122,7 @@ public class transit {
 						+ daybox.getSelectedItem();
 				String place = (String) sitebox.getSelectedItem();
 				String state = (String) statebox.getSelectedItem();
-				Zzzxarrivaldocu transferaridocu = new Zzzxarrivaldocu();
+				Zzzxarrivaldocu transferaridocu = new Zzzxarrivaldocu(oos,ois);
 				boolean IsOk = transferaridocu
 						.BuildZzzxarrivalDocu(new ZzzxArrivalDocuPO(t1.getText(), date, t2.getText(), place, state));
 				if (IsOk)

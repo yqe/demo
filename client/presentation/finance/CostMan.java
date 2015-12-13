@@ -3,6 +3,8 @@ package finance;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,9 +17,19 @@ import login.Tran;
 import financebl.CostManage;
 import financebl.FinanceBl;
 import po.CostManagePO;
+import po.EmploeePO;
 import po.ManageAccountPO;
 
 public class CostMan {
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public CostMan(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
+	}
 
 	public void costMan(JPanel context) {
 		context.removeAll();
@@ -86,12 +98,12 @@ public class CostMan {
 
 				boolean isempty=priceisempty||payerisempty||idisempty||infoisempty||tipsisempty;
 
-				FinanceBl finance =new FinanceBl();
+				FinanceBl finance =new FinanceBl(oos,ois);
 				ManageAccountPO check=finance.CheckBankAccount(textfield[3].getText());
 				String date=yearbox.getSelectedItem().toString()+monthbox.getSelectedItem().toString()+daybox.getSelectedItem().toString();
 				Tran tran=new Tran();
 				tran.Tran(date);
-				CostManage cost=new CostManage();
+				CostManage cost=new CostManage(oos,ois);
 				
 				boolean isid=!check.getAccountname().equals("不存在");//根据银行账户PO判断ID是否合法
 				CostManagePO cmpo=new CostManagePO(date,Double.valueOf(textfield[1].getText()),textfield[2].getText(),textfield[3].getText(),textfield[4].getText(),textfield[5].getText());

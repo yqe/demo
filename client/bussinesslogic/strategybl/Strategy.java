@@ -7,38 +7,41 @@ import java.net.Socket;
 import po.StrategyPO;
 import strategyblService.StrategyBlService;
 
-public class Strategy implements StrategyBlService{
-	Socket socket;
+public class Strategy implements StrategyBlService {
+
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
-	String hostid="localhost";
+
+	public Strategy(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.oos = oos;
+		this.ois = ois;
+	}
+
 	/**
 	 * 经营策略查看
-	 * @param 
+	 * 
+	 * @param
 	 * @return StrategyPO;
 	 * @exception @author
 	 *                zxc
 	 */
 	public StrategyPO show() {
-		StrategyPO spolist=null;
+		StrategyPO spolist = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Manager");
 			oos.writeUTF("ShowStrategy");
 			spolist = (StrategyPO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return spolist;
 	}
+
 	/**
 	 * 经营策略查看
-	 * @param trategyPO spo
+	 * 
+	 * @param trategyPO
+	 *            spo
 	 * @return boolean
 	 * @exception @author
 	 *                zxc
@@ -46,16 +49,10 @@ public class Strategy implements StrategyBlService{
 	public boolean modify(StrategyPO spo) {
 		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Manager");
 			oos.writeUTF("FormulateStrategy");
 			oos.writeObject(spo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,8 +60,7 @@ public class Strategy implements StrategyBlService{
 		return IsOk;
 	}
 
-	public double calPrice(double weight, String depatureplace,
-			String destination, String type) {
+	public double calPrice(double weight, String depatureplace, String destination, String type) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -76,12 +72,12 @@ public class Strategy implements StrategyBlService{
 
 	public void observe(String stra) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	public boolean modifySalary(StrategyPO spo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 }

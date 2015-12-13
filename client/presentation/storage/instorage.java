@@ -5,6 +5,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import login.Tran;
+import po.EmploeePO;
 import po.InputStorageDocuPO;
 import po.InputStorageList;
 import po.StoragePO;
@@ -28,9 +31,14 @@ public class instorage {
 	private JPanel imagePanel;
 	private ImageIcon Sbackground;
 	private ImageIcon button1;
-	String posid;
-	public instorage(String posid) {
-		this.posid=posid;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public instorage(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
 	}
 
 	public JPanel Panel() throws IOException{
@@ -73,7 +81,7 @@ public class instorage {
     final JTextField jia=new JTextField();
     final JTextField wei=new JTextField();
     final JTextField zzzxid=new JTextField();
-    zzzxid.setText(posid);
+    zzzxid.setText(emPO.getPosID());
     zzzxid.setOpaque(false);
     zzzxid.setEditable(false);
     String[] year = new String[201];
@@ -169,13 +177,12 @@ public class instorage {
 	JButton b6=new JButton("完成入库");
 	b6.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-			StorageBl ido=new StorageBl();
+			StorageBl ido=new StorageBl(oos,ois);
 			boolean isOk=ido.InStorageInput(islt);
 			if (isOk)
 			JOptionPane.showMessageDialog(null,"成功完成入库!");
 			else
 				JOptionPane.showMessageDialog(null,"无法完成入库!");
-
 		}
 		
 	});

@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
 
@@ -20,6 +23,16 @@ public class authority {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO empPO;
+
+	
+	public authority(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO empPO) {
+		this.oos = oos;
+		this.ois = ois;
+		this.empPO=empPO;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -56,7 +69,7 @@ public class authority {
 			public void actionPerformed(ActionEvent e) {
 				// PO传数据
 				//
-				UserBl m = new UserBl();
+				UserBl m = new UserBl(oos,ois);
 				UserInfoPO a = m.GetUserAccount(t1.getText());
 				if (a.getUserID().equals("不存在"))
 					JOptionPane.showMessageDialog(null, "请输入正确账号!");
@@ -75,7 +88,7 @@ public class authority {
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!t2.getText().equals("")) {
-					UserBl userbl = new UserBl();
+					UserBl userbl = new UserBl(oos,ois);
 					UserInfoPO usertemp = userbl.GetUserAccount(t1.getText());
 					String ID = usertemp.getUserID();
 					String name = usertemp.getUsername();

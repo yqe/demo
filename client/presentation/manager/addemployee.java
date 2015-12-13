@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -24,6 +26,15 @@ public class addemployee {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO emPO;
+
+	public addemployee(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
+		this.oos=oos;
+		this.ois=ois;
+		this.emPO=emPO;
+	}
 
 	public JPanel Panel() throws IOException {
 
@@ -110,7 +121,7 @@ public class addemployee {
 							Integer.parseInt(salary.getText()), bg.getElements().toString(),
 							Integer.parseInt(age.getText()), tel.getText(), identity.getText(), address.getText(),
 							place.getSelectedItem().toString(), posidtext.getText());
-					EmploeeBl ac = new EmploeeBl();
+					EmploeeBl ac = new EmploeeBl(oos,ois);
 					boolean isOk = ac.AddEmpInfo(epo);
 					if(isOk){
 					   JOptionPane.showMessageDialog(null, "添加成功!");

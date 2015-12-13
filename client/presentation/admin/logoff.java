@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
 
@@ -19,6 +22,16 @@ public class logoff {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
+	private EmploeePO empPO;
+
+	public logoff(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO empPO) {
+		this.oos = oos;
+		this.ois = ois;
+		this.empPO=empPO;
+	}
+
 
 	public JPanel Panel() throws IOException {
 
@@ -52,7 +65,7 @@ public class logoff {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// PO传给数据
-				UserBl userbl = new UserBl();
+				UserBl userbl = new UserBl(oos, ois);
 				UserInfoPO userpo = userbl.GetUserAccount(t1.getText());
 				String username = userpo.getUsername();
 				String userposition = userpo.getPosition();
@@ -74,7 +87,7 @@ public class logoff {
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!t2.getText().equals("")) {
-					UserBl userbl = new UserBl();
+					UserBl userbl = new UserBl(oos, ois);
 					UserInfoPO userpotemp = userbl.GetUserAccount(t1.getText());
 					boolean IsOk = userbl.cancellation(userpotemp);
 					if (IsOk) {
@@ -82,7 +95,7 @@ public class logoff {
 					} else {
 						JOptionPane.showMessageDialog(null, "注销失败，请重新再试一次!");
 					}
-				}else
+				} else
 					JOptionPane.showMessageDialog(null, "注销失败，请确认输入的账户!");
 			}
 

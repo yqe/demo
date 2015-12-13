@@ -12,10 +12,14 @@ import po.StorageList;
 import storageblService.StorageBlService;
 
 public class StorageBl implements StorageBlService {
-	Socket socket;
+	
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
-	String hostid = "localhost";
+
+	public StorageBl(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.oos=oos;
+		this.ois=ois;
+	}
 
 	/**
 	 * 入库登记
@@ -30,16 +34,10 @@ public class StorageBl implements StorageBlService {
 		System.out.println(slt.getSlist().get(0).getDestination());
 		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");
 			oos.writeUTF("InStoragePO");
 			oos.writeObject(slt);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,16 +58,10 @@ public class StorageBl implements StorageBlService {
 		System.out.print(oslt.getSlist().get(0).getDestination());
 		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");
 			oos.writeUTF("OutStoragePO");
 			oos.writeObject(oslt);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -89,16 +81,10 @@ public class StorageBl implements StorageBlService {
 	public StorageList StorageCheck(String centerid) {
 		StorageList Stolist = new StorageList();
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");
 			oos.writeUTF("SeeStorage");
 			oos.writeObject(new String(centerid));
 			Stolist = (StorageList) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -118,16 +104,10 @@ public class StorageBl implements StorageBlService {
 	public LookStoragePO StorageSee(String centerid, String rtime, String ltime) {
 		LookStoragePO re = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");
 			oos.writeUTF("SeeStorage");
 			oos.writeObject(new String(centerid + " " + rtime + " " + ltime));
 			re = (LookStoragePO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -145,16 +125,10 @@ public class StorageBl implements StorageBlService {
 	public boolean StorageUpdate(StorageCheckPO svo) {
 		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");
 			oos.writeUTF("ChangeStorage");
 			oos.writeObject(svo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -171,16 +145,10 @@ public class StorageBl implements StorageBlService {
 	public StorageCheckPO IDStorageGet(String ID) {
 		StorageCheckPO stopo=null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Storage");
 			oos.writeUTF("ChangeStorage");
 			oos.writeObject(new String(ID));
 			stopo=(StorageCheckPO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

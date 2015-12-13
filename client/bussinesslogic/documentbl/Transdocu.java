@@ -12,6 +12,11 @@ public class Transdocu extends DocumentBl {
 	boolean IsOk;
 	String hostid = "localhost";
 
+	public Transdocu(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.ois=ois;
+		this.oos=oos;
+	}
+
 	/**
 	 * 建立装车单
 	 * 
@@ -23,16 +28,10 @@ public class Transdocu extends DocumentBl {
 	public boolean BuildTransDocu(TransPO tpo) {
 		IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("HallClerk");
 			oos.writeUTF("LoadingList");
 			oos.writeObject(tpo);
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

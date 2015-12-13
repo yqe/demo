@@ -10,6 +10,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -23,6 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import login.loginframe;
+import po.EmploeePO;
 
 public class storagemain {
 	private JPanel imagePanel;
@@ -31,10 +35,16 @@ public class storagemain {
 	int size = 180;
 	JPanel content = new JPanel();
 	final JPanel control = new JPanel();
-	String posid;
+	private EmploeePO emPO;
+	private Socket socket;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
 
-	public storagemain(String posid) {
-		this.posid = posid;
+	public storagemain(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
+		this.socket = socket;
+		this.ois = ois;
+		this.oos = oos;
+		this.emPO = emPO;
 	}
 
 	public JPanel Panel() throws IOException {
@@ -51,12 +61,9 @@ public class storagemain {
 
 		storagemain.setOpaque(false);
 		storagemain.setLayout(null);
-		final instorage ins = new instorage(posid);
-		final outstorage ous = new outstorage(posid);
+
+		final instorage ins = new instorage(oos, ois, emPO);
 		// final storageinfo sinfo = new storageinfo(posid);
-		final checkstorage chs = new checkstorage(posid);
-		final countstorage cos = new countstorage(posid);
-		final changestorage cas = new changestorage();
 
 		control.setBounds(0, 0, size, 700);
 		content.setBounds(size, 0, 900, 700);
@@ -78,8 +85,8 @@ public class storagemain {
 		JButton b4 = new JButton("入库登记");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				try {
+					final instorage ins = new instorage(oos, ois, emPO);
 					changepanel(ins.Panel());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -91,8 +98,8 @@ public class storagemain {
 		JButton b5 = new JButton("出库登记");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				try {
+					final outstorage ous = new outstorage(oos, ois, emPO);
 					changepanel(ous.Panel());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -106,6 +113,7 @@ public class storagemain {
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					final checkstorage chs = new checkstorage(oos, ois, emPO);
 					changepanel(chs.Panel());
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -118,8 +126,8 @@ public class storagemain {
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					final countstorage cos = new countstorage(oos, ois, emPO);
 					changepanel(cos.Panel());
-
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -131,8 +139,8 @@ public class storagemain {
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					final changestorage cas = new changestorage(oos, ois, emPO);
 					changepanel(cas.Panel());
-
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -15,12 +15,14 @@ import po.VehicleMaintanceInfoPO;
 import transblService.TransBlService;
 
 public class TransBl implements TransBlService {
-	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
-	String hostid = "localhost";
 
+	public TransBl(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.ois=ois;
+		this.oos=oos;
+	}
 	/**
 	 * 得到车辆维护信息
 	 * 
@@ -33,16 +35,10 @@ public class TransBl implements TransBlService {
 	public VehicleMaintanceInfoPO GetVehicleInfoPO(String vehicleID) {
 		VehicleMaintanceInfoPO vpo = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("HallClerk");
 			oos.writeUTF("CarInfoGet");
 			oos.writeObject(new String(vehicleID));
 			vpo = (VehicleMaintanceInfoPO) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,16 +56,10 @@ public class TransBl implements TransBlService {
 	public boolean ChangeVehicleInfoPO(VehicleMaintanceInfoPO vpo) {
 		 IsOk = false;
 			try {
-				socket = new Socket(hostid, 8888);
-				oos = new ObjectOutputStream(socket.getOutputStream());
-				ois = new ObjectInputStream(socket.getInputStream());
 				oos.writeUTF("HallClerk");
 				oos.writeUTF("CarInfoChange");
 				oos.writeObject(vpo);
 				IsOk = (boolean) ois.readObject();
-				ois.close();
-				oos.close();
-				socket.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
