@@ -77,7 +77,7 @@ public class AdminInfoStream {
 			UserInfoPO upo = ud.getLoginPO(upoClient.getUserID());
 			if (upoClient.getPassword().equals(upo.getPassword()))
 				re= upo.getPosition();
-			else if (upo == null)
+			else if (upo.getUsername().equals("不存在"))
 				re= "NoAccount";// 无账户
 			else
 				re= "PasswordError";// 密码错误

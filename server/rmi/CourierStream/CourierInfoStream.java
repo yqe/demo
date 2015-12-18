@@ -31,9 +31,6 @@ public class CourierInfoStream {
 			case "AboutPrice":
 				AboutPrice(ois, oos);
 				break;
-			case "GetRoute":
-				GetRoute(ois, oos);
-				break;
 			default:
 				GetExpressID(ois,oos);
 				break;
@@ -75,7 +72,7 @@ public class CourierInfoStream {
 	 * @exception @author
 	 *                zxc
 	 */
-	private void GetRoute(ObjectInputStream ois, ObjectOutputStream oos) {
+	public void GetRoute(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			ExpressTrail trail = new ExpressTrail();
 			String goodid= (String) ois.readObject();
