@@ -39,7 +39,8 @@ public class ServerThread implements Runnable {
 				socket = server.accept();
 				if (socket != null) {
 					Receiver r = new Receiver(socket);
-					r.login();
+					Thread t = new Thread(r);
+					t.start();
 				}
 			}
 		} catch (Exception e) {
@@ -47,64 +48,69 @@ public class ServerThread implements Runnable {
 		}
 	}
 
-	private class Receiver {
+	private class Receiver implements Runnable {
 		Socket socket;
 		ObjectInputStream ois = null;
 		ObjectOutputStream oos = null;
+		boolean login=false;
 
 		Receiver(Socket socket) {
 			this.socket = socket;
-		}
-
-		public void login() {
-			String logininfo = null;
 			try {
 				oos = new ObjectOutputStream(socket.getOutputStream());
 				ois = new ObjectInputStream(socket.getInputStream());
-				while (((String) ois.readObject()).equals("login")) {
-					logininfo = new AdminInfoStream().Login(ois, oos);
-					if (!logininfo.equals("NoAccount") && !logininfo.equals("PasswordError")) {
-						dealcmd(ois, oos);
-						break;
-					}
-				}
-			} catch (Exception e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 
-		public void dealcmd(ObjectInputStream ois, ObjectOutputStream oos) {
-			while (true) {
-				try {
-					switch (ois.readUTF()) {
-					case "Storage":
-						new StorageInfoStream().JudgeCmd(ois, oos);
-						break;
-					case "Admin":
-						new AdminInfoStream().JudgeCmd(ois, oos);
-						break;
-					case "Courier":
-						new CourierInfoStream().JudgeCmd(ois, oos);
-						break;
-					case "Finance":
-						new FinanceInfoStream().JudgeCmd(ois, oos);
-						break;
-					case "HallClerk":
-						new HallClerkInfoStream().JudgeCmd(ois, oos);
-						break;
-					case "Manager":
-						new ManagerInfoStream().JudgeCmd(ois, oos);
-						break;
-					case "Transit":
-						new TransitInfoStream().JudgeCmd(ois, oos);
-						break;
-					default:
-						close();
-						break;
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+		public boolean login() {
+			String logininfo = null;
+			try {
+				while (((String) ois.readObject()).equals("login")) {
+					logininfo = new AdminInfoStream().Login(ois, oos);
+					if (!logininfo.equals("NoAccount") && !logininfo.equals("PasswordError"))
+						return true;
 				}
+			} catch (ClassNotFoundException | IOException e) {
+				close();
+			}
+			return false;
+		}
+		public void run() {
+			while (!login)
+				login = login();
+			boolean isRun=true;
+			while(isRun)
+			try {
+				switch (ois.readUTF()) {
+				case "Storage":
+					new StorageInfoStream().JudgeCmd(ois, oos);
+					break;
+				case "Admin":
+					new AdminInfoStream().JudgeCmd(ois, oos);
+					break;
+				case "Courier":
+					new CourierInfoStream().JudgeCmd(ois, oos);
+					break;
+				case "Finance":
+					new FinanceInfoStream().JudgeCmd(ois, oos);
+					break;
+				case "HallClerk":
+					new HallClerkInfoStream().JudgeCmd(ois, oos);
+					break;
+				case "Manager":
+					new ManagerInfoStream().JudgeCmd(ois, oos);
+					break;
+				case "Transit":
+					new TransitInfoStream().JudgeCmd(ois, oos);
+					break;
+				default:
+					isRun=false;
+					break;
+				}
+			} catch (Exception e) {
+				close();
 			}
 		}
 

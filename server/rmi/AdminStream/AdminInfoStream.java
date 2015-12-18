@@ -53,6 +53,7 @@ public class AdminInfoStream {
 	private void GetEmloyeePO(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			String name = (String) ois.readObject();
+			System.out.println(name);
 			EmploeeData emdata = new EmploeeData();
 			EmploeePO empo = emdata.findbyname(name);
 			oos.writeObject(empo);
