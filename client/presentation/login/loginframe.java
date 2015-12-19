@@ -146,7 +146,7 @@ public class loginframe {
 		b2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				Inquiry in = new Inquiry();
+				Inquiry in = new Inquiry(oos,ois);
 				try {
 					frame.remove(p1);
 					frame.setBounds(500, 300, in.Panel().getWidth(), in.Panel().getHeight());
