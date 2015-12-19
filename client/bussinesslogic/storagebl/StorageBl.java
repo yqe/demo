@@ -41,7 +41,6 @@ public class StorageBl implements StorageBlService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("StorageBl.InStorageInputSuccess");
 		return IsOk;
 	}
 
@@ -65,7 +64,6 @@ public class StorageBl implements StorageBlService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("StorageBl.OutStorageInputSuccess");
 		return IsOk;
 	}
 

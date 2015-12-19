@@ -79,12 +79,13 @@ public class GoodsBl implements GoodsBLService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public ExpressTrailPO GoodsInquiry(String ID) {
-		ExpressTrailPO route = null;
+	public String GoodsInquiry(String ID) {
+		String route = null;
 		try {
-			oos.writeUTF("GetRoute");
+			oos.writeObject(new String("GetRoute"));
 			oos.writeObject(new String(ID));
-			route = (ExpressTrailPO) ois.readObject();
+			ExpressTrailPO routepo = (ExpressTrailPO) ois.readObject();
+			route=routepo.getDepar()+routepo.getBusstrail()+routepo.getCentertrail()+routepo.getDestination();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

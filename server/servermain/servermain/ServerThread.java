@@ -67,7 +67,11 @@ public class ServerThread implements Runnable {
 		public boolean login() {
 			String logininfo = null;
 			try {
-				while (((String) ois.readObject()).equals("login")) {
+				String cmd=(String) ois.readObject();
+				while(cmd.equals("GetRoute")){
+					new CourierInfoStream().GetRoute(ois,oos);
+				}
+				while (cmd.equals("login")) {
 					logininfo = new AdminInfoStream().Login(ois, oos);
 					if (!logininfo.equals("NoAccount") && !logininfo.equals("PasswordError"))
 						return true;
