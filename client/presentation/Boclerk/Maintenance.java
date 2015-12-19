@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -75,13 +76,21 @@ public class Maintenance {
 		final JTextField driversfz = new JTextField();
 		final JTextField tel = new JTextField();
 		final JTextField date = new JTextField();
-
+		
+		carid.setOpaque(false);
+		carid.setBorder(BorderFactory.createEmptyBorder());
 		carnumber.setOpaque(false);
+		carnumber.setBorder(BorderFactory.createEmptyBorder());
 		driverid.setOpaque(false);
+		driverid.setBorder(BorderFactory.createEmptyBorder());
 		drivername.setOpaque(false);
+		drivername.setBorder(BorderFactory.createEmptyBorder());
 		driversfz.setOpaque(false);
+		driversfz.setBorder(BorderFactory.createEmptyBorder());
 		tel.setOpaque(false);
+		tel.setBorder(BorderFactory.createEmptyBorder());
 		date.setOpaque(false);
+		date.setBorder(BorderFactory.createEmptyBorder());
 
 		final String[] time = new String[20];
 		for (int i = 1; i <= 20; i++) {

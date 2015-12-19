@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -56,6 +57,15 @@ public class logoff {
 		final JTextField t2 = new JTextField();
 		final JTextField t3 = new JTextField();
 
+		
+		t1.setOpaque(false);
+		t2.setOpaque(false);
+		t3.setOpaque(false);
+		t1.setBorder(BorderFactory.createEmptyBorder());
+		t2.setBorder(BorderFactory.createEmptyBorder());
+		t3.setBorder(BorderFactory.createEmptyBorder());
+		
+		
 		t2.setOpaque(false);
 		t3.setOpaque(false);
 		t2.setEditable(false);

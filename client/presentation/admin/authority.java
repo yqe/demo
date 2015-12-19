@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -56,8 +57,13 @@ public class authority {
 		final JTextField t1 = new JTextField();
 
 		final JTextField t2 = new JTextField();
+		
+		
+		t1.setOpaque(false);
+		t1.setBorder(BorderFactory.createEmptyBorder());
 
 		t2.setOpaque(false);
+		t2.setBorder(BorderFactory.createEmptyBorder());
 		t2.setEditable(false);
 
 		final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };

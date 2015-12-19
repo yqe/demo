@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -63,8 +64,18 @@ public class collection {
 		final JTextField profit = new JTextField();
 		final JTextField courier = new JTextField();
 		final JTextField yyt = new JTextField();
+		
+		id.setOpaque(false);
+		id.setBorder(BorderFactory.createEmptyBorder());
+		profit.setOpaque(false);
+		profit.setBorder(BorderFactory.createEmptyBorder());
+		courier.setOpaque(false);
+		courier.setBorder(BorderFactory.createEmptyBorder());
+		
+		
 		yyt.setText(emPO.getPosID());
 		yyt.setOpaque(false);
+		yyt.setBorder(BorderFactory.createEmptyBorder());
 		yyt.setEditable(false);
 
 		String[] year = new String[201];

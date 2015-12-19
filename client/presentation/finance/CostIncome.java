@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -41,6 +42,7 @@ public class CostIncome {
 				new JTextField(), new JTextField() };
 		for (int i = 0; i < textfield.length; i++) {
 			textfield[i].setOpaque(false);
+			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 			textfield[i].setEditable(false);
 			textfield[i].setBounds(80 + gap + labelw, 100 + (texth + gaph) * i,
 					textw, texth);

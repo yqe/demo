@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -81,8 +82,22 @@ public class instorage {
     final JTextField jia=new JTextField();
     final JTextField wei=new JTextField();
     final JTextField zzzxid=new JTextField();
+    
+    
+    id.setOpaque(false);
+	id.setBorder(BorderFactory.createEmptyBorder());
+	qu.setOpaque(false);
+	qu.setBorder(BorderFactory.createEmptyBorder());
+	pai.setOpaque(false);
+	pai.setBorder(BorderFactory.createEmptyBorder());
+	jia.setOpaque(false);
+	jia.setBorder(BorderFactory.createEmptyBorder());
+	wei.setOpaque(false);
+	wei.setBorder(BorderFactory.createEmptyBorder());
+
     zzzxid.setText(emPO.getPosID());
     zzzxid.setOpaque(false);
+    zzzxid.setBorder(BorderFactory.createEmptyBorder());
     zzzxid.setEditable(false);
     String[] year = new String[201];
     for (int i = 2000; i < 2100; i++) {

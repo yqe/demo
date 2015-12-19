@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -70,6 +71,11 @@ public class transit {
 		final JTextField t1 = new JTextField();
 		final JTextField t2 = new JTextField();
 
+		
+		t1.setOpaque(false);
+		t1.setBorder(BorderFactory.createEmptyBorder());
+		t2.setOpaque(false);
+		t2.setBorder(BorderFactory.createEmptyBorder());
 		String[] year = new String[201];
 		for (int i = 2000; i < 2100; i++) {
 			year[i - 2000] = i + "年";

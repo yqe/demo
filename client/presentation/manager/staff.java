@@ -14,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -61,6 +62,9 @@ public class staff {
 		JComboBox organbox = new JComboBox(organ);
 
 		final JTextField t1 = new JTextField();
+		
+		t1.setOpaque(false);
+		t1.setBorder(BorderFactory.createEmptyBorder());
 
 		JButton b4 = new JButton("确认");
 		b4.addActionListener(new ActionListener() {

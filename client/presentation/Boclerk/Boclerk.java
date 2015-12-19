@@ -150,11 +150,11 @@ public class Boclerk {
 
 		int b4xloc = size / 6, b4yloc = control.getHeight() / 6, b4ysize = control.getHeight() / 6;
 
-		b3.setBounds(b4xloc, b4yloc + 4 * b4ysize, 180, 40);
-		b4.setBounds(b4xloc, b4yloc, 180, 40);
-		b5.setBounds(b4xloc, b4yloc + b4ysize, 180, 40);
-		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 180, 40);
-		b7.setBounds(b4xloc, b4yloc + 3 * b4ysize, 180, 40);
+		b3.setBounds(b4xloc, b4yloc + 4 * b4ysize, 150, 40);
+		b4.setBounds(b4xloc, b4yloc, 150, 40);
+		b5.setBounds(b4xloc, b4yloc + b4ysize, 150, 40);
+		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 150, 40);
+		b7.setBounds(b4xloc, b4yloc + 3 * b4ysize, 150, 40);
 
 		content.add(load.Panel());
 		content.setLayout(null);

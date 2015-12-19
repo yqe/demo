@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.nio.channels.SelectableChannel;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -65,6 +66,9 @@ public class CheckBill {
 		}
 
 		final JTextField hallno = new JTextField();
+		
+		hallno.setOpaque(false);
+		hallno.setBorder(BorderFactory.createEmptyBorder());
 		timelabel.setBounds(sw + 10, sh, 100, boxheight);
 		yytlabel.setBounds(sw + 10, sh + gap, 100, boxheight);
 		hallno.setBounds(sw + 150, sh + gap, 200, boxheight);

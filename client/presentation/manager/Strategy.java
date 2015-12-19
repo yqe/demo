@@ -16,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -91,6 +92,24 @@ public class Strategy {
 		final JTextField financer = new JTextField();
 		final JTextField controller = new JTextField();
 		final JTextField price = new JTextField();
+		
+		manager.setOpaque(false);
+		manager.setBorder(BorderFactory.createEmptyBorder());
+		transitman.setOpaque(false);
+		transitman.setBorder(BorderFactory.createEmptyBorder());
+		storager.setOpaque(false);
+		storager.setBorder(BorderFactory.createEmptyBorder());
+		boclerk.setOpaque(false);
+		boclerk.setBorder(BorderFactory.createEmptyBorder());
+		courier.setOpaque(false);
+		courier.setBorder(BorderFactory.createEmptyBorder());
+		financer.setOpaque(false);
+		financer.setBorder(BorderFactory.createEmptyBorder());
+		controller.setOpaque(false);
+		controller.setBorder(BorderFactory.createEmptyBorder());
+		price.setOpaque(false);
+		price.setBorder(BorderFactory.createEmptyBorder());
+		
 
 		strategybl.Strategy stra = new strategybl.Strategy(oos, ois);
 		StrategyPO spo = stra.show();
@@ -101,8 +120,7 @@ public class Strategy {
 		courier.setText(String.valueOf(spo.getDiliversal()));
 		financer.setText(String.valueOf(spo.getFinancesal()));
 		controller.setText(String.valueOf(spo.getManagersal()));
-		price.setText(String.valueOf(spo.getConstance()));// 暂时随意初始化了一下
-															// 到时候根据传数据直接.get
+		price.setText(String.valueOf(spo.getConstance()));
 
 		JButton b4 = new JButton("确认修改");
 		b4.addActionListener(new ActionListener() {

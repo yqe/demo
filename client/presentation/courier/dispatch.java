@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -57,6 +58,14 @@ public class dispatch {
 		final JTextField id = new JTextField();
 		final JTextField name = new JTextField();
 		final JTextField courier = new JTextField();
+		
+		id.setOpaque(false);
+		id.setBorder(BorderFactory.createEmptyBorder());
+		name.setOpaque(false);
+		name.setBorder(BorderFactory.createEmptyBorder());
+		courier.setOpaque(false);
+		courier.setBorder(BorderFactory.createEmptyBorder());
+		
 		String[] year = new String[201];
 		for (int i = 2000; i < 2100; i++) {
 			year[i - 2000] = i + "年";

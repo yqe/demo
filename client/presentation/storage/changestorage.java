@@ -16,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -77,11 +78,18 @@ public class changestorage {
 		JTextField pai = new JTextField();
 		JTextField jia = new JTextField();
 		JTextField wei = new JTextField();
-
+		
+		id.setOpaque(false);
+		id.setBorder(BorderFactory.createEmptyBorder());
 		qu.setOpaque(false);
+		qu.setBorder(BorderFactory.createEmptyBorder());
 		pai.setOpaque(false);
+		pai.setBorder(BorderFactory.createEmptyBorder());
 		jia.setOpaque(false);
+		jia.setBorder(BorderFactory.createEmptyBorder());
 		wei.setOpaque(false);
+		wei.setBorder(BorderFactory.createEmptyBorder());
+		
 		qu.setEnabled(false);
 		pai.setEnabled(false);
 		jia.setEnabled(false);
@@ -91,6 +99,15 @@ public class changestorage {
 		final JTextField chpai = new JTextField();
 		final JTextField chjia = new JTextField();
 		final JTextField chwei = new JTextField();
+		
+		chqu.setOpaque(false);
+		chqu.setBorder(BorderFactory.createEmptyBorder());
+		chpai.setOpaque(false);
+		chpai.setBorder(BorderFactory.createEmptyBorder());
+		chjia.setOpaque(false);
+		chjia.setBorder(BorderFactory.createEmptyBorder());
+		chwei.setOpaque(false);
+		chwei.setBorder(BorderFactory.createEmptyBorder());
 
 		JButton b4 = new JButton("确定");
 		b4.addActionListener(new ActionListener() {

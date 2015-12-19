@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -78,6 +79,23 @@ public class addemployee {
 		final JTextField identity = new JTextField();
 		final JTextField address = new JTextField();
 		final JTextField posidtext = new JTextField();
+		id.setOpaque(false);
+		id.setBorder(BorderFactory.createEmptyBorder());
+		name.setOpaque(false);
+		name.setBorder(BorderFactory.createEmptyBorder());
+		age.setOpaque(false);
+		age.setBorder(BorderFactory.createEmptyBorder());
+		tel.setOpaque(false);
+		tel.setBorder(BorderFactory.createEmptyBorder());
+		salary.setOpaque(false);
+		salary.setBorder(BorderFactory.createEmptyBorder());
+		identity.setOpaque(false);
+		identity.setBorder(BorderFactory.createEmptyBorder());
+		address.setOpaque(false);
+		address.setBorder(BorderFactory.createEmptyBorder());
+		posidtext.setOpaque(false);
+		posidtext.setBorder(BorderFactory.createEmptyBorder());
+		
 		final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
 
 		final JComboBox job = new JComboBox(jobs);

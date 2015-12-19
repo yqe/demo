@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -49,6 +50,8 @@ public class BuildAccount {
 				new JTextField(), new JTextField(), new JTextField() };
 		for (int i = 1; i < textfield.length; i++) {
 			textfield[i].setBounds(180 + gap + labelw, 60 + (texth + gaph) * i, textw, texth);
+			textfield[i].setOpaque(false);
+			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 			context.add(textfield[i]);
 		}
 		

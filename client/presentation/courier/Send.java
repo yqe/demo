@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -130,6 +131,46 @@ public class Send {
 		// JTextField t17=new JTextField();
 		final JTextField courier = new JTextField();
 
+	    		
+		sender.setOpaque(false);
+		sender.setBorder(BorderFactory.createEmptyBorder());
+		senderinfo.setOpaque(false);
+		senderinfo.setBorder(BorderFactory.createEmptyBorder());
+		sendertel.setOpaque(false);
+		sendertel.setBorder(BorderFactory.createEmptyBorder());
+		sendersite.setOpaque(false);
+		sendersite.setBorder(BorderFactory.createEmptyBorder());
+		
+		getter.setOpaque(false);
+		getter.setBorder(BorderFactory.createEmptyBorder());
+		getterinfo.setOpaque(false);
+		getterinfo.setBorder(BorderFactory.createEmptyBorder());
+		gettertel.setOpaque(false);
+		gettertel.setBorder(BorderFactory.createEmptyBorder());
+		gettersite.setOpaque(false);
+		gettersite.setBorder(BorderFactory.createEmptyBorder());
+		
+		goodsname.setOpaque(false);
+		goodsname.setBorder(BorderFactory.createEmptyBorder());
+		goodsweight.setOpaque(false);
+		goodsweight.setBorder(BorderFactory.createEmptyBorder());
+		length.setOpaque(false);
+		length.setBorder(BorderFactory.createEmptyBorder());
+		width.setOpaque(false);
+		width.setBorder(BorderFactory.createEmptyBorder());
+		height.setOpaque(false);
+		height.setBorder(BorderFactory.createEmptyBorder());
+		
+		goodsinfo.setOpaque(false);
+		goodsinfo.setBorder(BorderFactory.createEmptyBorder());
+		price.setOpaque(false);
+		price.setBorder(BorderFactory.createEmptyBorder());
+		exceptedtime.setOpaque(false);
+		exceptedtime.setBorder(BorderFactory.createEmptyBorder());
+		courier.setOpaque(false);
+		courier.setBorder(BorderFactory.createEmptyBorder());
+		
+//		
 		V.setOpaque(false);
 		V.setEditable(false);
 		// exceptedtime.setOpaque(false);
@@ -140,6 +181,7 @@ public class Send {
 			num[i - 1] = String.valueOf(i);
 		}
 		final JComboBox numbox = new JComboBox(num);
+		numbox.setOpaque(false);
 		// numbox.addItemListener(new ItemListener()
 		// {
 		// public void itemStateChanged(ItemEvent e)
@@ -152,6 +194,7 @@ public class Send {
 
 		String[] type = { "普通快递", "经济快递", "次晨特快" };
 		final JComboBox typebox = new JComboBox(type);
+		typebox.setOpaque(false);
 		// typebox.addItemListener(new ItemListener()
 		// {
 		// public void itemStateChanged(ItemEvent e)
@@ -164,6 +207,7 @@ public class Send {
 
 		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
 		final JComboBox packagebox = new JComboBox(pack);
+		packagebox.setOpaque(false);
 		// packagebox.addItemListener(new ItemListener()
 		// {
 		// public void itemStateChanged(ItemEvent e)
@@ -177,6 +221,7 @@ public class Send {
 		// });
 		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
 		final JComboBox depaturebox = new JComboBox(depature);
+		depaturebox.setOpaque(false);
 		// depaturebox.addItemListener(new ItemListener()
 		// {
 		// public void itemStateChanged(ItemEvent e)
@@ -189,6 +234,7 @@ public class Send {
 
 		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
 		final JComboBox destinationbox = new JComboBox(destination);
+		destinationbox.setOpaque(false);
 		destinationbox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -217,18 +263,21 @@ public class Send {
 
 		}
 		final JComboBox yearbox2 = new JComboBox(year);
+		yearbox2.setOpaque(false);
 		String[] month = new String[12];
 		for (int i = 1; i <= 12; i++) {
 			month[i - 1] = i + "月";
 
 		}
 		final JComboBox monthbox2 = new JComboBox(month);
+		monthbox2.setOpaque(false);
 		String[] day = new String[31];
 		for (int i = 1; i <= 31; i++) {
 			day[i - 1] = i + "日";
 
 		}
 		final JComboBox daybox2 = new JComboBox(day);
+		daybox2.setOpaque(false);
 
 		length.getDocument().addDocumentListener(new DocumentListener() {
 			String goodslength;

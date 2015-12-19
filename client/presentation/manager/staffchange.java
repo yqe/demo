@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -72,6 +73,23 @@ public class staffchange extends JDialog implements ActionListener {
 		JTextField t6 = new JTextField();
 		JTextField t7 = new JTextField();
 		JTextField t8 = new JTextField();
+		
+		t1.setOpaque(false);
+		t1.setBorder(BorderFactory.createEmptyBorder());
+		t2.setOpaque(false);
+		t2.setBorder(BorderFactory.createEmptyBorder());
+		t3.setOpaque(false);
+		t3.setBorder(BorderFactory.createEmptyBorder());
+		t4.setOpaque(false);
+		t4.setBorder(BorderFactory.createEmptyBorder());
+		t5.setOpaque(false);
+		t5.setBorder(BorderFactory.createEmptyBorder());
+		t6.setOpaque(false);
+		t6.setBorder(BorderFactory.createEmptyBorder());
+		t7.setOpaque(false);
+		t7.setBorder(BorderFactory.createEmptyBorder());
+		t8.setOpaque(false);
+		t8.setBorder(BorderFactory.createEmptyBorder());
 
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
 		l2.setFont(new Font("", Font.PLAIN, b2size));

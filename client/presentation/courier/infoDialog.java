@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -26,6 +27,9 @@ public class infoDialog extends JDialog implements ActionListener {
 	JTextField homesitet = new JTextField();
 	JTextField worksitet = new JTextField();
 	JTextField telt = new JTextField();
+	
+	
+	
 
 	// JButton ok=new JButton("ȷ��");
 	infoDialog(String name,String home,String workspace,String tel) throws IOException {
@@ -40,7 +44,16 @@ public class infoDialog extends JDialog implements ActionListener {
 		back.setBounds(0, 0, 350, 300);
 		back.setLayout(null);
 		back.setOpaque(false);
-
+    	namet.setOpaque(false);
+		namet.setBorder(BorderFactory.createEmptyBorder());
+		homesitet.setOpaque(false);
+		homesitet.setBorder(BorderFactory.createEmptyBorder());
+		worksitet.setOpaque(false);
+		worksitet.setBorder(BorderFactory.createEmptyBorder());
+		telt.setOpaque(false);
+		telt.setBorder(BorderFactory.createEmptyBorder());
+		
+		
 		setTitle("订单信息");
 		setBounds(800, 200, 350, 300);
 		setResizable(false);

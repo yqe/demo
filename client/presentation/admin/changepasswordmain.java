@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -56,6 +57,13 @@ public class changepasswordmain {
 		final JTextField id = new JTextField();
 		final JPasswordField newpassword1 = new JPasswordField();
 		final JPasswordField newpassword2 = new JPasswordField();
+		
+		id.setOpaque(false);
+		newpassword1.setOpaque(false);
+		newpassword2.setOpaque(false);
+		id.setBorder(BorderFactory.createEmptyBorder());
+		newpassword1.setBorder(BorderFactory.createEmptyBorder());
+		newpassword2.setBorder(BorderFactory.createEmptyBorder());
 
 		JButton b4 = new JButton("确认修改");
 		b4.addActionListener(new ActionListener() {

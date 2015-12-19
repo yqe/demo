@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -44,8 +45,13 @@ public class AccountMan {
 		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField() };
 		for (int i = 0; i < textfield.length; i++) {
 			textfield[i].setBounds(80 + gap + labelw, 40 + (texth + gaph) * i + 150, textw, texth);
+			textfield[i].setOpaque(false);
+			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 			context.add(textfield[i]);
 		}
+		
+		
+		
 		JButton btn = new JButton("确定增加");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,6 +95,8 @@ public class AccountMan {
 		accmean.setBounds(80, 250, 120, texth);
 		accmean.setFont(new Font("", Font.PLAIN, 25));
 		final JTextField accname = new JTextField();
+		accname.setOpaque(false);
+		accname.setBorder(BorderFactory.createEmptyBorder());
 		JButton delbtn = new JButton("确定删除");
 		delbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -131,12 +139,20 @@ public class AccountMan {
 			context.add(account[i + 1]);
 		}
 		final JTextField accname = new JTextField();
+		accname.setOpaque(false);
+		accname.setBorder(BorderFactory.createEmptyBorder());
 		accname.setBounds(80 + 100 + 20, 100, textw, texth);
 		final JTextField[] text = new JTextField[] { new JTextField(), new JTextField(), new JTextField(),
 				new JTextField() };
 
 		text[0].setOpaque(false);
+		text[0].setBorder(BorderFactory.createEmptyBorder());
+		text[1].setOpaque(false);
+		text[1].setBorder(BorderFactory.createEmptyBorder());
 		text[2].setOpaque(false);
+		text[2].setBorder(BorderFactory.createEmptyBorder());
+		text[3].setOpaque(false);		
+		text[3].setBorder(BorderFactory.createEmptyBorder());
 		text[0].setEditable(false);
 		text[2].setEditable(false);
 		;
@@ -210,10 +226,11 @@ public class AccountMan {
 		for (int i = 1; i < textfield.length; i++) {
 			textfield[i].setBounds(80 + gap + labelw, 100 + (texth + gaph) * (i - 1) + 150, textw, texth);
 			context.add(textfield[i]);
+			textfield[i].setOpaque(false);
+			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 		}
 
-		textfield[1].setOpaque(false);
-		textfield[2].setOpaque(false);
+		
 		textfield[1].setEditable(false);
 		textfield[2].setEditable(false);
 
@@ -222,6 +239,8 @@ public class AccountMan {
 		id.setBounds(80, 50, 150, labelh);
 		context.add(id);
 		textfield[0].setBounds(250, 50, textw, labelh);
+		textfield[0].setOpaque(false);
+		textfield[0].setBorder(BorderFactory.createEmptyBorder());
 		context.add(textfield[0]);
 		JButton button = new JButton("确认查询");
 		button.addActionListener(new ActionListener() {

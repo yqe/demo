@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -59,9 +60,16 @@ public class adduser {
 		final JTextField t2 = new JTextField();
 		final JTextField t3 = new JTextField();
 		final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
-
 		final JComboBox job = new JComboBox(jobs);
 
+		t1.setOpaque(false);
+		t2.setOpaque(false);
+		t3.setOpaque(false);
+		t1.setBorder(BorderFactory.createEmptyBorder());
+		t2.setBorder(BorderFactory.createEmptyBorder());
+		t3.setBorder(BorderFactory.createEmptyBorder());
+		
+		
 		JButton b5 = new JButton("确认新建");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

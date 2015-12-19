@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -72,6 +73,11 @@ public class checkstorage {
 		t3.setEditable(false);
 		t4.setOpaque(false);
 		t4.setEditable(false);
+		
+		t1.setBorder(BorderFactory.createEmptyBorder());
+		t2.setBorder(BorderFactory.createEmptyBorder());
+		t3.setBorder(BorderFactory.createEmptyBorder());
+		t4.setBorder(BorderFactory.createEmptyBorder());
 
 		JButton b4 = new JButton("查 看");
 		b4.addActionListener(new ActionListener() {

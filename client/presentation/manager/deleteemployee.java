@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -80,48 +81,42 @@ public class deleteemployee {
 		final JTextField place = new JTextField();
 		final JTextField sex = new JTextField();
 		final JTextField posidtext = new JTextField();
+		
+		id.setOpaque(false);
+		id.setBorder(BorderFactory.createEmptyBorder());
+		
 		name.setOpaque(false);
+		name.setBorder(BorderFactory.createEmptyBorder());
 		name.setEditable(false);
 		age.setOpaque(false);
+		age.setBorder(BorderFactory.createEmptyBorder());
 		age.setEditable(false);
 		tel.setOpaque(false);
+		tel.setBorder(BorderFactory.createEmptyBorder());
 		tel.setEditable(false);
 		salary.setOpaque(false);
+		salary.setBorder(BorderFactory.createEmptyBorder());
 		salary.setEditable(false);
 		identity.setOpaque(false);
+		identity.setBorder(BorderFactory.createEmptyBorder());
 		identity.setEditable(false);
 		address.setOpaque(false);
+		address.setBorder(BorderFactory.createEmptyBorder());
 		address.setEditable(false);
 		job.setOpaque(false);
+		job.setBorder(BorderFactory.createEmptyBorder());
 		job.setEditable(false);
 		place.setOpaque(false);
+		place.setBorder(BorderFactory.createEmptyBorder());
 		place.setEditable(false);
 		sex.setOpaque(false);
+		sex.setBorder(BorderFactory.createEmptyBorder());
 		sex.setEditable(false);
 		posidtext.setOpaque(false);
+		posidtext.setBorder(BorderFactory.createEmptyBorder());
 		posidtext.setEditable(false);
 		
-		// final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员",
-		// "总经理", "财务人员", "管理员" };
-		//
-		// final JComboBox job = new JComboBox(jobs);
-		// final String[] places = {"南京","北京","杭州","深圳","广州"};
-		//
-		// final JComboBox place = new JComboBox(places);
-		//
-		// final JRadioButton jb1 = new JRadioButton("男");
-		// jb1.setSelected(true);
-		// jb1.setOpaque(false);
-		// final JRadioButton jb2 = new JRadioButton("女");
-		// jb2.setOpaque(false);
-		// ButtonGroup bg = new ButtonGroup();
-		// bg.add(jb1);
-		// bg.add(jb2);
-
-		// t2.setOpaque(false);
-		// t3.setOpaque(false);
-		// t2.setEditable(false);
-		// t3.setEditable(false);
+	
 
 		JButton b4 = new JButton("查询ID");
 		b4.addActionListener(new ActionListener() {
@@ -151,10 +146,7 @@ public class deleteemployee {
 		JButton b5 = new JButton("确认删除");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// PO传数据
-				// UserBl userbl = new UserBl();
-				// UserInfoPO userpotemp = userbl.CheckUserInfoPO(t1.getText());
-				// boolean IsOk=userbl.cancellation(userpotemp);
+			
 				boolean idisempty = id.getText().equals("");
 				boolean nameisempty = name.getText().equals("");
 				boolean isempty = idisempty || nameisempty;

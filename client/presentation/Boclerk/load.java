@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -76,8 +77,26 @@ public class load {
 		final JTextField yy = new JTextField();// Ѻ��Ա
 		final JTextField price = new JTextField();
 		final JTextField yyt = new JTextField();
+		
+		id.setOpaque(false);
+		id.setBorder(BorderFactory.createEmptyBorder());
+		transid.setOpaque(false);
+		transid.setBorder(BorderFactory.createEmptyBorder());
+		carid.setOpaque(false);
+		carid.setBorder(BorderFactory.createEmptyBorder());
+		jz.setOpaque(false);
+		jz.setBorder(BorderFactory.createEmptyBorder());
+		yy.setOpaque(false);
+		yy.setBorder(BorderFactory.createEmptyBorder());
+		price.setOpaque(false);
+		price.setBorder(BorderFactory.createEmptyBorder());
+		
+		
+		
+		
 		yyt.setText(emPO.getPosID());
 		yyt.setOpaque(false);
+		yyt.setBorder(BorderFactory.createEmptyBorder());
 		yyt.setEditable(false);
 		String[] year = new String[201];
 		for (int i = 2000; i < 2100; i++) {

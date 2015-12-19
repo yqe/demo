@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -72,6 +73,20 @@ public class transitload {
 		final JTextField jz = new JTextField();
 		final JTextField yy = new JTextField();
 		final JTextField price = new JTextField();
+		
+		zzdid.setOpaque(false);
+		zzdid.setBorder(BorderFactory.createEmptyBorder());
+		hbid.setOpaque(false);
+		hbid.setBorder(BorderFactory.createEmptyBorder());
+		hgid.setOpaque(false);
+		hgid.setBorder(BorderFactory.createEmptyBorder());
+		jz.setOpaque(false);
+		jz.setBorder(BorderFactory.createEmptyBorder());
+		yy.setOpaque(false);
+		yy.setBorder(BorderFactory.createEmptyBorder());
+		price.setOpaque(false);
+		price.setBorder(BorderFactory.createEmptyBorder());
+		
 
 		boolean zzdidisempty = zzdid.getText().equals("");
 		boolean hbidisempty = hbid.getText().equals("");

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -49,9 +50,14 @@ public class CostMan {
 		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField(),
 				new JTextField(), new JTextField(), new JTextField() };
 		for (int i = 1; i < textfield.length-1; i++) {
+			textfield[i].setOpaque(false);
+			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 			textfield[i].setBounds(200+gap+labelw, 30+(texth+gaph)*i, textw, texth);
 			context.add(textfield[i]);
 		}
+		
+		textfield[textfield.length-1].setOpaque(false);
+		textfield[textfield.length-1].setBorder(BorderFactory.createEmptyBorder());
 		textfield[textfield.length-1].setBounds(200+gap+labelw, 30+(texth+gaph)*(textfield.length-1), 150+textw, texth);
 		context.add(textfield[textfield.length-1]);
 		 String[] year = new String[201];

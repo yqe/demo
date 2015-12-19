@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -44,6 +45,9 @@ public class check {
 		l3.setFont(new Font("订单条形码号:", Font.PLAIN, b2size));
 
 		final JTextField id = new JTextField();
+		
+		id.setOpaque(false);
+		id.setBorder(BorderFactory.createEmptyBorder());
 
 		JButton b4 = new JButton("查询");
 		b4.addActionListener(new ActionListener() {

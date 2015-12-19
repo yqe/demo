@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -54,6 +55,10 @@ public class Inquiry {
     final JTextField t1=new JTextField();
     final JTextField t2=new JTextField();
     
+    t1.setOpaque(false);
+    t2.setOpaque(false);
+    t1.setBorder(BorderFactory.createEmptyBorder());
+    t2.setBorder(BorderFactory.createEmptyBorder());
     
 	
 	JButton b3=new JButton("退出");
