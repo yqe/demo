@@ -1,5 +1,5 @@
 package docustubanddriver;
 
-public class CondemnStub {
+public class CondemnStub{
 
 }

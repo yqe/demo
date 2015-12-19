@@ -39,7 +39,7 @@ public class CondemnDocu {
 		
 	}
 	
-	public void insert(CondemnDocuPO po){
+	public boolean insert(CondemnDocuPO po){
 		try {
 			this.type=po.getType();
 			this.ID=po.getID();
@@ -47,26 +47,32 @@ public class CondemnDocu {
 			mysqlimp=new MySqlImp();
 			String insert="INSERT INTO 审批单据"+" (单据类型,编号,状态)"+" VALUES('"+type+"','"+ID+"','"+state+"')";
 			mysqlimp.update(insert);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
-	public void update(){
+	public boolean update(){
 		try {
 			mysqlimp=new MySqlImp();
 			String set="UPDATE 审批单据"+" SET 状态=已审批";
 			mysqlimp.update(set);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 }
