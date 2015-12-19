@@ -89,13 +89,13 @@ public class GoodsDocu implements GoodsDocuService {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Class has some problem in GoodsDocu!");
-			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
+			return new GoodsDocuPO("不存在", "", "", "", "不存在", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
 					"", "");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Some MySql problem has happened in GoodsDocu!");
-			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
+			return new GoodsDocuPO("不存在", "", "", "", "不存在", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
 					"", "");
 		}
 

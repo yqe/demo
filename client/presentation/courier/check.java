@@ -57,14 +57,21 @@ public class check {
 					try {
 						GoodsBl goodsbl = new GoodsBl(oos,ois);
 						String[] infoma = goodsbl.Goodsgetinfo(id.getText());
+						if(infoma[0].equals("不存在")){
+						JOptionPane.showMessageDialog(null, "该订单条形码号不存在!");
+						}
+						else{
+							System.out.println(infoma[0]+"&&&");
 						info = new infoDialog(infoma[0], infoma[1], infoma[2], infoma[3]);
+						info.setVisible(true);
+						}
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					info.setVisible(true);
+					
 				} else {
-					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
+					JOptionPane.showMessageDialog(null, "您所输入的订单条形码号不是10位，请再次确认！");
 				}
 
 			}
