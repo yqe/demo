@@ -57,7 +57,6 @@ public class loginframe {
 
 		final JFrame frame = new JFrame("");
 		frame.setBounds(500, 300, 600, 375);
-		frame.setUndecorated(true);
 		final JPanel p1 = new JPanel() {
 			public void paintComponent(Graphics g) {
 				g.drawImage(background.getImage(), 0, 0, frame.getSize().width, frame.getSize().height, frame);
@@ -191,30 +190,31 @@ public class loginframe {
 		frame.getLayeredPane().setLayout(null);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
+		frame.setUndecorated(true);
 		frame.setResizable(false);
 		frame.setVisible(true);
 
-		frame.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				isDraging = true;
-				xx = e.getX();
-				yy = e.getY();
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				isDraging = false;
-			}
-		});
-		frame.addMouseMotionListener(new MouseMotionAdapter() {
-			public void mouseDragged(MouseEvent e) {
-				if (isDraging) {
-					int left = frame.getLocation().x;
-					int top = frame.getLocation().y;
-					frame.setLocation(left + e.getX() - xx, top + e.getY() - yy);
-				}
-			}
-		});
+//		frame.addMouseListener(new MouseAdapter() {
+//			public void mousePressed(MouseEvent e) {
+//				isDraging = true;
+//				xx = e.getX();
+//				yy = e.getY();
+//			}
+//
+//			public void mouseReleased(MouseEvent e) {
+//				isDraging = false;
+//			}
+//		});
+//		frame.addMouseMotionListener(new MouseMotionAdapter() {
+//			public void mouseDragged(MouseEvent e) {
+//				if (isDraging) {
+//					int left = frame.getLocation().x;
+//					int top = frame.getLocation().y;
+//					frame.setLocation(left + e.getX() - xx, top + e.getY() - yy);
+//				}
+//			}
+//		});
 		l1.setBounds(150, 50, 40, 30);
 		id.setBounds(240, 50, 120, 30);
 		l2.setBounds(150, 100, 80, 30);
