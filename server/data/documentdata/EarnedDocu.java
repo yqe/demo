@@ -26,7 +26,7 @@ public class EarnedDocu implements EarnedDocuService {
 	MySqlImp mysqlimp;
 
 	@Override
-	public void insert(EarnedPO po) {
+	public boolean insert(EarnedPO po) {
 		// TODO Auto-generated method stub
 		this.findnamebyID(po.getBussinessID());
 		CondemnDocu condocu = new CondemnDocu();
@@ -46,41 +46,48 @@ public class EarnedDocu implements EarnedDocuService {
 			check.setearned(earnedmoney);// 总收入增加一条收入
 			String track = "快件已到达" + bussinessname;
 			expre.set(orderID, "营业厅轨迹", track);// 插入一条货运轨迹记录
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in EarnedDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EarnedDocu!");
+			return false;
 		}
 	}
 
 	@Override
-	public void delete(String goodsID) {
+	public boolean delete(String goodsID) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
 			String delete = "DELETE FROM 收款单" + " WHERE 订单条形码号='" + goodsID + "'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in EarnedDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EarnedDocu!");
+			return false;
 		}
 	}
 
 	@Override
-	public void update(EarnedPO po) {
+	public boolean update(EarnedPO po) {
 		// TODO Auto-generated method stub
 		EarnedDocu earn = new EarnedDocu();
 		earn.delete(po.getOrderID());
 		earn.insert(po);
+		return true;
 	}
 
 	// 根据一段时间查找收款单

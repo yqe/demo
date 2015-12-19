@@ -7,7 +7,7 @@ import po.DiliverDocuPO;
 public interface DiliverDocuService {
 	public DiliverDocuPO find(String ID);
 	public ArrayList<DiliverDocuPO> findall();
-	public void insert(DiliverDocuPO po);
-	public void update(DiliverDocuPO po);
-	public void delete(String ID);
+	public boolean insert(DiliverDocuPO po);
+	public boolean update(DiliverDocuPO po);
+	public boolean delete(String ID);
 }

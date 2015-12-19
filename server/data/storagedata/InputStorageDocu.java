@@ -27,7 +27,7 @@ public class InputStorageDocu implements InputStorageService{
 	MySqlImp mysqlimp;
 	ArrayList<InputStorageDocuPO> insee;
 	//生成入库单，同时自动向当地中转中心库存盘点里面添加记录
-	public void InputStorageAdd(InputStorageList inslt) {
+	public boolean InputStorageAdd(InputStorageList inslt) {
 		// TODO Auto-generated method stub
 		this.findnamebyID(inslt.getSlist().get(0).getTranscenterID());
 		CondemnDocu condocu=new CondemnDocu();
@@ -59,33 +59,38 @@ public class InputStorageDocu implements InputStorageService{
 				expre.set(inpo.getGoodsID(), "中转中心轨迹", track);//插入一条货运轨迹记录
 				i--;
 			}
-			
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in InputStorageDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in InputStorageDocu!");
+			return false;
 		}
 	}
 		//删除，但是单据要保存~~暂时没用
-	public void InputStorageDelete(String goodsID) {
+	public boolean InputStorageDelete(String goodsID) {
 		// TODO Auto-generated method stub
 		
 		try {
 			mysqlimp=new MySqlImp();
 			String delete="DELETE FROM 入库单"+" WHERE 快递编号='"+goodsID+"'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in InputStorageDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in InputStorageDocu!");
+			return false;
 		}
 	}
 

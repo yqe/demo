@@ -41,7 +41,7 @@ public class ManageAccount implements ManageAccountService {
 		
 	}
 
-	public void insert(ManageAccountPO po) {
+	public boolean insert(ManageAccountPO po) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
@@ -51,40 +51,46 @@ public class ManageAccount implements ManageAccountService {
 			this.password=po.getPassword();
 			String insert="INSERT INTO 账户管理"+" (账户名称,余额,账户ID,账户密码)"+" VALUES('"+accountname+"',"+balance+",'"+accountID+"','"+password+"')";
 			mysqlimp.update(insert);
-					
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in ManageAccount!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ManageAccount!");
+			return false;
 		}
 	}
 
-	public void delete(String ID) {
+	public boolean delete(String ID) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
 			String delete="DELETE FROM 账户管理"+" WHERE 账户ID='"+ID+"'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in ManageAccount!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ManageAccount!");
+			return false;
 		}
 	}
 
-	public void update(ManageAccountPO po) {
+	public boolean update(ManageAccountPO po) {
 		// TODO Auto-generated method stub
 		ManageAccount ma=new ManageAccount();
 		ma.delete(po.getAccountID());
 		ma.insert(po);
+		return true;
 	}
 		
 }

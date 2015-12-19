@@ -27,7 +27,7 @@ public class OutStorageDocu implements OutStorageService{
 		private String transcentercheck;
 		
 		//生成出库单,同时自动在库存盘点里删除一条记录
-	public void StorageDataAdd(OutStorageList oslt) {
+	public boolean StorageDataAdd(OutStorageList oslt) {
 	
 		CondemnDocu condocu=new CondemnDocu();
 		try {
@@ -51,34 +51,39 @@ public class OutStorageDocu implements OutStorageService{
 				mysqlimp.update(deletecheck);
 				i--;
 			}
-			
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in OutStorageDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in OutStorageDocu!");
+			return false;
 		}
 		
 	}
 
-	public void StorageDataDelete(String goodsID) {
+	public boolean StorageDataDelete(String goodsID) {
 		// TODO Auto-generated method stub
 		
 		try {
 			mysqlimp=new MySqlImp();
 			String delete="DELETE FROM 出库单"+" WHERE 本次装箱托运单号='"+goodsID+"'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in OutStorageDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in OutStorageDocu!");
+			return false;
 		}
 	}
 

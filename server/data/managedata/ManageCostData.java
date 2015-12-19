@@ -52,17 +52,17 @@ public class ManageCostData implements ManageCostService{
 		
 	}
 
-	public void delete(String date) throws RemoteException {
+	public boolean delete(String date) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 
-	public void update(CostManagePO po) throws RemoteException {
+	public boolean update(CostManagePO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 
-	public void insert(CostManagePO po) {
+	public boolean insert(CostManagePO po) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
@@ -76,14 +76,17 @@ public class ManageCostData implements ManageCostService{
 			mysqlimp.update(insert);
 			CheckProfit check=new CheckProfit();
 			check.setcost(payment);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in ManageCostData!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ManageCostData!");
+			return false;
 		}
 		
 	}

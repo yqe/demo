@@ -64,24 +64,27 @@ public class TransferDocu implements TransferDocuService {
 
 	}
 
-	public void delete(String goodsID) {
+	public boolean delete(String goodsID) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
 			String delete = "DELETE FROM 中转单" + "　WHERE 本次装箱托运单号='" + goodsID + "'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in TransferDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in TransferDocu!");
+			return false;
 		}
 	}
 
-	public void insert(TransferDocuPO po) {
+	public boolean insert(TransferDocuPO po) {
 		// TODO Auto-generated method stub
 		CondemnDocu condocu = new CondemnDocu();
 		try {
@@ -102,22 +105,26 @@ public class TransferDocu implements TransferDocuService {
 					+ "','" + destination + "','" + goodsNumber + "','" + monitor + "','" + carryNumber + "'," + money
 					+ ")";
 			mysqlimp.update(insert);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in TransferDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in TransferDocu!");
+			return false;
 		}
 	}
 
-	public void update(TransferDocuPO po) {
+	public boolean update(TransferDocuPO po) {
 		// TODO Auto-generated method stub
 		TransferDocu trans = new TransferDocu();
 		trans.delete(po.getGoodsNumber());
 		trans.insert(po);
+		return true;
 	}
 
 	// 快递编号找打快递信息

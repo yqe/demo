@@ -60,7 +60,7 @@ public class EmploeeData implements EmploeeDataService {
 
 	}
 
-	public void insertEmp(EmploeePO po) throws RemoteException {
+	public boolean insertEmp(EmploeePO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		this.position = po.getPosition();
 		this.name = po.getName();
@@ -79,40 +79,47 @@ public class EmploeeData implements EmploeeDataService {
 					+ position + "','" + empID + "','" + name + "'," + salary + ",'" + sex + "'," + age + ",'"
 					+ phonenum + "','" + id + "','" + address + "','"+area+"','"+posID+"')";
 			mysqlimp.update(insert);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in EmploeeData!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EmploeeData!");
+			return false;
 		}
 	}
 
-	public void delete(String ID) throws RemoteException {
+	public boolean delete(String ID) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
 			empID = ID;
 			mysqlimp = new MySqlImp();
 			String delete = "DELETE FROM 员工信息" + " WHERE 员工编号='" + empID + "'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in EmploeeData!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EmploeeData!");
+			return false;
 		}
 
 	}
 
-	public void update(EmploeePO po) throws RemoteException {
+	public boolean update(EmploeePO po) throws RemoteException {
 		EmploeeData empda = new EmploeeData();
 		empda.delete(po.getempID());
 		empda.insertEmp(po);
+		return true;
 	}
 
 	public ArrayList<EmploeePO> findall() throws RemoteException {

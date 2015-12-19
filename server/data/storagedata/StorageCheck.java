@@ -27,13 +27,14 @@ public class StorageCheck implements StorageCheckService {
 	MySqlImp mysqlimp;
 	public String transcenterID;// 中装中心编号
 
-	public void update(StorageCheckPO po) {
+	public boolean update(StorageCheckPO po) {
 		StorageCheck scheck = new StorageCheck();
 		scheck.delete(po.getGoodno());
 		scheck.insert(po);
+		return true;
 	}
 
-	public void insert(StorageCheckPO po) {
+	public boolean insert(StorageCheckPO po) {
 		try {
 			mysqlimp = new MySqlImp();
 			this.goodsID = po.goodsID;
@@ -46,33 +47,38 @@ public class StorageCheck implements StorageCheckService {
 					+ area + "','" + row + "','" + shelf + "','" + location + "','" + time + "','" + transcenterID
 					+ "')";
 			mysqlimp.update(insert);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in StorageCheck!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StorageCheck!");
+			return false;
 		}
 
 	}
 
-	public void delete(String ID) {
+	public boolean delete(String ID) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
 			String delete = "DELETE FORM 库存盘点" + " WHERE 快递编号='" + ID + "'";
 			mysqlimp.update(delete);
-
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in StorageCheck!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StorageCheck!");
+			return false;
 		}
 
 	}

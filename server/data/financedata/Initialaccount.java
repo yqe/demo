@@ -50,7 +50,7 @@ public class Initialaccount implements InitialAccountService{
 		
 	}
 
-	public void insert(InitializeAccountPO po) {
+	public boolean insert(InitializeAccountPO po) {
 		// TODO Auto-generated method stub
 		try {
 			this.bankaccountid=po.getId();
@@ -62,31 +62,37 @@ public class Initialaccount implements InitialAccountService{
 			mysqlimp=new MySqlImp();
 			String insert="INSERT INTO 期初建账信息"+" (银行账户ID,机构名称,人员,车辆,库存,银行账户余额)"+" VALUES('"+bankaccountid+"','"+jigou+"','"+affair+"',"+car+","+storage+","+money+")";
 			mysqlimp.update(insert);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in Initialaccount!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in Initialaccount!");
+			return false;
 		}
 	}
 
-	public void delete(String bid) {
+	public boolean delete(String bid) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
 			String delete="DELETE FROM 期初建账信息"+" WHERE 银行账户ID='"+bid+"'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in Initialaccount!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in Initialaccount!");
+			return false;
 		}
 	}
 

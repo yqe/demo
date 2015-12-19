@@ -7,9 +7,9 @@ public interface CheckProfitService {
 	
 	public double profittotal();
 	
-	public void setearned(double earned);
+	public boolean setearned(double earned);
 	
-	public void setcost(double cost);
+	public boolean setcost(double cost);
 	
-	public void setprofit();
+	public boolean setprofit();
 }

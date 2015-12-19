@@ -75,7 +75,7 @@ public class DiliverDocu implements DiliverDocuService{
 	}
 
 	@Override
-	public void insert(DiliverDocuPO po) {
+	public boolean insert(DiliverDocuPO po) {
 		// TODO Auto-generated method stub
 		CondemnDocu condocu=new CondemnDocu();
 		ExpressTrail expre=new ExpressTrail();
@@ -90,41 +90,48 @@ public class DiliverDocu implements DiliverDocuService{
 			mysqlimp.update(insert);
 			String track="快件已到达目的地,快递员"+courier+"正在派送中";
 			expre.set(po.getOrderID(), "目的地轨迹", track);//插入一条货运轨迹记录
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in DilivverDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in getdistance!");
+			return false;
 		}
 	}
 
 	@Override
-	public void update(DiliverDocuPO po) {
+	public boolean update(DiliverDocuPO po) {
 		// TODO Auto-generated method stub
 		DiliverDocu dido=new DiliverDocu();
 		dido.delete(po.getOrderID());
 		dido.insert(po);
+		return true;
 	}
 
 	@Override
-	public void delete(String ID) {
+	public boolean delete(String ID) {
 		// TODO Auto-generated method stub
 		try {
 			
 			mysqlimp=new MySqlImp();
 			String delete="DELETE FROM 派件单"+" WHERE 订单条形码号='"+ID+"'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in DilivverDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in getdistance!");
+			return false;
 		}
 	}
 

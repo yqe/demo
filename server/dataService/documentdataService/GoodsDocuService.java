@@ -10,15 +10,15 @@ public interface GoodsDocuService {
 	//根据ID查找到单据
 	
 	
-	public void insert(GoodsDocuPO po) throws RemoteException;
+	public boolean insert(GoodsDocuPO po) throws RemoteException;
 	//插入单据
 	
 	
-	public void delete(String goodsID) throws RemoteException;
+	public boolean delete(String goodsID) throws RemoteException;
 	//删除单据
 	
 	
-	public void update(GoodsDocuPO pos) throws RemoteException;
+	public boolean update(GoodsDocuPO pos) throws RemoteException;
 	//更新单据信息
 
 	public ArrayList<GoodsDocuPO> findmore() throws RemoteException;

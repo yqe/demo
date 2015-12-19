@@ -8,10 +8,10 @@ import po.ZzzxArrivalDocuPO;
 public interface ZzzxArrivalDocuService {
 	public ArrayList<ZzzxArrivalDocuPO> findall(String transID);
 	
-	public void delete(String goodsID);
+	public boolean delete(String goodsID);
 	
-	public void insert(ZzzxArrivalDocuPO po);
+	public boolean insert(ZzzxArrivalDocuPO po);
 	
-	public void update(ZzzxArrivalDocuPO po);
+	public boolean update(ZzzxArrivalDocuPO po);
 	public ZzzxArrivalDocuPO find(String transferNumber,String transcenterid);
 }

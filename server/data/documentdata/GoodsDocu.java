@@ -101,7 +101,7 @@ public class GoodsDocu implements GoodsDocuService {
 
 	}
 
-	public void insert(GoodsDocuPO po) throws RemoteException {
+	public boolean insert(GoodsDocuPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		CondemnDocu condocu = new CondemnDocu();
 		ExpressTrail expre=new ExpressTrail();
@@ -144,39 +144,46 @@ public class GoodsDocu implements GoodsDocuService {
 			mysqlimp.update(insert);
 			String track="快递编号为"+goodsID+"已出发";
 			expre.insert(goodsID, track);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in GoodsDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in GoodsDocu!");
+			return false;
 		}
 	}
 
-	public void delete(String goodsID) throws RemoteException {
+	public boolean delete(String goodsID) throws RemoteException {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
 			String delete = "DELETE FROM 快递单" + " WHERE 订单条形码号='" + goodsID + "'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in GoodsDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in GoodsDocu!");
+			return false;
 		}
 	}
 
-	public void update(GoodsDocuPO pos) throws RemoteException {
+	public boolean update(GoodsDocuPO pos) throws RemoteException {
 		// TODO Auto-generated method stub
 		GoodsDocu goods = new GoodsDocu();
 		goods.delete(pos.getGoodsID());
 		goods.insert(pos);
+		return true;
 	}
 
 	public ArrayList<GoodsDocuPO> findmore() throws RemoteException {

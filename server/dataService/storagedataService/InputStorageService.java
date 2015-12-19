@@ -9,10 +9,10 @@ import po.StorageList;
 
 
 public interface InputStorageService {
-	public void InputStorageAdd(InputStorageList inslt);
+	public boolean InputStorageAdd(InputStorageList inslt);
 
 
-	public void InputStorageDelete(String goodsID);
+	public boolean InputStorageDelete(String goodsID);
 	
 	public StorageList StorageDataCheck();
 

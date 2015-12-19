@@ -19,15 +19,15 @@ public interface DocumentDataService{
 	//根据ID查找到单据
 	
 	
-	public void insert(DocumentPO pos) throws RemoteException;
+	public boolean insert(DocumentPO pos) throws RemoteException;
 	//插入单据
 	
 	
-	public void delete(String ID) throws RemoteException;
+	public boolean delete(String ID) throws RemoteException;
 	//删除单据
 	
 	
-	public void update(DocumentPO pos) throws RemoteException;
+	public boolean update(DocumentPO pos) throws RemoteException;
 	//更新单据信息
 	
 	

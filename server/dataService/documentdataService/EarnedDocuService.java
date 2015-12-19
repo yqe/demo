@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import po.EarnedPO;
 
 public interface EarnedDocuService {
-	public void insert(EarnedPO po);
+	public boolean insert(EarnedPO po);
 	
-	public void delete(String goodsID);
+	public boolean delete(String goodsID);
 	
-	public void update(EarnedPO po);
+	public boolean update(EarnedPO po);
 	
 	public ArrayList<EarnedPO> findbytime(String timebegin,String timeend);
 	

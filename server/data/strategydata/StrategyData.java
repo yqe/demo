@@ -50,7 +50,7 @@ public class StrategyData implements StrategyDataService{
 	}
 
 
-	public void updatesalary(StrategyPO po) throws RemoteException{
+	public boolean updatesalary(StrategyPO po) throws RemoteException{
 		// TODO Auto-generated method stub
 		//更新职位相对应的月薪
 		try {
@@ -68,34 +68,40 @@ public class StrategyData implements StrategyDataService{
 			String insert="INSERT INTO 经营策略"+" (总经理,营业厅业务员,中转中心业务员,中转中心库存管理人员,快递员,财务人员,管理员,快递费价格计算常量)"+" VALUES("+topsal+","+busssal+","+
 					storagemanagersal+","+storagesal+","+financesal+","+diliversal+","+managersal+","+constance+")";
 			mysqlimp.update(insert);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in StrategyData!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StrategyData!");
+			return false;
 		}
 		
 	}
 
 
-	public void updateconstant(double cons) throws RemoteException{
+	public boolean updateconstant(double cons) throws RemoteException{
 		// TODO Auto-generated method stub
 		//更新价格计算常量，所有行都被设置为相同值
 		try {
 			mysqlimp=new MySqlImp();
 			String updatecons="UPDATE 经营策略"+" SET 快递费价格计算常量="+cons+"";
 			mysqlimp.update(updatecons);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in StrategyData!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StrategyData!");
+			return false;
 		}
 	}
 		

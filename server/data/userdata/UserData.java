@@ -43,24 +43,27 @@ public class UserData implements UserDataService{
 			}
 				
 		}
-		public void delete(String ID) {
+		public boolean delete(String ID) {
 			// TODO Auto-generated method stub
 			try {
 				mysqlimp=new MySqlImp();
 				String delete="DELETE FROM 登录时所需信息"+" WHERE 账户ID='"+ID+"'";
 				mysqlimp.update(delete);
+				return true;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 				System.out.println("Class has some problem in UserData!");
+				return false;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 				System.out.println("Some MySql problem has happened in UserData!");
+				return false;
 			}
-			
 		}
-		public void insert(UserInfoPO po) {
+			
+		public boolean insert(UserInfoPO po) {
 			// TODO Auto-generated method stub
 			try {
 				mysqlimp=new MySqlImp();
@@ -71,21 +74,25 @@ public class UserData implements UserDataService{
 				String insert="INSERT INTO 登录时所需信息"+" (账户ID,账户密码,账户人姓名,职位)"+" VALUES('"+userID+"','"+password+"','"+username+"','"+position+"')";
 				//System.out.println(insert);
 				mysqlimp.update(insert);
+				return true;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 				System.out.println("Class has some problem in UserData!");
+				return false;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 				System.out.println("Some MySql problem has happened in UserData!");
+				return false;
 			}
 		}
-		public void update(UserInfoPO po) {
+		public boolean update(UserInfoPO po) {
 			// TODO Auto-generated method stub
 			UserData user=new UserData();
 			user.delete(po.getUserID());
 			user.insert(po);
+			return true;
 		}
 
 		

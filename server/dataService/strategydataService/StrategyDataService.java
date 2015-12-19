@@ -16,9 +16,9 @@ public interface StrategyDataService{
 	public StrategyPO observe() throws RemoteException;
 	
 
-	public void updatesalary(StrategyPO po) throws RemoteException;
+	public boolean updatesalary(StrategyPO po) throws RemoteException;
 	
-	public void updateconstant(double cons) throws RemoteException;
+	public boolean updateconstant(double cons) throws RemoteException;
 	
 	
 }

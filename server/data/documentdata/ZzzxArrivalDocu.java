@@ -55,24 +55,27 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 		
 	}
 
-	public void delete(String goodsID) {
+	public boolean delete(String goodsID) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
 			String delete="DELETE FROM 中转中心到达单"+" WHERE 中转单编号='"+goodsID+"'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in ZzzxArrivalDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ZzzxArrivalDocu!");
+			return false;
 		}
 	}
 
-	public void insert(ZzzxArrivalDocuPO po) {
+	public boolean insert(ZzzxArrivalDocuPO po) {
 		// TODO Auto-generated method stub
 		CondemnDocu condocu=new CondemnDocu();
 		try {
@@ -86,22 +89,26 @@ public class ZzzxArrivalDocu implements ZzzxArrivalDocuService{
 				String insert="INSERT INTO 中转中心到达单"+" (中转中心编号,到达日期,中转单编号,出发地,货物到达状态)"
 				+" VALUES('"+transferCenterNum+"','"+arrivalDate+"','"+transferNumber+"','"+startPlace+"','"+goodsState+"')";
 				mysqlimp.update(insert);
+				return true;
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("Class has some problem in ZzzxArrivalDocu!");
+				return false;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("Some MySql problem has happened in ZzzxArrivalDocu!");
+				return false;
 			}
 	}
 
-	public void update(ZzzxArrivalDocuPO po) {
+	public boolean update(ZzzxArrivalDocuPO po) {
 		// TODO Auto-generated method stub
 		ZzzxArrivalDocu zzzx=new ZzzxArrivalDocu();
 		zzzx.delete(po.getTransferNumber());
 		zzzx.insert(po);
+		return true;
 	}
 
 	//返回一个中转中心到达单

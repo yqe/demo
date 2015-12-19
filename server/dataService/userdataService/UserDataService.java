@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import po.UserInfoPO;
 public interface UserDataService{
 		public UserInfoPO getLoginPO(String name);
-		public void delete(String ID);
-		public void insert(UserInfoPO po);
-		public void update(UserInfoPO po);
+		public boolean delete(String ID);
+		public boolean insert(UserInfoPO po);
+		public boolean update(UserInfoPO po);
 }

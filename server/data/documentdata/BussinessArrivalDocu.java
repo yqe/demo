@@ -24,7 +24,7 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 	private String bussinessname;//营业厅名字
 
 	@Override
-	public void insert(BussinessArrivalDocuPO po) {
+	public boolean insert(BussinessArrivalDocuPO po) {
 		// TODO Auto-generated method stub
 		CondemnDocu condocu=new CondemnDocu();
 		try {
@@ -39,41 +39,48 @@ public class BussinessArrivalDocu implements BussinessArrivalDocuService {
 					+ arrivaltime + "','" + transferID + "','" + destination + "','" + state + "','" + bussinessID
 					+ "')";
 			mysqlimp.update(insert);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in BussinessArrivalDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in BussinessArrivalDocu!");
+			return false;
 		}
 		
 	}
 
 	@Override
-	public void delete(String transferID, String bussinessID) {
+	public boolean delete(String transferID, String bussinessID) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
 			String delete = "DELETE FROM 营业厅到达单" + " WHERE 中转单编号='" + transferID + "' and WHERE 营业厅编号='"+bussinessID+"'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in BussinessArrivalDocu!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in BussinessArrivalDocu!");
+			return false;
 		}
 	}
 
 	@Override
-	public void update(BussinessArrivalDocuPO po) {
+	public boolean update(BussinessArrivalDocuPO po) {
 		// TODO Auto-generated method stub
 		this.delete(po.getTransferID(), po.getBussinessID());
 		this.insert(po);
+		return true;
 	}
 
 	@Override

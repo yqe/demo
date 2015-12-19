@@ -4,7 +4,7 @@ import po.ManageAccountPO;
 
 public interface ManageAccountService {
 		public ManageAccountPO find(String ID);
-		public void insert(ManageAccountPO po);
-		public void delete(String ID);
-		public void update(ManageAccountPO po);
+		public boolean insert(ManageAccountPO po);
+		public boolean delete(String ID);
+		public boolean update(ManageAccountPO po);
 }

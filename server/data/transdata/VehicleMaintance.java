@@ -63,24 +63,27 @@ public class VehicleMaintance implements VehicleMaintanceService {
 		
 	}
 
-	public void delete(String vehicleID) {
+	public boolean delete(String vehicleID) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
 			String delete="DELETE FROM 车辆维护相关信息"+" WHERE 车辆代号='"+vehicleID+"'";
 			mysqlimp.update(delete);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in VehicleMaintance!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in VehicleMaintance!");
+			return false;
 		}
 	}
 
-	public void insert(VehicleMaintanceInfoPO po) {
+	public boolean insert(VehicleMaintanceInfoPO po) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp=new MySqlImp();
@@ -99,22 +102,26 @@ public class VehicleMaintance implements VehicleMaintanceService {
 			+" VALUES('"+vehicleID+"','"+bussinessID+"','"+carsID+"','"+worktime+"','"+driverID+"','"+drivername+"','"+birthday+"','"+idendity+"','"+mobile+"','"+sex+"','"+limittime+"')";
 //			System.out.println(insert);
 			mysqlimp.update(insert);
+			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Class has some problem in VehicleMaintance!");
+			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in VehicleMaintance!");
+			return false;
 		}
 	}
 
-	public void update(VehicleMaintanceInfoPO po) {
+	public boolean update(VehicleMaintanceInfoPO po) {
 		// TODO Auto-generated method stub
 		VehicleMaintance vehi=new VehicleMaintance();
 		vehi.delete(po.getVehicleID());
 		vehi.insert(po);
+		return true;
 	}
 
 	public ArrayList<VehicleMaintanceInfoPO> findmore() {
