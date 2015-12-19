@@ -41,6 +41,8 @@ public class GoodsDocu implements GoodsDocuService {
 	private String expectedtime;// 预期到达时间
 	private String generatetime;// 寄件单生成日期
 	private String courier;// 快递员姓名
+	private String departure;//出发地
+	private String destination;
 	private ArrayList<GoodsDocuPO> goodsList;
 	MySqlImp mysqlimp;
 
@@ -50,7 +52,7 @@ public class GoodsDocu implements GoodsDocuService {
 		try {
 			mysqlimp = new MySqlImp();
 			String find = "SELECT 寄件人姓名,寄件人住址,寄件人单位,寄件人手机,收件人姓名,收件人住址,收件人单位"
-					+ ",收件人手机,包装费,费用合计,快递类型,订单条形码号,重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名" + " FROM 快递单"
+					+ ",收件人手机,包装费,费用合计,快递类型,订单条形码号,重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名,出发地,目的地" + " FROM 快递单"
 					+ " WHERE 订单条形码号='" + goodsID + "'";
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
@@ -78,11 +80,13 @@ public class GoodsDocu implements GoodsDocuService {
 			this.expectedtime = rs.getString(22);
 			this.generatetime = rs.getString(23);
 			this.courier = rs.getString(24);
+			this.departure=rs.getString(25);
+			this.destination=rs.getString(26);
 			rs.close();
 			GoodsDocuPO goodsdocuPO = new GoodsDocuPO(dilivername, diliveraddress, diliverworkspace, dilivermobile,
 					receivername, receiveraddress, receiverworkspace, receivermobile, wrappedfee, totalfee, expresstype,
 					goodsID, weight, goodsname, goodsnumber, length, width, height, v, goodsinfo, wrappedtype,
-					expectedtime, generatetime, courier);
+					expectedtime, generatetime, courier,departure,destination);
 			
 			return goodsdocuPO;
 		} catch (ClassNotFoundException e) {
@@ -90,13 +94,13 @@ public class GoodsDocu implements GoodsDocuService {
 			// e.printStackTrace();
 			System.out.println("Class has some problem in GoodsDocu!");
 			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
-					"", "");
+					"", "","", "");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Some MySql problem has happened in GoodsDocu!");
 			return new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
-					"", "");
+					"", "","","");
 		}
 
 	}
@@ -130,15 +134,17 @@ public class GoodsDocu implements GoodsDocuService {
 			this.expectedtime = po.getExpectedtime();
 			this.generatetime = po.getGeneratetime();
 			this.courier = po.getCourier();
+			this.departure=po.getDeparture();
+			this.destination=po.getDestination();
 			condocu.insert(new CondemnDocuPO("快递单", goodsID, "未审批"));
 			String insert = "INSERT INTO 快递单" + " (寄件人姓名,寄件人住址,寄件人单位,寄件人手机,收件人姓名,收件人住址,收件人单位,收件人手机,"
-					+ "包装费,费用合计,快递类型,订单条形码号,重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名)" + " VALUES('"
+					+ "包装费,费用合计,快递类型,订单条形码号,重量,货物名称,货物数量,长,宽,高,体积,货物信息,包装选择,预计到达时间,寄件单生成日期,快递员姓名,出发地,目的地)" + " VALUES('"
 					+ dilivername + "','" + diliveraddress + "','" + diliverworkspace + "','" + dilivermobile + "','"
 					+ receivername + "','" + receiveraddress + "','" + receiverworkspace + "','" + receivermobile + "',"
 					+ wrappedfee + "," + totalfee + ",'" + expresstype + "','" + goodsID + "'," + weight + "," + "'"
 					+ goodsname + "'," + goodsnumber + "," + length + "," + width + "," + height + "," + v + ",'"
 					+ goodsinfo + "','" + wrappedtype + "','" + expectedtime + "','" + generatetime + "','" + courier
-					+ "')";
+					+ "','"+departure+"','"+destination+"')";
 			//System.out.println(insert);
 			mysqlimp = new MySqlImp();
 			mysqlimp.update(insert);
@@ -218,11 +224,12 @@ public class GoodsDocu implements GoodsDocuService {
 				this.expectedtime = rs.getString(22);
 				this.generatetime = rs.getString(23);
 				this.courier = rs.getString(24);
-
+				this.departure=rs.getString(25);
+				this.destination=rs.getString(26);
 				goodsList.add(new GoodsDocuPO(dilivername, diliveraddress, diliverworkspace, dilivermobile,
 						receivername, receiveraddress, receiverworkspace, receivermobile, wrappedfee, totalfee,
 						expresstype, goodsID, weight, goodsname, goodsnumber, length, width, height, v, goodsinfo,
-						wrappedtype, expectedtime, generatetime, courier));
+						wrappedtype, expectedtime, generatetime, courier,departure,destination));
 			}
 			rs.close();
 			return goodsList;
@@ -237,7 +244,7 @@ public class GoodsDocu implements GoodsDocuService {
 			System.out.println("Some MySql problem has happened in GoodsDocu!");
 			goodsList = new ArrayList<GoodsDocuPO>();
 			goodsList.add(new GoodsDocuPO("不存在", "", "", "", "", "", "", " ", 0, 0, "", "", 0, "", 0, 0, 0, 0, 0, "", "", "",
-					"", ""));
+					"", "","",""));
 			return goodsList;
 		}
 

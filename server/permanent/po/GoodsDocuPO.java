@@ -34,7 +34,8 @@ public class GoodsDocuPO implements Serializable {
 	private String expectedtime;//预期到达时间
 	private String generatetime;//寄件单生成日期
 	private String courier;//快递员姓名
-
+	private String departure;//出发地
+	private String destination;
 	public double getWeight() {
 		return weight;
 	}
@@ -158,7 +159,7 @@ public class GoodsDocuPO implements Serializable {
 		public GoodsDocuPO(String dname,String daddress,String dworkspace,String dmobile,String rname,String raddress,
 				String rworkspace,String rmobile,double wfee,double tfee,String etype,String goodsID,double weight
 				,String goodsname,int goodsnum, double len,double wid,double hei,double v,String goodsinfo,String wrappedtype
-				,String expectedtime,String generatetime,String name){
+				,String expectedtime,String generatetime,String name,String depar,String des){
 			this.dilivername=dname;
 			this.diliveraddress=daddress;
 			this.diliverworkspace=dworkspace;
@@ -183,8 +184,17 @@ public class GoodsDocuPO implements Serializable {
 			this.expectedtime=expectedtime;
 			this.generatetime=generatetime;
 			this.courier =name;
-			
+			this.departure=depar;
+			this.destination=des;
 		}
 
-	
+
+		public String getDeparture() {
+			return departure;
+		}
+
+		public String getDestination() {
+			return destination;
+		}
+
 }
