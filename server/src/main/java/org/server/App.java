@@ -7,10 +7,8 @@ import documentdata.TransferDocu;
 import financedata.Initialaccount;
 import goodsdata.ExpressTrail;
 import managedata.CheckProfit;
+import managedata.ManageAccount;
 import managedata.ManageCostData;
-import po.EarnedPO;
-import po.GoodsDocuPO;
-import po.UserInfoPO;
 import storagedata.InputStorageDocu;
 import strategydata.EmploeeData;
 import strategydata.StrategyData;
@@ -38,6 +36,7 @@ public class App
         Initialaccount in=new Initialaccount();
         TransferDocu tran=new TransferDocu();
         ExpressTrail expre=new ExpressTrail();
+        ManageAccount macc=new ManageAccount();
         try {
 			//s.observe(); 
 			//s.updatesalary("总经理", 50000);
@@ -68,6 +67,7 @@ public class App
         	//g.insert(new GoodsDocuPO("张二", "南京大学", "南京大学", "110", "李四", "北京大学", "北京大学", "119", 20, 30, "普通快递", "141250191", 20, "好东西", 1, 20, 20, 20, 8000, "好东西", "纸箱", "20151125", "20151125", "阿皮"));
         	//ea.insert(new EarnedPO("2015-12-30", 200, "李二", "141250191", "021000"));
         	//System.out.println("您快递编号为"+expre.find("1412501733").getGoodsID()+expre.find("1412501733").getBusstrail()+expre.find("1412501733").getCentertrail());
+       System.out.println(macc.delete("1"));
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
