@@ -236,7 +236,7 @@ public class AccountMan {
 		id.setFont(new Font("", Font.PLAIN, 18));
 		id.setBounds(Gapw, Gaph, 150, labelh);
 		context.add(id);
-		textfield[0].setBounds(250, 50, textw, labelh);
+		textfield[0].setBounds(250, Gaph, textw, labelh);
 		textfield[0].setOpaque(false);
 		textfield[0].setBorder(BorderFactory.createEmptyBorder());
 		context.add(textfield[0]);

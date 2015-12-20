@@ -91,7 +91,7 @@ public class CheckBill {
 //				 System.out.println(date+"@@@");
 				Tran tran=new Tran();
 				String date=tran.Tran(olddate);
-				System.out.println(date+"&&&");
+//				System.out.println(date+"&&&");
 				Earneddocu earneddocu = new Earneddocu(oos,ois);
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("day", date);
                  if(epolist.GetIndex(0).getPaydate().equals("不存在")){

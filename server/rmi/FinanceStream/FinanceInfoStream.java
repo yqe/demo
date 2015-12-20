@@ -194,6 +194,7 @@ public class FinanceInfoStream {
 		try {
 			ManageAccount bankacc = new ManageAccount();
 			String accpoid = (String) ois.readObject();
+//			System.out.println(accpoid);
 			boolean isok = bankacc.delete(accpoid);
 			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
