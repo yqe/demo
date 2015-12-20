@@ -31,8 +31,8 @@ public class TransitInfoStream {
 		try {
 			ZzzxArrivalDocu zadu=new ZzzxArrivalDocu();
 			ZzzxArrivalDocuPO zapo = (ZzzxArrivalDocuPO) ois.readObject();
-			zadu.insert(zapo);
-			oos.writeObject(new Boolean(true));
+			boolean isok=zadu.insert(zapo);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,8 +45,8 @@ public class TransitInfoStream {
 		try {
 			TransferDocu td=new TransferDocu();
 			TransferDocuPO tdpo = (TransferDocuPO) ois.readObject();
-			td.insert(tdpo);
-			oos.writeObject(new Boolean(true));
+			boolean isok=td.insert(tdpo);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

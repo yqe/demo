@@ -52,10 +52,10 @@ public class HallClerkInfoStream {
 	private void CarInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
 		VehicleMaintance vm = new VehicleMaintance();
 		try {
-			String vid = (String)ois.readObject();
-//			System.out.println(vid);
+			String vid = (String) ois.readObject();
+			// System.out.println(vid);
 			VehicleMaintanceInfoPO vmpo = vm.find(vid);
-//			System.out.println(vmpo.getVehicleID());
+			// System.out.println(vmpo.getVehicleID());
 			oos.writeObject(vmpo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -76,8 +76,8 @@ public class HallClerkInfoStream {
 		BussinessArrivalDocu bad = new BussinessArrivalDocu();
 		try {
 			BussinessArrivalDocuPO badpo = (BussinessArrivalDocuPO) ois.readObject();
-			 bad.insert(badpo);
-			oos.writeBoolean(new Boolean(true));
+			boolean isok = bad.insert(badpo);
+			oos.writeBoolean(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,8 +100,8 @@ public class HallClerkInfoStream {
 		VehicleMaintance vm = new VehicleMaintance();
 		try {
 			VehicleMaintanceInfoPO vmpo = (VehicleMaintanceInfoPO) ois.readObject();
-			vm.update(vmpo);
-			oos.writeObject(new Boolean(true));
+			boolean isok = vm.update(vmpo);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,8 +125,8 @@ public class HallClerkInfoStream {
 		try {
 			EarnedDocu earn = new EarnedDocu();
 			EarnedPO up = (EarnedPO) ois.readObject();
-			earn.insert(up);
-			oos.writeObject(new Boolean(true));
+			boolean isok = earn.insert(up);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -149,8 +149,8 @@ public class HallClerkInfoStream {
 		TransData td = new TransData();
 		try {
 			TransPO up = (TransPO) ois.readObject();
-			td.insert(up);
-			oos.writeObject(new Boolean(true));
+			boolean isok = td.insert(up);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

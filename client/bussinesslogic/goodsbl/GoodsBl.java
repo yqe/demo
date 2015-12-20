@@ -27,7 +27,7 @@ public class GoodsBl implements GoodsBLService {
 	}
 
 	/**
-	 * 建立寄件单
+	 * 返回寄件单号
 	 * 
 	 * @param EarnedPO
 	 *            earnpo;

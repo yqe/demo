@@ -34,9 +34,8 @@ public class ClientMain {
 		try {
 			Socket socket = new Socket(hostid, 8888);
 			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-			;
 			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-			;
+
 			loginframe login = new loginframe(socket, oos, ois);
 			login.Frame();
 		} catch (UnknownHostException e1) {

@@ -56,6 +56,7 @@ public class ManagerInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 增加员工信息
 	 * 
@@ -68,11 +69,8 @@ public class ManagerInfoStream {
 		EmploeeData emdata = new EmploeeData();
 		try {
 			EmploeePO empo = (EmploeePO) ois.readObject();
-			if (emdata.find(empo.getempID()).getPosition().equals("不存在")) {
-				emdata.insertEmp(empo);
-				oos.writeObject(new Boolean(true));
-			} else
-				oos.writeObject(new Boolean(false));
+			boolean isok = emdata.insertEmp(empo);
+			oos.writeObject(new Boolean(isok));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,7 +78,7 @@ public class ManagerInfoStream {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -95,8 +93,8 @@ public class ManagerInfoStream {
 		EmploeeData emdata = new EmploeeData();
 		try {
 			String empoid = (String) ois.readObject();
-			emdata.delete(empoid);
-			oos.writeObject(new Boolean(true));
+			boolean isok = emdata.delete(empoid);
+			oos.writeObject(new Boolean(isok));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -118,8 +116,8 @@ public class ManagerInfoStream {
 		EmploeeData emdata = new EmploeeData();
 		try {
 			EmploeePO empo = (EmploeePO) ois.readObject();
-				emdata.update(empo);
-				oos.writeObject(new Boolean(true));
+			boolean isok = emdata.update(empo);
+			oos.writeObject(new Boolean(isok));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -186,17 +184,12 @@ public class ManagerInfoStream {
 	private void ApproveBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		CondemnDocu cd = new CondemnDocu();
 		try {
-			ois.readObject();
-			cd.update();
-			oos.writeBoolean(true);
-			oos.writeObject(new String("OK"));
+			boolean isok = cd.update();
+			oos.writeObject(new Boolean(isok));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -233,7 +226,7 @@ public class ManagerInfoStream {
 	 *                zxc
 	 */
 	private void CheckBill(ObjectInputStream ois, ObjectOutputStream oos) {
-		
+
 	}
 
 	/**
@@ -249,7 +242,7 @@ public class ManagerInfoStream {
 		try {
 			ois.readObject();
 			ArrayList<CondemnDocuPO> cdpolist = cd.findall();
-			CondemnList cdlist=new CondemnList();
+			CondemnList cdlist = new CondemnList();
 			for (int i = 0; i < cdpolist.size(); i++) {
 				cdlist.AddCondemnDocuPO(cdpolist.get(i));
 			}
@@ -278,8 +271,8 @@ public class ManagerInfoStream {
 		StrategyData sd = new StrategyData();
 		try {
 			StrategyPO spo = (StrategyPO) ois.readObject();
-			sd.updatesalary(spo);
-			oos.writeObject(new Boolean(true));
+			boolean isok = sd.updatesalary(spo);
+			oos.writeObject(new Boolean(isok));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

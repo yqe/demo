@@ -33,7 +33,7 @@ public class StorageInfoStream {
 				break;
 			case "IDCheckStorage":
 				IDCheckStorage(ois, oos);
-				break;	
+				break;
 			default:
 				ChangeStorage(ois, oos);
 				break;
@@ -42,6 +42,7 @@ public class StorageInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 
 	 * @param
@@ -52,15 +53,17 @@ public class StorageInfoStream {
 	private void IDCheckStorage(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			String ID = (String) ois.readObject();
-			StorageCheck stocheck=new StorageCheck();
-			StorageCheckPO stopo=stocheck.find(ID);
+			StorageCheck stocheck = new StorageCheck();
+			StorageCheckPO stopo = stocheck.find(ID);
 			oos.writeObject(stopo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 库存信息更改
+	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;
 	 * @exception @author
@@ -69,9 +72,9 @@ public class StorageInfoStream {
 	private void ChangeStorage(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			StorageCheckPO islt = (StorageCheckPO) ois.readObject();
-			StorageCheck stocheck=new StorageCheck();
-			stocheck.update(islt);
-			oos.writeObject(new Boolean(true));
+			StorageCheck stocheck = new StorageCheck();
+			boolean isok = stocheck.update(islt);
+			oos.writeObject(new Boolean(isok));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -89,8 +92,8 @@ public class StorageInfoStream {
 		try {
 			InputStorageList islt = (InputStorageList) ois.readObject();
 			InputStorageDocu insto = new InputStorageDocu();
-			insto.InputStorageAdd(islt);
-			oos.writeObject(new Boolean(true));
+			boolean isok = insto.InputStorageAdd(islt);
+			oos.writeObject(new Boolean(isok));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,8 +111,8 @@ public class StorageInfoStream {
 		try {
 			OutStorageList oslt = (OutStorageList) ois.readObject();
 			OutStorageDocu osto = new OutStorageDocu();
-			osto.StorageDataAdd(oslt);
-			oos.writeObject(new Boolean(true));
+			boolean isok = osto.StorageDataAdd(oslt);
+			oos.writeObject(new Boolean(isok));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -126,8 +129,8 @@ public class StorageInfoStream {
 	public void StorageCheckInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			StorageCheck stocheck = new StorageCheck();
-			String transID=(String)ois.readObject();
-			ArrayList<StorageCheckPO> stolist=stocheck.findall(transID);
+			String transID = (String) ois.readObject();
+			ArrayList<StorageCheckPO> stolist = stocheck.findall(transID);
 			oos.writeObject(stolist);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -145,16 +148,15 @@ public class StorageInfoStream {
 	public void StorageSeeInfoGet(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			LookStorage looksto = new LookStorage();
-			String[] info=((String)ois.readObject()).split(" ");
-			int insto=looksto.inputStorageDataSeeNum(info[0], info[1], info[2]);
-			int outsto=looksto.outStorageDataSeeNum(info[0], info[1], info[2]);
-			int storednum=looksto.getstorednum(info[0]);
-			double money=looksto.findmoney(info[0]);
-			LookStoragePO stopo=new LookStoragePO(insto, outsto, storednum, money);
+			String[] info = ((String) ois.readObject()).split(" ");
+			int insto = looksto.inputStorageDataSeeNum(info[0], info[1], info[2]);
+			int outsto = looksto.outStorageDataSeeNum(info[0], info[1], info[2]);
+			int storednum = looksto.getstorednum(info[0]);
+			double money = looksto.findmoney(info[0]);
+			LookStoragePO stopo = new LookStoragePO(insto, outsto, storednum, money);
 			oos.writeObject(stopo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		LookStorage looksto = new LookStorage();
 	}
 }

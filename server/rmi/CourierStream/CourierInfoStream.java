@@ -142,9 +142,8 @@ public class CourierInfoStream {
 		DiliverDocu ddp = new DiliverDocu();
 		try {
 			DiliverDocuPO gdpo = (DiliverDocuPO) ois.readObject();
-			ddp.insert(gdpo);
-			oos.writeBoolean(true);
-			oos.writeObject(new Boolean(true));
+			boolean isok=ddp.insert(gdpo);
+			oos.writeObject(new Boolean(isok));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -162,8 +161,8 @@ public class CourierInfoStream {
 		GoodsDocu gd = new GoodsDocu();
 		try {
 			GoodsDocuPO gdpo = (GoodsDocuPO) ois.readObject();
-			gd.insert(gdpo);
-			oos.writeObject(new Boolean(true));
+			boolean isok=gd.insert(gdpo);
+			oos.writeObject(new Boolean(isok));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

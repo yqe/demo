@@ -9,22 +9,23 @@ import po.CondemnList;
 import vo.DocumentVO;
 import documentblService.DocumentBlService;
 
-public class DocumentBl implements DocumentBlService{
+public class DocumentBl implements DocumentBlService {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
 	String hostid = "localhost";
+
 	/**
 	 * 返回未审批的单据
 	 * 
-	 * @param 
+	 * @param
 	 * @return ArrayList<CondemnDocuPO>
 	 * @exception @author
 	 *                zxc
 	 */
-	public CondemnList GetUnapproveBill(){
-		CondemnList cdpolist=null;
+	public CondemnList GetUnapproveBill() {
+		CondemnList cdpolist = null;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -32,7 +33,7 @@ public class DocumentBl implements DocumentBlService{
 			oos.writeUTF("Manager");
 			oos.writeUTF("GetUnapproveBill");
 			oos.writeObject(new Boolean(true));
-			cdpolist=(CondemnList) ois.readObject();
+			cdpolist = (CondemnList) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -40,26 +41,26 @@ public class DocumentBl implements DocumentBlService{
 			e.printStackTrace();
 		}
 		return cdpolist;
-		
+
 	}
+
 	/**
 	 * 批量审批单据
 	 * 
-	 * @param 
+	 * @param
 	 * @return boolean
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean ApproveBill(){
-		boolean IsOk=false;
+	public boolean ApproveBill() {
+		boolean IsOk = false;
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Manager");
 			oos.writeUTF("ApproveBill");
-			oos.writeObject(new Boolean(true));
-			IsOk=(boolean) ois.readObject();
+			IsOk = (boolean) ois.readObject();
 			ois.close();
 			oos.close();
 			socket.close();
@@ -67,9 +68,9 @@ public class DocumentBl implements DocumentBlService{
 			e.printStackTrace();
 		}
 		return IsOk;
-		
+
 	}
-	
+
 	public boolean choose(String type) {
 		// TODO Auto-generated method stub
 		return false;
@@ -104,8 +105,9 @@ public class DocumentBl implements DocumentBlService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public boolean generate(Infocollector infoco){
-		
+
+	public boolean generate(Infocollector infoco) {
+
 		return true;
 	}
 

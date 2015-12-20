@@ -81,8 +81,8 @@ public class FinanceInfoStream {
 		try {
 			Initialaccount init = new Initialaccount();
 			InitializeAccountPO initpo = (InitializeAccountPO) ois.readObject();
-			init.insert(initpo);
-			oos.writeObject(new Boolean(true));
+			boolean isok = init.insert(initpo);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,11 +128,8 @@ public class FinanceInfoStream {
 		try {
 			ManageAccount bankacc = new ManageAccount();
 			ManageAccountPO accpo = (ManageAccountPO) ois.readObject();
-			if (bankacc.find(accpo.getAccountID()).getAccountID().equals("不存在")) {
-				bankacc.insert(accpo);
-				oos.writeObject(new Boolean(true));
-			} else
-				oos.writeObject(new Boolean(false));
+			boolean isok = bankacc.insert(accpo);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -154,8 +151,8 @@ public class FinanceInfoStream {
 		try {
 			ManageAccount bankacc = new ManageAccount();
 			ManageAccountPO accpo = (ManageAccountPO) ois.readObject();
-			bankacc.update(accpo);
-			oos.writeObject(new Boolean(true));
+			boolean isok = bankacc.update(accpo);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -200,12 +197,8 @@ public class FinanceInfoStream {
 		try {
 			ManageAccount bankacc = new ManageAccount();
 			String accpoid = (String) ois.readObject();
-			if (bankacc.find(accpoid).getAccountID().equals("不存在"))
-				oos.writeObject(new Boolean(false));
-			else {
-				bankacc.delete(accpoid);
-				oos.writeObject(new Boolean(true));
-			}
+			boolean isok = bankacc.delete(accpoid);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -292,8 +285,8 @@ public class FinanceInfoStream {
 		try {
 			ManageCostData mcost = new ManageCostData();
 			CostManagePO costpo = (CostManagePO) ois.readObject();
-			mcost.insert(costpo);
-			oos.writeObject(new Boolean(true));
+			boolean isok = mcost.insert(costpo);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

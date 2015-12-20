@@ -63,6 +63,7 @@ public class AdminInfoStream {
 		}
 
 	}
+
 	/**
 	 * 返回给客户端用户信息;
 	 * 
@@ -72,16 +73,16 @@ public class AdminInfoStream {
 	 *                zxc
 	 */
 	public String Login(ObjectInputStream ois, ObjectOutputStream oos) {
-		String re=null;
+		String re = null;
 		try {
 			UserInfoPO upoClient = (UserInfoPO) ois.readObject();
 			UserInfoPO upo = ud.getLoginPO(upoClient.getUserID());
 			if (upoClient.getPassword().equals(upo.getPassword()))
-				re= upo.getPosition();
+				re = upo.getPosition();
 			else if (upo.getUsername().equals("不存在"))
-				re= "NoAccount";// 无账户
+				re = "NoAccount";// 无账户
 			else
-				re= "PasswordError";// 密码错误
+				re = "PasswordError";// 密码错误
 			oos.writeObject(new String(re));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -89,6 +90,7 @@ public class AdminInfoStream {
 		}
 		return re;
 	}
+
 	/**
 	 * 返回给客户端用户信息;
 	 * 
@@ -119,11 +121,8 @@ public class AdminInfoStream {
 	private void AddAccount(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
-			if (ud.getLoginPO(up.getUserID()).getUserID().equals("不存在")) {
-				ud.insert(up);
-				oos.writeObject(new Boolean(true));
-			} else
-				oos.writeObject(new Boolean(false));
+			boolean isok = ud.insert(up);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -146,8 +145,8 @@ public class AdminInfoStream {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
 			UserInfoPO up2 = ud.getLoginPO(up.getUserID());
 			UserInfoPO upo = new UserInfoPO(up.getUserID(), up2.getPassword(), up2.getUsername(), up.getPosition());
-			ud.update(upo);
-			oos.writeObject(new Boolean(true));
+			boolean isok = ud.update(upo);
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -168,8 +167,8 @@ public class AdminInfoStream {
 	private void DeleteAcc(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
-			ud.delete(up.getUserID());
-			oos.writeObject(new Boolean(true));
+			boolean isok = ud.delete(up.getUserID());
+			oos.writeObject(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -190,12 +189,9 @@ public class AdminInfoStream {
 		try {
 			UserInfoPO up = (UserInfoPO) ois.readObject();
 			UserInfoPO up2 = ud.getLoginPO(up.getUserID());
-			if (!up2.getUserID().equals("不存在")) {
-				UserInfoPO upo = new UserInfoPO(up.getUserID(), up.getPassword(), up2.getUsername(), up2.getPosition());
-				ud.update(upo);
-				oos.writeObject(new Boolean(true));
-			} else
-				oos.writeObject(new Boolean(false));
+			UserInfoPO upo = new UserInfoPO(up.getUserID(), up.getPassword(), up2.getUsername(), up2.getPosition());
+			boolean isok=ud.update(upo);
+			oos.writeObject(new Boolean(isok));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
