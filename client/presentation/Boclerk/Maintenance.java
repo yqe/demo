@@ -126,7 +126,16 @@ public class Maintenance {
 					driversfz.setText(vpo.getIdendity());
 					tel.setText(vpo.getMobile());
 					date.setText(vpo.getBirthday());
-
+					for(int i=0;i<20;i++){
+						if(timebox1.getItemAt(i).equals(vpo.getLimittime())){
+							timebox1.setSelectedIndex(i);
+						}							
+                    }	
+					for(int i=0;i<20;i++){
+						if(timebox2.getItemAt(i).equals(vpo.getWorktime())){
+							timebox2.setSelectedIndex(i);
+						}							
+                    }	
 					String sex = jb1.getText();
 					System.out.println(sex);
 					if (!jb1.getText().equals(vpo.getSex())) {

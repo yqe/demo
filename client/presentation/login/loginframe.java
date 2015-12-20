@@ -152,22 +152,6 @@ public class loginframe {
 
 		});
 
-//		JButton b3 = new JButton("退出");
-//		b3.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				try {
-//					oos.close();
-//					ois.close();
-//					socket.close();
-//				} catch (IOException e1) {
-//					// TODO
-//					e1.printStackTrace();
-//				}
-//				
-//				System.exit(0);
-//			}
-//
-//		});
 		imagePanel = (JPanel) frame.getContentPane();
 		imagePanel.setOpaque(false);
 		p1.setOpaque(false);
