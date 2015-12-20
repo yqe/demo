@@ -130,27 +130,56 @@ public class courier {
 		control.setLayout(null);
 
 		
-		JLabel employid=new JLabel("员工ID:");
-		JLabel employname=new JLabel("员工姓名:");
-		JLabel employsite=new JLabel("所属机构:");
-		JLabel employsiteid=new JLabel("机构编号:");
+		JLabel employid=new JLabel("工号 :");
+		JLabel employjob=new JLabel("职位 :");
+		employid.setFont(new Font("", Font.PLAIN, b2size));
+		employjob.setFont(new Font("", Font.PLAIN, b2size));
 		
 		JTextField idt=new JTextField();
+		idt.setFont(new Font("", Font.PLAIN, b2size));
 		JTextField namet=new JTextField();
-		JTextField sitet=new JTextField();
-		JTextField siteidt=new JTextField();
+		namet.setFont(new Font("", Font.PLAIN, b2size));
+		JTextField jobt=new JTextField();
+		jobt.setFont(new Font("", Font.PLAIN, b2size));
+
 		
 		idt.setOpaque(false);
-		
+		idt.setEditable(false);
 		idt.setBorder(BorderFactory.createEmptyBorder());
+		namet.setOpaque(false);
+		namet.setEditable(false);
+		namet.setBorder(BorderFactory.createEmptyBorder());
+		jobt.setOpaque(false);
+		jobt.setEditable(false);
+		jobt.setBorder(BorderFactory.createEmptyBorder());
+
 		
 		
+		employid.setBounds(40, 210, 60, 30);
+		employjob.setBounds(40, 250,60, 30);
+
+		
+		namet.setBounds(40, 170, 80, 30);
+		idt.setBounds(100, 210, 80, 30);
+		jobt.setBounds(100, 250, 80, 30);
+
+		
+		idt.setText(emPO.getEmpID());
+		namet.setText(emPO.getName());
+		jobt.setText(emPO.getPosition());
+
+		
+		control.add(employid);
+		control.add(employjob);
+		control.add(idt);
+		control.add(namet);
+		control.add(jobt);
 		control.add(b3);
 		control.add(b4);
 		control.add(b5);
 		control.add(b6);
 
-		int b4xloc = size / 6, b4yloc = control.getHeight() / 4, b4ysize = control.getHeight() / 7;
+		int b4xloc = size / 6, b4yloc = 3*control.getHeight() / 7, b4ysize = control.getHeight() / 8;
 
 		b3.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 40);
 		b4.setBounds(b4xloc, b4yloc, 120, 40);

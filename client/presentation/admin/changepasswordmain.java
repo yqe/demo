@@ -38,7 +38,7 @@ public class changepasswordmain {
 
 		final JPanel p1 = new JPanel();
 
-		p1.setBounds(0, 0, 600, 500);
+		p1.setBounds(0, 0, 600, 700);
 
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;
@@ -115,7 +115,7 @@ public class changepasswordmain {
 		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
 		int b1yloc = p1.getHeight() * 2 / 15;
 		int b4xloc = p1.getWidth() * 3 / 7;
-		int b4yloc = p1.getHeight() * 13 / 15, b4ysize = p1.getHeight() * 1 / 5 + 10;
+		int b4yloc = p1.getHeight() * 11 / 15, b4ysize = p1.getHeight() * 1 / 5 + 10;
 
 		l1.setBounds(220, -20, 180, 80);
 
@@ -129,7 +129,7 @@ public class changepasswordmain {
 		newpassword1.setBounds(300, 250, 150, 30);
 		newpassword2.setBounds(300, 350, 150, 30);
 
-		b4.setBounds(300, b4yloc, 150, 30);
+		b4.setBounds(250, b4yloc, 150, 30);
 
 		return p1;
 

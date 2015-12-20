@@ -12,11 +12,13 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import login.loginframe;
 import po.EmploeePO;
@@ -46,21 +48,22 @@ public class admin {
 	public JPanel Panel() throws IOException {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Abackground.jpg"));
 		background = new ImageIcon(bgp);
+		int b2size=16;
 		JPanel admin = new JPanel() {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				g.drawImage(background.getImage(), 0, 0, null);
 			}
 		};
-		admin.setBounds(0, 0, 780, 500);
+		admin.setBounds(0, 0, 780, 700);
 
 		admin.setOpaque(false);
 		admin.setLayout(null);
 
 		final changepasswordmain change = new changepasswordmain(oos,ois,empPO);
 
-		control.setBounds(0, 0, size, 500);
-		content.setBounds(size, 0, 600, 500);
+		control.setBounds(0, 0, size,700);
+		content.setBounds(size, 0, 600, 700);
 
 		JButton b3 = new JButton("退出");
 		b3.addActionListener(new ActionListener() {
@@ -134,13 +137,51 @@ public class admin {
 
 		control.setLayout(null);
 		control.setOpaque(false);
+		JLabel employid=new JLabel("工号 :");
+		JLabel employjob=new JLabel("职位 :");
+		employid.setFont(new Font("", Font.PLAIN, b2size));
+		employjob.setFont(new Font("", Font.PLAIN, b2size));
+		
+		JTextField idt=new JTextField();
+		idt.setFont(new Font("", Font.PLAIN, b2size));
+		JTextField namet=new JTextField();
+		namet.setFont(new Font("", Font.PLAIN, b2size));
+		JTextField jobt=new JTextField();
+		jobt.setFont(new Font("", Font.PLAIN, b2size));
+		
+		idt.setOpaque(false);
+		idt.setEditable(false);
+		idt.setBorder(BorderFactory.createEmptyBorder());
+		namet.setOpaque(false);
+		namet.setEditable(false);
+		namet.setBorder(BorderFactory.createEmptyBorder());
+		jobt.setOpaque(false);
+		jobt.setEditable(false);
+		jobt.setBorder(BorderFactory.createEmptyBorder());	
+		employid.setBounds(40, 210, 60, 30);
+		employjob.setBounds(40, 250,60, 30);		
+		namet.setBounds(40, 170, 80, 30);
+		idt.setBounds(100, 210, 80, 30);
+		jobt.setBounds(100, 250, 80, 30);
+	
+		idt.setText(empPO.getEmpID());
+		namet.setText(empPO.getName());
+		jobt.setText(empPO.getPosition());
+
+		
+		control.add(employid);
+		control.add(employjob);
+		control.add(idt);
+		control.add(namet);
+		control.add(jobt);
+	
 		control.add(b3);
 		control.add(b4);
 		control.add(b5);
 		control.add(b6);
 		control.add(b7);
 
-		int b4xloc = size / 6, b4yloc = control.getHeight() / 6, b4ysize = control.getHeight() / 6;
+		int b4xloc = size / 6, b4yloc = 3*control.getHeight() / 7, b4ysize = control.getHeight() / 7;
 		b4.setBounds(b4xloc, b4yloc, 120, 30);
 		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
 		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);

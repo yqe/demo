@@ -38,7 +38,7 @@ public class authority {
 	public JPanel Panel() throws IOException {
 
 		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 600, 500);
+		p1.setBounds(0, 0, 600, 700);
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
@@ -129,7 +129,7 @@ public class authority {
 		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
 		int b1yloc = p1.getHeight() * 2 / 15;
 		int b4xloc = p1.getWidth() * 2 / 5;
-		int b4yloc = p1.getHeight() * 12 / 15 + 15, b4ysize = p1.getHeight() * 1 / 5 + 10;
+		int b4yloc = p1.getHeight() * 11 / 15, b4ysize = p1.getHeight() * 1 / 5 + 10;
 
 		l1.setBounds(220, -20, 180, 80);
 
@@ -137,12 +137,12 @@ public class authority {
 
 		l3.setBounds(150, 120, 150, 30);
 
-		l4.setBounds(150, 240, 150, 30);
-		l5.setBounds(150, 300, 150, 30);
-		job.setBounds(300, 300, 180, 30);
+		l4.setBounds(150, 250, 150, 30);
+		l5.setBounds(150, 350, 150, 30);
+		job.setBounds(300, 350, 180, 30);
 
 		t1.setBounds(300, 120, 150, 30);
-		t2.setBounds(300, 240, 150, 30);
+		t2.setBounds(300, 250, 150, 30);
 
 		b4.setBounds(300, 180, 100, 30);
 		b5.setBounds(b4xloc, b4yloc, 150, 30);
