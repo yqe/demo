@@ -206,12 +206,16 @@ public class ManagerInfoStream {
 	private void ShowStrategy(ObjectInputStream ois, ObjectOutputStream oos) {
 		StrategyData sd = new StrategyData();
 		try {
+			ois.readObject();
 			StrategyPO spolist = sd.observe();
 			oos.writeObject(spolist);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

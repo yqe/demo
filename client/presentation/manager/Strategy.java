@@ -111,7 +111,7 @@ public class Strategy {
 		price.setBorder(BorderFactory.createEmptyBorder());
 		
 
-		strategybl.Strategy stra = new strategybl.Strategy(oos, ois);
+		strategybl.StrategyBl stra = new strategybl.StrategyBl(oos, ois);
 		StrategyPO spo = stra.show();
 		manager.setText(String.valueOf(spo.getTopsal()));
 		transitman.setText(String.valueOf(spo.getStoragesal()));
@@ -133,7 +133,7 @@ public class Strategy {
 			String newcontroller = controller.getText();
 			String newprice = price.getText(); // StrategyPO传入新的数据
 
-			strategybl.Strategy stra = new strategybl.Strategy(oos, ois);
+			strategybl.StrategyBl stra = new strategybl.StrategyBl(oos, ois);
 			StrategyPO spo = new StrategyPO(Integer.valueOf(newmanager), Integer.valueOf(newtransitman),
 					Integer.valueOf(newstorager), Integer.valueOf(newboclerk), Integer.valueOf(newcourier),
 					Integer.valueOf(newfinancer), Integer.valueOf(newcontroller), Double.valueOf(newprice));

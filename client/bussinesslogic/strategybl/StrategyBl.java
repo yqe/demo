@@ -7,12 +7,12 @@ import java.net.Socket;
 import po.StrategyPO;
 import strategyblService.StrategyBlService;
 
-public class Strategy implements StrategyBlService {
+public class StrategyBl implements StrategyBlService {
 
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 
-	public Strategy(ObjectOutputStream oos, ObjectInputStream ois) {
+	public StrategyBl(ObjectOutputStream oos, ObjectInputStream ois) {
 		this.oos = oos;
 		this.ois = ois;
 	}
@@ -30,6 +30,7 @@ public class Strategy implements StrategyBlService {
 		try {
 			oos.writeUTF("Manager");
 			oos.writeUTF("ShowStrategy");
+			oos.writeObject(new String("OK"));
 			spolist = (StrategyPO) ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
