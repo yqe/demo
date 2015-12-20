@@ -426,7 +426,7 @@ public class Send {
 						Integer.valueOf(numbox.getSelectedItem().toString()), Double.valueOf(length.getText()),
 						Double.valueOf(width.getText()), Double.valueOf(height.getText()), Double.valueOf(V.getText()),
 						goodsinfo.getText(), packagebox.getSelectedItem().toString(), exceptedtime.getText(),
-						generatetime, courier.getText());
+						generatetime, courier.getText(),depaturebox.getSelectedItem().toString(),destinationbox.getSelectedItem().toString());
 				if (!isempty && goodsbl.BuildGoodsDocu(gpo)) {
 
 					// goodsbl.BuildGoodsDocu(gpo);

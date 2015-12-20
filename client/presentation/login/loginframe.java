@@ -54,7 +54,7 @@ public class loginframe {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/background.png"));
 		background = new ImageIcon(bgp);
 
-		final JFrame frame = new JFrame("快递物流系统");
+		final JFrame frame = new JFrame("");
 		frame.setBounds(500, 300, 600, 375);
 		final JPanel p1 = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -152,22 +152,22 @@ public class loginframe {
 
 		});
 
-		JButton b3 = new JButton("退出");
-		b3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					oos.close();
-					ois.close();
-					socket.close();
-				} catch (IOException e1) {
-					// TODO
-					e1.printStackTrace();
-				}
-				
-				System.exit(0);
-			}
-
-		});
+//		JButton b3 = new JButton("退出");
+//		b3.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				try {
+//					oos.close();
+//					ois.close();
+//					socket.close();
+//				} catch (IOException e1) {
+//					// TODO
+//					e1.printStackTrace();
+//				}
+//				
+//				System.exit(0);
+//			}
+//
+//		});
 		imagePanel = (JPanel) frame.getContentPane();
 		imagePanel.setOpaque(false);
 		p1.setOpaque(false);
@@ -178,7 +178,7 @@ public class loginframe {
 		p1.add(password);
 		p1.add(b1);
 		p1.add(b2);
-		p1.add(b3);
+//		p1.add(b3);
 		frame.add(p1);
 		frame.getLayeredPane().setLayout(null);
 
@@ -214,7 +214,7 @@ public class loginframe {
 		password.setBounds(240, 100, 120, 30);
 		b1.setBounds(240, 160, 80, 35);
 		b2.setBounds(240, 240, 160, 40);
-		b3.setBounds(540, 1, 60, 30);
+//		b3.setBounds(540, 1, 60, 30);
 	}
 
 }

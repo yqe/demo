@@ -53,7 +53,7 @@ public class courier {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Cbackground.jpg"));
 		background = new ImageIcon(bgp);
 
-		JPanel courier = new JPanel() {
+		final JPanel courier = new JPanel() {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				g.drawImage(background.getImage(), 0, 0, null);
@@ -75,10 +75,10 @@ public class courier {
 		int b2size = 16;
 		l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
 
-		JButton b3 = new JButton("退出");
+		JButton b3 = new JButton("返回登陆界面");
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+			
 			}
 		});
 
