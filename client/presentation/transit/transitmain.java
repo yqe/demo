@@ -15,6 +15,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -117,11 +118,44 @@ public class transitmain {
 
 		control.setLayout(null);
 		control.setOpaque(false);
+		JLabel employid=new JLabel("工号 :");
+		JLabel employjob=new JLabel("职位 :");
+		employid.setFont(new Font("", Font.PLAIN, b2size));
+		employjob.setFont(new Font("", Font.PLAIN, b2size));		
+		JTextField idt=new JTextField();
+		idt.setFont(new Font("", Font.PLAIN, b2size));
+		JTextField namet=new JTextField();
+		namet.setFont(new Font("", Font.PLAIN, b2size));
+		JTextField jobt=new JTextField();
+		jobt.setFont(new Font("", Font.PLAIN, b2size));	
+		idt.setOpaque(false);
+		idt.setEditable(false);
+		idt.setBorder(BorderFactory.createEmptyBorder());
+		namet.setOpaque(false);
+		namet.setEditable(false);
+		namet.setBorder(BorderFactory.createEmptyBorder());
+		jobt.setOpaque(false);
+		jobt.setEditable(false);
+		jobt.setBorder(BorderFactory.createEmptyBorder());	
+		employid.setBounds(40, 210, 60, 30);
+		employjob.setBounds(40, 250,60, 30);
+		namet.setBounds(40, 170, 80, 30);
+		idt.setBounds(100, 210, 80, 30);
+		jobt.setBounds(100, 250, 80, 30);		
+		idt.setText(emPO.getEmpID());
+		namet.setText(emPO.getName());
+		jobt.setText(emPO.getPosition());
+	
+		control.add(employid);
+		control.add(employjob);
+		control.add(idt);
+		control.add(namet);
+		control.add(jobt);
 		control.add(b3);
 		control.add(b4);
 		control.add(b5);
 
-		int b4xloc = size / 6, b4yloc = control.getHeight() / 4, b4ysize = control.getHeight() / 5;
+		int b4xloc = size / 6, b4yloc = 4*control.getHeight() / 9, b4ysize = control.getHeight() / 9;
 		b4.setBounds(b4xloc, b4yloc, 120, 30);
 		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
 		b3.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);

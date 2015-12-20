@@ -1,5 +1,6 @@
 package finance;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,10 +13,13 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import po.EmploeePO;
 
@@ -54,7 +58,6 @@ public class financemainui {
 	public JPanel financemainui() throws IOException {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Fbackground.jpg"));
 		background = new ImageIcon(bgp);
-
 		JPanel contain = new JPanel() {
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
@@ -65,6 +68,7 @@ public class financemainui {
 		contain.setBounds(0, 0, width, height);
 		contain.setLayout(null);
 		cmdpanel.setOpaque(false);
+	
 		cmdpanel.setBounds(0, 0, cmdsize, height);
 		cmdpanel.setLayout(null);
 		context.setOpaque(false);
@@ -184,6 +188,7 @@ public class financemainui {
 			mgaph=0;
 		}
 		cmdpanel.removeAll();
+		ShowEmpInfo();
 		for (int i = 0; i < cmdbutton.length; i++) {
 			if (i == 1 && mgaph != 0) {
 				for (int j = 0; j < account.length; j++) {
@@ -199,8 +204,43 @@ public class financemainui {
 		}
 		cmdpanel.repaint();
 	}
+	private void ShowEmpInfo(){
+		  int b2size=16;
+		JLabel employid=new JLabel("工号 :");
+		JLabel employjob=new JLabel("职位 :");
+		employid.setFont(new Font("", Font.PLAIN, b2size));
+		employjob.setFont(new Font("", Font.PLAIN, b2size));		
+		JTextField idt=new JTextField();
+		idt.setFont(new Font("", Font.PLAIN, b2size));
+		JTextField namet=new JTextField();
+		namet.setFont(new Font("", Font.PLAIN, b2size));
+		JTextField jobt=new JTextField();
+		jobt.setFont(new Font("", Font.PLAIN, b2size));	
+		idt.setOpaque(false);
+		idt.setEditable(false);
+		idt.setBorder(BorderFactory.createEmptyBorder());
+		namet.setOpaque(false);
+		namet.setEditable(false);
+		namet.setBorder(BorderFactory.createEmptyBorder());
+		jobt.setOpaque(false);
+		jobt.setEditable(false);
+		jobt.setBorder(BorderFactory.createEmptyBorder());	
+		employid.setBounds(40, 150, 60, 30);
+		employjob.setBounds(40, 180,60, 30);
+		namet.setBounds(40, 120, 80, 30);
+		idt.setBounds(100, 150, 80, 30);
+		jobt.setBounds(100, 180, 80, 30);		
+		idt.setText(emPO.getEmpID());
+		namet.setText(emPO.getName());
+		jobt.setText(emPO.getPosition());
 	
-	public void OperateState() {
+		cmdpanel.add(employid);
+		cmdpanel.add(employjob);
+		cmdpanel.add(idt);
+		cmdpanel.add(namet);
+		cmdpanel.add(jobt);	
+	}
+ 	public void OperateState() {
 
 	}
 }
