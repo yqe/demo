@@ -17,8 +17,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -75,10 +77,10 @@ public class courier {
 		int b2size = 16;
 		l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
 
-		JButton b3 = new JButton("返回登陆界面");
+		JButton b3 = new JButton("退出");
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+		      System.exit(0);
 			}
 		});
 
@@ -127,12 +129,28 @@ public class courier {
 		control.setOpaque(false);
 		control.setLayout(null);
 
+		
+		JLabel employid=new JLabel("员工ID:");
+		JLabel employname=new JLabel("员工姓名:");
+		JLabel employsite=new JLabel("所属机构:");
+		JLabel employsiteid=new JLabel("机构编号:");
+		
+		JTextField idt=new JTextField();
+		JTextField namet=new JTextField();
+		JTextField sitet=new JTextField();
+		JTextField siteidt=new JTextField();
+		
+		idt.setOpaque(false);
+		
+		idt.setBorder(BorderFactory.createEmptyBorder());
+		
+		
 		control.add(b3);
 		control.add(b4);
 		control.add(b5);
 		control.add(b6);
 
-		int b4xloc = size / 6, b4yloc = control.getHeight() / 5, b4ysize = control.getHeight() / 5;
+		int b4xloc = size / 6, b4yloc = control.getHeight() / 4, b4ysize = control.getHeight() / 7;
 
 		b3.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 40);
 		b4.setBounds(b4xloc, b4yloc, 120, 40);
