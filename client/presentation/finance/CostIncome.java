@@ -31,11 +31,13 @@ public class CostIncome {
 		int texth = 30;
 		int gap = 20;
 		int gaph = 80;
+		int Gaph=150;
+		int Gapw=200;
 		JLabel[] label = new JLabel[] { new JLabel("总收入:"), new JLabel("总支出:"),
 				new JLabel("总利润:") };
 		for (int i = 0; i < label.length; i++) {
 			label[i].setFont(new Font("", Font.PLAIN, 25));
-			label[i].setBounds(80, 100 + (labelh + gaph) * i, labelw, labelh);
+			label[i].setBounds(Gapw, Gaph+100 + (labelh + gaph) * i, labelw, labelh);
 			context.add(label[i]);
 		}
 		JTextField[] textfield = new JTextField[] { new JTextField(),
@@ -44,7 +46,7 @@ public class CostIncome {
 			textfield[i].setOpaque(false);
 			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 			textfield[i].setEditable(false);
-			textfield[i].setBounds(80 + gap + labelw, 100 + (texth + gaph) * i,
+			textfield[i].setBounds(Gapw + gap + labelw, Gaph+100 + (texth + gaph) * i,
 					textw, texth);
 			context.add(textfield[i]);
 		}

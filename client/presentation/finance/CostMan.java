@@ -27,9 +27,9 @@ public class CostMan {
 	private EmploeePO emPO;
 
 	public CostMan(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
-		this.oos=oos;
-		this.ois=ois;
-		this.emPO=emPO;
+		this.oos = oos;
+		this.ois = ois;
+		this.emPO = emPO;
 	}
 
 	public void costMan(JPanel context) {
@@ -38,13 +38,15 @@ public class CostMan {
 		int labelh=30;
 		int textw=120;
 		int texth=30;
-		int gap=20;
-		int gaph=50;
+		int gap=10;
+		int gaph=20;
+		int Gapw=160;
+		int Gaph=250;
 		JLabel[] label = new JLabel[] { new JLabel("付款日期:"), new JLabel("付款金额:"), new JLabel("付款人:"), new JLabel("付款账号:"),
 				new JLabel("条目:"), new JLabel("备注:") };
 		for (int i = 0; i < label.length; i++) {
 			label[i].setFont(new Font("",Font.PLAIN,20));
-			label[i].setBounds(160, 30+(labelh+gaph)*i, labelw, labelh);
+			label[i].setBounds(Gapw, Gaph+(labelh+gaph)*i, labelw, labelh);
 			context.add(label[i]);
 		}
 		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField(),
@@ -52,13 +54,13 @@ public class CostMan {
 		for (int i = 1; i < textfield.length-1; i++) {
 			textfield[i].setOpaque(false);
 			textfield[i].setBorder(BorderFactory.createEmptyBorder());
-			textfield[i].setBounds(200+gap+labelw, 30+(texth+gaph)*i, textw, texth);
+			textfield[i].setBounds(Gapw+gap+labelw, Gaph+(texth+gaph)*i, textw, texth);
 			context.add(textfield[i]);
 		}
 		
 		textfield[textfield.length-1].setOpaque(false);
 		textfield[textfield.length-1].setBorder(BorderFactory.createEmptyBorder());
-		textfield[textfield.length-1].setBounds(200+gap+labelw, 30+(texth+gaph)*(textfield.length-1), 150+textw, texth);
+		textfield[textfield.length-1].setBounds(Gapw+gap+labelw, Gaph+(texth+gaph)*(textfield.length-1), 150+textw, texth);
 		context.add(textfield[textfield.length-1]);
 		 String[] year = new String[201];
 		    for (int i = 2000; i < 2100; i++) {
@@ -83,9 +85,9 @@ public class CostMan {
 					day[i - 1] = i + "日";
 		    }
 		    final JComboBox daybox = new JComboBox(day);
-			context.add(yearbox);   yearbox.setBounds(200+gap+labelw, 30, 80, texth);
-			context.add(monthbox);  monthbox.setBounds(200+gap+labelw+90, 30, 80, texth);
-			context.add(daybox);    daybox.setBounds(200+gap+labelw+180, 30, 80, texth);
+			context.add(yearbox);   yearbox.setBounds(Gapw+gap+labelw, Gaph, 80, texth);
+			context.add(monthbox);  monthbox.setBounds(Gapw+gap+labelw+90, Gaph, 80, texth);
+			context.add(daybox);    daybox.setBounds(Gapw+gap+labelw+180, Gaph, 80, texth);
 		
 		JButton okbtn=new JButton("确定付款");
 		okbtn.addActionListener(new ActionListener(){
@@ -132,14 +134,8 @@ public class CostMan {
 			
 		});
 		
-		
-		
-		
-		
-		
 		okbtn.setBounds(350, 550, 120, 40);
 		context.add(okbtn);
 	}
-
 
 }

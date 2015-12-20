@@ -60,6 +60,7 @@ public class FinanceBl implements FinanceBlService {
 		try {
 			oos.writeUTF("Finance");
 			oos.writeUTF("CostCheck");
+			oos.writeObject(new String("0"+" "+"0"+" "));
 			costinfo = ((String) ois.readObject()).split(" ");
 		} catch (Exception e) {
 			e.printStackTrace();

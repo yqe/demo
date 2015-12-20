@@ -26,6 +26,8 @@ public class BuildAccount {
 	int texth = 30;
 	int gap = 20;
 	int gaph = 30;
+	int Gapw=200;
+	int Gaph=230;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
@@ -43,13 +45,13 @@ public class BuildAccount {
 				new JLabel("银行账户名称:"), new JLabel("银行账户金额:") };
 		for (int i = 0; i < label.length; i++) {
 			label[i].setFont(new Font("", Font.PLAIN, 18));
-			label[i].setBounds(180, 60 + (labelh + gaph) * i, labelw, labelh);
+			label[i].setBounds(Gapw, Gaph + (labelh + gaph) * i, labelw, labelh);
 			context.add(label[i]);
 		}
 		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField(),
 				new JTextField(), new JTextField(), new JTextField() };
 		for (int i = 1; i < textfield.length; i++) {
-			textfield[i].setBounds(180 + gap + labelw, 60 + (texth + gaph) * i, textw, texth);
+			textfield[i].setBounds(Gapw + gap + labelw, Gaph + (texth + gaph) * i, textw, texth);
 			textfield[i].setOpaque(false);
 			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 			context.add(textfield[i]);
@@ -59,7 +61,7 @@ public class BuildAccount {
 	    final JComboBox organbox = new JComboBox(organ);
 	    
 	    context.add(organbox);
-		organbox.setBounds(180 + gap + labelw, 60, textw, texth);
+		organbox.setBounds(Gapw + gap + labelw, Gaph, textw, texth);
 	    
 		JButton btn=new JButton("确定");
 		btn.addActionListener(new ActionListener(){
@@ -99,7 +101,7 @@ public class BuildAccount {
 			
 		});
 
-		btn.setBounds(320, 500, labelw, labelh+10);
+		btn.setBounds(320, 600, labelw, labelh+10);
 		context.add(btn);
 	}
 }

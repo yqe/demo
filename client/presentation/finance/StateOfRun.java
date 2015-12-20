@@ -34,9 +34,9 @@ public class StateOfRun {
 	private EmploeePO emPO;
 
 	public StateOfRun(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
-		this.oos=oos;
-		this.ois=ois;
-		this.emPO=emPO;
+		this.oos = oos;
+		this.ois = ois;
+		this.emPO = emPO;
 	}
 
 	public void stateofrun(JPanel context) {
@@ -44,25 +44,23 @@ public class StateOfRun {
 		int labelw = 80;
 		int labelh = 30;
 		int boxw = 60;
-		int boxh = 30;
+		int boxh = 25;
 		int boxgap = 10;
+		int Gapw = 40;
+		int Gaph = 220;
 		final JComboBox[][] box = new JComboBox[][] {
-				{ new JComboBox(GetBoxStr(200, "年")),
-						new JComboBox(GetBoxStr(12, "月")),
+				{ new JComboBox(GetBoxStr(200, "年")), new JComboBox(GetBoxStr(12, "月")),
 						new JComboBox(GetBoxStr(31, "日")) },
-				{ new JComboBox(GetBoxStr(200, "年")),
-						new JComboBox(GetBoxStr(12, "月")),
+				{ new JComboBox(GetBoxStr(200, "年")), new JComboBox(GetBoxStr(12, "月")),
 						new JComboBox(GetBoxStr(31, "日")) } };
-		JLabel[] label = new JLabel[] { new JLabel("开始日期:"),
-				new JLabel("结束日期:") };
+		JLabel[] label = new JLabel[] { new JLabel("开始日期:"), new JLabel("结束日期:") };
 		for (int i = 0; i < label.length; i++) {
-			label[i].setFont(new Font("", Font.PLAIN, 15));
-			label[i].setBounds(40 + (labelw + boxgap * 4 + boxw * 3) * i, 50,
-					labelw, labelh);
+			label[i].setFont(new Font("", Font.PLAIN, 16));
+			label[i].setBounds(Gapw + (labelw + boxgap * 4 + boxw * 3) * i, Gaph, labelw, labelh);
 			context.add(label[i]);
 			for (int j = 0; j < box[i].length; j++) {
-				box[i][j].setBounds(40 + labelw + (boxgap + boxw) * j
-						+ (labelw + boxw * 3 + boxgap * 5) * i, 50, boxw, boxh);
+				box[i][j].setBounds(Gapw + labelw + (boxgap + boxw) * j + (labelw + boxw * 3 + boxgap * 5) * i, Gaph, boxw,
+						boxh);
 				context.add(box[i][j]);
 			}
 		}
@@ -85,71 +83,60 @@ public class StateOfRun {
 		jp2.setOpaque(false);
 		jp2.getViewport().setOpaque(false);
 
-		jp1.setBounds(40, 100, 300, 500);
-		jp2.setBounds(40 + 350 + 20, 100, 300, 500);
+		jp1.setBounds(Gapw, Gaph+labelh+5, 300, 350);
+		jp2.setBounds(Gapw + 350 + 20, Gaph+labelh+5, 300, 350);
 		context.add(jp1);
 		context.add(jp2);
 
 		JButton okbtn = new JButton("确定");
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String startdate1 = box[0][0].getSelectedItem().toString()
-						+ box[0][1].getSelectedItem().toString()
+				String startdate1 = box[0][0].getSelectedItem().toString() + box[0][1].getSelectedItem().toString()
 						+ box[0][2].getSelectedItem().toString();
 				Tran tran = new Tran();
-				String startdate=tran.Tran(startdate1);
-				
-				String enddate1 = box[1][0].getSelectedItem().toString()
-						+ box[1][1].getSelectedItem().toString()
+				String startdate = tran.Tran(startdate1);
+
+				String enddate1 = box[1][0].getSelectedItem().toString() + box[1][1].getSelectedItem().toString()
 						+ box[1][2].getSelectedItem().toString();
-				
-				String enddate=tran.Tran(enddate1);
-				
+
+				String enddate = tran.Tran(enddate1);
+
 				// System.out.println(startdate);
 				// System.out.println(enddate);
 
-				CostManage costmanage = new CostManage(oos,ois);
-				Earneddocu earneddocu = new Earneddocu(oos,ois);
+				CostManage costmanage = new CostManage(oos, ois);
+				Earneddocu earneddocu = new Earneddocu(oos, ois);
 
-				CostManList cpolist = costmanage.GetCostManageDocu(startdate,
-						enddate);
-				
-				 if(cpolist.GetIndex(0).getDate().equals("不存在")){
-                	 JOptionPane.showMessageDialog(null, "当天没有付款单!");
-                }
-				 else {for (int i = 0; i < cpolist.GetSize(); i++) {
-					Object[] add = { cpolist.GetIndex(i).getDate(),
-							cpolist.GetIndex(i).getPayment(),
-							cpolist.GetIndex(i).getPayer(),
-							cpolist.GetIndex(i).getPayaccount(),
-							cpolist.GetIndex(i).getTiaomu(),
-							cpolist.GetIndex(i).getTip() };
-					DefaultTableModel model = (DefaultTableModel) table
-							.getModel();
-					model.insertRow(model.getRowCount(), add);
-				}
+				CostManList cpolist = costmanage.GetCostManageDocu(startdate, enddate);
 
-				EarnedPOList epolist = earneddocu.GetEarnedDocu(startdate,
-						enddate);
-				 if(epolist.GetIndex(0).getPaydate().equals("不存在")){
-                	 JOptionPane.showMessageDialog(null, "当天没有收款单!");
-                }
-				 else{for (int i = 0; i < epolist.Getsize(); i++) {
-					Object[] add = { epolist.GetIndex(i).getPaydate(),
-							epolist.GetIndex(i).getEarnedmoney(),
-							epolist.GetIndex(i).getDilivername(),
-							epolist.GetIndex(i).getOrderID(),
-							epolist.GetIndex(i).getBussinessID() };
-					DefaultTableModel model = (DefaultTableModel) table2
-							.getModel();
-					model.insertRow(model.getRowCount(), add);
+				if (cpolist.GetIndex(0).getDate().equals("不存在")) {
+					JOptionPane.showMessageDialog(null, "当天没有付款单!");
+				} else {
+					for (int i = 0; i < cpolist.GetSize(); i++) {
+						Object[] add = { cpolist.GetIndex(i).getDate(), cpolist.GetIndex(i).getPayment(),
+								cpolist.GetIndex(i).getPayer(), cpolist.GetIndex(i).getPayaccount(),
+								cpolist.GetIndex(i).getTiaomu(), cpolist.GetIndex(i).getTip() };
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						model.insertRow(model.getRowCount(), add);
+					}
+
+					EarnedPOList epolist = earneddocu.GetEarnedDocu(startdate, enddate);
+					if (epolist.GetIndex(0).getPaydate().equals("不存在")) {
+						JOptionPane.showMessageDialog(null, "当天没有收款单!");
+					} else {
+						for (int i = 0; i < epolist.Getsize(); i++) {
+							Object[] add = { epolist.GetIndex(i).getPaydate(), epolist.GetIndex(i).getEarnedmoney(),
+									epolist.GetIndex(i).getDilivername(), epolist.GetIndex(i).getOrderID(),
+									epolist.GetIndex(i).getBussinessID() };
+							DefaultTableModel model = (DefaultTableModel) table2.getModel();
+							model.insertRow(model.getRowCount(), add);
+						}
+					}
 				}
-				 }
-			}
 			}
 		});
 
-		okbtn.setBounds(635, 50, 70, 30);
+		okbtn.setBounds(645, Gaph, 70, 30);
 		context.add(okbtn);
 
 	}
@@ -163,10 +150,10 @@ public class StateOfRun {
 		for (int i = 0; i < n; i++) {
 			num = i + 1 + year;
 			if (num < 10)
-				str[i] = "0" + num + meanth ;
+				str[i] = "0" + num + meanth;
 			else
-				str[i] = num + meanth ;
-		
+				str[i] = num + meanth;
+
 		}
 		return str;
 	}

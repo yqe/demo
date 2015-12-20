@@ -41,15 +41,15 @@ public class CheckBill {
 
 	public void CheckBill(JPanel context) {
 		int sw = 40;
-		int sh = 40;
+		int sh = 200;
 		int gap = 40;
 		int wordsize = 16;
 		int buttonw = 120;
 		int buttonh = 30;
 		int boxwidth = 100;
 		int boxheight = 30;
-		int boxgap = 10;
-
+		int boxgap = 30;
+		
 		JLabel timelabel = new JLabel("时间:");
 		JLabel yytlabel = new JLabel("营业厅编号:");
 		timelabel.setFont(new Font("", Font.PLAIN, 18));
@@ -142,7 +142,7 @@ public class CheckBill {
 
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
-		jp.setBounds(sw, 120, 378, 500);
+		jp.setBounds(sw+110, sh+buttonh+boxheight+20, 378, 350);
 
 		context.add(timelabel);
 		context.add(yytlabel);

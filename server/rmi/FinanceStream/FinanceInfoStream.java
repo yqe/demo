@@ -107,10 +107,7 @@ public class FinanceInfoStream {
 			double profit = cp.getearnedtotal() - cp.getcosttotal();
 			coststr = cp.getearnedtotal() + " " + cp.getcosttotal() + " " + profit;
 			oos.writeObject(new String(coststr));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

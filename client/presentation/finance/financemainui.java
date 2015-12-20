@@ -33,11 +33,11 @@ public class financemainui {
 	int bottonnum = cmdbutton.length;
 	int cmdsize = 180;
 	int gapw = 30;
-	int gaph = 40;
-	int mgapw = gapw + 10;
-	int mgaph = gaph - 20;
-	int bw = 0, bh = 0;
-	int mbw = 0, mbh = 0;
+	int gaph = 25;
+	int mgapw = gapw+10;
+	int mgaph = 0;
+	int bw = 120, bh = 30;
+	int mbw = 100, mbh = 25;
 	boolean cc = false;
 	private Socket socket;
 	private ObjectOutputStream oos;
@@ -70,7 +70,7 @@ public class financemainui {
 		context.setOpaque(false);
 		context.setBounds(cmdsize, 0, width, height);
 		context.setLayout(null);
-		this.CmdButtonShow(bw, bh, mbw, mbh);
+		this.CmdButtonShow(false);
 		contain.add(cmdpanel);
 		contain.add(context);
 		new CheckBill(oos,ois,emPO).CheckBill(context);
@@ -93,11 +93,11 @@ public class financemainui {
 			switch (e.getActionCommand()) {
 			case "账户管理":
 				cc = true;
-				AccountCmdShow();
+				CmdButtonShow(cc);
 				break;
 			case "查看收款单":
 				if (cc) {
-					CmdButtonShow(bw, bh, 0, 0);
+					CmdButtonShow(false);
 					cc = false;
 				}
 				new CheckBill(oos,ois,emPO).CheckBill(context);
@@ -105,7 +105,7 @@ public class financemainui {
 				break;
 			case "成本管理":
 				if (cc) {
-					CmdButtonShow(bw, bh, 0, 0);
+					CmdButtonShow(false);
 					cc = false;
 				}
 				new CostMan(oos,ois,emPO).costMan(context);
@@ -113,7 +113,7 @@ public class financemainui {
 				break;
 			case "成本收益表":
 				if (cc) {
-					CmdButtonShow(bw, bh, 0, 0);
+					CmdButtonShow(false);
 					cc = false;
 				}
 
@@ -122,7 +122,7 @@ public class financemainui {
 				break;
 			case "经营情况表":
 				if (cc) {
-					CmdButtonShow(bw, bh, 0, 0);
+					CmdButtonShow(false);
 					cc = false;
 				}
 				OperateState();
@@ -131,7 +131,7 @@ public class financemainui {
 				break;
 			case "期初建账":
 				if (cc) {
-					CmdButtonShow(bw, bh, 0, 0);
+					CmdButtonShow(false);
 					cc = false;
 				}
 				new BuildAccount(oos,ois,emPO).buildaccount(context);
@@ -174,37 +174,32 @@ public class financemainui {
 		}
 	}
 
-	public void CmdButtonShow(int bw, int bh, int mbw, int mbh) {
+	public void CmdButtonShow(boolean cc) {
 		int temp = 0;
-		if (mbw == 0) {
-			bw = cmdsize - (gapw << 1);
-			bh = (height - gaph) / bottonnum - gaph;
+		if(cc){
+			gaph=15;
+			mgaph=5;
+		}else{
+			gaph=25;
+			mgaph=0;
 		}
 		cmdpanel.removeAll();
 		for (int i = 0; i < cmdbutton.length; i++) {
-			if (i == 1 && mbw != 0) {
+			if (i == 1 && mgaph != 0) {
 				for (int j = 0; j < account.length; j++) {
-					account[j].setBounds(mgapw, gaph + mgaph * (j + 1) + mbh * j + bh, mbw, mbh);
+					account[j].setBounds(mgapw, 200+gaph + mgaph * (j + 1) + mbh * j + bh, mbw, mbh);
 					cmdpanel.add(account[j]);
 					account[j].addActionListener(new AccountCmd());
 				}
 				temp = 5 * mgaph + (mbh << 2) - gaph;
 			}
-			cmdbutton[i].setBounds(gapw, gaph * (i + 1) + bh * i + temp, bw, bh);
+			cmdbutton[i].setBounds(gapw, 200+gaph * (i + 1) + bh * i + temp, bw, bh);
 			cmdpanel.add(cmdbutton[i]);
 			cmdbutton[i].addActionListener(new CmdActionListener());
 		}
 		cmdpanel.repaint();
 	}
-
-	public void AccountCmdShow() {
-		int mbw = cmdsize - (mgapw << 1);
-		int mbh = (height - (gaph << 3) - mgaph * 5 - 40) / 12;
-		int bw = cmdsize - (gapw << 1);
-		int bh = mbh + 5;
-		CmdButtonShow(bw, bh, mbw, mbh);
-	}
-
+	
 	public void OperateState() {
 
 	}
