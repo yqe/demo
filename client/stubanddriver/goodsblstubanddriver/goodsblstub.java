@@ -5,10 +5,10 @@ import goodsblService.GoodsBLService;
 
 public class goodsblstub implements GoodsBLService {
 
-	public ExpressTrailPO GoodsInquiry(String ID) {
+	public String GoodsInquiry(String ID) {
 		// TODO Auto-generated method stub
 		ExpressTrailPO po=new ExpressTrailPO("南京", "0000000001","0032" , "13513", "上海");		
-		return po;
+		return "";
 	}
 
 	public String[] Goodsgetinfo(String ID) {
