@@ -195,7 +195,7 @@ public class deleteemployee {
 		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
 		int b1yloc = p1.getHeight() * 2 / 15;
 		int b4xloc = p1.getWidth() * 2 / 5;
-		int b4yloc = 650, b4ysize = p1.getHeight() * 1 / 5 + 10;
+		int b4yloc = 620, b4ysize = p1.getHeight() * 1 / 5 + 10;
 		int labelw = 150;
 		int labelh = 30;
 		l1.setBounds(220, -20, 180, 80);

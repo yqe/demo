@@ -217,7 +217,7 @@ public class addemployee {
 		place.setBounds(300, 200, 100, 30);
 		posidtext.setBounds(300, 250, textw, texth);
 
-		b5.setBounds(b4xloc, b4yloc + 50, 150, 30);
+		b5.setBounds(b4xloc, b4yloc + 30, 150, 30);
 		return p1;
 
 	}
