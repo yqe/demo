@@ -10,6 +10,7 @@ import managedata.CheckProfit;
 import managedata.ManageCostData;
 import po.EarnedPO;
 import po.GoodsDocuPO;
+import po.UserInfoPO;
 import storagedata.InputStorageDocu;
 import strategydata.EmploeeData;
 import strategydata.StrategyData;

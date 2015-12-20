@@ -82,12 +82,12 @@ public class EmploeeData implements EmploeeDataService {
 			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in EmploeeData!");
 			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EmploeeData!");
 			return false;
 		}
@@ -103,12 +103,12 @@ public class EmploeeData implements EmploeeDataService {
 			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in EmploeeData!");
 			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EmploeeData!");
 			return false;
 		}
@@ -137,12 +137,12 @@ public class EmploeeData implements EmploeeDataService {
 			return empList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in EmploeeData!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EmploeeData!");
 			return null;
 		}
@@ -167,12 +167,12 @@ public class EmploeeData implements EmploeeDataService {
 			return empList;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in EmploeeData!");
 			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EmploeeData!");
 			return null;
 		}
@@ -193,12 +193,12 @@ public class EmploeeData implements EmploeeDataService {
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Class has some problem in EmploeeData!");
 			return new EmploeePO("不存在","","",1,"",12,"","","","","");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Some MySql problem has happened in EmploeeData!");
 			return new EmploeePO("不存在","","",1,"",12,"","","","","");
 		}

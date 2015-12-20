@@ -107,7 +107,7 @@ public class collection {
 				String date = (String) (yearbox.getSelectedItem()) + (String) (monthbox.getSelectedItem())
 						+ daybox.getSelectedItem().toString();
 				Tran tran=new Tran();
-				tran.Tran(date);
+				String newdate=tran.Tran(date);
 				boolean isnum = true;
 				for (int i = 0; i < profit.getText().length(); i++) {
 					if (profit.getText().charAt(i) > '9' || profit.getText().charAt(i) < '1') {
@@ -131,7 +131,7 @@ public class collection {
 				else {
 					Earneddocu edocu = new Earneddocu(oos,ois);
 					boolean IsOk = edocu
-							.BuildEarnedDocu(new EarnedPO(date, rececash, courier.getText(), id.getText(), ""));
+							.BuildEarnedDocu(new EarnedPO(newdate, rececash, courier.getText(), id.getText(), yyt.getText()));
 					if (IsOk) {
 						JOptionPane.showMessageDialog(null, "成功建立收款单!");
 					} else {
