@@ -167,8 +167,12 @@ public class AccountMan {
 				if (!accname.getText().equals("")) {
 					FinanceBl finance = new FinanceBl(oos, ois);
 					ManageAccountPO mapo = finance.CheckBankAccount(accname.getText());
+					if(mapo.getAccountname().equals("不存在")){
+						JOptionPane.showMessageDialog(null, "该账户ID不存在!");
+					}
+					else{
 					text[0].setText(mapo.getAccountname());
-					text[2].setText(String.valueOf(mapo.getBalance()));
+					text[2].setText(String.valueOf(mapo.getBalance()));}
 				} else {
 					JOptionPane.showMessageDialog(null, "请输入要搜索的账户ID!");
 				}
@@ -193,8 +197,10 @@ public class AccountMan {
 				// ManageAccountPO
 				// mapo=finance.CheckBankAccount(accname.getText());
 				if (!isempty && isnum) {
+					FinanceBl change = new FinanceBl(oos, ois);
 					ManageAccountPO mapo = new ManageAccountPO(text[1].getText(), Double.valueOf(text[3].getText()),
 							accname.getText(), null);
+					change.ModifyBankAccount(mapo);
 					JOptionPane.showMessageDialog(null, "修改成功!");
 				} else if (!isempty && !isnum) {
 					JOptionPane.showMessageDialog(null, "所输入金额非法!");
@@ -214,7 +220,7 @@ public class AccountMan {
 
 	public void CheckAcc(JPanel context) {
 		context.removeAll();
-		JLabel[] label = new JLabel[] { new JLabel("账户ID:"), new JLabel("账户金额:") };
+		JLabel[] label = new JLabel[] { new JLabel("账户名称:"), new JLabel("账户金额:") };
 
 		for (int i = 0; i < label.length; i++) {
 			label[i].setFont(new Font("", Font.PLAIN, 18));
@@ -246,8 +252,12 @@ public class AccountMan {
 				if (!textfield[0].getText().equals("")) {
 					FinanceBl finance = new FinanceBl(oos, ois);
 					ManageAccountPO mapo = finance.CheckBankAccount(textfield[0].getText());
+					if(mapo.getAccountname().equals("不存在")){
+						JOptionPane.showMessageDialog(null, "该账户ID不存在!");
+					}
+					else{
 					textfield[1].setText(mapo.getAccountname());
-					textfield[2].setText(String.valueOf(mapo.getBalance()));
+					textfield[2].setText(String.valueOf(mapo.getBalance()));}
 				} else {
 					JOptionPane.showMessageDialog(null, "请输入要查询的账户ID!");
 				}
