@@ -37,6 +37,12 @@ public class admin {
 	public ObjectOutputStream oos;
 	public ObjectInputStream ois;
 	public EmploeePO empPO;
+	JPanel admin = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public admin(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
@@ -49,12 +55,6 @@ public class admin {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Abackground.jpg"));
 		background = new ImageIcon(bgp);
 		int b2size=16;
-		JPanel admin = new JPanel() {
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(background.getImage(), 0, 0, null);
-			}
-		};
 		admin.setBounds(0, 0, 780, 700);
 
 		admin.setOpaque(false);
@@ -200,12 +200,11 @@ public class admin {
 	}
 
 	public void changepanel(JPanel p1) {
-		content.removeAll();
-		content.add(p1);
-		content.repaint();
+		admin.remove(content);
+		content=p1;
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
-		content.setLayout(null);
-		content.setOpaque(false);
+		admin.add(content);
+		admin.repaint();
 	}
 
 }

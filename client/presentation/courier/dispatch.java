@@ -64,13 +64,6 @@ public class dispatch {
 		final JTextField name = new JTextField();
 		final JTextField courier = new JTextField();
 		
-		id.setOpaque(false);
-		id.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2,Color.gray));
-		name.setOpaque(false);
-		name.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		courier.setOpaque(false);
-		courier.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
 		datepick.setOpaque(false);
@@ -78,6 +71,14 @@ public class dispatch {
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick.setEditorable(false);//设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100,30));//设置大小
+		
+		id.setOpaque(false);
+		id.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2,Color.gray));
+		name.setOpaque(false);
+		name.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		courier.setOpaque(false);
+		courier.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
 		
 		JButton b4 = new JButton("生成派件单");
 		b4.addActionListener(new ActionListener() {

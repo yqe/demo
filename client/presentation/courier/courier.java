@@ -43,6 +43,12 @@ public class courier {
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 	private Socket socket;
+	final JPanel courier = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public courier(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
@@ -55,12 +61,7 @@ public class courier {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Cbackground.jpg"));
 		background = new ImageIcon(bgp);
 
-		final JPanel courier = new JPanel() {
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(background.getImage(), 0, 0, null);
-			}
-		};
+	
 		courier.setBounds(0, 0, 980, 800);
 
 		courier.setOpaque(false);
@@ -85,46 +86,12 @@ public class courier {
 		});
 
 		JButton b4 = new JButton("生成寄件单");
-		b4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				try {
-					Send send = new Send(oos, ois, emPO);
-					changepanel(send.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-
-		});
+	
 		JButton b5 = new JButton("生成派件单");
-		b5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					final dispatch dispatch = new dispatch(oos, ois, emPO);
-					changepanel(dispatch.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-
-		});
+		
 
 		JButton b6 = new JButton("查询订单信息");
-		b6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					final check check = new check(oos, ois, emPO);
-					changepanel(check.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-
-		});
+	
 
 		control.setOpaque(false);
 		control.setLayout(null);
@@ -186,23 +153,61 @@ public class courier {
 		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 40);
 		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 40);
 
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					Send send = new Send(oos, ois, emPO);
+					changepanel(send.Panel());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		b5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					final dispatch dispatch = new dispatch(oos, ois, emPO);
+					changepanel(dispatch.Panel());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		
+		b6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					final check check = new check(oos, ois, emPO);
+					changepanel(check.Panel());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
+		
 		content.add(send.Panel());
 		content.setLayout(null);
 		content.setOpaque(false);
-
 		courier.add(control);
 		courier.add(content);
-
 		return courier;
 
 	}
 
 	public void changepanel(JPanel p1) {
-		content.removeAll();
-		content.add(p1);
-		content.repaint();
+		courier.remove(content);
+		content=p1;
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
-		content.setLayout(null);
-		content.setOpaque(false);
+		courier.add(content);
+		content.repaint();
+		courier.repaint();
+
 	}
 }

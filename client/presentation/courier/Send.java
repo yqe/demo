@@ -135,6 +135,12 @@ public class Send {
 		// JTextField t17=new JTextField();
 		final JTextField courier = new JTextField();
 
+		final JTextField time = new JTextField();
+		final DatePicker datepick = new DatePicker(time);
+		datepick.setLocale(Locale.CHINA);//设置显示语言
+	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 	    		
 		sender.setOpaque(false);
 		sender.setBorder(BorderFactory.createEmptyBorder());
@@ -399,12 +405,6 @@ public class Send {
 			}
 		});
 
-		final JTextField time = new JTextField();
-		final DatePicker datepick = new DatePicker(time);
-		datepick.setLocale(Locale.CHINA);//设置显示语言
-	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
-	    datepick.setEditorable(false);//设置是否可编辑
-		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 		
 		JButton b4 = new JButton("生成寄件单");
 		b4.addActionListener(new ActionListener() {

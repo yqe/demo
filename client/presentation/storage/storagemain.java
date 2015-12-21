@@ -40,6 +40,12 @@ public class storagemain {
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
+	JPanel storagemain = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(Sbackground.getImage(), 0, 0, null);
+		}
+	};
 
 	public storagemain(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
@@ -52,12 +58,6 @@ public class storagemain {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Sbackground.jpg"));
 		Sbackground = new ImageIcon(bgp);
 
-		JPanel storagemain = new JPanel() {
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(Sbackground.getImage(), 0, 0, null);
-			}
-		};
 		storagemain.setBounds(0, 0, 1080, 700);
 
 		storagemain.setOpaque(false);
@@ -220,11 +220,10 @@ public class storagemain {
 	}
 
 	public void changepanel(JPanel p1) {
-		content.removeAll();
-		content.add(p1);
-		content.repaint();
+		storagemain.remove(content);
+		content=p1;
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
-		content.setLayout(null);
-		content.setOpaque(false);
+		storagemain.add(content);
+		storagemain.repaint();
 	}
 }

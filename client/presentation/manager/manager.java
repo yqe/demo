@@ -40,6 +40,12 @@ public class manager {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
+	JPanel manager = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public manager(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
@@ -51,12 +57,7 @@ public class manager {
 	public JPanel Panel() throws IOException {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Mbackground.jpg"));
 		background = new ImageIcon(bgp);
-		JPanel manager = new JPanel() {
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(background.getImage(), 0, 0, null);
-			}
-		};
+		
 		manager.setBounds(0, 0, 900, 700);
 
 		manager.setOpaque(false);
@@ -236,12 +237,11 @@ public class manager {
 	}
 
 	public void changepanel(JPanel p1) {
-		content.removeAll();
-		content.add(p1);
-		content.repaint();
+		manager.remove(content);
+		content=p1;
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
-		content.setLayout(null);
-		content.setOpaque(false);
+		manager.add(content);
+		manager.repaint();
 	}
 
 }
