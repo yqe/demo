@@ -52,12 +52,12 @@ public class StrategyBl implements StrategyBlService {
 		try {
 			oos.writeUTF("Manager");
 			oos.writeUTF("FormulateStrategy");
+			oos.writeObject(new String("OK"));
 			oos.writeObject(spo);
 			IsOk = (boolean) ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("StorageBl.InStorageInputSuccess");
 		return IsOk;
 	}
 

@@ -274,7 +274,9 @@ public class ManagerInfoStream {
 	private void FormulateStrategy(ObjectInputStream ois, ObjectOutputStream oos) {
 		StrategyData sd = new StrategyData();
 		try {
+			ois.readObject();
 			StrategyPO spo = (StrategyPO) ois.readObject();
+			System.out.println(spo.getManagersal());
 			boolean isok = sd.updatesalary(spo);
 			oos.writeObject(new Boolean(isok));
 		} catch (RemoteException e) {

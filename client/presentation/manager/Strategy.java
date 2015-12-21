@@ -124,21 +124,21 @@ public class Strategy {
 
 		JButton b4 = new JButton("确认修改");
 		b4.addActionListener(new ActionListener() {
-			String newmanager = manager.getText();
-			String newtransitman = transitman.getText();
-			String newstorager = storager.getText();
-			String newboclerk = boclerk.getText();
-			String newcourier = courier.getText();
-			String newfinancer = financer.getText();
-			String newcontroller = controller.getText();
-			String newprice = price.getText(); // StrategyPO传入新的数据
-
-			strategybl.StrategyBl stra = new strategybl.StrategyBl(oos, ois);
-			StrategyPO spo = new StrategyPO(Integer.valueOf(newmanager), Integer.valueOf(newtransitman),
-					Integer.valueOf(newstorager), Integer.valueOf(newboclerk), Integer.valueOf(newcourier),
-					Integer.valueOf(newfinancer), Integer.valueOf(newcontroller), Double.valueOf(newprice));
-
 			public void actionPerformed(ActionEvent e) {
+				String newmanager = manager.getText();
+				String newtransitman = transitman.getText();
+				String newstorager = storager.getText();
+				String newboclerk = boclerk.getText();
+				String newcourier = courier.getText();
+				String newfinancer = financer.getText();
+				String newcontroller = controller.getText();
+				String newprice = price.getText(); // StrategyPO传入新的数据
+
+				strategybl.StrategyBl stra = new strategybl.StrategyBl(oos, ois);
+				StrategyPO spo = new StrategyPO(Integer.valueOf(newmanager), Integer.valueOf(newtransitman),
+						Integer.valueOf(newstorager), Integer.valueOf(newboclerk), Integer.valueOf(newcourier),
+						Integer.valueOf(newfinancer), Integer.valueOf(newcontroller), Double.valueOf(newprice));
+        System.out.println(newmanager+"3#@@#####");
 				if (stra.modify(spo))
 					JOptionPane.showMessageDialog(null, "修改成功!");
 				else
