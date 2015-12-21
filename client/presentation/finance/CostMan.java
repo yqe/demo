@@ -1,10 +1,12 @@
 package finance;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.eltima.components.ui.DatePicker;
 
 import login.Tran;
 import financebl.CostManage;
@@ -62,32 +66,14 @@ public class CostMan {
 		textfield[textfield.length-1].setBorder(BorderFactory.createEmptyBorder());
 		textfield[textfield.length-1].setBounds(Gapw+gap+labelw, Gaph+(texth+gaph)*(textfield.length-1), 150+textw, texth);
 		context.add(textfield[textfield.length-1]);
-		 String[] year = new String[201];
-		    for (int i = 2000; i < 2100; i++) {
-		        year[i-2000] = i+"年";
-		    
-		    }
-		   final  JComboBox yearbox = new JComboBox(year);
-		    String[] month = new String[12];
-		    for (int i = 1; i <= 12; i++) {
-		    	if(i<10)
-					month[i - 1] = "0"+ i + "月";
-					else
-					month[i - 1] = i + "月";
-		    
-		    }
-		   final  JComboBox monthbox = new JComboBox(month);
-		    String[] day = new String[31];
-		    for (int i = 1; i <= 31; i++) {
-		    	if(i<10)
-					day[i - 1] = "0"+ i + "日";
-					else
-					day[i - 1] = i + "日";
-		    }
-		    final JComboBox daybox = new JComboBox(day);
-			context.add(yearbox);   yearbox.setBounds(Gapw+gap+labelw, Gaph, 80, texth);
-			context.add(monthbox);  monthbox.setBounds(Gapw+gap+labelw+90, Gaph, 80, texth);
-			context.add(daybox);    daybox.setBounds(Gapw+gap+labelw+180, Gaph, 80, texth);
+		final JTextField time = new JTextField();
+		final DatePicker datepick = new DatePicker(time);
+		datepick.setLocale(Locale.CHINA);//设置显示语言
+	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
+			context.add(datepick);  
+			datepick.setBounds(Gapw+gap+labelw, Gaph, 150, texth);
 		
 		JButton okbtn=new JButton("确定付款");
 		okbtn.addActionListener(new ActionListener(){
@@ -108,9 +94,7 @@ public class CostMan {
 
 				FinanceBl finance =new FinanceBl(oos,ois);
 				ManageAccountPO check=finance.CheckBankAccount(textfield[3].getText());
-				String date=yearbox.getSelectedItem().toString()+monthbox.getSelectedItem().toString()+daybox.getSelectedItem().toString();
-				Tran tran=new Tran();
-				tran.Tran(date);
+				String date=datepick.getText();			
 				CostManage cost=new CostManage(oos,ois);
 				
 				boolean isid=!check.getAccountname().equals("不存在");//根据银行账户PO判断ID是否合法

@@ -1,11 +1,13 @@
 package storage;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -14,6 +16,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.eltima.components.ui.DatePicker;
 
 import po.EmploeePO;
 import storagebl.StorageBl;
@@ -91,27 +95,21 @@ public class checkstorage {
 			}
 		});
 
-		String[] year = new String[201];
-		for (int i = 2000; i < 2100; i++) {
-			year[i - 2000] = i + "年";
-
-		}
-		JComboBox yearbox1 = new JComboBox(year);
-		JComboBox yearbox2 = new JComboBox(year);
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
-
-		}
-		JComboBox monthbox1 = new JComboBox(month);
-		JComboBox monthbox2 = new JComboBox(month);
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
-
-		}
-		JComboBox daybox1 = new JComboBox(day);
-		JComboBox daybox2 = new JComboBox(day);
+		final JTextField time1 = new JTextField();
+		final DatePicker datepick1 = new DatePicker(time1);
+		datepick1.setOpaque(false);
+		datepick1.setLocale(Locale.CHINA);//设置显示语言
+	    datepick1.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick1.setEditorable(false);//设置是否可编辑
+		datepick1.setPreferredSize(new Dimension(100,30));//设置大小
+		
+		final JTextField time2 = new JTextField();
+		final DatePicker datepick2 = new DatePicker(time2);
+		datepick2.setOpaque(false);
+		datepick2.setLocale(Locale.CHINA);//设置显示语言
+	    datepick2.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick2.setEditorable(false);//设置是否可编辑
+		datepick2.setPreferredSize(new Dimension(100,30));//设置大小
 
 		p1.setLayout(null);
 		p1.add(l1);
@@ -130,24 +128,18 @@ public class checkstorage {
 		p1.add(t4);
 
 		p1.add(b4);
-		p1.add(yearbox1);
-		p1.add(monthbox1);
-		p1.add(daybox1);
-		p1.add(yearbox2);
-		p1.add(monthbox2);
-		p1.add(daybox2);
+		p1.add(datepick1);
+		p1.add(datepick2);
+	
 
 		int b1yloc = p1.getHeight() * 2 / 19;
 
 		l1.setBounds(260, -20, 180, 80);
 		l2.setBounds(50, b1yloc, 300, 30);
-		yearbox1.setBounds(150, 100, 80, 30);
-		monthbox1.setBounds(230, 100, 80, 30);
-		daybox1.setBounds(310, 100, 80, 30);
+		datepick1.setBounds(150, 100, 150, 30);
 
-		yearbox2.setBounds(450, 100, 80, 30);
-		monthbox2.setBounds(530, 100, 80, 30);
-		daybox2.setBounds(610, 100, 80, 30);
+		datepick2.setBounds(450, 100, 80, 30);
+	
 
 		l3.setBounds(75, 100, 100, 30);
 		l4.setBounds(410, 100, 50, 30);

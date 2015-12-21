@@ -1,11 +1,13 @@
 package transit;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.eltima.components.ui.DatePicker;
 
 import documentbl.Turndocu;
 import po.EmploeePO;
@@ -99,24 +103,12 @@ public class transitload {
 
 		JButton b4 = new JButton("生成装车单");
 
-		String[] year = new String[201];
-		for (int i = 2000; i < 2100; i++) {
-			year[i - 2000] = i + "年";
-
-		}
-		final JComboBox yearbox = new JComboBox(year);
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
-
-		}
-		final JComboBox monthbox = new JComboBox(month);
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
-
-		}
-		final JComboBox daybox = new JComboBox(day);
+		final JTextField time = new JTextField();
+		final DatePicker datepick = new DatePicker(time);
+		datepick.setLocale(Locale.CHINA);//设置显示语言
+	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 
 		String[] site = { "上海", "北京", "南京", "深圳", "广州", "杭州" };
 
@@ -127,8 +119,7 @@ public class transitload {
 			public void actionPerformed(ActionEvent e) {
 				if (!isempty) {
 					TransferDocuPO tfpo = new TransferDocuPO("飞机",
-							(String) (yearbox.getSelectedItem()) + (String) (monthbox.getSelectedItem())
-									+ (String) (daybox.getSelectedItem()),
+							datepick.getText(),
 							zzdid.getText(), hbid.getText(), (String) sitebox1.getSelectedItem(),
 							(String) sitebox2.getSelectedItem(), hgid.getText(), jz.getText(), yy.getText(),
 							Double.parseDouble(price.getText()));
@@ -168,9 +159,7 @@ public class transitload {
 		p1.add(price);
 
 		p1.add(b4);
-		p1.add(yearbox);
-		p1.add(monthbox);
-		p1.add(daybox);
+		p1.add(datepick);
 		p1.add(sitebox1);
 		p1.add(sitebox2);
 
@@ -183,9 +172,7 @@ public class transitload {
 		l2.setBounds(50, b1yloc, 150, 30);
 		l3.setBounds(200, 100, 150, 30);
 		l4.setBounds(200, 150, 150, 30);
-		yearbox.setBounds(375, 150, 80, 30);
-		monthbox.setBounds(475, 150, 80, 30);
-		daybox.setBounds(575, 150, 80, 30);
+		datepick.setBounds(375, 150, 150, 30);
 
 		l5.setBounds(200, 200, 150, 30);
 		l6.setBounds(200, 250, 150, 30);

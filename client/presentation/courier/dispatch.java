@@ -71,33 +71,19 @@ public class dispatch {
 		courier.setOpaque(false);
 		courier.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
-		String[] year = new String[201];
-		for (int i = 2000; i < 2100; i++) {
-			year[i - 2000] = i + "年";
-
-		}
-		final JComboBox yearbox = new JComboBox(year);
-		
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
-
-		}
-		final JComboBox monthbox = new JComboBox(month);
-		
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
-
-		}
-		final JComboBox daybox = new JComboBox(day);
+		final JTextField time = new JTextField();
+		final DatePicker datepick = new DatePicker(time);
+		datepick.setOpaque(false);
+		datepick.setLocale(Locale.CHINA);//设置显示语言
+	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 		
 		JButton b4 = new JButton("生成派件单");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String time=(String)(yearbox.getSelectedItem())+(String)(monthbox.getSelectedItem())+(String)(daybox.getSelectedItem());
-				
+				String time=datepick.getText();			
 				boolean isid = (id.getText().length() == 10);
 				boolean idisempty = id.getText().equals("");
 				boolean nameisempty = name.getText().equals("");
@@ -119,15 +105,6 @@ public class dispatch {
 
 		});
 
-		final JTextField time = new JTextField();
-		DatePicker datepick = new DatePicker(time);
-		datepick.setLocale(Locale.US);//设置显示语言
-	    datepick.setPattern("MM/dd/yyyy");//设置日期格式化字符串
-	    datepick.setEditorable(false);//设置是否可编辑
-		datepick.setBackground(Color.gray);//设置背景色
-		datepick.setForeground(Color.yellow);//设置前景色
-		datepick.setPreferredSize(new Dimension(100,30));//设置大小
-//	    datepick.setTextAlign(DatePicker.CENTER);//设置文本水平方向位置：
 		
         
 		p1.setOpaque(false);
@@ -144,9 +121,6 @@ public class dispatch {
 		p1.add(courier);
 
 		p1.add(b4);
-		p1.add(yearbox);
-		p1.add(monthbox);
-		p1.add(daybox);
 		
 		p1.add(datepick);
 
@@ -163,9 +137,6 @@ public class dispatch {
 		l4.setBounds(100, 300, 150, 30);
 		datepick.setBounds(275, 300, 150, 30);
 		
-//		yearbox.setBounds(275, 300, 80, 30);
-//		monthbox.setBounds(375, 300, 80, 30);
-//		daybox.setBounds(475, 300, 80, 30);
 
 		l5.setBounds(100, 400, 150, 30);
 		l6.setBounds(100, 500, 150, 30);

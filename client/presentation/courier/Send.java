@@ -2,6 +2,7 @@ package courier;
 
 import goodsbl.GoodsBl;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import com.eltima.components.ui.DatePicker;
 
 import po.EmploeePO;
 import po.GoodsDocuPO;
@@ -288,27 +292,7 @@ public class Send {
 			}
 		});
 
-		String[] year = new String[100];
-		for (int i = 2015; i < 2115; i++) {
-			year[i - 2015] = i + "年";
-
-		}
-		final JComboBox yearbox2 = new JComboBox(year);
-		yearbox2.setOpaque(false);
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
-
-		}
-		final JComboBox monthbox2 = new JComboBox(month);
-		monthbox2.setOpaque(false);
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
-
-		}
-		final JComboBox daybox2 = new JComboBox(day);
-		daybox2.setOpaque(false);
+		
 
 		length.getDocument().addDocumentListener(new DocumentListener() {
 			String goodslength;
@@ -415,6 +399,13 @@ public class Send {
 			}
 		});
 
+		final JTextField time = new JTextField();
+		final DatePicker datepick = new DatePicker(time);
+		datepick.setLocale(Locale.CHINA);//设置显示语言
+	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
+		
 		JButton b4 = new JButton("生成寄件单");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -444,8 +435,7 @@ public class Send {
 
 				// String
 				// exceptedtime=yearbox1.getSelectedItem().toString()+monthbox1.getSelectedItem().toString()+daybox1.getSelectedItem().toString();
-				String generatetime = yearbox2.getSelectedItem().toString() + monthbox2.getSelectedItem().toString()
-						+ daybox2.getSelectedItem().toString();
+				String generatetime = datepick.getText();
 				double j = 0;
 				if (packagebox.equals("纸箱(5元)")) {
 					j = 5.0;
@@ -539,9 +529,8 @@ public class Send {
 		// p1.add(yearbox1);
 		// p1.add(monthbox1);
 		// p1.add(daybox1);// ����
-		p1.add(yearbox2);
-		p1.add(monthbox2);
-		p1.add(daybox2);
+		p1.add(datepick);
+		
 
 		p1.add(b4);
 
@@ -620,9 +609,7 @@ public class Send {
 		// t17.setBounds(t1xloc+450,t1yloc+8*interval, 200, 30);
 		// ����
 
-		yearbox2.setBounds(t1xloc + 50, t1yloc + 8 * interval, 80, 30);
-		monthbox2.setBounds(t1xloc + 140, t1yloc + 8 * interval, 80, 30);
-		daybox2.setBounds(t1xloc + 230, t1yloc + 8 * interval, 80, 30);
+		datepick.setBounds(t1xloc + 50, t1yloc + 8 * interval, 150, 30);
 		courier.setBounds(t1xloc + 450, t1yloc + 9 * interval, 120, 30);
 
 		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;

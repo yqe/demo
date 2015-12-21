@@ -1,11 +1,13 @@
 package Boclerk;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -19,6 +21,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
+import com.eltima.components.ui.DatePicker;
 
 import documentbl.HallArrivalDocu;
 import po.BussinessArrivalDocuPO;
@@ -72,24 +76,7 @@ public class arrival {
 		t2.setOpaque(false);
 		t2.setBorder(BorderFactory.createEmptyBorder());
 
-		String[] year = new String[201];
-		for (int i = 2000; i < 2100; i++) {
-			year[i - 2000] = i + "年";
-
-		}
-		final JComboBox yearbox = new JComboBox(year);
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			month[i - 1] = i + "月";
-
-		}
-		final JComboBox monthbox = new JComboBox(month);
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			day[i - 1] = i + "日";
-
-		}
-		final JComboBox daybox = new JComboBox(day);
+		
 
 		String[] site = { "南京", "上海", "北京", "杭州", "广州", "苏州", "成都", "武汉" };
 		final JComboBox sitebox = new JComboBox(site);
@@ -113,12 +100,19 @@ public class arrival {
 
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
+		
+		final JTextField time = new JTextField();
+		final DatePicker datepick = new DatePicker(time);
+		datepick.setOpaque(false);
+		datepick.setLocale(Locale.CHINA);//设置显示语言
+	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 
 		JButton b4 = new JButton("确定添加");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String date = (String) yearbox.getSelectedItem() + monthbox.getSelectedItem()
-						+ daybox.getSelectedItem();
+				String date = datepick.getText();
 				String place = (String) sitebox.getSelectedItem();
 				String state = (String) statebox.getSelectedItem();
 				HallArrivalDocu bussari = new HallArrivalDocu(oos,ois);
@@ -174,9 +168,7 @@ public class arrival {
 		p1.add(t1);
 		p1.add(t2);
 
-		p1.add(yearbox);
-		p1.add(monthbox);
-		p1.add(daybox);
+		p1.add(datepick);
 		p1.add(sitebox);
 		p1.add(statebox);
 
@@ -205,9 +197,8 @@ public class arrival {
 
 		jp.setBounds(50, b1yloc + 300, 403, 350);
 
-		yearbox.setBounds(150, b1yloc + 100, 80, 30);
-		monthbox.setBounds(250, b1yloc + 100, 80, 30);
-		daybox.setBounds(350, b1yloc + 100, 80, 30);
+		datepick.setBounds(150, b1yloc + 100, 150, 30);
+		
 		sitebox.setBounds(120, b1yloc + 150, 80, 30);
 		statebox.setBounds(315, b1yloc + 150, 80, 30);
 

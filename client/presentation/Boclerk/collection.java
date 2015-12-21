@@ -1,11 +1,13 @@
 package Boclerk;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.eltima.components.ui.DatePicker;
 
 import login.Tran;
 import documentbl.Earneddocu;
@@ -78,36 +82,19 @@ public class collection {
 		yyt.setBorder(BorderFactory.createEmptyBorder());
 		yyt.setEditable(false);
 
-		String[] year = new String[201];
-		for (int i = 2000; i < 2100; i++) {
-			year[i - 2000] = i + "年";
-
-		}
-		final JComboBox yearbox = new JComboBox(year);
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			if(i<10)
-			month[i - 1] = "0"+ i + "月";
-			else
-			month[i - 1] = i + "月";
-		}
-		final JComboBox monthbox = new JComboBox(month);
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			if(i<10)
-			day[i - 1] = "0"+ i + "日";
-			else
-			day[i - 1] = i + "日";
-		}
-		final JComboBox daybox = new JComboBox(day);
+		final JTextField time = new JTextField();
+		final DatePicker datepick = new DatePicker(time);
+		datepick.setOpaque(false);
+		datepick.setLocale(Locale.CHINA);//设置显示语言
+	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 
 		JButton b4 = new JButton("生成收款单");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String date = (String) (yearbox.getSelectedItem()) + (String) (monthbox.getSelectedItem())
-						+ daybox.getSelectedItem().toString();
-				Tran tran=new Tran();
-				String newdate=tran.Tran(date);
+			
+				String newdate=datepick.getText();
 				boolean isnum = true;
 				for (int i = 0; i < profit.getText().length(); i++) {
 					if (profit.getText().charAt(i) > '9' || profit.getText().charAt(i) < '1') {
@@ -126,7 +113,7 @@ public class collection {
 					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
 				else if (cisempty)
 					JOptionPane.showMessageDialog(null, "请完整填写信息!");
-				else if (pisempty)
+				else if (pisempty&&isnum)
 					JOptionPane.showMessageDialog(null, "抱歉，请输入正确的收款金额!");
 				else {
 					Earneddocu edocu = new Earneddocu(oos,ois);
@@ -158,9 +145,8 @@ public class collection {
 		p1.add(yyt);
 
 		p1.add(b4);
-		p1.add(yearbox);
-		p1.add(monthbox);
-		p1.add(daybox);
+		p1.add(datepick);
+	
 
 		p1.setOpaque(false);
 
@@ -173,9 +159,7 @@ public class collection {
 		l2.setBounds(50, b1yloc, 150, 30);
 		l3.setBounds(100, 200, 150, 30);
 		l4.setBounds(100, 250, 150, 30);
-		yearbox.setBounds(275, 250, 80, 30);
-		monthbox.setBounds(375, 250, 80, 30);
-		daybox.setBounds(475, 250, 80, 30);
+		datepick.setBounds(275, 250, 150, 30);
 
 		l5.setBounds(100, 300, 150, 30);
 		l7.setBounds(450, 300, 200, 30);

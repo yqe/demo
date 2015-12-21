@@ -2,6 +2,7 @@ package storage;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Label;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Locale;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -27,6 +29,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
+import com.eltima.components.ui.DatePicker;
 
 import po.EmploeePO;
 import po.InputStorageList;
@@ -89,30 +93,12 @@ public class outstorage {
 		t2.setOpaque(false);
 		t2.setBorder(BorderFactory.createEmptyBorder());
 		t2.setEditable(false);
-		String[] year = new String[201];
-		for (int i = 2000; i < 2100; i++) {
-			year[i - 2000] = i + "年";
-
-		}
-		final JComboBox yearbox = new JComboBox(year);
-		String[] month = new String[12];
-		for (int i = 1; i <= 12; i++) {
-			if(i<10)
-				month[i - 1] = "0"+ i + "月";
-				else
-				month[i - 1] = i + "月";
-
-		}
-		final JComboBox monthbox = new JComboBox(month);
-		String[] day = new String[31];
-		for (int i = 1; i <= 31; i++) {
-			if(i<10)
-				day[i - 1] = "0"+ i + "日";
-				else
-				day[i - 1] = i + "日";
-
-		}
-		final JComboBox daybox = new JComboBox(day);
+		final JTextField time = new JTextField();
+		final DatePicker datepick = new DatePicker(time);
+		datepick.setLocale(Locale.CHINA);//设置显示语言
+	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 
 		String[] site = { "南京", "上海", "北京", "杭州", "广州", "苏州", "成都", "武汉" };
 		final JComboBox sitebox = new JComboBox(site);
@@ -140,10 +126,7 @@ public class outstorage {
 		JButton b4 = new JButton("添加");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String date = (String) yearbox.getSelectedItem() + monthbox.getSelectedItem()
-						+ daybox.getSelectedItem();
-				Tran tran=new Tran();
-				tran.Tran(date);
+				String date = datepick.getText();
 				String place = (String) sitebox.getSelectedItem();
 				String type = (String) typebox.getSelectedItem();
 				OutStorageDocuPO am = new OutStorageDocuPO(t1.getText(), date, place, type, t2.getText());
@@ -201,9 +184,7 @@ public class outstorage {
 		p1.add(t1);
 		p1.add(t2);
 
-		p1.add(yearbox);
-		p1.add(monthbox);
-		p1.add(daybox);
+		p1.add(datepick);
 		p1.add(sitebox);
 		p1.add(typebox);
 
@@ -232,9 +213,7 @@ public class outstorage {
 
 		jp.setBounds(50, b1yloc + 200, 423, 400);
 
-		yearbox.setBounds(350, b1yloc + 50, 80, 30);
-		monthbox.setBounds(440, b1yloc + 50, 80, 30);
-		daybox.setBounds(530, b1yloc + 50, 80, 30);
+		datepick.setBounds(350, b1yloc + 50, 150, 30);
 		sitebox.setBounds(120, b1yloc + 100, 80, 30);
 		typebox.setBounds(330, b1yloc + 100, 80, 30);
 

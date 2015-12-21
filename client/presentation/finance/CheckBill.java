@@ -1,5 +1,6 @@
 package finance;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.channels.SelectableChannel;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import com.eltima.components.ui.DatePicker;
 
 import login.Tran;
 import po.CostManagePO;
@@ -55,15 +59,17 @@ public class CheckBill {
 		timelabel.setFont(new Font("", Font.PLAIN, 18));
 		yytlabel.setFont(new Font("", Font.PLAIN, 18));
 		context.removeAll();
-		final JComboBox[] box = new JComboBox[] {
-				new JComboBox(GetBoxStr(200, "年")),
-				new JComboBox(GetBoxStr(12, "月")),
-				new JComboBox(GetBoxStr(31, "日")) };
-		for (int i = 0; i < box.length; i++) {
-			box[i].setBounds(sw + 110 + (boxgap + boxwidth) * i, sh, boxwidth,
+		final JTextField time = new JTextField();
+		final DatePicker datepick = new DatePicker(time);
+		datepick.setLocale(Locale.CHINA);//设置显示语言
+	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
+		
+			datepick.setBounds(sw + 110 , sh, 150,
 					boxheight);
-			context.add(box[i]);
-		}
+			context.add(datepick);
+		
 
 		final JTextField hallno = new JTextField();
 		
@@ -85,12 +91,8 @@ public class CheckBill {
 				buttonw, buttonh);
 		timecheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String olddate = box[0].getSelectedItem().toString()
-						+ box[1].getSelectedItem().toString()
-						+ box[2].getSelectedItem().toString();
-//				 System.out.println(date+"@@@");
-				Tran tran=new Tran();
-				String date=tran.Tran(olddate);
+			
+				String date=datepick.getText();
 //				System.out.println(date+"&&&");
 				Earneddocu earneddocu = new Earneddocu(oos,ois);
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("day", date);
