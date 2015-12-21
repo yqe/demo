@@ -1,5 +1,6 @@
 package finance;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import com.eltima.components.ui.DatePicker;
 
 import login.Tran;
 import po.CostManList;
@@ -48,22 +52,34 @@ public class StateOfRun {
 		int boxgap = 10;
 		int Gapw = 40;
 		int Gaph = 220;
-		final JComboBox[][] box = new JComboBox[][] {
-				{ new JComboBox(GetBoxStr(200, "年")), new JComboBox(GetBoxStr(12, "月")),
-						new JComboBox(GetBoxStr(31, "日")) },
-				{ new JComboBox(GetBoxStr(200, "年")), new JComboBox(GetBoxStr(12, "月")),
-						new JComboBox(GetBoxStr(31, "日")) } };
+		final JTextField time1 = new JTextField();
+		final DatePicker datepick1 = new DatePicker(time1);
+		datepick1.setLocale(Locale.CHINA);//设置显示语言
+	    datepick1.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick1.setEditorable(false);//设置是否可编辑
+		datepick1.setPreferredSize(new Dimension(100,30));//设置大小
+		
+		final JTextField time2 = new JTextField();
+		final DatePicker datepick2 = new DatePicker(time2);
+		datepick2.setLocale(Locale.CHINA);//设置显示语言
+	    datepick2.setPattern("yyyy-MM-dd");//设置日期格式化字符串
+	    datepick2.setEditorable(false);//设置是否可编辑
+		datepick2.setPreferredSize(new Dimension(100,30));//设置大小
+		
+		
 		JLabel[] label = new JLabel[] { new JLabel("开始日期:"), new JLabel("结束日期:") };
 		for (int i = 0; i < label.length; i++) {
 			label[i].setFont(new Font("", Font.PLAIN, 16));
 			label[i].setBounds(Gapw + (labelw + boxgap * 4 + boxw * 3) * i, Gaph, labelw, labelh);
 			context.add(label[i]);
-			for (int j = 0; j < box[i].length; j++) {
-				box[i][j].setBounds(Gapw + labelw + (boxgap + boxw) * j + (labelw + boxw * 3 + boxgap * 5) * i, Gaph, boxw,
-						boxh);
-				context.add(box[i][j]);
-			}
+			
 		}
+		  datepick1.setBounds(Gapw + labelw , Gaph,150,boxh);
+		  datepick2.setBounds(Gapw + labelw + (labelw + boxw * 3 + boxgap * 5), Gaph,150,boxh);
+			context.add(datepick1);
+			context.add(datepick2);
+	
+	
 		String[] columnnames = { "订单条形码号", "到达日期", "收款金额", "快递员" };
 		String[] columnnames2 = { "付款日期", "付款金额", "付款人", "付款账户", "条目", "备注" };
 		Object[][] data = {};
@@ -91,15 +107,9 @@ public class StateOfRun {
 		JButton okbtn = new JButton("确定");
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String startdate1 = box[0][0].getSelectedItem().toString() + box[0][1].getSelectedItem().toString()
-						+ box[0][2].getSelectedItem().toString();
-				Tran tran = new Tran();
-				String startdate = tran.Tran(startdate1);
-
-				String enddate1 = box[1][0].getSelectedItem().toString() + box[1][1].getSelectedItem().toString()
-						+ box[1][2].getSelectedItem().toString();
-
-				String enddate = tran.Tran(enddate1);
+			
+				String startdate =datepick1.getText();
+         		String enddate = datepick2.getText();
 
 				// System.out.println(startdate);
 				// System.out.println(enddate);
