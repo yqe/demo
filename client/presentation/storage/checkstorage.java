@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import com.eltima.components.ui.DatePicker;
 
 import po.EmploeePO;
+import po.LookStoragePO;
 import storagebl.StorageBl;
 
 public class checkstorage {
@@ -55,6 +56,7 @@ public class checkstorage {
 		JLabel l8 = new JLabel("元");
 		JLabel l9 = new JLabel("库存数量:");
 
+		JLabel l10 = new JLabel("中转中心:");
 		int lmain = 16;
 		l3.setFont(new Font("", Font.PLAIN, lmain));
 		l4.setFont(new Font("", Font.PLAIN, lmain));
@@ -63,11 +65,14 @@ public class checkstorage {
 		l7.setFont(new Font("", Font.PLAIN, lmain));
 		l8.setFont(new Font("", Font.PLAIN, lmain));
 		l9.setFont(new Font("", Font.PLAIN, lmain));
+		l10.setFont(new Font("", Font.PLAIN, lmain));
 
 		final JTextField t1 = new JTextField();
 		final JTextField t2 = new JTextField();
 		final JTextField t3 = new JTextField();
 		final JTextField t4 = new JTextField();
+		
+		final JTextField zzzx = new JTextField();
 
 		t1.setOpaque(false);
 		t1.setEditable(false);
@@ -82,18 +87,6 @@ public class checkstorage {
 		t2.setBorder(BorderFactory.createEmptyBorder());
 		t3.setBorder(BorderFactory.createEmptyBorder());
 		t4.setBorder(BorderFactory.createEmptyBorder());
-
-		JButton b4 = new JButton("查 看");
-		b4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				StorageBl stobl = new StorageBl(oos, ois);
-				t1.setText("100");
-				t2.setText("50");
-				t3.setText("500");
-				t4.setText("50");// 到时候传PO读取数据
-
-			}
-		});
 
 		final JTextField time1 = new JTextField();
 		final DatePicker datepick1 = new DatePicker(time1);
@@ -110,6 +103,18 @@ public class checkstorage {
 	    datepick2.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick2.setEditorable(false);//设置是否可编辑
 		datepick2.setPreferredSize(new Dimension(100,30));//设置大小
+		
+		JButton b4 = new JButton("查 看");
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StorageBl stobl = new StorageBl(oos, ois);
+				LookStoragePO look=stobl.StorageSee(zzzx.getText(), datepick1.getText(), datepick2.getText());
+                t1.setText(String.valueOf(look.getOutputnum()));
+                t2.setText(String.valueOf(look.getIntputnum()));
+                t3.setText(String.valueOf(look.getMoney()));
+                t4.setText(String.valueOf(look.getStorednum()));
+			}
+		});
 
 		p1.setLayout(null);
 		p1.add(l1);
@@ -121,11 +126,14 @@ public class checkstorage {
 		p1.add(l7);
 		p1.add(l8);
 		p1.add(l9);
+		p1.add(l10);
 
 		p1.add(t1);
 		p1.add(t2);
 		p1.add(t3);
 		p1.add(t4);
+		
+		p1.add(zzzx);
 
 		p1.add(b4);
 		p1.add(datepick1);
@@ -138,10 +146,14 @@ public class checkstorage {
 		l2.setBounds(50, b1yloc, 300, 30);
 		datepick1.setBounds(150, 100, 150, 30);
 
-		datepick2.setBounds(450, 100, 80, 30);
+		datepick2.setBounds(450, 100, 150, 30);
 	
 
 		l3.setBounds(75, 100, 100, 30);
+	
+		l10.setBounds(75, 150, 100, 30);
+		zzzx.setBounds(180, 150, 150, 30);
+		
 		l4.setBounds(410, 100, 50, 30);
 		l5.setBounds(250, 250, 150, 30);
 		l6.setBounds(250, 300, 150, 30);

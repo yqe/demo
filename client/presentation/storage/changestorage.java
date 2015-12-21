@@ -28,6 +28,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import po.EmploeePO;
+import po.StorageCheckPO;
+import storagebl.StorageBl;
 
 public class changestorage {
 	private JPanel imagePanel;
@@ -74,10 +76,10 @@ public class changestorage {
 		l11.setFont(new Font("", Font.PLAIN, lmain));
 
 		final JTextField id = new JTextField();
-		JTextField qu = new JTextField();
-		JTextField pai = new JTextField();
-		JTextField jia = new JTextField();
-		JTextField wei = new JTextField();
+		final JTextField qu = new JTextField();
+		final JTextField pai = new JTextField();
+		final JTextField jia = new JTextField();
+		final JTextField wei = new JTextField();
 		
 		id.setOpaque(false);
 		id.setBorder(BorderFactory.createEmptyBorder());
@@ -114,8 +116,19 @@ public class changestorage {
 			public void actionPerformed(ActionEvent e) {
 				boolean idisempty = id.getText().equals("");
 				boolean isid = true;
+				StorageBl storage=new StorageBl(oos, ois);
 				if (!idisempty) {
+					StorageCheckPO check=storage.IDStorageGet(id.getText());
+					if(check.getGoodno().equals("不存在")){
+					JOptionPane.showMessageDialog(null, "仓库没有该快递编号货物!");
+					}
+					else{
+				    qu.setText(check.getArea());
+				    pai.setText(check.getRow());
+				    jia.setText(check.getShelf());
+				    wei.setText(check.getLocation());
 					JOptionPane.showMessageDialog(null, "已查到所查快递仓库位置!");
+					}
 				} else if (idisempty) {
 					// System.out.println(id.getText().equals(""));
 					JOptionPane.showMessageDialog(null, "请填写快递编号!");
@@ -134,7 +147,12 @@ public class changestorage {
 			boolean isempty = ischquempty || ischpaiempty || ischjiaempty || ischweiempty;
 
 			public void actionPerformed(ActionEvent e) {
+				StorageBl storage=new StorageBl(oos, ois);
 				if (!isempty) {
+					StorageCheckPO check=storage.IDStorageGet(id.getText());
+					StorageCheckPO change=new StorageCheckPO(check.getGoodsID(),check.getTime(),chqu.getText(),
+							chpai.getText(),chjia.getText(),chwei.getText(),check.getTranscenterID());
+					storage.StorageUpdate(change);
 					JOptionPane.showMessageDialog(null, "成功修改!");
 				} else if (isempty) {
 					JOptionPane.showMessageDialog(null, "请填写完整更改信息!");
