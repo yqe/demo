@@ -31,5 +31,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/JTattoo.jar"/>
+	<classpathentry kind="lib" path="lib/datepicker.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -136,9 +136,9 @@ public class load {
 						isnum = false;
 					}
 				}
-				boolean istransid = true;
-				boolean iscarid = true;
-				boolean isyytid = true;
+				boolean istransid = (transid.getText().length()==20);
+				boolean iscarid = (carid.getText().length()==9);
+			
 
 				boolean cisempty = carid.getText().equals("");
 				boolean pisempty = price.getText().equals("");
@@ -160,10 +160,14 @@ public class load {
 				}catch (Exception e1) {
 					IsDouble=false;
 				}
-				if (id.getText().length() != 10)
+				if (istransid&&iscarid&&id.getText().length() != 10)
 					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
 				else if(!isempty&&!IsDouble)
 					JOptionPane.showMessageDialog(null, "请输入合法的金额!");
+				else if(!isempty&&!istransid)
+					JOptionPane.showMessageDialog(null, "请输入合法的汽运编号!");
+				else if(!isempty&&!iscarid)
+					JOptionPane.showMessageDialog(null, "请输入合法的车辆代号!");
 				else if (isempty)
 					JOptionPane.showMessageDialog(null, "请完整填写信息!");
 				else {

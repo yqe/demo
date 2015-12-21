@@ -165,9 +165,10 @@ public class Maintenance {
 		JButton b4 = new JButton("更新车辆信息");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean iscarid = true;
-				boolean iscarnumber = true;
-				boolean isdriverid = true;
+				boolean iscarid = (carid.getText().length()==9);
+				boolean iscarnumber =(carnumber.getText().length()==7);
+				boolean isdriverid = (driverid.getText().length()==9);
+				boolean isidentity=(driversfz.getText().length()==18);
 
 				boolean caridisempty = carid.getText().equals("");
 				boolean carnumberisempty = carnumber.getText().equals("");
@@ -180,7 +181,7 @@ public class Maintenance {
 						|| driversfzisempty || telisempty;
 
 				String s = jb1.isSelected() ? "男" : "女";
-				if (iscarid && iscarnumber && isdriverid && !isempty) {
+				if (iscarid && iscarnumber && isdriverid &&isidentity &&!isempty) {
 					VehicleMaintanceInfoPO vpo = new VehicleMaintanceInfoPO(carid.getText(), null, carnumber.getText(),
 							timebox2.getSelectedItem().toString(), driverid.getText(), drivername.getText(),
 							date.getText(), driversfz.getText(), tel.getText(), s,
@@ -196,7 +197,10 @@ public class Maintenance {
 					JOptionPane.showMessageDialog(null, "请输入正确的车牌号!");
 				} else if (!isdriverid && !driveridisempty) {
 					JOptionPane.showMessageDialog(null, "请输入正确的司机代号!");
-				} else if (isempty) {
+				} 
+				 else if (!isdriverid && !driveridisempty) {
+						JOptionPane.showMessageDialog(null, "请输入正确的身份证号!");
+				}else if (isempty) {
 					JOptionPane.showMessageDialog(null, "请完整填写信息!");// 123
 				}
 

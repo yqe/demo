@@ -1,11 +1,14 @@
 package courier;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.eltima.components.ui.DatePicker;
 
 import documentbl.Diliverdocu;
 import po.DiliverDocuPO;
@@ -60,11 +65,11 @@ public class dispatch {
 		final JTextField courier = new JTextField();
 		
 		id.setOpaque(false);
-		id.setBorder(BorderFactory.createEmptyBorder());
+		id.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2,Color.gray));
 		name.setOpaque(false);
-		name.setBorder(BorderFactory.createEmptyBorder());
+		name.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		courier.setOpaque(false);
-		courier.setBorder(BorderFactory.createEmptyBorder());
+		courier.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		String[] year = new String[201];
 		for (int i = 2000; i < 2100; i++) {
@@ -114,8 +119,17 @@ public class dispatch {
 
 		});
 
+		final JTextField time = new JTextField();
+		DatePicker datepick = new DatePicker(time);
+		datepick.setLocale(Locale.US);//设置显示语言
+	    datepick.setPattern("MM/dd/yyyy");//设置日期格式化字符串
+	    datepick.setEditorable(false);//设置是否可编辑
+		datepick.setBackground(Color.gray);//设置背景色
+		datepick.setForeground(Color.yellow);//设置前景色
+		datepick.setPreferredSize(new Dimension(100,30));//设置大小
+//	    datepick.setTextAlign(DatePicker.CENTER);//设置文本水平方向位置：
 		
-
+        
 		p1.setOpaque(false);
 		p1.setLayout(null);
 		p1.add(l1);
@@ -133,6 +147,8 @@ public class dispatch {
 		p1.add(yearbox);
 		p1.add(monthbox);
 		p1.add(daybox);
+		
+		p1.add(datepick);
 
 		p1.setOpaque(false);
 
@@ -145,9 +161,11 @@ public class dispatch {
 		l2.setBounds(50, b1yloc, 150, 30);
 		l3.setBounds(100, 200, 150, 30);
 		l4.setBounds(100, 300, 150, 30);
-		yearbox.setBounds(275, 300, 80, 30);
-		monthbox.setBounds(375, 300, 80, 30);
-		daybox.setBounds(475, 300, 80, 30);
+		datepick.setBounds(275, 300, 150, 30);
+		
+//		yearbox.setBounds(275, 300, 80, 30);
+//		monthbox.setBounds(375, 300, 80, 30);
+//		daybox.setBounds(475, 300, 80, 30);
 
 		l5.setBounds(100, 400, 150, 30);
 		l6.setBounds(100, 500, 150, 30);

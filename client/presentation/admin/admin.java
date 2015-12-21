@@ -181,7 +181,7 @@ public class admin {
 		control.add(b6);
 		control.add(b7);
 
-		int b4xloc = size / 6, b4yloc = 3*control.getHeight() / 7, b4ysize = control.getHeight() / 7;
+		int b4xloc = size / 6, b4yloc = 3*control.getHeight() / 7, b4ysize = control.getHeight() / 9;
 		b4.setBounds(b4xloc, b4yloc, 120, 30);
 		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
 		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);

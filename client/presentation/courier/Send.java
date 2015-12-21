@@ -182,75 +182,106 @@ public class Send {
 		}
 		final JComboBox numbox = new JComboBox(num);
 		numbox.setOpaque(false);
-		// numbox.addItemListener(new ItemListener()
-		// {
-		// public void itemStateChanged(ItemEvent e)
-		// {
-		// if (e.getStateChange() == ItemEvent.SELECTED)
-		// {
-		// String goodsnum=(String) numbox.getSelectedItem(); }
-		// }
-		// });
+		 
 
 		String[] type = { "普通快递", "经济快递", "次晨特快" };
 		final JComboBox typebox = new JComboBox(type);
 		typebox.setOpaque(false);
-		// typebox.addItemListener(new ItemListener()
-		// {
-		// public void itemStateChanged(ItemEvent e)
-		// {
-		// if (e.getStateChange() == ItemEvent.SELECTED)
-		// {
-		// String type=(String)typebox.getSelectedItem(); }
-		// }
-		// });
 
 		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
 		final JComboBox packagebox = new JComboBox(pack);
 		packagebox.setOpaque(false);
-		// packagebox.addItemListener(new ItemListener()
-		// {
-		// public void itemStateChanged(ItemEvent e)
-		// {
-		// if (e.getStateChange() == ItemEvent.SELECTED)
-		// {
-		// String pack=(String) packagebox.getSelectedItem();
-		//
-		// }
-		// }
-		// });
+		
 		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
 		final JComboBox depaturebox = new JComboBox(depature);
 		depaturebox.setOpaque(false);
-		// depaturebox.addItemListener(new ItemListener()
-		// {
-		// public void itemStateChanged(ItemEvent e)
-		// {
-		// if (e.getStateChange() == ItemEvent.SELECTED)
-		// {
-		// String depature=(String) depaturebox.getSelectedItem(); }
-		// }
-		// });
 
 		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
 		final JComboBox destinationbox = new JComboBox(destination);
 		destinationbox.setOpaque(false);
+		
+		numbox.addItemListener(new ItemListener()
+		 {
+		 public void itemStateChanged(ItemEvent e)
+		 {
+		 if (e.getStateChange() == ItemEvent.SELECTED)
+		 {
+			 GoodsBl goodsbl = new GoodsBl(oos, ois);					
+				double weight = Double.valueOf(goodsweight.getText());
+				String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+						packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+						destinationbox.getSelectedItem().toString());
+				double feedou = Double.valueOf(fee);
+				double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+				price.setText(String.valueOf(goodsprice));}
+		 }
+		 });
+		
+		 typebox.addItemListener(new ItemListener()
+		 {
+		 public void itemStateChanged(ItemEvent e)
+		 {
+		 if (e.getStateChange() == ItemEvent.SELECTED)
+		 {
+			 GoodsBl goodsbl = new GoodsBl(oos, ois);					
+				double weight = Double.valueOf(goodsweight.getText());
+				String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+						packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+						destinationbox.getSelectedItem().toString());
+				double feedou = Double.valueOf(fee);
+				double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+				price.setText(String.valueOf(goodsprice));	  }
+		 }
+		 });	
+		
+		packagebox.addItemListener(new ItemListener()
+		 {
+		 public void itemStateChanged(ItemEvent e)
+		 {
+		 if (e.getStateChange() == ItemEvent.SELECTED)
+		 {
+			 GoodsBl goodsbl = new GoodsBl(oos, ois);					
+				double weight = Double.valueOf(goodsweight.getText());
+				String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+						packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+						destinationbox.getSelectedItem().toString());
+				double feedou = Double.valueOf(fee);
+				double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+				price.setText(String.valueOf(goodsprice));	 
+		
+		 }
+		 }
+		 });
+		
+		depaturebox.addItemListener(new ItemListener()
+		 {
+		 public void itemStateChanged(ItemEvent e)
+		 {
+		 if (e.getStateChange() == ItemEvent.SELECTED)
+		 {
+			 GoodsBl goodsbl = new GoodsBl(oos, ois);					
+			double weight = Double.valueOf(goodsweight.getText());
+			String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+					packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+					destinationbox.getSelectedItem().toString());
+			double feedou = Double.valueOf(fee);
+			double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+			price.setText(String.valueOf(goodsprice));	 
+		 }
+		 }
+		 });
+		
+		
 		destinationbox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
-					GoodsBl goodsbl = new GoodsBl(oos, ois);
-					// System.out.println(goodsweight.getText());
-					// System.out.println(typebox.getSelectedItem().toString());
-					// System.out.println(packagebox.getSelectedItem().toString());
-					// System.out
-					// .println(depaturebox.getSelectedItem().toString());
+					GoodsBl goodsbl = new GoodsBl(oos, ois);					
 					double weight = Double.valueOf(goodsweight.getText());
 					String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
 							packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
 							destinationbox.getSelectedItem().toString());
 					double feedou = Double.valueOf(fee);
 					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
-					// System.out.println(goodsprice);
 					price.setText(String.valueOf(goodsprice));
 
 				}
@@ -338,8 +369,14 @@ public class Send {
 					if (weight < (v / 5000)) {
 						weight = v / 5000;
 					}
-
 					goodsweight.setText(String.valueOf(weight));
+                    GoodsBl goodsbl = new GoodsBl(oos, ois);
+					String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+							packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+							destinationbox.getSelectedItem().toString());
+					double feedou = Double.valueOf(fee);
+					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+					price.setText(String.valueOf(goodsprice));
 				} catch (Exception e1) {
 					return;
 				}
@@ -419,10 +456,11 @@ public class Send {
 				}
 
 				GoodsBl goodsbl = new GoodsBl(oos, ois);
+				String id=goodsbl.GetExpressID();
 				GoodsDocuPO gpo = new GoodsDocuPO(sender.getText(), senderinfo.getText(), sendertel.getText(),
 						sendersite.getText(), getter.getText(), getterinfo.getText(), gettertel.getText(),
 						gettersite.getText(), j, Double.valueOf(price.getText()), typebox.getSelectedItem().toString(),
-						null, Double.valueOf(goodsweight.getText()), goodsname.getText(),
+						id, Double.valueOf(goodsweight.getText()), goodsname.getText(),
 						Integer.valueOf(numbox.getSelectedItem().toString()), Double.valueOf(length.getText()),
 						Double.valueOf(width.getText()), Double.valueOf(height.getText()), Double.valueOf(V.getText()),
 						goodsinfo.getText(), packagebox.getSelectedItem().toString(), exceptedtime.getText(),
@@ -538,10 +576,10 @@ public class Send {
 		l19.setBounds(l3xloc, l3yloc + 7 * interval, 120, 30);
 		l20.setBounds(l3xloc + 200, l3yloc + 7 * interval, 120, 30);
 		l21.setBounds(l3xloc + 400, l3yloc + 8 * interval, 120, 30);
-		l22.setBounds(l3xloc, l3yloc + 8 * interval, 150, 30);
+		l22.setBounds(l3xloc, l3yloc + 9 * interval, 150, 30);
 		// l23.setBounds(l3xloc+400, l3yloc+8*interval, 150, 30);
 
-		l24.setBounds(l3xloc, l3yloc + 9 * interval, 150, 30);
+		l24.setBounds(l3xloc, l3yloc + 8 * interval, 150, 30);
 		l25.setBounds(l3xloc + 450, l3yloc + 9 * interval, 150, 30);
 		l26.setBounds(l3xloc + 660, l3yloc + 8 * interval, 100, 30);
 		l27.setBounds(l3xloc + 400, l3yloc + 7 * interval, 120, 30);
@@ -572,7 +610,7 @@ public class Send {
 		typebox.setBounds(t1xloc, t1yloc + 7 * interval, 80, 30);
 		packagebox.setBounds(t1xloc + 200, t1yloc + 7 * interval, 120, 30);
 		price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
-		exceptedtime.setBounds(t1xloc + 50, t1yloc + 8 * interval, 180, 30);
+		exceptedtime.setBounds(t1xloc + 50, t1yloc + 9 * interval, 180, 30);
 		// yearbox1.setBounds(t1xloc + 30, t1yloc + 8 * interval, 80, 30);
 		// monthbox1.setBounds(t1xloc + 120, t1yloc + 8 * interval, 80, 30);
 		// daybox1.setBounds(t1xloc + 210, t1yloc + 8 * interval, 80, 30);
@@ -582,9 +620,9 @@ public class Send {
 		// t17.setBounds(t1xloc+450,t1yloc+8*interval, 200, 30);
 		// ����
 
-		yearbox2.setBounds(t1xloc + 50, t1yloc + 9 * interval, 80, 30);
-		monthbox2.setBounds(t1xloc + 140, t1yloc + 9 * interval, 80, 30);
-		daybox2.setBounds(t1xloc + 230, t1yloc + 9 * interval, 80, 30);
+		yearbox2.setBounds(t1xloc + 50, t1yloc + 8 * interval, 80, 30);
+		monthbox2.setBounds(t1xloc + 140, t1yloc + 8 * interval, 80, 30);
+		daybox2.setBounds(t1xloc + 230, t1yloc + 8 * interval, 80, 30);
 		courier.setBounds(t1xloc + 450, t1yloc + 9 * interval, 120, 30);
 
 		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
