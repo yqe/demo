@@ -32,7 +32,7 @@ public class DocumentBl implements DocumentBlService {
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Manager");
 			oos.writeUTF("GetUnapproveBill");
-			oos.writeObject(new Boolean(true));
+			oos.writeObject(new String("OK"));
 			cdpolist = (CondemnList) ois.readObject();
 			ois.close();
 			oos.close();
