@@ -17,7 +17,7 @@ public class CondemnDocu {
 		try {
 			ArrayList<CondemnDocuPO> conList=new ArrayList<CondemnDocuPO>();
 			mysqlimp=new MySqlImp();
-			String findall="SELECT * FROM 审批单据"+" WHERE 状态=未审批";
+			String findall="SELECT * FROM 审批单据"+" WHERE 状态='未审批'";
 			ResultSet rs=mysqlimp.query(findall);
 			while(rs.next()){
 				conList.add(new CondemnDocuPO(rs.getString(1),rs.getString(2),rs.getString(3)));
