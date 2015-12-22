@@ -40,6 +40,11 @@ public class storagemain {
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
+	JPanel inspanel;
+	JPanel ouspanel;
+	JPanel chspanel;
+	JPanel cospanel;
+	JPanel caspanel;
 	JPanel storagemain = new JPanel() {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -64,7 +69,16 @@ public class storagemain {
 		storagemain.setLayout(null);
 
 		final instorage ins = new instorage(oos, ois, emPO);
-		// final storageinfo sinfo = new storageinfo(posid);
+		final outstorage ous = new outstorage(oos, ois, emPO);
+		final checkstorage chs = new checkstorage(oos, ois, emPO);
+		final countstorage cos = new countstorage(oos, ois, emPO);
+		final changestorage cas = new changestorage(oos, ois, emPO);
+		
+		inspanel=ins.Panel();
+		ouspanel=ous.Panel();
+		chspanel=chs.Panel();
+		cospanel=cos.Panel();
+		caspanel=cas.Panel();
 
 		control.setBounds(0, 0, size, 700);
 		content.setBounds(size, 0, 900, 700);
@@ -76,6 +90,10 @@ public class storagemain {
 		int b2size = 16;
 		l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
 
+		
+		
+		
+		
 		JButton b3 = new JButton("退出");
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -86,26 +104,14 @@ public class storagemain {
 		JButton b4 = new JButton("入库登记");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final instorage ins = new instorage(oos, ois, emPO);
-					changepanel(ins.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(inspanel);
 			}
 
 		});
 		JButton b5 = new JButton("出库登记");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final outstorage ous = new outstorage(oos, ois, emPO);
-					changepanel(ous.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(ouspanel);
 			}
 
 		});
@@ -113,39 +119,21 @@ public class storagemain {
 		JButton b6 = new JButton("库存查看");
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final checkstorage chs = new checkstorage(oos, ois, emPO);
-					changepanel(chs.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(chspanel);
 			}
 
 		});
 		JButton b7 = new JButton("库存盘点");
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final countstorage cos = new countstorage(oos, ois, emPO);
-					changepanel(cos.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(cospanel);
 			}
 
 		});
 		JButton b8 = new JButton("库存更改");
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final changestorage cas = new changestorage(oos, ois, emPO);
-					changepanel(cas.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(caspanel);
 			}
 
 		});
@@ -208,7 +196,7 @@ public class storagemain {
 		b8.setBounds(b4xloc, b4yloc + 4 * b4ysize, 120, 30);
 		b3.setBounds(b4xloc, b4yloc + 5 * b4ysize, 120, 30);
 
-		content.add(ins.Panel());
+		content.add(inspanel);
 		content.setLayout(null);
 		content.setOpaque(false);
 
@@ -225,5 +213,6 @@ public class storagemain {
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
 		storagemain.add(content);
 		storagemain.repaint();
+		storagemain.revalidate();
 	}
 }

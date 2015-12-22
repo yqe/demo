@@ -40,6 +40,16 @@ public class transitmain {
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
+	
+	JPanel tspanel;
+	JPanel tslpanel;
+	
+	JPanel transitmain = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public transitmain(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
@@ -52,19 +62,16 @@ public class transitmain {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/tbackground.jpg"));
 		background = new ImageIcon(bgp);
 
-		JPanel transitmain = new JPanel() {
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(background.getImage(), 0, 0, null);
-			}
-		};
 		transitmain.setBounds(0, 0, 980, 700);
 
 		transitmain.setOpaque(false);
 		transitmain.setLayout(null);
 
 		final transit ts = new transit(oos, ois, emPO);
-
+		tspanel=ts.Panel();
+		final transitload tsl = new transitload(oos, ois, emPO);
+        tslpanel=tsl.Panel();
+		
 		control.setBounds(0, 0, size, 700);
 		content.setBounds(size, 0, 800, 700);
 
@@ -92,26 +99,14 @@ public class transitmain {
 		JButton b4 = new JButton("中转接收");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final transit ts = new transit(oos, ois, emPO);
-					changepanel(ts.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(tspanel);
 			}
 
 		});
 		JButton b5 = new JButton("装运管理");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final transitload tsl = new transitload(oos, ois, emPO);
-					changepanel(tsl.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(tslpanel);
 			}
 
 		});
@@ -160,7 +155,7 @@ public class transitmain {
 		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
 		b3.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);
 
-		content.add(ts.Panel());
+		content.add(tspanel);
 		content.setLayout(null);
 		content.setOpaque(false);
 
@@ -172,12 +167,13 @@ public class transitmain {
 	}
 
 	public void changepanel(JPanel p1) {
-		content.removeAll();
-		content.add(p1);
-		content.repaint();
+		transitmain.remove(content);
+		content = p1;
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
-		content.setLayout(null);
-		content.setOpaque(false);
+		transitmain.add(content);
+		content.repaint();
+		transitmain.repaint();
+		transitmain.revalidate();
 	}
 
 }

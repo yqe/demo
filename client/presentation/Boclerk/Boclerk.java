@@ -39,6 +39,16 @@ public class Boclerk {
 	private Socket socket;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
+	JPanel loadpanel;
+	JPanel collectionpanel;
+	JPanel Maintenancepanel;
+	JPanel arrivalpanel;
+	JPanel Boclerk = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public Boclerk(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
@@ -51,17 +61,20 @@ public class Boclerk {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Bbackground.jpg"));
 		background = new ImageIcon(bgp);
 
-		JPanel Boclerk = new JPanel() {
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(background.getImage(), 0, 0, null);
-			}
-		};
 		Boclerk.setBounds(0, 0, 780, 700);
 
 		Boclerk.setOpaque(false);
 		Boclerk.setLayout(null);
 		load load = new load(ois, oos, emPO);
+		collection collection = new collection(ois, oos, emPO);
+		Maintenance m = new Maintenance(ois, oos, emPO);
+		arrival a = new arrival(ois, oos, emPO);
+		
+		loadpanel=load.Panel();
+		collectionpanel=collection.Panel();
+		Maintenancepanel=m.Panel();
+		arrivalpanel=a.Panel();
+		
 		control.setBounds(0, 0, size, 700);
 		content.setBounds(size, 0, 600, 700);
 
@@ -90,52 +103,28 @@ public class Boclerk {
 		JButton b4 = new JButton("生成装车单");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					load load = new load(ois, oos, emPO);
-					changepanel(load.Panel());
-				} catch (IOException e1) {
-					// TODO
-					e1.printStackTrace();
-				}
+				changepanel(loadpanel);
 			}
 
 		});
 		JButton b5 = new JButton("建立收款单");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					collection collection = new collection(ois, oos, emPO);
-					changepanel(collection.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(collectionpanel);
 			}
 
 		});
 		JButton b6 = new JButton("车辆信息维护");
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					Maintenance m = new Maintenance(ois, oos, emPO);
-					changepanel(m.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(Maintenancepanel);
 			}
 
 		});
 		JButton b7 = new JButton("生成到达单");
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					arrival a = new arrival(ois, oos, emPO);
-					changepanel(a.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(arrivalpanel);
 			}
 
 		});
@@ -202,12 +191,14 @@ public class Boclerk {
 	}
 
 	public void changepanel(JPanel p1) {
-		content.removeAll();
-		content.add(p1);
-		content.repaint();
+		Boclerk.remove(content);
+		content = p1;
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
-		content.setLayout(null);
-		content.setOpaque(false);
+		Boclerk.add(content);
+
+		content.repaint();
+		Boclerk.repaint();
+		Boclerk.revalidate();
 	}
 
 }

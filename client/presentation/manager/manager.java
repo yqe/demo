@@ -40,6 +40,11 @@ public class manager {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
+	JPanel strategypanel;
+	JPanel approvepanel;
+	JPanel staffpanel;
+	JPanel addempopanel;
+	JPanel deleteempopanel;
 	JPanel manager = new JPanel() {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -68,6 +73,14 @@ public class manager {
 		final addemployee add = new addemployee(oos, ois, emPO);
 		final checkdocuments cd = new checkdocuments(oos, ois, emPO);
 		final approve a = new approve(oos,ois,emPO);
+		final staff sf = new staff(oos, ois, emPO);
+		
+		
+		strategypanel =strategy.Panel();
+		deleteempopanel=delete.Panel();
+		addempopanel=add.Panel();
+		approvepanel=a.Panel();
+		staffpanel=sf.Panel();
 		
 		control.setBounds(0, 0, size, 700);
 		content.setBounds(size, 0, 650, 700);
@@ -97,26 +110,14 @@ public class manager {
 		JButton b4 = new JButton("制定经营策略");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					Strategy strategy = new Strategy(oos, ois, emPO);
-					changepanel(strategy.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(strategypanel);
 			}
 
 		});
 		JButton b5 = new JButton("审批单据");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-		
-					changepanel(a.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(approvepanel);
 			}
 
 		});
@@ -124,8 +125,7 @@ public class manager {
 		JButton b6 = new JButton("查看表单");
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					
+				try {					
 					cd.Panel(content).repaint();
 					content.setBounds(size, 0, content.getWidth(), content.getHeight());
 				} catch (IOException e1) {
@@ -138,39 +138,21 @@ public class manager {
 		JButton b7 = new JButton("人员调度");
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final staff sf = new staff(oos, ois, emPO);
-					changepanel(sf.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(staffpanel);
 			}
 
 		});
 		JButton b8 = new JButton("添加员工");
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-				
-					changepanel(add.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(addempopanel);
 			}
 
 		});
 		JButton b9 = new JButton("删除员工");
 		b9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					
-					changepanel(delete.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(deleteempopanel);
 			}
 
 		});
@@ -238,10 +220,12 @@ public class manager {
 
 	public void changepanel(JPanel p1) {
 		manager.remove(content);
-		content=p1;
+		content = p1;
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
 		manager.add(content);
+		content.repaint();
 		manager.repaint();
+		manager.revalidate();
 	}
 
 }

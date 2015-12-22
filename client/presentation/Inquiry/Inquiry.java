@@ -63,12 +63,12 @@ public class Inquiry {
 		t1.setBorder(BorderFactory.createEmptyBorder());
 		t2.setBorder(BorderFactory.createEmptyBorder());
 
-		JButton b3 = new JButton("退出");
-		b3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+//		JButton b3 = new JButton("退出");
+//		b3.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				System.exit(0);
+//			}
+//		});
 
 		JButton b4 = new JButton("查询");
 		b4.addActionListener(new ActionListener() {
@@ -103,7 +103,7 @@ public class Inquiry {
 		p1.add(t1);
 		p1.add(t2);
 
-		p1.add(b3);
+//		p1.add(b3);
 		p1.add(b4);
 
 		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
@@ -121,7 +121,7 @@ public class Inquiry {
 		t1.setBounds(275, 2 * b4yloc / 3 - 20, 200, 30);
 		t2.setBounds(275, 7 * b4yloc / 5 - 20, 280, 150);
 
-		b3.setBounds(b1xloc + 2 * b1xsize, b1yloc, 60, 30);
+//		b3.setBounds(b1xloc + 2 * b1xsize, b1yloc, 60, 30);
 		b4.setBounds(275, b4yloc - 20, 180, 40);
 
 		return p1;

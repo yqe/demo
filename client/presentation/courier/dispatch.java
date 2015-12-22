@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.BorderFactory;
@@ -65,7 +67,10 @@ public class dispatch {
 		final JTextField courier = new JTextField();
 		
 		final JTextField time = new JTextField();
-		final DatePicker datepick = new DatePicker(time);
+		Calendar c=Calendar.getInstance();
+//		c.set(2015, 12, 30, 0, 0);
+		Date d=c.getTime();
+		final DatePicker datepick = new DatePicker(time,d);
 		datepick.setOpaque(false);
 		datepick.setLocale(Locale.CHINA);//设置显示语言
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串

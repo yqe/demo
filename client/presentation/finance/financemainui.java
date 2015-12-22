@@ -55,15 +55,15 @@ public class financemainui {
 		this.emPO = emPO;
 	}
 
+	JPanel contain = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 	public JPanel financemainui() throws IOException {
 		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Fbackground.jpg"));
 		background = new ImageIcon(bgp);
-		JPanel contain = new JPanel() {
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(background.getImage(), 0, 0, null);
-			}
-		};
 		contain.setOpaque(false);
 		contain.setBounds(0, 0, width, height);
 		contain.setLayout(null);
@@ -83,12 +83,13 @@ public class financemainui {
 	}
 
 	public void changepanel(JPanel p1) {
-		context.removeAll();
-		context.add(p1);
+		contain.remove(context);
+		context = p1;
+		context.setBounds(cmdsize, 0, context.getWidth(), context.getHeight());
+		contain.add(context);
 		context.repaint();
-		context.setBounds(cmdsize, 0, width, height);
-		context.setLayout(null);
-		context.setOpaque(false);
+		contain.repaint();
+		contain.revalidate();
 	}
 
 	public class CmdActionListener implements ActionListener {

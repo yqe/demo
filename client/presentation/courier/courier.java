@@ -43,14 +43,21 @@ public class courier {
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 	private Socket socket;
-	final JPanel courier = new JPanel() {
+	Send send = new Send(oos, ois, emPO);
+	dispatch dispatch = new dispatch(oos, ois, emPO);
+	check check = new check(oos, ois, emPO);
+	JPanel sendpanel = new JPanel();
+	JPanel dispatchpanel;
+	JPanel checkpanel = new JPanel();
+	JPanel courier = new JPanel() {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(background.getImage(), 0, 0, null);
 		}
 	};
 
-	public courier(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
+	public courier(Socket socket, ObjectInputStream ois,
+			ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
 		this.oos = oos;
 		this.ois = ois;
@@ -58,15 +65,20 @@ public class courier {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Cbackground.jpg"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource(
+				"/presentation/Cbackground.jpg"));
 		background = new ImageIcon(bgp);
 
-	
 		courier.setBounds(0, 0, 980, 800);
 
 		courier.setOpaque(false);
 		courier.setLayout(null);
-		final Send send = new Send(oos, ois, emPO);
+		// Send send = new Send(oos, ois, emPO);
+		sendpanel = send.Panel();
+		// dispatch dispatch=new dispatch(oos,ois,emPO);
+		dispatchpanel = dispatch.Panel();
+		// check check=new check(oos,ois,emPO);
+		checkpanel = check.Panel();
 
 		control.setBounds(0, 0, size, 800);
 		content.setBounds(size, 0, 980, 800);
@@ -81,35 +93,31 @@ public class courier {
 		JButton b3 = new JButton("退出");
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		      System.exit(0);
+				System.exit(0);
 			}
 		});
 
 		JButton b4 = new JButton("生成寄件单");
-	
+
 		JButton b5 = new JButton("生成派件单");
-		
 
 		JButton b6 = new JButton("查询订单信息");
-	
 
 		control.setOpaque(false);
 		control.setLayout(null);
 
-		
-		JLabel employid=new JLabel("工号 :");
-		JLabel employjob=new JLabel("职位 :");
+		JLabel employid = new JLabel("工号 :");
+		JLabel employjob = new JLabel("职位 :");
 		employid.setFont(new Font("", Font.PLAIN, b2size));
 		employjob.setFont(new Font("", Font.PLAIN, b2size));
-		
-		JTextField idt=new JTextField();
+
+		JTextField idt = new JTextField();
 		idt.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField namet=new JTextField();
+		JTextField namet = new JTextField();
 		namet.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField jobt=new JTextField();
+		JTextField jobt = new JTextField();
 		jobt.setFont(new Font("", Font.PLAIN, b2size));
 
-		
 		idt.setOpaque(false);
 		idt.setEditable(false);
 		idt.setBorder(BorderFactory.createEmptyBorder());
@@ -120,22 +128,17 @@ public class courier {
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());
 
-		
-		
 		employid.setBounds(40, 210, 60, 30);
-		employjob.setBounds(40, 250,60, 30);
+		employjob.setBounds(40, 250, 60, 30);
 
-		
 		namet.setBounds(40, 170, 80, 30);
 		idt.setBounds(100, 210, 80, 30);
 		jobt.setBounds(100, 250, 80, 30);
 
-		
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText(emPO.getPosition());
 
-		
 		control.add(employid);
 		control.add(employjob);
 		control.add(idt);
@@ -146,7 +149,8 @@ public class courier {
 		control.add(b5);
 		control.add(b6);
 
-		int b4xloc = size / 6, b4yloc = 3*control.getHeight() / 7, b4ysize = control.getHeight() / 8;
+		int b4xloc = size / 6, b4yloc = 3 * control.getHeight() / 7, b4ysize = control
+				.getHeight() / 8;
 
 		b3.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 40);
 		b4.setBounds(b4xloc, b4yloc, 120, 40);
@@ -156,43 +160,25 @@ public class courier {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				try {
-					Send send = new Send(oos, ois, emPO);
-					changepanel(send.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(sendpanel);
 			}
 
 		});
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final dispatch dispatch = new dispatch(oos, ois, emPO);
-					changepanel(dispatch.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(dispatchpanel);
 			}
 
 		});
-		
+
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					final check check = new check(oos, ois, emPO);
-					changepanel(check.Panel());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(checkpanel);
 			}
 
 		});
-		
-		content.add(send.Panel());
+
+		content.add(sendpanel);
 		content.setLayout(null);
 		content.setOpaque(false);
 		courier.add(control);
@@ -203,11 +189,12 @@ public class courier {
 
 	public void changepanel(JPanel p1) {
 		courier.remove(content);
-		content=p1;
+		content = p1;
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
 		courier.add(content);
+
 		content.repaint();
 		courier.repaint();
-
+		courier.revalidate();
 	}
 }
