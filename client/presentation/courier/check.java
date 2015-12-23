@@ -1,7 +1,10 @@
 package courier;
 
+import image.ImageGet;
+
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -40,8 +43,8 @@ public class check {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource(
-				"/presentation/check.jpg"));
+		   new ImageGet();
+	        Image bgp=ImageGet.getImageByState("check");
 		background = new ImageIcon(bgp);
 		
 		p1.setBounds(0, 0, 942, 815);

@@ -1,8 +1,13 @@
 package Boclerk;
 
+import image.ImageGet;
+
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -16,6 +21,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,6 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import com.eltima.components.ui.DatePicker;
@@ -50,29 +57,28 @@ public class arrival {
 	}
 	public JPanel Panel() throws IOException {
 
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/arrival.jpg"));
+		   new ImageGet();
+	        Image bgp=ImageGet.getImageByState("arrival");
 		background = new ImageIcon(bgp);
 		p1.setBounds(0, 0, 942, 821);
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—>生成到达单");
+	
+
 		int b2size = 16;
-		JLabel l3 = new JLabel("营业厅编号:");
-		JLabel l4 = new JLabel("到达日期:");
-		JLabel l5 = new JLabel("出发地:");
-		JLabel l6 = new JLabel("货物到达状态:");
-		JLabel l7 = new JLabel("中转单编号:");
+//		JLabel l3 = new JLabel("营业厅编号:");
+//		JLabel l4 = new JLabel("到达日期:");
+//		JLabel l5 = new JLabel("出发地:");
+//		JLabel l6 = new JLabel("货物到达状态:");
+//		JLabel l7 = new JLabel("中转单编号:");
+//
+//		JLabel l8 = new JLabel("营业厅到达单列表:");
 
-		JLabel l8 = new JLabel("营业厅到达单列表:");
-
-		l2.setFont(new Font("", Font.PLAIN, b2size));
-		l3.setFont(new Font("", Font.PLAIN, b2size));
-		l4.setFont(new Font("", Font.PLAIN, b2size));
-		l5.setFont(new Font("", Font.PLAIN, b2size));
-		l6.setFont(new Font("", Font.PLAIN, b2size));
-		l7.setFont(new Font("", Font.PLAIN, b2size));
-		l8.setFont(new Font("", Font.PLAIN, b2size));
+//		l2.setFont(new Font("", Font.PLAIN, b2size));
+//		l3.setFont(new Font("", Font.PLAIN, b2size));
+//		l4.setFont(new Font("", Font.PLAIN, b2size));
+//		l5.setFont(new Font("", Font.PLAIN, b2size));
+//		l6.setFont(new Font("", Font.PLAIN, b2size));
+//		l7.setFont(new Font("", Font.PLAIN, b2size));
+//		l8.setFont(new Font("", Font.PLAIN, b2size));
 
 		final JTextField t1 = new JTextField();
 		t1.setText(emPO.getPosID());
@@ -88,24 +94,50 @@ public class arrival {
 
 		String[] site = { "南京", "上海", "北京", "杭州", "广州", "苏州", "成都", "武汉" };
 		final JComboBox sitebox = new JComboBox(site);
+		 sitebox.setBackground(Color.gray);
+			sitebox.setForeground(Color.white);
 
 		String[] state = { "损坏", "完整", "丢失" };
 		final JComboBox statebox = new JComboBox(state);
+		 statebox.setBackground(Color.gray);
+			statebox.setForeground(Color.white);
 
-		String[] columnnames = { "营业厅编号", "到达日期", "出发地", "货物到达状态", "中转单编号" };
+		String[] columnnames = { "", "", "", "", "" };
 		Object[][] data = { { "000001", "2015年9月27日", "上海", "完整", "0000001" },
 				{ "000002", "2015年9月27日", "南京", "完整", "0000151" }, { "000003", "2015年9月27日", "北京", "完整", "0000202" },
 
 		};
 
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
-		final JTable table = new JTable(model);
+		final JTable table = new JTable(model){
+			   public Component prepareRenderer(TableCellRenderer renderer,
+					     int row, int column) {
+					    Component c = super.prepareRenderer(renderer, row, column);
+					    if (c instanceof JComponent) {
+					     ((JComponent) c).setOpaque(false);
+					    }
+					    return c;
+					   }
+					  };
+		table.setOpaque(false);
+		table.setRowHeight(31);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumn yytidColumn = table.getColumnModel().getColumn(0);
 		TableColumn dateColumn = table.getColumnModel().getColumn(1);
-		dateColumn.setPreferredWidth(100);
+		TableColumn siteColumn = table.getColumnModel().getColumn(2);
+		TableColumn stateColumn = table.getColumnModel().getColumn(3);
+		TableColumn zzzxidColumn = table.getColumnModel().getColumn(4);
+		yytidColumn.setPreferredWidth(87);
+		dateColumn.setPreferredWidth(87);
+		siteColumn.setPreferredWidth(78);
+		stateColumn.setPreferredWidth(80);
+		zzzxidColumn.setPreferredWidth(118);
+		table.getTableHeader().setOpaque(false);
 
+		
 		JScrollPane jp = new JScrollPane(table);
 
+		
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
 		
@@ -115,9 +147,9 @@ public class arrival {
 		datepick.setLocale(Locale.CHINA);//设置显示语言
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick.setEditorable(false);//设置是否可编辑
-		datepick.setPreferredSize(new Dimension(100,30));//设置大小
+		datepick.setPreferredSize(new Dimension(150,38));//设置大小
 
-		JButton b4 = new JButton("确定添加");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String date = datepick.getText();
@@ -136,7 +168,7 @@ public class arrival {
 			}
 		});
 
-		JButton b5 = new JButton("删除");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -153,7 +185,7 @@ public class arrival {
 			}
 		});
 
-		JButton b6 = new JButton("生成到达单");
+		JButton b6 = new JButton();
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -163,15 +195,15 @@ public class arrival {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
-		p1.add(l6);
-		p1.add(l7);
-		p1.add(l8);
+//		p1.add(l1);
+//		p1.add(l2);
+//
+//		p1.add(l3);
+//		p1.add(l4);
+//		p1.add(l5);
+//		p1.add(l6);
+//		p1.add(l7);
+//		p1.add(l8);
 
 		p1.add(t1);
 		p1.add(t2);
@@ -186,36 +218,26 @@ public class arrival {
 
 		p1.add(jp);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 1 / 19;
-		int b4xloc = p1.getWidth() * 11 / 13;
-		int b4yloc = p1.getHeight() * 3 / 19 + 20, b4ysize = p1.getHeight() * 1 / 5;
-
-		l1.setBounds(180, -20, 180, 80);
-
-		l2.setBounds(50, b1yloc, 180, 30);
-
-		l3.setBounds(50, b1yloc + 50, 100, 30);// ���
-		l4.setBounds(50, b1yloc + 100, 100, 30);// ��������
-		l5.setBounds(50, b1yloc + 150, 100, 30);// ������
-
-		l6.setBounds(205, b1yloc + 150, 100, 30);// ״̬
-		l7.setBounds(50, b1yloc + 200, 100, 30);
-		l8.setBounds(50, b1yloc + 250, 200, 30);
-
-		jp.setBounds(50, b1yloc + 300, 403, 350);
-
-		datepick.setBounds(150, b1yloc + 100, 150, 30);
 		
-		sitebox.setBounds(120, b1yloc + 150, 80, 30);
-		statebox.setBounds(315, b1yloc + 150, 80, 30);
 
-		t1.setBounds(150, b1yloc + 50, 120, 30);
-		t2.setBounds(150, b1yloc + 200, 120, 30);
+		
+        b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+        b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
+        b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
+        
+		int xloc=184,yloc=128,length=150,width=38,interval=58;
+		
+		t1.setBounds(xloc, yloc, length, width);
+		datepick.setBounds(xloc, yloc+interval, length, width);
+		sitebox.setBounds(xloc, yloc+interval*2, length, width);
+		statebox.setBounds(xloc, yloc+interval*3, length, width);
+		t2.setBounds(xloc, yloc+interval*4, length, width);
 
-		b4.setBounds(480, b4yloc, 100, 40);
-		b5.setBounds(480, b4yloc + 2 * b4ysize, 100, 40);
-		b6.setBounds(480, b4yloc + 3 * b4ysize, 100, 40);
+		jp.setBounds(470, 196, 454, 250);
+		
+		b4.setBounds(96, 455, 280, 82);
+		b5.setBounds(723, 471, 187, 66);
+		b6.setBounds(348, 634, 268, 91);
 
 		return p1;
 

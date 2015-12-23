@@ -1,11 +1,13 @@
 package courier;
 
 import goodsbl.GoodsBl;
+import image.ImageGet;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -53,8 +55,8 @@ public class Send {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource(
-				"/presentation/send.jpg"));
+		   new ImageGet();
+	        Image bgp=ImageGet.getImageByState("send");
 		background = new ImageIcon(bgp);
 		
 		p1.setBounds(0, 0, 942, 815);

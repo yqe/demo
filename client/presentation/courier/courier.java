@@ -1,9 +1,12 @@
 package courier;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 import javax.swing.*;
@@ -63,8 +66,8 @@ public class courier {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource(
-				"/presentation/couriercontrol.jpg"));
+		   new ImageGet();
+	        Image bgp=ImageGet.getImageByState("couriercontrol");
 		background = new ImageIcon(bgp);
 
 		courier.setBounds(0, 0, 1344, 815);

@@ -1,9 +1,12 @@
 package Boclerk;
 
+import image.ImageGet;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -47,7 +50,8 @@ public class load {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/load.jpg"));
+		   new ImageGet();
+	        Image bgp=ImageGet.getImageByState("load");
 		background = new ImageIcon(bgp);
 		p1.setBounds(0, 0, 942, 821);
 
@@ -67,17 +71,6 @@ public class load {
 //
 //		JLabel l12 = new JLabel("营业厅编号:");
 
-//		int lmain = 16;
-//		l3.setFont(new Font("", Font.PLAIN, lmain));
-//		l4.setFont(new Font("", Font.PLAIN, lmain));
-//		l5.setFont(new Font("", Font.PLAIN, lmain));
-//		l6.setFont(new Font("", Font.PLAIN, lmain));
-//		l7.setFont(new Font("", Font.PLAIN, lmain));
-//		l8.setFont(new Font("", Font.PLAIN, lmain));
-//		l9.setFont(new Font("", Font.PLAIN, lmain));
-//		l10.setFont(new Font("", Font.PLAIN, lmain));
-//		l11.setFont(new Font("", Font.PLAIN, lmain));
-//		l12.setFont(new Font("", Font.PLAIN, lmain));
 
 		final JTextField id = new JTextField();
 		final JTextField transid = new JTextField();

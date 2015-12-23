@@ -1,9 +1,12 @@
 package courier;
 
+import image.ImageGet;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -50,8 +53,8 @@ public class dispatch {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource(
-				"/presentation/dispatch.jpg"));
+		   new ImageGet();
+	        Image bgp=ImageGet.getImageByState("dispatch");
 		background = new ImageIcon(bgp);
 		
 		p1.setBounds(0, 0, 942, 815);

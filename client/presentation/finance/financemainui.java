@@ -63,8 +63,8 @@ public class financemainui {
 
 	public JPanel financemainui() throws IOException {
 
-		bgp = new ImageGet().getImageByState("StorageBGP");
-		cmdbgp = new ImageGet().getImageByState("StorageCMD");
+//		bgp = new ImageGet().getImageByState("StorageBGP");
+//		cmdbgp = new ImageGet().getImageByState("StorageCMD");//财务的图到时候你自己加吧
 
 		width = bgp.getWidth(null);
 		height = bgp.getHeight(null);

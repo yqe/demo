@@ -1,9 +1,12 @@
 package Boclerk;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Graphics;
@@ -57,7 +60,8 @@ public class Boclerk {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/boclerkcontrol.jpg"));
+		   new ImageGet();
+	        Image bgp=ImageGet.getImageByState("boclerkcontrol");
 		background = new ImageIcon(bgp);
 
 		Boclerk.setBounds(0, 0, 1344, 821);

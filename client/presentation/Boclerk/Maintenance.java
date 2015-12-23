@@ -1,7 +1,10 @@
 package Boclerk;
 
+import image.ImageGet;
+
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -44,7 +47,8 @@ public class Maintenance {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Maintenance.jpg"));
+        new ImageGet();
+        Image bgp=ImageGet.getImageByState("Maintenance");
 		background = new ImageIcon(bgp);
 		p1.setBounds(0, 0, 942, 821);
 //		JLabel l2 = new JLabel("—>车辆信息维护");
