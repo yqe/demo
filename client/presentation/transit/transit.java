@@ -2,13 +2,16 @@ package transit;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Locale;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,6 +44,12 @@ public class transit {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
+	final JPanel p1 = new JPanel(){
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public transit(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos=oos;
@@ -49,9 +58,10 @@ public class transit {
 	}
 
 	public JPanel Panel() throws IOException {
-
-		final JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 800, 700);
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/transit.jpg"));
+		background = new ImageIcon(bgp);
+	
+		p1.setBounds(0, 0, 942, 821);
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));

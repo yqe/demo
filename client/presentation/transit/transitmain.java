@@ -33,7 +33,7 @@ public class transitmain {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	int size = 180;
+	int size = 402;
 	JPanel content = new JPanel();
 	final JPanel control = new JPanel();
 	private EmploeePO emPO;
@@ -59,10 +59,10 @@ public class transitmain {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/tbackground.jpg"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/transitmaincontrol.jpg"));
 		background = new ImageIcon(bgp);
 
-		transitmain.setBounds(0, 0, 980, 700);
+		transitmain.setBounds(0, 0, 1344, 821);
 
 		transitmain.setOpaque(false);
 		transitmain.setLayout(null);
@@ -72,8 +72,8 @@ public class transitmain {
 		final transitload tsl = new transitload(oos, ois, emPO);
         tslpanel=tsl.Panel();
 		
-		control.setBounds(0, 0, size, 700);
-		content.setBounds(size, 0, 800, 700);
+		control.setBounds(0, 0, size, 821);
+		content.setBounds(size, 0, 942, 821);
 
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;

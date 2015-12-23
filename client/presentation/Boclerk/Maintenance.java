@@ -1,12 +1,15 @@
 package Boclerk;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -29,7 +32,11 @@ public class Maintenance {
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 	private EmploeePO emPO;
-
+	JPanel p1 = new JPanel()
+	{public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background.getImage(), 0, 0, null);
+	}};
 	public Maintenance(ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.ois=ois;
 		this.oos=oos;
@@ -37,37 +44,34 @@ public class Maintenance {
 	}
 
 	public JPanel Panel() throws IOException {
-
-		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 600, 700);
-		JLabel l1 = new JLabel("快递物流系统");
-		int l1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, l1size));
-		JLabel l2 = new JLabel("—>车辆信息维护");
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Maintenance.jpg"));
+		background = new ImageIcon(bgp);
+		p1.setBounds(0, 0, 942, 821);
+//		JLabel l2 = new JLabel("—>车辆信息维护");
 		int l2size = 16;
-		l2.setFont(new Font("", Font.PLAIN, l2size));
-		JLabel l3 = new JLabel("车辆代号:");
-		JLabel l4 = new JLabel("车牌号:");
-		JLabel l5 = new JLabel("司机编号:");
-		JLabel l6 = new JLabel("司机姓名:");
-		JLabel l7 = new JLabel("出生日期:");
-		JLabel l8 = new JLabel("身份证号:");
-		JLabel l9 = new JLabel("手机:");
-		JLabel l10 = new JLabel("性别:");
-		JLabel l11 = new JLabel("行驶证期限:");
-		JLabel l12 = new JLabel("司机服役时间:");
+//		l2.setFont(new Font("", Font.PLAIN, l2size));
+//		JLabel l3 = new JLabel("车辆代号:");
+//		JLabel l4 = new JLabel("车牌号:");
+//		JLabel l5 = new JLabel("司机编号:");
+//		JLabel l6 = new JLabel("司机姓名:");
+//		JLabel l7 = new JLabel("出生日期:");
+//		JLabel l8 = new JLabel("身份证号:");
+//		JLabel l9 = new JLabel("手机:");
+//		JLabel l10 = new JLabel("性别:");
+//		JLabel l11 = new JLabel("行驶证期限:");
+//		JLabel l12 = new JLabel("司机服役时间:");
 
-		int lmain = 16;
-		l3.setFont(new Font("", Font.PLAIN, lmain));
-		l4.setFont(new Font("", Font.PLAIN, lmain));
-		l5.setFont(new Font("", Font.PLAIN, lmain));
-		l6.setFont(new Font("", Font.PLAIN, lmain));
-		l7.setFont(new Font("", Font.PLAIN, lmain));
-		l8.setFont(new Font("", Font.PLAIN, lmain));
-		l9.setFont(new Font("", Font.PLAIN, lmain));
-		l10.setFont(new Font("", Font.PLAIN, lmain));
-		l11.setFont(new Font("", Font.PLAIN, lmain));
-		l12.setFont(new Font("", Font.PLAIN, lmain));
+//		int lmain = 16;
+//		l3.setFont(new Font("", Font.PLAIN, lmain));
+//		l4.setFont(new Font("", Font.PLAIN, lmain));
+//		l5.setFont(new Font("", Font.PLAIN, lmain));
+//		l6.setFont(new Font("", Font.PLAIN, lmain));
+//		l7.setFont(new Font("", Font.PLAIN, lmain));
+//		l8.setFont(new Font("", Font.PLAIN, lmain));
+//		l9.setFont(new Font("", Font.PLAIN, lmain));
+//		l10.setFont(new Font("", Font.PLAIN, lmain));
+//		l11.setFont(new Font("", Font.PLAIN, lmain));
+//		l12.setFont(new Font("", Font.PLAIN, lmain));
 
 		final JTextField carid = new JTextField();
 		final JTextField carnumber = new JTextField();
@@ -100,10 +104,10 @@ public class Maintenance {
 
 		final JComboBox timebox2 = new JComboBox(time);
 
-		final JRadioButton jb1 = new JRadioButton("男");
+		final JRadioButton jb1 = new JRadioButton();
 		jb1.setSelected(true);
 		jb1.setOpaque(false);
-		final JRadioButton jb2 = new JRadioButton("女");
+		final JRadioButton jb2 = new JRadioButton();
 		jb2.setOpaque(false);
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(jb1);
@@ -209,18 +213,18 @@ public class Maintenance {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
-		p1.add(l6);
-		p1.add(l7);
-		p1.add(l8);
-		p1.add(l9);
-		p1.add(l10);
-		p1.add(l11);
-		p1.add(l12);
+//		p1.add(l1);
+//		p1.add(l2);
+//		p1.add(l3);
+//		p1.add(l4);
+//		p1.add(l5);
+//		p1.add(l6);
+//		p1.add(l7);
+//		p1.add(l8);
+//		p1.add(l9);
+//		p1.add(l10);
+//		p1.add(l11);
+//		p1.add(l12);
 
 		p1.add(carid);
 		p1.add(carnumber);
@@ -239,40 +243,27 @@ public class Maintenance {
 		p1.add(jb2);
 
 		p1.setOpaque(false);
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 1 / 15;
-		int b4xloc = p1.getWidth() * 2 / 5 - 30;
-		int b4yloc = p1.getHeight() * 13 / 15, b4ysize = p1.getHeight() * 1 / 5 + 10;
 
-		l1.setBounds(180, -20, 180, 80);
-		l2.setBounds(50, b1yloc, 150, 30);
-		l3.setBounds(100, 100, 150, 30);
-		l4.setBounds(100, 150, 150, 30);
-		date.setBounds(275, 300, 150, 30);
 
-		l5.setBounds(100, 200, 150, 30);
-		l6.setBounds(100, 250, 150, 30);
-		l7.setBounds(100, 300, 150, 30);
-		l8.setBounds(100, 350, 150, 30);
-		l9.setBounds(100, 400, 150, 30);
-		l10.setBounds(100, 450, 150, 30);
-		l11.setBounds(100, 500, 100, 30);
-		l12.setBounds(100, 550, 150, 30);
+		int xloc=270,yloc=132;
+		int length=234,width=38;
+		int interval=55;
+		
+		carid.setBounds(xloc, yloc, length, width);
+		carnumber.setBounds(xloc, yloc+interval, length, width);
+		timebox1.setBounds(xloc, yloc+interval*8+10, length, width);
+		timebox2.setBounds(xloc, yloc+interval*9+23, length, width);
+		driverid.setBounds(xloc, yloc+interval*2, length, width);
+		drivername.setBounds(xloc, yloc+interval*3, length, width);
+		date.setBounds(xloc, yloc+interval*4, length, width);
+		driversfz.setBounds(xloc, yloc+interval*5+10, length, width);
+		tel.setBounds(xloc, yloc+interval*6+10, length, width);
 
-		carid.setBounds(275, 100, 150, 30);
-		carnumber.setBounds(275, 150, 150, 30);
-		timebox1.setBounds(275, 500, 80, 30);
-		timebox2.setBounds(275, 550, 80, 30);
-		driverid.setBounds(275, 200, 150, 30);
-		drivername.setBounds(275, 250, 150, 30);
-		driversfz.setBounds(275, 350, 150, 30);
-		tel.setBounds(275, 400, 150, 30);
+//		b1.setBounds(450, 100, 120, 30);
+//		b4.setBounds(b4xloc, b4yloc, 180, 40);
 
-		b1.setBounds(450, 100, 120, 30);
-		b4.setBounds(b4xloc, b4yloc, 180, 40);
-
-		jb1.setBounds(275, 450, 50, 30);
-		jb2.setBounds(325, 450, 50, 30);
+		jb1.setBounds(xloc+50, yloc+interval*7+20, 50, 30);
+		jb2.setBounds(xloc+195, yloc+interval*7+20, 50, 30);
 
 		return p1;
 

@@ -1,12 +1,16 @@
 package manager;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -25,8 +29,15 @@ public class approve {
 	
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
+	private ImageIcon background;
 	private EmploeePO emPO;
-
+	JPanel p1 = new JPanel(){
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
+	
 	public approve(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos=oos;
 		this.ois=ois;
@@ -34,11 +45,10 @@ public class approve {
 	}
 
 	public JPanel Panel() throws IOException{
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/approve.jpg"));
+		background = new ImageIcon(bgp);
 
-
-
-		JPanel p1 = new JPanel();
-		p1.setBounds(0,0,720,700);
+		p1.setBounds(0,0,988,756);
 		JLabel l1=new JLabel("快递物流系统");
 		int b1size=30;
 		l1.setFont(new Font("快递物流系统",Font.PLAIN,b1size));

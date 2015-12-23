@@ -2,17 +2,21 @@ package courier;
 
 import goodsbl.GoodsBl;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Locale;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,6 +41,10 @@ public class Send {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
+	JPanel p1 = new JPanel(){public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background.getImage(), 0, 0, null);
+	}};
 
 	public Send(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos = oos;
@@ -45,9 +53,11 @@ public class Send {
 	}
 
 	public JPanel Panel() throws IOException {
-
-		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 800, 800);
+		BufferedImage bgp = ImageIO.read(getClass().getResource(
+				"/presentation/send.jpg"));
+		background = new ImageIcon(bgp);
+		
+		p1.setBounds(0, 0, 942, 815);
 		JLabel l1 = new JLabel("快递物流系统");
 		int l1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, l1size));
@@ -138,6 +148,8 @@ public class Send {
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
 		datepick.setLocale(Locale.CHINA);//设置显示语言
+		datepick.setBackground(Color.gray);
+//		datepick.setFieldForeground(Color.white);
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick.setEditorable(false);//设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100,30));//设置大小
@@ -196,6 +208,9 @@ public class Send {
 
 		String[] type = { "普通快递", "经济快递", "次晨特快" };
 		final JComboBox typebox = new JComboBox(type);
+		typebox.setBackground(Color.gray);
+		typebox.setForeground(Color.white);
+		typebox.setFont(new Font("幼圆", Font.BOLD, 16));
 		typebox.setOpaque(false);
 
 		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
@@ -596,7 +611,7 @@ public class Send {
 		goodsinfo.setBounds(t1xloc, t1yloc + 6 * interval, 650, 30);
 		numbox.setBounds(t1xloc + 210, t1yloc + 4 * interval, 60, 30);// ����
 
-		typebox.setBounds(t1xloc, t1yloc + 7 * interval, 80, 30);
+		typebox.setBounds(t1xloc, t1yloc + 7 * interval, 120, 30);
 		packagebox.setBounds(t1xloc + 200, t1yloc + 7 * interval, 120, 30);
 		price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
 		exceptedtime.setBounds(t1xloc + 50, t1yloc + 9 * interval, 180, 30);

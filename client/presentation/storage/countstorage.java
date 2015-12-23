@@ -37,6 +37,12 @@ public class countstorage {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
+	JPanel p1 = new JPanel(){
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public countstorage(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos = oos;
@@ -45,11 +51,10 @@ public class countstorage {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/background.png"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/countstorage.jpg"));
 		background = new ImageIcon(bgp);
 
-		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 900, 700);
+		p1.setBounds(0, 0, 988, 756);
 		p1.setLayout(null);
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;

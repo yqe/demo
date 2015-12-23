@@ -2,14 +2,17 @@ package storage;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Locale;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,6 +42,12 @@ public class instorage {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
+	  JPanel p1 = new JPanel() {
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(Sbackground.getImage(), 0, 0, null);
+			}
+		};
 
 	public instorage(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos=oos;
@@ -47,11 +56,11 @@ public class instorage {
 	}
 
 	public JPanel Panel() throws IOException{
-	
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/instorage.jpg"));
+		Sbackground = new ImageIcon(bgp);
 
 		final InputStorageList islt=new InputStorageList();
-	    JPanel p1 = new JPanel() ;
-		p1.setBounds(0,0,900,700);
+		p1.setBounds(0,0,988,756);
 		JLabel l1=new JLabel("快递物流系统");
 		int b1size=30;
 		l1.setFont(new Font("快递物流系统",Font.PLAIN,b1size));

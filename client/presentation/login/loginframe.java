@@ -51,7 +51,7 @@ public class loginframe {
 	}
 
 	public void Frame() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/background.png"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/background.jpg"));
 		background = new ImageIcon(bgp);
 
 		final JFrame frame = new JFrame("");
@@ -151,6 +151,13 @@ public class loginframe {
 			}
 
 		});
+		JButton b3 = new JButton("退出");
+		b3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+
 
 		imagePanel = (JPanel) frame.getContentPane();
 		imagePanel.setOpaque(false);
@@ -162,7 +169,7 @@ public class loginframe {
 		p1.add(password);
 		p1.add(b1);
 		p1.add(b2);
-//		p1.add(b3);
+		p1.add(b3);
 		frame.add(p1);
 		frame.getLayeredPane().setLayout(null);
 
@@ -172,33 +179,33 @@ public class loginframe {
 		frame.setResizable(false);
 		frame.setVisible(true);
 
-//		frame.addMouseListener(new MouseAdapter() {
-//			public void mousePressed(MouseEvent e) {
-//				isDraging = true;
-//				xx = e.getX();
-//				yy = e.getY();
-//			}
-//
-//			public void mouseReleased(MouseEvent e) {
-//				isDraging = false;
-//			}
-//		});
-//		frame.addMouseMotionListener(new MouseMotionAdapter() {
-//			public void mouseDragged(MouseEvent e) {
-//				if (isDraging) {
-//					int left = frame.getLocation().x;
-//					int top = frame.getLocation().y;
-//					frame.setLocation(left + e.getX() - xx, top + e.getY() - yy);
-//				}
-//			}
-//		});
+		frame.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				isDraging = true;
+				xx = e.getX();
+				yy = e.getY();
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				isDraging = false;
+			}
+		});
+		frame.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent e) {
+				if (isDraging) {
+					int left = frame.getLocation().x;
+					int top = frame.getLocation().y;
+					frame.setLocation(left + e.getX() - xx, top + e.getY() - yy);
+				}
+			}
+		});
 		l1.setBounds(150, 50, 40, 30);
 		id.setBounds(240, 50, 120, 30);
 		l2.setBounds(150, 100, 80, 30);
 		password.setBounds(240, 100, 120, 30);
 		b1.setBounds(240, 160, 80, 35);
 		b2.setBounds(240, 240, 160, 40);
-//		b3.setBounds(540, 1, 60, 30);
+		b3.setBounds(540, 1, 60, 30);
 	}
 
 }

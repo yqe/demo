@@ -50,6 +50,12 @@ public class outstorage {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
+	JPanel p1 = new JPanel(){
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(Sbackground.getImage(), 0, 0, null);
+		}
+	};
 
 	public outstorage(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos=oos;
@@ -60,9 +66,10 @@ public class outstorage {
 	public JPanel Panel() throws IOException {
 
 		final OutStorageList oslt = new OutStorageList();
-
-		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 900, 700);
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/outstorage.jpg"));
+		Sbackground = new ImageIcon(bgp);
+		
+		p1.setBounds(0, 0, 988, 756);
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));

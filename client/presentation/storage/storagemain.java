@@ -33,9 +33,15 @@ public class storagemain {
 	private JPanel imagePanel;
 	private ImageIcon Sbackground;
 	private ImageIcon button1;
-	int size = 180;
+	int size = 356;
 	JPanel content = new JPanel();
-	final JPanel control = new JPanel();
+
+	final JPanel control = new JPanel(){
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(Sbackground.getImage(), 0, 0, null);
+		}
+	};
 	private EmploeePO emPO;
 	private Socket socket;
 	private ObjectInputStream ois;
@@ -45,13 +51,7 @@ public class storagemain {
 	JPanel chspanel;
 	JPanel cospanel;
 	JPanel caspanel;
-	JPanel storagemain = new JPanel() {
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			g.drawImage(Sbackground.getImage(), 0, 0, null);
-		}
-	};
-
+	JPanel storagemain = new JPanel() ;
 	public storagemain(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
 		this.ois = ois;
@@ -60,10 +60,10 @@ public class storagemain {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Sbackground.jpg"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/storagemaincontrol.jpg"));
 		Sbackground = new ImageIcon(bgp);
 
-		storagemain.setBounds(0, 0, 1080, 700);
+		storagemain.setBounds(0, 0, 1344, 756);
 
 		storagemain.setOpaque(false);
 		storagemain.setLayout(null);
@@ -80,8 +80,8 @@ public class storagemain {
 		cospanel=cos.Panel();
 		caspanel=cas.Panel();
 
-		control.setBounds(0, 0, size, 700);
-		content.setBounds(size, 0, 900, 700);
+		control.setBounds(0, 0, size, 756);
+		content.setBounds(size, 0, 988, 756);
 
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;

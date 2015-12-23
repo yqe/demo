@@ -30,19 +30,18 @@ public class admin {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	int size = 180;
+	int size = 356;
 	JPanel content = new JPanel();
-	final JPanel control = new JPanel();
+	final JPanel control = new JPanel(){public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background.getImage(), 0, 0, null);
+	}
+	};
 	public Socket socket;
 	public ObjectOutputStream oos;
 	public ObjectInputStream ois;
 	public EmploeePO empPO;
-	JPanel admin = new JPanel() {
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			g.drawImage(background.getImage(), 0, 0, null);
-		}
-	};
+	JPanel admin = new JPanel() ;
 
 	public admin(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
@@ -52,18 +51,18 @@ public class admin {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Abackground.jpg"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/admincontrol.jpg"));
 		background = new ImageIcon(bgp);
 		int b2size=16;
-		admin.setBounds(0, 0, 780, 700);
+		admin.setBounds(0, 0, 1344, 756);
 
 		admin.setOpaque(false);
 		admin.setLayout(null);
 
 		final changepasswordmain change = new changepasswordmain(oos,ois,empPO);
 
-		control.setBounds(0, 0, size,700);
-		content.setBounds(size, 0, 600, 700);
+		control.setBounds(0, 0, size,756);
+		content.setBounds(size, 0, 988, 756);
 
 		JButton b3 = new JButton("退出");
 		b3.addActionListener(new ActionListener() {

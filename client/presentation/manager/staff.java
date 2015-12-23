@@ -36,7 +36,13 @@ public class staff {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
-
+	JPanel p1 = new JPanel(){
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
+	
 	public staff(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos=oos;
 		this.ois=ois;
@@ -44,8 +50,9 @@ public class staff {
 	}
 
 	public JPanel Panel() throws IOException {
-		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 720, 700);
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/staff.jpg"));
+		background = new ImageIcon(bgp);	
+		p1.setBounds(0, 0, 988, 756);
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));

@@ -32,9 +32,12 @@ public class Boclerk {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	int size = 180;
+	int size = 402;
 	JPanel content = new JPanel();
-	final JPanel control = new JPanel();
+	final JPanel control = new JPanel(){public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background.getImage(), 0, 0, null);
+	}};
 	private ObjectOutputStream oos;
 	private Socket socket;
 	private ObjectInputStream ois;
@@ -43,12 +46,8 @@ public class Boclerk {
 	JPanel collectionpanel;
 	JPanel Maintenancepanel;
 	JPanel arrivalpanel;
-	JPanel Boclerk = new JPanel() {
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			g.drawImage(background.getImage(), 0, 0, null);
-		}
-	};
+	JPanel Boclerk = new JPanel() ;
+	
 
 	public Boclerk(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
@@ -58,10 +57,10 @@ public class Boclerk {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Bbackground.jpg"));
+		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/boclerkcontrol.jpg"));
 		background = new ImageIcon(bgp);
 
-		Boclerk.setBounds(0, 0, 780, 700);
+		Boclerk.setBounds(0, 0, 1344, 821);
 
 		Boclerk.setOpaque(false);
 		Boclerk.setLayout(null);
@@ -75,17 +74,10 @@ public class Boclerk {
 		Maintenancepanel=m.Panel();
 		arrivalpanel=a.Panel();
 		
-		control.setBounds(0, 0, size, 700);
-		content.setBounds(size, 0, 600, 700);
+		control.setBounds(0, 0, size, 821);
+		content.setBounds(size, 0, 1344-size, 821);
 
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—> 主页");
-		int b2size = 16;
-		l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
-
-		JButton b3 = new JButton("退出");
+		JButton b3 = new JButton();
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -100,28 +92,28 @@ public class Boclerk {
 			}
 		});
 
-		JButton b4 = new JButton("生成装车单");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(loadpanel);
 			}
 
 		});
-		JButton b5 = new JButton("建立收款单");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(collectionpanel);
 			}
 
 		});
-		JButton b6 = new JButton("车辆信息维护");
+		JButton b6 = new JButton();
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(Maintenancepanel);
 			}
 
 		});
-		JButton b7 = new JButton("生成到达单");
+		JButton b7 = new JButton();
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(arrivalpanel);
@@ -132,6 +124,7 @@ public class Boclerk {
 		control.setOpaque(false);
 		control.setLayout(null);
 
+		int b2size=18;
 		JLabel employid=new JLabel("工号 :");
 		JLabel employjob=new JLabel("职位 :");
 		employid.setFont(new Font("", Font.PLAIN, b2size));
@@ -171,13 +164,20 @@ public class Boclerk {
 		control.add(b6);
 		control.add(b7);
 
-		int b4xloc = size / 6, b4yloc = 3*control.getHeight() / 7, b4ysize = control.getHeight() / 9;
-
-		b3.setBounds(b4xloc, b4yloc + 4 * b4ysize, 120, 30);
-		b4.setBounds(b4xloc, b4yloc, 120, 30);
-		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
-		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);
-		b7.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 30);
+		int b4xloc = 70, b4yloc = 389, b4ysize = 60;
+		
+		b3.setContentAreaFilled(false);
+		b3.setBorder(BorderFactory.createEmptyBorder());
+		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
+		b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
+		b7.setContentAreaFilled(false);b7.setBorder(BorderFactory.createEmptyBorder());
+		
+		b3.setBounds(b4xloc, b4yloc + 298, 250, 62);
+		b4.setBounds(b4xloc, b4yloc, 250, 45);
+		b5.setBounds(b4xloc, b4yloc + b4ysize, 250, 45);
+		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 250, 45);
+		b7.setBounds(b4xloc, b4yloc + 3 * b4ysize+2, 250, 45);
 
 		content.add(load.Panel());
 		content.setLayout(null);

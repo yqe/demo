@@ -36,9 +36,12 @@ public class courier {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	int size = 180;
+	int size = 402;
 	JPanel content = new JPanel();
-	final JPanel control = new JPanel();
+	final JPanel control = new JPanel(){public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background.getImage(), 0, 0, null);
+	}};
 	private EmploeePO emPO;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
@@ -49,12 +52,7 @@ public class courier {
 	JPanel sendpanel = new JPanel();
 	JPanel dispatchpanel;
 	JPanel checkpanel = new JPanel();
-	JPanel courier = new JPanel() {
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			g.drawImage(background.getImage(), 0, 0, null);
-		}
-	};
+	JPanel courier = new JPanel() ;
 
 	public courier(Socket socket, ObjectInputStream ois,
 			ObjectOutputStream oos, EmploeePO emPO) {
@@ -66,10 +64,10 @@ public class courier {
 
 	public JPanel Panel() throws IOException {
 		BufferedImage bgp = ImageIO.read(getClass().getResource(
-				"/presentation/Cbackground.jpg"));
+				"/presentation/couriercontrol.jpg"));
 		background = new ImageIcon(bgp);
 
-		courier.setBounds(0, 0, 980, 800);
+		courier.setBounds(0, 0, 1344, 815);
 
 		courier.setOpaque(false);
 		courier.setLayout(null);
@@ -80,8 +78,8 @@ public class courier {
 		// check check=new check(oos,ois,emPO);
 		checkpanel = check.Panel();
 
-		control.setBounds(0, 0, size, 800);
-		content.setBounds(size, 0, 980, 800);
+		control.setBounds(0, 0, size, 815);
+		content.setBounds(size, 0, 942, 815);
 
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;
