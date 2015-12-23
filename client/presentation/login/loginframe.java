@@ -1,6 +1,9 @@
 package login;
 
+import image.ImageGet;
+
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -51,7 +54,8 @@ public class loginframe {
 	}
 
 	public void Frame() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/background.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("boclerkcontrol");
 		background = new ImageIcon(bgp);
 
 		final JFrame frame = new JFrame("");
