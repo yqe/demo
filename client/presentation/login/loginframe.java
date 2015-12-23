@@ -2,6 +2,8 @@ package login;
 
 import image.ImageGet;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -18,6 +20,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -55,21 +58,21 @@ public class loginframe {
 
 	public void Frame() throws IOException {
 		 new ImageGet();
-	        Image bgp=ImageGet.getImageByState("boclerkcontrol");
+	        Image bgp=ImageGet.getImageByState("background");
 		background = new ImageIcon(bgp);
 
 		final JFrame frame = new JFrame("");
-		frame.setBounds(500, 300, 600, 375);
+		frame.setBounds(300, 100, 1000, 611);
 		final JPanel p1 = new JPanel() {
 			public void paintComponent(Graphics g) {
 				g.drawImage(background.getImage(), 0, 0, frame.getSize().width, frame.getSize().height, frame);
 			}
 		};
-		JLabel l1 = new JLabel("ID:");
-		JLabel l2 = new JLabel("Password:");
+//		JLabel l1 = new JLabel("ID:");
+//		JLabel l2 = new JLabel("Password:");
 		final JTextField id = new JTextField();
 		final JPasswordField password = new JPasswordField();
-		final JButton b1 = new JButton("登  录");
+		final JButton b1 = new JButton();
 		b1.setEnabled(true);
 
 		// final String idinfo=id.getText();
@@ -139,7 +142,7 @@ public class loginframe {
 			}
 		});
 		// b1.setEnabled(true);
-		JButton b2 = new JButton("免登录物流信息查询");
+		JButton b2 = new JButton();
 		b2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -155,7 +158,7 @@ public class loginframe {
 			}
 
 		});
-		JButton b3 = new JButton("退出");
+		JButton b3 = new JButton();
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -167,8 +170,8 @@ public class loginframe {
 		imagePanel.setOpaque(false);
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
+//		p1.add(l1);
+//		p1.add(l2);
 		p1.add(id);
 		p1.add(password);
 		p1.add(b1);
@@ -203,13 +206,23 @@ public class loginframe {
 				}
 			}
 		});
-		l1.setBounds(150, 50, 40, 30);
-		id.setBounds(240, 50, 120, 30);
-		l2.setBounds(150, 100, 80, 30);
-		password.setBounds(240, 100, 120, 30);
-		b1.setBounds(240, 160, 80, 35);
-		b2.setBounds(240, 240, 160, 40);
-		b3.setBounds(540, 1, 60, 30);
+		
+		id.setOpaque(false);id.setBorder(BorderFactory.createEmptyBorder());
+		id.setFont(new Font("幼圆", Font.PLAIN, 25));id.setForeground(Color.white);
+		password.setOpaque(false);password.setBorder(BorderFactory.createEmptyBorder());
+		password.setFont(new Font("幼圆", Font.PLAIN, 25));password.setForeground(Color.white);
+//		l1.setBounds(150, 50, 40, 30);
+		id.setBounds(442, 177, 189, 41);
+//		l2.setBounds(150, 100, 80, 30);
+		password.setBounds(442, 265, 189, 41);
+		
+		b1.setContentAreaFilled(false);b1.setBorder(BorderFactory.createEmptyBorder());
+		b2.setContentAreaFilled(false);b2.setBorder(BorderFactory.createEmptyBorder());
+		b3.setContentAreaFilled(false);b3.setBorder(BorderFactory.createEmptyBorder());
+		
+		b1.setBounds(700, 250, 272, 85);
+		b2.setBounds(367, 358, 272, 85);
+		b3.setBounds(700, 373, 272, 85);
 	}
 
 }
