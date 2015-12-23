@@ -1,10 +1,13 @@
 package storage;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Graphics;
@@ -51,7 +54,8 @@ public class countstorage {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/countstorage.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("countstorage");
 		background = new ImageIcon(bgp);
 
 		p1.setBounds(0, 0, 988, 756);

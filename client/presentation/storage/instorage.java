@@ -1,8 +1,11 @@
 package storage;
 
+import image.ImageGet;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,38 +59,25 @@ public class instorage {
 	}
 
 	public JPanel Panel() throws IOException{
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/instorage.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("instorage");
 		Sbackground = new ImageIcon(bgp);
 
 		final InputStorageList islt=new InputStorageList();
 		p1.setBounds(0,0,988,756);
-		JLabel l1=new JLabel("快递物流系统");
-		int b1size=30;
-		l1.setFont(new Font("快递物流系统",Font.PLAIN,b1size));
-		JLabel l2=new JLabel("—>入库登记");
 	    int b2size=16;
-	    JLabel l3=new JLabel("快递编号:");
-	    JLabel l4=new JLabel("入库日期:");
-	    JLabel l5=new JLabel("目的地:");
-	    JLabel l6=new JLabel("区号:");
-	    JLabel l7=new JLabel("排号:");
-	    JLabel l8=new JLabel("架号:");
-	    JLabel l9=new JLabel("位号:");
-	    
-	    JLabel l10=new JLabel("入库单列表:");
-	    
-        JLabel l11=new JLabel("中转中心编号:");
+//	    JLabel l3=new JLabel("快递编号:");
+//	    JLabel l4=new JLabel("入库日期:");
+//	    JLabel l5=new JLabel("目的地:");
+//	    JLabel l6=new JLabel("区号:");
+//	    JLabel l7=new JLabel("排号:");
+//	    JLabel l8=new JLabel("架号:");
+//	    JLabel l9=new JLabel("位号:");
+//	    
+//	    JLabel l10=new JLabel("入库单列表:");
+//	    
+//        JLabel l11=new JLabel("中转中心编号:");
   
-    l2.setFont(new Font("",Font.PLAIN,b2size));
-    l3.setFont(new Font("",Font.PLAIN,b2size));
-    l4.setFont(new Font("",Font.PLAIN,b2size));
-    l5.setFont(new Font("",Font.PLAIN,b2size));
-    l6.setFont(new Font("",Font.PLAIN,b2size));
-    l7.setFont(new Font("",Font.PLAIN,b2size));
-    l8.setFont(new Font("",Font.PLAIN,b2size));
-    l9.setFont(new Font("",Font.PLAIN,b2size));
-    l10.setFont(new Font("",Font.PLAIN,b2size));
-    l11.setFont(new Font("",Font.PLAIN,b2size));
     
     final JTextField id=new JTextField();
     final JTextField qu=new JTextField();
@@ -149,16 +139,16 @@ public class instorage {
     
     
     
-	JButton b4=new JButton("添加");
+	JButton b4=new JButton("");
 	b4.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
 			String date=datepick.getText();
 			String place=(String) sitebox.getSelectedItem();
 			InputStorageDocuPO insto=new InputStorageDocuPO(id.getText(), date, place, qu.getText(), pai.getText(), jia.getText(), wei.getText(), zzzxid.getText());
 			islt.addInputStoragePO(insto);
-			Object[] add={id.getText(),date,place,qu.getText(),pai.getText(),jia.getText(),wei.getText(),zzzxid.getText()};
-			DefaultTableModel model = (DefaultTableModel) table.getModel();            
-			model.insertRow(model.getRowCount(), add);
+//			Object[] add={id.getText(),date,place,qu.getText(),pai.getText(),jia.getText(),wei.getText(),zzzxid.getText()};
+//			DefaultTableModel model = (DefaultTableModel) table.getModel();            
+//			model.insertRow(model.getRowCount(), add);
 //			System.out.println(model.getRowCount());
 		}
 	});
@@ -166,24 +156,24 @@ public class instorage {
 	
 	
 	
-	JButton b5=new JButton("删除");
-	b5.addActionListener(new ActionListener() {
-
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			//��ȡҪɾ�����,û��ѡ����-1
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			int row=table.getSelectedRow();
-//			System.out.println(row);
-			if(row== -1){
-				JOptionPane.showMessageDialog(null,"请选中要删除的行!");
-			}else{
-				model.removeRow(row);
-			}
-		}
-	});
+//	JButton b5=new JButton("删除");
+//	b5.addActionListener(new ActionListener() {
+//
+//		public void actionPerformed(ActionEvent e) {
+//			// TODO Auto-generated method stub
+//			//��ȡҪɾ�����,û��ѡ����-1
+//			DefaultTableModel model = (DefaultTableModel) table.getModel();
+//			int row=table.getSelectedRow();
+////			System.out.println(row);
+//			if(row== -1){
+//				JOptionPane.showMessageDialog(null,"请选中要删除的行!");
+//			}else{
+//				model.removeRow(row);
+//			}
+//		}
+//	});
 	
-	JButton b6=new JButton("完成入库");
+	JButton b6=new JButton("");
 	b6.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
 			StorageBl ido=new StorageBl(oos,ois);
@@ -198,18 +188,7 @@ public class instorage {
 
 	p1.setOpaque(false);
 	p1.setLayout(null);
-	p1.add(l1);
-	p1.add(l2);
 
-	p1.add(l3);
-	p1.add(l4);
-	p1.add(l5);
-	p1.add(l6);
-	p1.add(l7);
-	p1.add(l8);
-	p1.add(l9);
-	p1.add(l10);
-	p1.add(l11);
 	
 	p1.add(id);
 	p1.add(qu);
@@ -222,7 +201,7 @@ public class instorage {
 	
 
 	p1.add(b4);
-	p1.add(b5);
+//	p1.add(b5);
 	p1.add(b6);
 	
 	p1.add(zzzxid);
@@ -231,45 +210,33 @@ public class instorage {
 	 
 	
 
-	int b1xloc=p1.getWidth()*7/12+20,b1xsize=p1.getWidth()*4/25-15;
-	int b1yloc=p1.getHeight()*1/19;
-	int b4xloc=p1.getWidth()*11/13;
-	int b4yloc=p1.getHeight()*4/19,b4ysize=p1.getHeight()*1/5;
 	
-	l1.setBounds(350, -20, 180, 80);
+	int xloc=65,length=175,width=44;
+	
+//    jp.setBounds(xloc, b1yloc+250, 648, 400);
+	
+	datepick.setBounds(xloc, 408, length, width);
 
-	l2.setBounds(50, b1yloc, 180, 30);
+	sitebox.setBounds(xloc, 502, length, width);
 	
-	l3.setBounds(50, b1yloc+50, 100, 30);
-	l4.setBounds(250, b1yloc+50, 100, 30);
-	l5.setBounds(600, b1yloc+50, 100, 30);
+	sitebox.setOpaque(false);
 	
-	l6.setBounds(50, b1yloc+100, 100, 30);
-	l7.setBounds(200, b1yloc+100, 100, 30);
-	l8.setBounds(350, b1yloc+100, 100, 30);
-	l9.setBounds(500, b1yloc+100, 100, 30);
+	id.setBounds(xloc, 312, length, width);
 	
-	l10.setBounds(50, b1yloc+200, 150, 30);
-	
-	l11.setBounds(50, b1yloc+150, 150, 30);
-	
-    jp.setBounds(50, b1yloc+250, 648, 400);
-	
-	datepick.setBounds(320, b1yloc+50, 150, 30);
-
-	sitebox.setBounds(660, b1yloc+50, 80, 30);
-	
-	id.setBounds(120, b1yloc+50, 120, 30);
-	qu.setBounds(90, b1yloc+100, 80, 30);
-	pai.setBounds(250, b1yloc+100, 80, 30);
-	jia.setBounds(400, b1yloc+100, 80, 30);
-	wei.setBounds(550, b1yloc+100, 80, 30);
-	zzzxid.setBounds(200, b1yloc+150, 150, 30);
+	int newxloc=302,newyloc=311,newlength=136,newwidth=30,interval=65;
+	qu.setBounds(newxloc, newyloc, newlength, newwidth);
+	pai.setBounds(newxloc, newyloc+interval, newlength, newwidth);
+	jia.setBounds(newxloc, newyloc+interval*2, newlength, newwidth);
+	wei.setBounds(newxloc, newyloc+interval*3-3, newlength, newwidth);
+	zzzxid.setBounds(252, 621, 196, 42);
 	
 
-	b4.setBounds(b4xloc, b4yloc, 100, 40);
-	b5.setBounds(b4xloc, b4yloc+2*b4ysize, 100, 40);
-	b6.setBounds(b4xloc, b4yloc+3*b4ysize, 100, 40);
+	b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+	b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
+	
+	b4.setBounds(254, 549, 200, 54);
+//	b5.setBounds(b4xloc, b4yloc+2*b4ysize, 100, 40);
+	b6.setBounds(707, 648, 200, 54);
 	return p1;
 	
 	 }

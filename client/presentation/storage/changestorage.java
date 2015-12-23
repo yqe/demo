@@ -1,9 +1,12 @@
 package storage;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Graphics;
@@ -52,36 +55,23 @@ public class changestorage {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/changestorage.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("changestorage");
 		background = new ImageIcon(bgp);
 		
 		p1.setBounds(0, 0, 988, 756);
-		JLabel l1 = new JLabel("快递物流系统");
-		int l1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, l1size));
-		JLabel l2 = new JLabel("—>库存更改");
-		int l2size = 16;
-		l2.setFont(new Font("", Font.PLAIN, l2size));
-		JLabel l3 = new JLabel("输入所需更改库存快递编号:");
-		JLabel l4 = new JLabel("现区号:");
-		JLabel l5 = new JLabel("现排号:");
-		JLabel l6 = new JLabel("现架号:");
-		JLabel l7 = new JLabel("现位号:");
-		JLabel l8 = new JLabel("更改后区号:");
-		JLabel l9 = new JLabel("更改后排号:");
-		JLabel l10 = new JLabel("更改后架号:");
-		JLabel l11 = new JLabel("更改后位号:");
+		
+//		JLabel l3 = new JLabel("输入所需更改库存快递编号:");
+//		JLabel l4 = new JLabel("现区号:");
+//		JLabel l5 = new JLabel("现排号:");
+//		JLabel l6 = new JLabel("现架号:");
+//		JLabel l7 = new JLabel("现位号:");
+//		JLabel l8 = new JLabel("更改后区号:");
+//		JLabel l9 = new JLabel("更改后排号:");
+//		JLabel l10 = new JLabel("更改后架号:");
+//		JLabel l11 = new JLabel("更改后位号:");
 
-		int lmain = 16;
-		l3.setFont(new Font("", Font.PLAIN, lmain));
-		l4.setFont(new Font("", Font.PLAIN, lmain));
-		l5.setFont(new Font("", Font.PLAIN, lmain));
-		l6.setFont(new Font("", Font.PLAIN, lmain));
-		l7.setFont(new Font("", Font.PLAIN, lmain));
-		l8.setFont(new Font("", Font.PLAIN, lmain));
-		l9.setFont(new Font("", Font.PLAIN, lmain));
-		l10.setFont(new Font("", Font.PLAIN, lmain));
-		l11.setFont(new Font("", Font.PLAIN, lmain));
+
 
 		final JTextField id = new JTextField();
 		final JTextField qu = new JTextField();
@@ -90,7 +80,7 @@ public class changestorage {
 		final JTextField wei = new JTextField();
 		
 		id.setOpaque(false);
-		id.setBorder(BorderFactory.createEmptyBorder());
+//		id.setBorder(BorderFactory.createEmptyBorder());
 		qu.setOpaque(false);
 		qu.setBorder(BorderFactory.createEmptyBorder());
 		pai.setOpaque(false);
@@ -119,7 +109,7 @@ public class changestorage {
 		chwei.setOpaque(false);
 		chwei.setBorder(BorderFactory.createEmptyBorder());
 
-		JButton b4 = new JButton("确定");
+		JButton b4 = new JButton("");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean idisempty = id.getText().equals("");
@@ -145,7 +135,7 @@ public class changestorage {
 			}
 		});
 
-		JButton b5 = new JButton("确认修改");
+		JButton b5 = new JButton("");
 		b5.addActionListener(new ActionListener() {
 			boolean ischquempty = chqu.getText().equals("");
 			boolean ischpaiempty = chpai.getText().equals("");
@@ -171,17 +161,7 @@ public class changestorage {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
-		p1.add(l6);
-		p1.add(l7);
-		p1.add(l8);
-		p1.add(l9);
-		p1.add(l10);
-		p1.add(l11);
+
 
 		p1.add(id);
 		p1.add(qu);
@@ -196,38 +176,27 @@ public class changestorage {
 		p1.add(b4);
 		p1.add(b5);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 2 / 23;
+		
+	    int	xloc=113,length=176,wdith=43,interval=80;
+	    int chxloc=483,chyloc=355,chinterval=80;
 
-		l1.setBounds(260, -20, 180, 80);
-		l2.setBounds(50, b1yloc, 300, 30);
+		qu.setBounds(xloc, chyloc, length, wdith);
+		pai.setBounds(xloc, chyloc+chinterval-3, length, wdith);
+		jia.setBounds(xloc, chyloc+2*chinterval-3, length, wdith);
+		wei.setBounds(xloc, chyloc+3*chinterval+3, length, wdith);// 现
 
-		l3.setBounds(100, 175, 200, 30);
+		
+		chqu.setBounds(chxloc, chyloc, length, wdith);
+		chpai.setBounds(chxloc, chyloc+chinterval-3, length, wdith);
+		chjia.setBounds(chxloc, chyloc+2*chinterval-3, length, wdith);
+		chwei.setBounds(chxloc, chyloc+3*chinterval+3, length, wdith);// 更改
 
-		l4.setBounds(100, 250, 100, 30);
-		l5.setBounds(100, 300, 100, 30);
-		l6.setBounds(100, 350, 100, 30);
-		l7.setBounds(100, 400, 100, 30);
+		id.setBounds(250, 199, 150, 41);
 
-		l8.setBounds(400, 250, 100, 30);
-		l9.setBounds(400, 300, 100, 30);
-		l10.setBounds(400, 350, 100, 30);
-		l11.setBounds(400, 400, 100, 30);
-
-		qu.setBounds(225, 250, 150, 30);
-		pai.setBounds(225, 300, 150, 30);
-		jia.setBounds(225, 350, 150, 30);
-		wei.setBounds(225, 400, 150, 30);// 现
-
-		chqu.setBounds(500, 250, 150, 30);
-		chpai.setBounds(500, 300, 150, 30);
-		chjia.setBounds(500, 350, 150, 30);
-		chwei.setBounds(500, 400, 150, 30);// 更改
-
-		id.setBounds(325, 175, 200, 30);
-
-		b4.setBounds(550, 175, 80, 30);
-		b5.setBounds(400, 500, 180, 40);
+		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
+		b4.setBounds(522, 195, 200, 53);
+		b5.setBounds(747, 631, 200, 53);
 		return p1;
 
 	}

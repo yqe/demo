@@ -1,9 +1,12 @@
 package storage;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Graphics;
@@ -31,7 +34,7 @@ import po.EmploeePO;
 
 public class storagemain {
 	private JPanel imagePanel;
-	private ImageIcon Sbackground;
+	private ImageIcon background;
 	private ImageIcon button1;
 	int size = 356;
 	JPanel content = new JPanel();
@@ -39,7 +42,7 @@ public class storagemain {
 	final JPanel control = new JPanel(){
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.drawImage(Sbackground.getImage(), 0, 0, null);
+			g.drawImage(background.getImage(), 0, 0, null);
 		}
 	};
 	private EmploeePO emPO;
@@ -60,8 +63,9 @@ public class storagemain {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/storagemaincontrol.jpg"));
-		Sbackground = new ImageIcon(bgp);
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("storagemaincontrol");
+		background = new ImageIcon(bgp);
 
 		storagemain.setBounds(0, 0, 1344, 756);
 
@@ -83,32 +87,29 @@ public class storagemain {
 		control.setBounds(0, 0, size, 756);
 		content.setBounds(size, 0, 988, 756);
 
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—> 主页");
+	
 		int b2size = 16;
-		l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
+//		l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
 
 		
 		
 		
 		
-		JButton b3 = new JButton("退出");
+		JButton b3 = new JButton();
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
 
-		JButton b4 = new JButton("入库登记");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(inspanel);
 			}
 
 		});
-		JButton b5 = new JButton("出库登记");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(ouspanel);
@@ -116,21 +117,21 @@ public class storagemain {
 
 		});
 
-		JButton b6 = new JButton("库存查看");
+		JButton b6 = new JButton();
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(chspanel);
 			}
 
 		});
-		JButton b7 = new JButton("库存盘点");
+		JButton b7 = new JButton();
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(cospanel);
 			}
 
 		});
-		JButton b8 = new JButton("库存更改");
+		JButton b8 = new JButton();
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(caspanel);
@@ -172,7 +173,7 @@ public class storagemain {
 	
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
-		jobt.setText("库存管理人员");
+		jobt.setText("库存管理人员");//因为显示不下所以填的这个
 	
 		control.add(employid);
 		control.add(employjob);
@@ -188,13 +189,21 @@ public class storagemain {
 		control.add(b7);
 		control.add(b8);
 
-		int b4xloc = size / 6, b4yloc = 3*control.getHeight() / 8, b4ysize = control.getHeight() / 11;
-		b4.setBounds(b4xloc, b4yloc, 120, 30);
-		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
-		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);
-		b7.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 30);
-		b8.setBounds(b4xloc, b4yloc + 4 * b4ysize, 120, 30);
-		b3.setBounds(b4xloc, b4yloc + 5 * b4ysize, 120, 30);
+		b3.setContentAreaFilled(false);b3.setBorder(BorderFactory.createEmptyBorder());
+		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
+		b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
+		b7.setContentAreaFilled(false);b7.setBorder(BorderFactory.createEmptyBorder());
+		b8.setContentAreaFilled(false);b8.setBorder(BorderFactory.createEmptyBorder());
+			
+		
+		int xloc=87,yloc=341,length=194,width=45,interval=70;
+		b4.setBounds(xloc, yloc, length, width);
+		b5.setBounds(xloc, yloc + interval, length, width);
+		b6.setBounds(xloc, yloc + 2 * interval, length, width);
+		b7.setBounds(xloc, yloc + 3 * interval, length, width+2);
+		b8.setBounds(xloc, yloc + 4 * interval-3, length, width);
+		b3.setBounds(xloc, yloc + 5 * interval-3, length, width);
 
 		content.add(inspanel);
 		content.setLayout(null);

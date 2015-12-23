@@ -1,8 +1,11 @@
 package storage;
 
+import image.ImageGet;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -48,35 +51,23 @@ public class checkstorage {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/checkstorage.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("checkstorage");
 		background = new ImageIcon(bgp);
 
 		p1.setBounds(0, 0, 988, 756);
 		p1.setOpaque(false);
-		JLabel l1 = new JLabel("快递物流系统");
-		int l1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, l1size));
-		JLabel l2 = new JLabel("—>库存查看");
-		int l2size = 16;
-		l2.setFont(new Font("", Font.PLAIN, l2size));
-		JLabel l3 = new JLabel("时间选择:");
-		JLabel l4 = new JLabel("到");
-		JLabel l5 = new JLabel("出库数量:");
-		JLabel l6 = new JLabel("入库数量:");
-		JLabel l7 = new JLabel("金额:");
-		JLabel l8 = new JLabel("元");
-		JLabel l9 = new JLabel("库存数量:");
+//		JLabel l3 = new JLabel("时间选择:");
+//		JLabel l4 = new JLabel("到");
+//		JLabel l5 = new JLabel("出库数量:");
+//		JLabel l6 = new JLabel("入库数量:");
+//		JLabel l7 = new JLabel("金额:");
+//		JLabel l8 = new JLabel("元");
+//		JLabel l9 = new JLabel("库存数量:");
+//
+//		JLabel l10 = new JLabel("中转中心:");
 
-		JLabel l10 = new JLabel("中转中心:");
-		int lmain = 16;
-		l3.setFont(new Font("", Font.PLAIN, lmain));
-		l4.setFont(new Font("", Font.PLAIN, lmain));
-		l5.setFont(new Font("", Font.PLAIN, lmain));
-		l6.setFont(new Font("", Font.PLAIN, lmain));
-		l7.setFont(new Font("", Font.PLAIN, lmain));
-		l8.setFont(new Font("", Font.PLAIN, lmain));
-		l9.setFont(new Font("", Font.PLAIN, lmain));
-		l10.setFont(new Font("", Font.PLAIN, lmain));
+
 
 		final JTextField t1 = new JTextField();
 		final JTextField t2 = new JTextField();
@@ -115,7 +106,7 @@ public class checkstorage {
 	    datepick2.setEditorable(false);//设置是否可编辑
 		datepick2.setPreferredSize(new Dimension(100,30));//设置大小
 		
-		JButton b4 = new JButton("查 看");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StorageBl stobl = new StorageBl(oos, ois);
@@ -128,16 +119,7 @@ public class checkstorage {
 		});
 
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
-		p1.add(l6);
-		p1.add(l7);
-		p1.add(l8);
-		p1.add(l9);
-		p1.add(l10);
+	
 
 		p1.add(t1);
 		p1.add(t2);
@@ -153,30 +135,27 @@ public class checkstorage {
 
 		int b1yloc = p1.getHeight() * 2 / 19;
 
-		l1.setBounds(260, -20, 180, 80);
-		l2.setBounds(50, b1yloc, 300, 30);
-		datepick1.setBounds(150, 100, 150, 30);
-
-		datepick2.setBounds(450, 100, 150, 30);
-	
-
-		l3.setBounds(75, 100, 100, 30);
-	
-		l10.setBounds(75, 150, 100, 30);
-		zzzx.setBounds(180, 150, 150, 30);
 		
-		l4.setBounds(410, 100, 50, 30);
-		l5.setBounds(250, 250, 150, 30);
-		l6.setBounds(250, 300, 150, 30);
-		l7.setBounds(250, 350, 150, 30);
-		l8.setBounds(550, 350, 150, 30);
-		l9.setBounds(250, 400, 150, 30);
+		datepick1.setBounds(195, 271, 177, 43);
 
-		t1.setBounds(375, 250, 150, 30);
-		t2.setBounds(375, 300, 150, 30);
-		t3.setBounds(375, 350, 150, 30);
-		t4.setBounds(375, 400, 150, 30);
-		b4.setBounds(375, 480, 150, 40);
+		datepick2.setBounds(281+177, 271, 177, 43);
+	
+
+		zzzx.setOpaque(false);
+		zzzx.setBorder(BorderFactory.createEmptyBorder());
+		
+		zzzx.setBounds(470, 152, 196, 42);
+		
+
+		b4.setContentAreaFilled(false);
+		
+		int xloc=315,yloc=445,length=174,width=43,xinterval=200,yinterval=100;
+		t1.setBounds(xloc, yloc+yinterval-3, length, width);
+		t2.setBounds(xloc, yloc, length, width);
+		t3.setBounds(xloc+xinterval, yloc+yinterval, length, width);
+		t4.setBounds(xloc+xinterval, yloc, length, width);
+		
+		b4.setBounds(679, 265, 200, 54);
 
 		return p1;
 

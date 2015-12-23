@@ -1,10 +1,13 @@
 package storage;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Graphics;
@@ -66,30 +69,21 @@ public class outstorage {
 	public JPanel Panel() throws IOException {
 
 		final OutStorageList oslt = new OutStorageList();
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/outstorage.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("outstorage");
 		Sbackground = new ImageIcon(bgp);
 		
 		p1.setBounds(0, 0, 988, 756);
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—>出库登记");
+	
 		int b2size = 16;
-		JLabel l3 = new JLabel("快递编号:");
-		JLabel l4 = new JLabel("出库日期:");
-		JLabel l5 = new JLabel("目的地:");
-		JLabel l6 = new JLabel("装运形式:");
-		JLabel l7 = new JLabel("中转编号:");
+//		JLabel l3 = new JLabel("快递编号:");
+//		JLabel l4 = new JLabel("出库日期:");
+//		JLabel l5 = new JLabel("目的地:");
+//		JLabel l6 = new JLabel("装运形式:");
+//		JLabel l7 = new JLabel("中转编号:");
+//
+//		JLabel l8 = new JLabel("入库单列表:");
 
-		JLabel l8 = new JLabel("入库单列表:");
-
-		l2.setFont(new Font("", Font.PLAIN, b2size));
-		l3.setFont(new Font("", Font.PLAIN, b2size));
-		l4.setFont(new Font("", Font.PLAIN, b2size));
-		l5.setFont(new Font("", Font.PLAIN, b2size));
-		l6.setFont(new Font("", Font.PLAIN, b2size));
-		l7.setFont(new Font("", Font.PLAIN, b2size));
-		l8.setFont(new Font("", Font.PLAIN, b2size));
 
 		final JTextField t1 = new JTextField();
 		final JTextField t2 = new JTextField();
@@ -130,7 +124,7 @@ public class outstorage {
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
 
-		JButton b4 = new JButton("添加");
+		JButton b4 = new JButton("");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String date = datepick.getText();
@@ -138,31 +132,31 @@ public class outstorage {
 				String type = (String) typebox.getSelectedItem();
 				OutStorageDocuPO am = new OutStorageDocuPO(t1.getText(), date, place, type, t2.getText());
 				oslt.addOutStoragePO(am);
-				Object[] add = { t1.getText(), date, place, type, t2.getText() };
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				model.insertRow(model.getRowCount(), add);
+//				Object[] add = { t1.getText(), date, place, type, t2.getText() };
+//				DefaultTableModel model = (DefaultTableModel) table.getModel();
+//				model.insertRow(model.getRowCount(), add);
 				// System.out.println(model.getRowCount());
 			}
 		});
 
-		JButton b5 = new JButton("删除");
-		b5.addActionListener(new ActionListener() {
+//		JButton b5 = new JButton("删除");
+//		b5.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				// ��ȡҪɾ�����,û��ѡ����-1
+//				DefaultTableModel model = (DefaultTableModel) table.getModel();
+//				int row = table.getSelectedRow();
+//				// System.out.println(row);
+//				if (row == -1) {
+//					JOptionPane.showMessageDialog(null, "请选中要删除的行!");
+//				} else {
+//					model.removeRow(row);
+//				}
+//			}
+//		});
 
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				// ��ȡҪɾ�����,û��ѡ����-1
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				int row = table.getSelectedRow();
-				// System.out.println(row);
-				if (row == -1) {
-					JOptionPane.showMessageDialog(null, "请选中要删除的行!");
-				} else {
-					model.removeRow(row);
-				}
-			}
-		});
-
-		JButton b6 = new JButton("完成出库");
+		JButton b6 = new JButton("");
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StorageBl k = new StorageBl(oos,ois);
@@ -178,15 +172,7 @@ public class outstorage {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
-		p1.add(l6);
-		p1.add(l7);
-		p1.add(l8);
+	
 
 		p1.add(t1);
 		p1.add(t2);
@@ -196,40 +182,37 @@ public class outstorage {
 		p1.add(typebox);
 
 		p1.add(b4);
-		p1.add(b5);
+//		p1.add(b5);
 		p1.add(b6);
 
 		p1.add(jp);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 1 / 19;
-		int b4xloc = p1.getWidth() * 11 / 13;
-		int b4yloc = p1.getHeight() * 3 / 19 + 20, b4ysize = p1.getHeight() * 1 / 5;
+//		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
+//		int b1yloc = p1.getHeight() * 1 / 19;
+//		int b4xloc = p1.getWidth() * 11 / 13;
+//		int b4yloc = p1.getHeight() * 3 / 19 + 20, b4ysize = p1.getHeight() * 1 / 5;
+//
+		int xloc=65,length=175,width=44;
+		
+//	    jp.setBounds(xloc, b1yloc+250, 648, 400);
+		
+		datepick.setBounds(xloc, 408, length, width);
 
-		l1.setBounds(350, -20, 180, 80);
+		sitebox.setBounds(xloc, 502, length, width);
+		
+		t1.setBounds(xloc, 312, length, width);
+		
+		t2.setBounds(252, 620, 196, 42);
 
-		l2.setBounds(50, b1yloc, 180, 30);
+		typebox.setBounds(268, 358, 176, 43);
 
-		l3.setBounds(50, b1yloc + 50, 100, 30);
-		l4.setBounds(280, b1yloc + 50, 100, 30);
-		l5.setBounds(50, b1yloc + 100, 100, 30);
+//		t2.setBounds(530, b1yloc + 100, 120, 30);
 
-		l6.setBounds(250, b1yloc + 100, 100, 30);
-		l7.setBounds(450, b1yloc + 100, 100, 30);
-		l8.setBounds(50, b1yloc + 150, 100, 30);
-
-		jp.setBounds(50, b1yloc + 200, 423, 400);
-
-		datepick.setBounds(350, b1yloc + 50, 150, 30);
-		sitebox.setBounds(120, b1yloc + 100, 80, 30);
-		typebox.setBounds(330, b1yloc + 100, 80, 30);
-
-		t1.setBounds(120, b1yloc + 50, 120, 30);
-		t2.setBounds(530, b1yloc + 100, 120, 30);
-
-		b4.setBounds(b4xloc, b4yloc, 100, 40);
-		b5.setBounds(b4xloc, b4yloc + 2 * b4ysize, 100, 40);
-		b6.setBounds(b4xloc, b4yloc + 3 * b4ysize, 100, 40);
+		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+		b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
+		b4.setBounds(254, 455, 200, 54);
+//		b5.setBounds(b4xloc, b4yloc + 2 * b4ysize, 100, 40);
+		b6.setBounds(707, 648, 200, 54);
 		return p1;
 
 	}
