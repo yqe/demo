@@ -12,17 +12,17 @@ public class IntManage {
 
 	public void InitInternet() {
 		String hostid = "localhost";
-		Socket socket;
 		try {
 			socket = new Socket(hostid, 8888);
-			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	public void CloseInternet(Socket socket2,ObjectOutputStream oos2,ObjectInputStream ois2){
+
+	public void CloseInternet(Socket socket2, ObjectOutputStream oos2, ObjectInputStream ois2) {
 		try {
 			oos2.writeUTF("exit");
 		} catch (IOException e1) {
@@ -37,8 +37,9 @@ public class IntManage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
+
 	public Socket getSocket() {
 		return socket;
 	}

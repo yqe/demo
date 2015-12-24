@@ -44,8 +44,8 @@ public class AccountMan {
 
 	public void AddAcc(JPanelContent content) {
 		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield() };
-		textfield[1].setBounds(Gapw, 322, textw, texth);
-		textfield[0].setBounds(Gapw, 279, textw, texth);
+		textfield[0].setBounds(Gapw, 232, textw, texth);
+		textfield[1].setBounds(Gapw, 279, textw, texth);
 		for (int i = 0; i < textfield.length; i++) {
 			textfield[i].settextFont();
 			textfield[i].HideTheField();

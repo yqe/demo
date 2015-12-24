@@ -18,7 +18,7 @@ public class ClientMain {
 
 		IntManage client = new IntManage();
 		client.InitInternet();
-		String hostid = "172.26.217.28";
+		System.out.println(client.getSocket());
 		loginframe login = new loginframe(client.getSocket(), client.getOos(), client.getOis());
 		try {
 			login.Frame();
