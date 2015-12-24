@@ -2,6 +2,7 @@ package transit;
 
 import image.ImageGet;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -118,13 +119,22 @@ public class transitload {
 		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 
 		String[] site = { "上海", "北京", "南京", "深圳", "广州", "杭州" };
-
+	
+		Color text=new Color(0,0,0);
+		
 		final JComboBox sitebox1 = new JComboBox(site);
+		
+		sitebox1.setBackground(text);
+		
 		final JComboBox sitebox2 = new JComboBox(site);
+		
+		sitebox2.setBackground(text);
 		
 		String[] transport={"汽车","火车","飞机"};
 		
 		final JComboBox transportbox = new JComboBox(transport);
+		
+		transportbox.setBackground(text);
 
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

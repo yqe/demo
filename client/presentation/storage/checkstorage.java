@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.imageio.ImageIO;
@@ -101,7 +103,9 @@ public class checkstorage {
 		datepick1.setPreferredSize(new Dimension(100,30));//设置大小
 		
 		final JTextField time2 = new JTextField();
-		final DatePicker datepick2 = new DatePicker(time2);
+		Calendar c=Calendar.getInstance();
+		Date d=c.getTime();
+		final DatePicker datepick2 = new DatePicker(time2,d);
 		datepick2.setOpaque(false);
 		datepick2.setLocale(Locale.CHINA);//设置显示语言
 	    datepick2.setPattern("yyyy-MM-dd");//设置日期格式化字符串

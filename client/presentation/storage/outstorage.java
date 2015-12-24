@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.imageio.ImageIO;
@@ -96,7 +98,9 @@ public class outstorage {
 		t2.setBorder(BorderFactory.createEmptyBorder());
 		t2.setEditable(false);
 		final JTextField time = new JTextField();
-		final DatePicker datepick = new DatePicker(time);
+		Calendar c=Calendar.getInstance();
+		Date d=c.getTime();
+		final DatePicker datepick = new DatePicker(time,d);
 		datepick.setLocale(Locale.CHINA);//设置显示语言
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick.setEditorable(false);//设置是否可编辑

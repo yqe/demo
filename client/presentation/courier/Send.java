@@ -30,6 +30,8 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import login.MTextfield;
+
 import com.eltima.components.ui.DatePicker;
 
 import po.EmploeePO;
@@ -60,93 +62,39 @@ public class Send {
 		background = new ImageIcon(bgp);
 		
 		p1.setBounds(0, 0, 942, 815);
-		JLabel l1 = new JLabel("快递物流系统");
-		int l1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, l1size));
-		JLabel l2 = new JLabel("—>生成寄件单");
-		int l2size = 16;
-		l2.setFont(new Font("", Font.PLAIN, l2size));
-		JLabel l3 = new JLabel("寄件人:");
-		JLabel l4 = new JLabel("寄件人单位:");
-		JLabel l5 = new JLabel("手机号:");
-		JLabel l6 = new JLabel("寄件人地址:");
+		
 
-		JLabel l7 = new JLabel("收件人:");
-		JLabel l8 = new JLabel("收件人单位:");
-		JLabel l9 = new JLabel("手机号:");
-		JLabel l10 = new JLabel("收件人地址:");
+		
 
-		JLabel l11 = new JLabel("货物名称:");
-		JLabel l12 = new JLabel("货物数量:");
-		JLabel l13 = new JLabel("货物重量(Kg):");
-		JLabel l14 = new JLabel("长(cm):");
-		JLabel l15 = new JLabel("宽(cm):");
-		JLabel l16 = new JLabel("高(cm):");
-		JLabel l17 = new JLabel("体积(cm^3):");
-		JLabel l18 = new JLabel("货物信息:");
-
-		JLabel l19 = new JLabel("快递类型:");
-		JLabel l20 = new JLabel("包装选择:");
-		JLabel l21 = new JLabel("快递运费(自动):");
-		JLabel l22 = new JLabel("预计到达时间:");
-		// JLabel l23=new JLabel("订单条形码号:");
-
-		JLabel l24 = new JLabel("寄件单生成日期:");
-		JLabel l25 = new JLabel("快递员:");
-
-		JLabel l26 = new JLabel("元");
-
-		JLabel l27 = new JLabel("出发地:");
-		JLabel l28 = new JLabel("目的地:");
-
-		int lmain = 16;
-		l3.setFont(new Font("", Font.PLAIN, lmain));
-		l4.setFont(new Font("", Font.PLAIN, lmain));
-		l5.setFont(new Font("", Font.PLAIN, lmain));
-		l6.setFont(new Font("", Font.PLAIN, lmain));
-		l7.setFont(new Font("", Font.PLAIN, lmain));
-		l8.setFont(new Font("", Font.PLAIN, lmain));
-		l9.setFont(new Font("", Font.PLAIN, lmain));
-		l10.setFont(new Font("", Font.PLAIN, lmain));
-		l11.setFont(new Font("", Font.PLAIN, lmain));
-		l12.setFont(new Font("", Font.PLAIN, lmain));
-		l13.setFont(new Font("", Font.PLAIN, lmain));
-		l14.setFont(new Font("", Font.PLAIN, lmain));
-		l15.setFont(new Font("", Font.PLAIN, lmain));
-		l16.setFont(new Font("", Font.PLAIN, lmain));
-		l17.setFont(new Font("", Font.PLAIN, lmain));
-		l18.setFont(new Font("", Font.PLAIN, lmain));
-		l19.setFont(new Font("", Font.PLAIN, lmain));
-		l20.setFont(new Font("", Font.PLAIN, lmain));
-		l21.setFont(new Font("", Font.PLAIN, lmain));
-		l22.setFont(new Font("", Font.PLAIN, lmain));
-
-		l24.setFont(new Font("", Font.PLAIN, lmain));
-		l25.setFont(new Font("", Font.PLAIN, lmain));
-		l26.setFont(new Font("", Font.PLAIN, lmain));
-		l27.setFont(new Font("", Font.PLAIN, lmain));
-		l28.setFont(new Font("", Font.PLAIN, lmain));
-
-		final JTextField sender = new JTextField();
-		final JTextField senderinfo = new JTextField();
-		final JTextField sendertel = new JTextField();
-		final JTextField sendersite = new JTextField();
-		final JTextField getter = new JTextField();
-		final JTextField getterinfo = new JTextField();
-		final JTextField gettertel = new JTextField();
-		final JTextField gettersite = new JTextField();
-		final JTextField goodsname = new JTextField();
-		final JTextField goodsweight = new JTextField();
-		final JTextField length = new JTextField();
-		final JTextField width = new JTextField();
-		final JTextField height = new JTextField();
-		final JTextField V = new JTextField();
-		final JTextField goodsinfo = new JTextField();
-		final JTextField price = new JTextField();
-		final JTextField exceptedtime = new JTextField();
+		final MTextfield sender = new MTextfield();
+		final MTextfield senderinfo = new MTextfield();
+		final MTextfield sendertel = new MTextfield();
+		final MTextfield sendersite = new MTextfield();
+		final MTextfield getter = new MTextfield();
+		final MTextfield getterinfo = new MTextfield();
+		final MTextfield gettertel = new MTextfield();
+		final MTextfield gettersite = new MTextfield();
+		final MTextfield goodsname = new MTextfield();
+		final MTextfield goodsweight = new MTextfield();
+		final MTextfield length = new MTextfield();
+		final MTextfield width = new MTextfield();
+		final MTextfield height = new MTextfield();
+		final MTextfield V = new MTextfield();
+		final MTextfield goodsinfo = new MTextfield();
+		final MTextfield price = new MTextfield();
+		final MTextfield exceptedtime = new MTextfield();
 		// JTextField t17=new JTextField();
-		final JTextField courier = new JTextField();
+		final MTextfield courier = new MTextfield();
 
+		
+		sender.settextFont();senderinfo.settextFont();sendertel.settextFont();sendersite.settextFont();
+		getter.settextFont();getterinfo.settextFont();gettertel.settextFont();gettersite.settextFont();
+		
+		goodsname.settextFont();goodsweight.settextFont();
+		length.settextFont();width.settextFont();height.settextFont();
+		V.settextFont();goodsinfo.settextFont();price.settextFont();exceptedtime.settextFont();
+		courier.settextFont();
+		
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
 		datepick.setLocale(Locale.CHINA);//设置显示语言
@@ -196,6 +144,7 @@ public class Send {
 		
 //		
 		V.setOpaque(false);
+		V.setBorder(BorderFactory.createEmptyBorder());
 		V.setEditable(false);
 		// exceptedtime.setOpaque(false);
 		// exceptedtime.setEditable(false);
@@ -205,6 +154,9 @@ public class Send {
 			num[i - 1] = String.valueOf(i);
 		}
 		final JComboBox numbox = new JComboBox(num);
+		numbox.setBackground(Color.gray);
+		numbox.setForeground(Color.white);
+		numbox.setFont(new Font("幼圆", Font.BOLD, 18));
 		numbox.setOpaque(false);
 		 
 
@@ -212,19 +164,28 @@ public class Send {
 		final JComboBox typebox = new JComboBox(type);
 		typebox.setBackground(Color.gray);
 		typebox.setForeground(Color.white);
-		typebox.setFont(new Font("幼圆", Font.BOLD, 16));
+		typebox.setFont(new Font("幼圆", Font.BOLD, 18));
 		typebox.setOpaque(false);
 
 		String[] pack = { "纸箱(5元)", "木箱(10元)", "快递袋(1元)" };
 		final JComboBox packagebox = new JComboBox(pack);
+		packagebox.setBackground(Color.gray);
+		packagebox.setForeground(Color.white);
+		packagebox.setFont(new Font("幼圆", Font.BOLD, 18));
 		packagebox.setOpaque(false);
 		
 		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
 		final JComboBox depaturebox = new JComboBox(depature);
+		depaturebox.setBackground(Color.gray);
+		depaturebox.setForeground(Color.white);
+		depaturebox.setFont(new Font("幼圆", Font.BOLD, 18));
 		depaturebox.setOpaque(false);
 
 		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
 		final JComboBox destinationbox = new JComboBox(destination);
+		destinationbox.setBackground(Color.gray);
+		destinationbox.setForeground(Color.white);
+		destinationbox.setFont(new Font("幼圆", Font.BOLD, 18));	
 		destinationbox.setOpaque(false);
 		
 		numbox.addItemListener(new ItemListener()
@@ -423,7 +384,7 @@ public class Send {
 		});
 
 		
-		JButton b4 = new JButton("生成寄件单");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -486,37 +447,7 @@ public class Send {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
-		p1.add(l6);// �ļ���
-
-		p1.add(l7);
-		p1.add(l8);
-		p1.add(l9);
-		p1.add(l10);// �ռ���
-
-		p1.add(l11);
-		p1.add(l12);
-		p1.add(l13);
-		p1.add(l14);
-		p1.add(l15);
-		p1.add(l16);
-		p1.add(l17);
-		p1.add(l18);// ����
-
-		p1.add(l19);
-		p1.add(l20);
-		p1.add(l21);
-		p1.add(l22);
-		p1.add(l24);
-		p1.add(l25);
-		p1.add(l26);
-		p1.add(l27);
-		p1.add(l28);
+	
 
 		p1.add(sender);
 		p1.add(senderinfo);
@@ -553,88 +484,54 @@ public class Send {
 
 		p1.setOpaque(false);
 
-		l1.setBounds(300, -20, 180, 80);
-		l2.setBounds(50, p1.getHeight() * 1 / 15, 150, 30);
+		int size=402;
+	    int senderxloc=573-size,getterxloc=1054-size;
+		
+		sender.setBounds(senderxloc, 194, 167, 38);
+		senderinfo.setBounds(senderxloc, 303, 192, 58);
+		sendertel.setBounds(senderxloc, 250, 167, 38);
+		sendersite.setBounds(senderxloc, 371, 192, 58);
 
-		int l3xloc = p1.getWidth() / 15;
-		int l4xloc = p1.getWidth() / 3;
-		int l3yloc = 3 * p1.getWidth() / 20;
-		int interval = 50;
-		l3.setBounds(l3xloc, l3yloc, 80, 30);
-		l4.setBounds(l4xloc, l3yloc, 120, 30);
-		l5.setBounds(l3xloc, l3yloc + interval, 80, 30);
-		l6.setBounds(l4xloc, l3yloc + interval, 120, 30);// �ļ���
+		getter.setBounds(getterxloc, 194, 167, 38);
+		getterinfo.setBounds(getterxloc, 316, 190, 55);
+		gettertel.setBounds(getterxloc, 254, 167, 38);
+		gettersite.setBounds(getterxloc, 382, 190, 55);// �ռ���
 
-		l7.setBounds(l3xloc, l3yloc + 2 * interval, 80, 30);
-		l8.setBounds(l4xloc, l3yloc + 2 * interval, 120, 30);
-		l9.setBounds(l3xloc, l3yloc + 3 * interval, 80, 30);
-		l10.setBounds(l4xloc, l3yloc + 3 * interval, 120, 30);// �ռ���
+		goodsname.setBounds(557-size, 510, 63, 43);
+		goodsweight.setBounds(1140-size, 510, 63, 43);
+		
+		length.setBounds(480-size, 561, 98, 43);
+		width.setBounds(650-size,561, 98, 43);
+		height.setBounds(827-size, 567, 98, 43);
+		
+		V.setBounds(1041-size, 563, 99, 40);
+		
+		goodsinfo.setBounds(545-size, 616, 376, 46);
+		numbox.setBounds(862-size, 510, 115, 43);// ����
+		
 
-		l11.setBounds(l3xloc, l3yloc + 4 * interval, 80, 30);
-		l12.setBounds(l4xloc, l3yloc + 4 * interval, 120, 30);
-		l13.setBounds(l4xloc + 150, l3yloc + 4 * interval, 120, 30);
-		l14.setBounds(l3xloc, l3yloc + 5 * interval, 120, 30);
-		l15.setBounds(l3xloc + 180, l3yloc + 5 * interval, 120, 30);
-		l16.setBounds(l3xloc + 360, l3yloc + 5 * interval, 120, 30);
-		l17.setBounds(l3xloc + 540, l3yloc + 5 * interval, 120, 30);
-		l18.setBounds(l3xloc, l3yloc + 6 * interval, 120, 30); // ����
-
-		l19.setBounds(l3xloc, l3yloc + 7 * interval, 120, 30);
-		l20.setBounds(l3xloc + 200, l3yloc + 7 * interval, 120, 30);
-		l21.setBounds(l3xloc + 400, l3yloc + 8 * interval, 120, 30);
-		l22.setBounds(l3xloc, l3yloc + 9 * interval, 150, 30);
-		// l23.setBounds(l3xloc+400, l3yloc+8*interval, 150, 30);
-
-		l24.setBounds(l3xloc, l3yloc + 8 * interval, 150, 30);
-		l25.setBounds(l3xloc + 450, l3yloc + 9 * interval, 150, 30);
-		l26.setBounds(l3xloc + 660, l3yloc + 8 * interval, 100, 30);
-		l27.setBounds(l3xloc + 400, l3yloc + 7 * interval, 120, 30);
-		l28.setBounds(l3xloc + 550, l3yloc + 7 * interval, 120, 30);
-
-		int t1xloc = l3xloc + 80;
-		int t2xloc = l4xloc + 100;
-		int t1yloc = l3yloc;
-		sender.setBounds(t1xloc, t1yloc, 100, 30);
-		senderinfo.setBounds(t2xloc, t1yloc, 350, 30);
-		sendertel.setBounds(t1xloc, t1yloc + interval, 100, 30);
-		sendersite.setBounds(t2xloc, t1yloc + interval, 350, 30);// �ļ���
-
-		getter.setBounds(t1xloc, t1yloc + 2 * interval, 100, 30);
-		getterinfo.setBounds(t2xloc, t1yloc + 2 * +interval, 350, 30);
-		gettertel.setBounds(t1xloc, t1yloc + 3 * interval, 100, 30);
-		gettersite.setBounds(t2xloc, t1yloc + 3 * interval, 350, 30);// �ռ���
-
-		goodsname.setBounds(t1xloc, t1yloc + 4 * interval, 100, 30);
-		goodsweight.setBounds(t2xloc + 160, t1yloc + 4 * interval, 100, 30);
-		length.setBounds(t1xloc, t1yloc + 5 * interval, 80, 30);
-		width.setBounds(t1xloc + 180, t1yloc + 5 * interval, 80, 30);
-		height.setBounds(t1xloc + 360, t1yloc + 5 * interval, 80, 30);
-		V.setBounds(t1xloc + 560, t1yloc + 5 * interval, 80, 30);
-		goodsinfo.setBounds(t1xloc, t1yloc + 6 * interval, 650, 30);
-		numbox.setBounds(t1xloc + 210, t1yloc + 4 * interval, 60, 30);// ����
-
-		typebox.setBounds(t1xloc, t1yloc + 7 * interval, 120, 30);
-		packagebox.setBounds(t1xloc + 200, t1yloc + 7 * interval, 120, 30);
-		price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
-		exceptedtime.setBounds(t1xloc + 50, t1yloc + 9 * interval, 180, 30);
+		typebox.setBounds(1066-size, 616, 161, 47);
+		packagebox.setBounds(557-size, 671, 115, 27);
+//		price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
+		exceptedtime.setBounds(585-size, 717, 164, 39);
 		// yearbox1.setBounds(t1xloc + 30, t1yloc + 8 * interval, 80, 30);
 		// monthbox1.setBounds(t1xloc + 120, t1yloc + 8 * interval, 80, 30);
 		// daybox1.setBounds(t1xloc + 210, t1yloc + 8 * interval, 80, 30);
-		depaturebox.setBounds(t1xloc + 380, t1yloc + 7 * interval, 80, 30);
-		destinationbox.setBounds(t1xloc + 530, t1yloc + 7 * interval, 80, 30);
+		depaturebox.setBounds(780-size, 673, 109, 42);
+		destinationbox.setBounds(1003-size,673, 104, 42);
 
 		// t17.setBounds(t1xloc+450,t1yloc+8*interval, 200, 30);
 		// ����
 
-		datepick.setBounds(t1xloc + 50, t1yloc + 8 * interval, 150, 30);
-		courier.setBounds(t1xloc + 450, t1yloc + 9 * interval, 120, 30);
+		datepick.setBounds(1145-size, 720, 138, 38);
+		courier.setBounds(1214-size, 673, 104, 41);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 1 / 15;
-		int b4xloc = p1.getWidth() * 2 / 5 - 30;
-		int b4yloc = p1.getHeight() * 13 / 15;
+	
+		
+		b4.setContentAreaFilled(false);
+		b4.setBorder(BorderFactory.createEmptyBorder());
 
-		b4.setBounds(b4xloc, b4yloc, 180, 40);
+		b4.setBounds(708-size, 759, 326, 41);
 		return p1;
 
 	}
