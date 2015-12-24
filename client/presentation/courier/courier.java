@@ -99,11 +99,15 @@ public class courier {
 		});
 
 		JButton b4 = new JButton("生成寄件单");
-
+		b4.setContentAreaFilled(false);
+		b4.setBorder(BorderFactory.createEmptyBorder());
 		JButton b5 = new JButton("生成派件单");
-
+		b5.setContentAreaFilled(false);
+		b5.setBorder(BorderFactory.createEmptyBorder());
 		JButton b6 = new JButton("查询订单信息");
-
+		b6.setContentAreaFilled(false);
+		b6.setBorder(BorderFactory.createEmptyBorder());
+		
 		control.setOpaque(false);
 		control.setLayout(null);
 
@@ -153,10 +157,10 @@ public class courier {
 		int b4xloc = size / 6, b4yloc = 3 * control.getHeight() / 7, b4ysize = control
 				.getHeight() / 8;
 
-		b3.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 40);
-		b4.setBounds(b4xloc, b4yloc, 120, 40);
-		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 40);
-		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 40);
+		b3.setBounds(37, 670 , 334, 66);
+		b4.setBounds(37, 387, 334, 66);
+		b5.setBounds(37, 479, 334, 66);
+		b6.setBounds(37, 573, 334, 66);
 
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
