@@ -82,7 +82,7 @@ public class GoodsBl implements GoodsBLService {
 	public String GoodsInquiry(String ID) {
 		String route = null;
 		try {
-			oos.writeUTF("GetRoute");
+			oos.writeObject(new String("GetRoute"));
 			oos.writeObject(new String(ID));
 			ExpressTrailPO routepo = (ExpressTrailPO) ois.readObject();
 			route=routepo.getDepar()+routepo.getBusstrail()+routepo.getCentertrail()+routepo.getDestination();
