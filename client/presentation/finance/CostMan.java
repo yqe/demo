@@ -66,7 +66,7 @@ public class CostMan {
 		content.add(datepick);
 		datepick.setBounds(Gapw, Gaph, textw, texth);
 
-		JButtonM okbtn = new JButtonM();
+		JButtonM okbtn = new JButtonM("确认付款");
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean isnum = true;
@@ -106,7 +106,6 @@ public class CostMan {
 			}
 
 		});
-
 		okbtn.setBounds(746, 631, 199, 52);
 		okbtn.HideTheButton();
 		content.add(okbtn);

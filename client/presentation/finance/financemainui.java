@@ -95,15 +95,15 @@ public class financemainui {
 	public void AddcmdComp() {
 		int buttonw = 191;
 		int buttonh = 40;
-		int gapw = 88;
-		cmdbutton[0].setBounds(gapw, 249, buttonw, buttonh);
-		cmdbutton[1].setBounds(gapw, 327, buttonw, buttonh);
-		cmdbutton[2].setBounds(gapw, 390, buttonw, buttonh);
-		cmdbutton[3].setBounds(gapw, 453, buttonw, buttonh);
-		cmdbutton[4].setBounds(gapw, 519, buttonw, buttonh);
-		cmdbutton[5].setBounds(gapw, 579, buttonw, buttonh);
+		int gapw = 90;
+		cmdbutton[0].setBounds(86, 249, buttonw, buttonh);
+		cmdbutton[1].setBounds(gapw, 326, buttonw, buttonh);
+		cmdbutton[2].setBounds(gapw, 389, buttonw, buttonh);
+		cmdbutton[3].setBounds(gapw, 451, buttonw, buttonh);
+		cmdbutton[4].setBounds(gapw, 517, buttonw, buttonh);
+		cmdbutton[5].setBounds(gapw, 577, buttonw, buttonh);
 		cmdbutton[6].setBounds(gapw, 639, buttonw, buttonh);
-		cmdbutton[7].setBounds(gapw, 693, buttonw, buttonh);
+		cmdbutton[7].setBounds(gapw, 692, buttonw, buttonh);
 		for (int i = 0; i < cmdbutton.length; i++) {
 			cmdpanel.add(cmdbutton[i]);
 			cmdbutton[i].HideTheButton();

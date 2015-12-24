@@ -2,11 +2,11 @@ package storagebl;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
 
 import po.InputStorageList;
 import po.LookStoragePO;
 import po.OutStorageList;
+import po.StorageAlarmPO;
 import po.StorageCheckPO;
 import po.StorageList;
 import storageblService.StorageBlService;
@@ -153,5 +153,47 @@ public class StorageBl implements StorageBlService {
 			e.printStackTrace();
 		}
 		return stopo;
+	}
+	/**
+	 * 判断是否库存报警;
+	 * 
+	 * @param String posid;//机构编号
+	 * @return 
+	 * @exception @author
+	 *                zxc
+	 */
+	public void Storage110(String posid){
+		try {
+			oos.writeUTF("Storage");
+			oos.writeUTF("ChangeStorage");
+			oos.writeObject(new String(posid));
+			boolean alarm=(boolean) ois.readObject();
+			if(alarm)
+				//TODO
+				System.out.println("报警了");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 设置库存报警值;
+	 * 
+	 * @param StorageAlarmPO alarm;
+	 * @return 
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean SetStorage110(StorageAlarmPO alarm){
+		boolean isok=false;
+		try {
+			oos.writeUTF("Storage");
+			oos.writeUTF("SetStorageAlarm");
+			oos.writeObject(new String("OK"));
+			oos.writeObject(alarm);
+			isok=(boolean)ois.readObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return isok;
 	}
 }

@@ -1,6 +1,7 @@
 package po;
 
 public class StorageAlarmPO {
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 库存报警
 	 * @author jjlb

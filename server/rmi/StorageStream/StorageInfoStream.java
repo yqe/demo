@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import po.InputStorageList;
 import po.LookStoragePO;
 import po.OutStorageList;
+import po.StorageAlarmPO;
 import po.StorageCheckPO;
 import storagedata.InputStorageDocu;
 import storagedata.LookStorage;
 import storagedata.OutStorageDocu;
+import storagedata.StorageAlarm;
 import storagedata.StorageCheck;
 
 public class StorageInfoStream {
@@ -34,6 +36,12 @@ public class StorageInfoStream {
 			case "IDCheckStorage":
 				IDCheckStorage(ois, oos);
 				break;
+			case "Storage110":
+				Storage110(ois, oos);
+				break;
+			case "SetStorageAlarm":
+				SetStorageAlarm(ois, oos);
+				break;
 			default:
 				ChangeStorage(ois, oos);
 				break;
@@ -44,6 +52,54 @@ public class StorageInfoStream {
 	}
 
 	/**
+	 * 是否库存报警
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void SetStorageAlarm(ObjectInputStream ois, ObjectOutputStream oos) {
+		try {
+			String posID = (String) ois.readObject();
+			StorageAlarmPO alarmpo = (StorageAlarmPO) ois.readObject();
+			boolean isok = false;
+			StorageAlarmPO alarmpo2 = new StorageAlarm().find(alarmpo.getTranscenterID());
+			if (alarmpo2.getTranscenterID().equals("不存在"))
+				isok = new StorageAlarm().insert(alarmpo);
+			else
+				isok = new StorageAlarm().update(alarmpo);
+			oos.writeObject(new Boolean(isok));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 是否库存报警
+	 * 
+	 * @param
+	 * @return ObjectInputStream ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void Storage110(ObjectInputStream ois, ObjectOutputStream oos) {
+		try {
+			String posID = (String) ois.readObject();
+			StorageAlarmPO alarmpo = new StorageAlarm().find(posID);
+			int storednum = new LookStorage().getstorednum(posID);
+			double temp = (storednum * 1.0) / alarmpo.getTotal();
+			if (temp < alarmpo.getAlarmvalue())
+				oos.writeObject(new Boolean(false));
+			else
+				oos.writeObject(new Boolean(true));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 根据快递编号查找快递库存信息
 	 * 
 	 * @param
 	 * @return ObjectInputStream ois, ObjectOutputStream oos;

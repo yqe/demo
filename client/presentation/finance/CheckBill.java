@@ -43,10 +43,9 @@ public class CheckBill {
 		final DatePicker datepick = new DatePicker(time);
 		datepick.setLocale(Locale.CHINA);// 设置显示语言
 		datepick.setPattern("yyyy-MM-dd");// 设置日期格式化字符串
-		datepick.setEditorable(false);// 设置是否可编辑
+		datepick.setEditorable(true);// 设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100, 30));// 设置大小
 		datepick.setBounds(244, 248, 175, 42);
-		
 		content.add(datepick);
 
 		final MTextfield hallno = new MTextfield();
@@ -71,8 +70,7 @@ public class CheckBill {
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("day", date);
 				if (epolist.GetIndex(0).getPaydate().equals("不存在")) {
 					JOptionPane.showMessageDialog(null, "当天没有收款单!");
-				}
-				else {
+				} else {
 					for (int i = 0; i < epolist.Getsize(); i++) {
 						Object[] add = { epolist.GetIndex(i).getPaydate(), epolist.GetIndex(i).getEarnedmoney(),
 								epolist.GetIndex(i).getDilivername(), epolist.GetIndex(i).getOrderID(),
@@ -110,28 +108,11 @@ public class CheckBill {
 
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
-		jp.setBounds(110, 358, 376,350);
+		jp.setBounds(110, 358, 376, 350);
 
 		content.add(jp);
 		content.add(timecheck);
 		content.add(hallcheck);
 		content.add(hallno);
-	}
-
-	public String[] GetBoxStr(int n, String meanth) {
-		String[] str = new String[n];
-		int year = 0;
-		int num;
-		if (meanth.equals("年"))
-			year = 2000;
-		for (int i = 0; i < n; i++) {
-			num = i + 1 + year;
-			if (num < 10)
-				str[i] = "0" + num + meanth;
-			else
-				str[i] = num + meanth;
-
-		}
-		return str;
 	}
 }

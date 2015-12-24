@@ -17,4 +17,8 @@ public class JPanelContent extends JPanel{
 		super.paintComponent(g);
 		g.drawImage(conpanel, 0, 0, null);
 	}
+	
+	public JPanel GetPanel(){
+		return this;
+	}
 }

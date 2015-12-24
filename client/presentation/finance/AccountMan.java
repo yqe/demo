@@ -130,6 +130,7 @@ public class AccountMan {
 		text[3].setBounds(840, 595, textw, texth);
 		text[0].setEditable(false);
 		text[2].setEditable(false);
+		text[3].setEditable(false);
 		for (int i = 0; i < text.length; i = i + 1) {
 			text[i].settextFont();
 			text[i].HideTheField();

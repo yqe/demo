@@ -76,6 +76,7 @@ public class CourierInfoStream {
 		try {
 			ExpressTrail trail = new ExpressTrail();
 			String goodid= (String) ois.readObject();
+			System.out.println(goodid);
 			ExpressTrailPO trailpo = trail.find(goodid);
 			oos.writeObject(trailpo);
 		} catch (ClassNotFoundException | IOException e) {
