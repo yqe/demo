@@ -1,17 +1,14 @@
 package finance;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Locale;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -21,6 +18,7 @@ import com.eltima.components.ui.DatePicker;
 
 import documentbl.Earneddocu;
 import image.ImageGet;
+import login.MTextfield;
 import po.EarnedPOList;
 import po.EmploeePO;
 
@@ -51,9 +49,9 @@ public class CheckBill {
 		
 		content.add(datepick);
 
-		final JTextField hallno = new JTextField();
-		hallno.setOpaque(false);
-		hallno.setBorder(BorderFactory.createEmptyBorder());
+		final MTextfield hallno = new MTextfield();
+		hallno.settextFont();
+		hallno.HideTheField();
 		hallno.setBounds(244, 298, 175, 42);
 
 		String[] columnnames = { "营业厅编号", "订单条形码号", "收款日期", "收款金额", "收款快递员" };

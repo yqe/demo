@@ -1,6 +1,5 @@
 package finance;
 
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,14 +8,11 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import financebl.FinanceBl;
-import financebl.SetAccount;
 import image.ImageGet;
+import login.MTextfield;
 import po.EmploeePO;
 import po.InitializeAccountPO;
 
@@ -37,8 +33,8 @@ public class BuildAccount {
 		Image imagebgp = new ImageGet().GetFinanceImage("CostMan");
 		content.setConpanel(imagebgp);
 		
-		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField(),
-				new JTextField(), new JTextField(), new JTextField() };
+		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield(),
+				new MTextfield(), new MTextfield(), new MTextfield() };
 
 		int Gapw = 399;
 		int Gaph = 258;
@@ -47,8 +43,8 @@ public class BuildAccount {
 		int texth = 42;
 
 		for (int i = 1; i < textfield.length - 1; i++) {
-			textfield[i].setOpaque(false);
-			textfield[i].setBorder(BorderFactory.createEmptyBorder());
+			textfield[i].settextFont();
+			textfield[i].HideTheField();
 			textfield[i].setBounds(Gapw, Gaph + (gap + texth) * i, textw, texth);
 			content.add(textfield[i]);
 		}

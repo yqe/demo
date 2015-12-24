@@ -3,6 +3,7 @@ package login;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
 public class MTextfield extends JTextField{
@@ -16,4 +17,8 @@ public class MTextfield extends JTextField{
 		this.setForeground(Color.white);
 	}
 	
+	public void HideTheField(){
+		this.setOpaque(false);
+		this.setBorder(BorderFactory.createEmptyBorder());
+	}
 }

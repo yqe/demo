@@ -17,6 +17,7 @@ import com.eltima.components.ui.DatePicker;
 import financebl.CostManage;
 import financebl.FinanceBl;
 import image.ImageGet;
+import login.MTextfield;
 import po.CostManagePO;
 import po.EmploeePO;
 import po.ManageAccountPO;
@@ -37,8 +38,8 @@ public class CostMan {
 		Image imagebgp = new ImageGet().GetFinanceImage("CostMan");
 		content.setConpanel(imagebgp);
 
-		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField(),
-				new JTextField(), new JTextField(), new JTextField() };
+		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield(),
+				new MTextfield(), new MTextfield(), new MTextfield() };
 
 		int Gapw = 399;
 		int Gaph = 258;
@@ -47,8 +48,8 @@ public class CostMan {
 		int texth = 42;
 
 		for (int i = 1; i < textfield.length - 1; i++) {
-			textfield[i].setOpaque(false);
-			textfield[i].setBorder(BorderFactory.createEmptyBorder());
+			textfield[i].settextFont();
+			textfield[i].HideTheField();
 			textfield[i].setBounds(Gapw, Gaph + (gap + texth) * i, textw, texth);
 			content.add(textfield[i]);
 		}

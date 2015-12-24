@@ -86,8 +86,8 @@ public class StateOfRun {
 		jp2.setOpaque(false);
 		jp2.getViewport().setOpaque(false);
 
-		jp1.setBounds(92, 362, 380, 352);
-		jp2.setBounds(544, 362, 380, 352);
+		jp1.setBounds(92, 362, 300, 352);
+		jp2.setBounds(544, 362, 460, 352);
 		content.add(jp1);
 		content.add(jp2);
 

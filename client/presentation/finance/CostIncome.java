@@ -1,17 +1,12 @@
 package finance;
 
-import java.awt.Font;
 import java.awt.Image;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import financebl.FinanceBl;
 import image.ImageGet;
+import login.MTextfield;
 import po.EmploeePO;
 
 public class CostIncome {
@@ -34,13 +29,13 @@ public class CostIncome {
 		int textw=175;
 		int texth=42;
 
-		JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField() };
+		MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield() };
 		textfield[0].setBounds(Gapw, 358, textw, texth);
 		textfield[1].setBounds(Gapw, 430, textw, texth);
 		textfield[2].setBounds(Gapw, 504, textw, texth);
 		for (int i = 0; i < textfield.length; i++) {
-			textfield[i].setOpaque(false);
-			textfield[i].setBorder(BorderFactory.createEmptyBorder());
+			textfield[i].settextFont();
+			textfield[i].HideTheField();
 			textfield[i].setEditable(false);
 			content.add(textfield[i]);
 		}

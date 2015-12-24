@@ -8,13 +8,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import financebl.FinanceBl;
 import image.ImageGet;
+import login.MTextfield;
 import po.EmploeePO;
 import po.ManageAccountPO;
 
@@ -47,12 +45,12 @@ public class AccountMan {
 	}
 	
 	public void AddAcc(JPanelContent content) {
-		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField() };
+		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield() };
 		textfield[0].setBounds(Gapw,322,textw,texth);
-		textfield[0].setBounds(Gapw,279,textw,texth);
+		textfield[1].setBounds(Gapw,279,textw,texth);
 		for (int i = 0; i < textfield.length; i++) {
-			textfield[i].setOpaque(false);
-			textfield[i].setBorder(BorderFactory.createEmptyBorder());
+			textfield[i].settextFont();
+			textfield[i].HideTheField();
 			content.add(textfield[i]);
 		}
 		JButtonM btn = new JButtonM("确定增加");
@@ -92,9 +90,9 @@ public class AccountMan {
 
 	public void DeleteAcc(JPanelContent content) {
 
-		final JTextField accname = new JTextField();
-		accname.setOpaque(false);
-		accname.setBorder(BorderFactory.createEmptyBorder());
+		final MTextfield accname = new MTextfield();
+		accname.settextFont();
+		accname.HideTheField();
 		JButtonM delbtn = new JButtonM("确定删除");
 		delbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -122,12 +120,12 @@ public class AccountMan {
 
 	public void ChangeAcc(JPanelContent content) {
 
-		final JTextField accname = new JTextField();
+		final MTextfield accname = new MTextfield();
 		accname.setOpaque(false);
 		accname.setBorder(BorderFactory.createEmptyBorder());
 		accname.setBounds(610, 477, textw, texth);
-		final JTextField[] text = new JTextField[] { new JTextField(), new JTextField(), new JTextField(),
-				new JTextField() };
+		final MTextfield[] text = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield(),
+				new MTextfield() };
 		
 		text[0].setBounds(632,534, textw, texth);
 		text[1].setBounds(840,532, textw, texth);
@@ -136,8 +134,8 @@ public class AccountMan {
 		text[0].setEditable(false);
 		text[2].setEditable(false);
 		for (int i = 0; i < text.length; i = i + 1) {
-			text[i].setOpaque(false);
-			text[i].setBorder(BorderFactory.createEmptyBorder());
+			text[i].settextFont();
+			text[i].HideTheField();
 			content.add(text[i]);
 		}
 		JButtonM btn = new JButtonM("确定搜索");
@@ -195,19 +193,20 @@ public class AccountMan {
 
 	public void CheckAcc(JPanelContent content) {
 
-		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField() };
+		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield() };
 		textfield[0].setBounds(Gapw,496, textw, texth);
 		textfield[1].setBounds(Gapw,549, textw, texth);
 		textfield[2].setBounds(Gapw,606, textw, texth);
 		for (int i = 0; i < textfield.length; i++) {
+			textfield[i].settextFont();
+			textfield[i].HideTheField();
 			content.add(textfield[i]);
-			textfield[i].setOpaque(false);
-			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 		}
 		textfield[1].setEditable(false);
 		textfield[2].setEditable(false);
 
 		JButtonM button = new JButtonM("确认查询");
+		button.setFont(new Font("幼圆", Font.BOLD, 16));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!textfield[0].getText().equals("")) {
