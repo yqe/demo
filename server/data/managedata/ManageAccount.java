@@ -67,15 +67,15 @@ public class ManageAccount implements ManageAccountService {
 		}
 	}
 
-	public boolean delete(String ID) {
+	public boolean delete(String name) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
-			String s=this.find(ID).getAccountname();
+			String s=this.find(name).getAccountname();
 			if (s.equals("不存在")) {
 				return false;
 			} else {
-				String delete = "DELETE FROM 账户管理" + " WHERE 账户ID='" + ID + "'";
+				String delete = "DELETE FROM 账户管理" + " WHERE 账户名称='" + name + "'";
 				mysqlimp.update(delete);
 				return true;
 			}
