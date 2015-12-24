@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import login.MTextfield;
 import goodsbl.GoodsBl;
 
 public class Inquiry {
@@ -29,6 +30,12 @@ public class Inquiry {
 	private ImageIcon button1;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
+	final JPanel p1 = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public Inquiry(ObjectOutputStream oos, ObjectInputStream ois) {
 		this.oos = oos;
@@ -40,32 +47,28 @@ public class Inquiry {
 	        Image bgp=ImageGet.getImageByState("Inquiry");
 		background = new ImageIcon(bgp);
 
-		final JPanel p1 = new JPanel() {
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(background.getImage(), 0, 0, null);
-			}
-		};
 		p1.setBounds(0, 0, 1000, 611);
 
 	
 
-		final JTextField t1 = new JTextField();
-		final JTextField t2 = new JTextField();
+		final MTextfield t1 = new MTextfield();
+		final MTextfield t2 = new MTextfield();
 
+		t1.settextFont();t2.settextFont();
+		
 		t1.setOpaque(false);
 		t2.setOpaque(false);
 		t1.setBorder(BorderFactory.createEmptyBorder());
 		t2.setBorder(BorderFactory.createEmptyBorder());
 
-//		JButton b3 = new JButton("退出");
-//		b3.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				System.exit(0);
-//			}
-//		});
+		JButton b3 = new JButton();
+		b3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 
-		JButton b4 = new JButton("查询");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String goodid = t1.getText();
@@ -74,7 +77,7 @@ public class Inquiry {
 					String route = gb.GoodsInquiry(goodid);
 					t2.setText(route);
 				} else
-					JOptionPane.showMessageDialog(null, "请输入订单条形码号!");
+					JOptionPane.showMessageDialog(null, "请输入正确的订单条形码号!");
 				// boolean isid = true;
 				// if (!t1.getText().equals("")) {
 				// if (isid) {
@@ -95,17 +98,20 @@ public class Inquiry {
 		p1.add(t1);
 		p1.add(t2);
 
-//		p1.add(b3);
+		p1.add(b3);
 		p1.add(b4);
 
 	
 
 	
-//		t1.setBounds(275, 2 * b4yloc / 3 - 20, 200, 30);
-//		t2.setBounds(275, 7 * b4yloc / 5 - 20, 280, 150);
+		t1.setBounds(402, 75, 271, 70);
+		t2.setBounds(146, 178, 712, 358);
 
-//		b3.setBounds(b1xloc + 2 * b1xsize, b1yloc, 60, 30);
-//		b4.setBounds(275, b4yloc - 20, 180, 40);
+		b3.setContentAreaFilled(false);b3.setBorder(BorderFactory.createEmptyBorder());
+		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+		
+		b4.setBounds(751, 75, 246, 70);
+		b3.setBounds(865, 540, 120, 54);
 
 		return p1;
 

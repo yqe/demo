@@ -116,10 +116,11 @@ public class load {
 
 		String[] site = { "上海", "北京", "南京", "深圳", "广州", "杭州" };
 
+		Color text=new Color(175,172,172);
 		final JComboBox sitebox = new JComboBox(site);
 		
 		sitebox.setOpaque(false);
-        sitebox.setBackground(Color.gray);
+        sitebox.setBackground(text);
 		sitebox.setForeground(Color.white);
 		
 		

@@ -2,6 +2,7 @@ package Boclerk;
 
 import image.ImageGet;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -105,9 +106,18 @@ public class Maintenance {
 		for (int i = 1; i <= 20; i++) {
 			time[i - 1] = i + "年";
 		}
+		
+		Color text=new Color(175,172,172);
+		
 		final JComboBox timebox1 = new JComboBox(time);
+		
+		timebox1.setBackground(text);
+		timebox1.setForeground(Color.white);
 
 		final JComboBox timebox2 = new JComboBox(time);
+		
+		timebox2.setBackground(text);
+		timebox2.setForeground(Color.white);
 
 		final JRadioButton jb1 = new JRadioButton();
 		jb1.setSelected(true);

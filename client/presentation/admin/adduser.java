@@ -62,10 +62,21 @@ public class adduser {
 		final MTextfield t1 = new MTextfield();
 		final MTextfield t2 = new MTextfield();
 		final MTextfield t3 = new MTextfield();
+		Color text=new Color(0,0,0);
+		
 		final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
 		final JComboBox job = new JComboBox(jobs);
 		job.setOpaque(false);
-		
+		job.setUI(new BasicComboBoxUI() {
+            public void installUI(JComponent job) {
+                super.installUI(job);
+//                listBox.setBackground();           
+                listBox.setSelectionForeground(Color.BLACK);
+            }
+            protected JButton createArrowButton() {
+                return super.createArrowButton();
+            }
+        });
              
         
 

@@ -80,14 +80,17 @@ public class arrival {
 
 		
 
+		
+		Color text=new Color(175,172,172);
+		
 		String[] site = { "南京", "上海", "北京", "杭州", "广州", "苏州", "成都", "武汉" };
 		final JComboBox sitebox = new JComboBox(site);
-		 sitebox.setBackground(Color.gray);
-			sitebox.setForeground(Color.white);
+		 sitebox.setBackground(text);
+		 sitebox.setForeground(Color.white);
 
 		String[] state = { "损坏", "完整", "丢失" };
 		final JComboBox statebox = new JComboBox(state);
-		 statebox.setBackground(Color.gray);
+		 statebox.setBackground(text);
 			statebox.setForeground(Color.white);
 
 		String[] columnnames = { "", "", "", "", "" };
@@ -107,6 +110,7 @@ public class arrival {
 					    return c;
 					   }
 					  };
+	    table.setForeground(Color.white);
 		table.setOpaque(false);
 		table.setRowHeight(31);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
