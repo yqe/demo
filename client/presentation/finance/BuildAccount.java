@@ -1,13 +1,13 @@
 package finance;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,18 +16,12 @@ import javax.swing.JTextField;
 
 import financebl.FinanceBl;
 import financebl.SetAccount;
+import image.ImageGet;
 import po.EmploeePO;
 import po.InitializeAccountPO;
 
 public class BuildAccount {
-	int labelw = 120;
-	int labelh = 30;
-	int textw = 150;
-	int texth = 30;
-	int gap = 20;
-	int gaph = 30;
-	int Gapw=200;
-	int Gaph=230;
+	
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
@@ -38,32 +32,37 @@ public class BuildAccount {
 		this.emPO=emPO;
 	}
 
-	public void buildaccount(JPanel context) {
-		context.removeAll();
+	public void buildaccount(JPanelContent content) {
+		content.removeAll();
+		Image imagebgp = new ImageGet().GetFinanceImage("CostMan");
+		content.setConpanel(imagebgp);
 		
-		JLabel[] label = new JLabel[] { new JLabel("机构:"), new JLabel("人员:"), new JLabel("车辆:"), new JLabel("库存:"),
-				new JLabel("银行账户名称:"), new JLabel("银行账户金额:") };
-		for (int i = 0; i < label.length; i++) {
-			label[i].setFont(new Font("", Font.PLAIN, 18));
-			label[i].setBounds(Gapw, Gaph + (labelh + gaph) * i, labelw, labelh);
-			context.add(label[i]);
-		}
 		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField(),
 				new JTextField(), new JTextField(), new JTextField() };
-		for (int i = 1; i < textfield.length; i++) {
-			textfield[i].setBounds(Gapw + gap + labelw, Gaph + (texth + gaph) * i, textw, texth);
+
+		int Gapw = 399;
+		int Gaph = 258;
+		int gap = 29;
+		int textw = 175;
+		int texth = 42;
+
+		for (int i = 1; i < textfield.length - 1; i++) {
 			textfield[i].setOpaque(false);
 			textfield[i].setBorder(BorderFactory.createEmptyBorder());
-			context.add(textfield[i]);
+			textfield[i].setBounds(Gapw, Gaph + (gap + texth) * i, textw, texth);
+			content.add(textfield[i]);
 		}
+		textfield[textfield.length - 1].setBounds(Gapw, 605, textw, texth);
+		textfield[textfield.length - 1].setOpaque(false);
+		textfield[textfield.length - 1].setBorder(BorderFactory.createEmptyBorder());
+		content.add(textfield[textfield.length - 1]);
 		
 		String[]organ={"营业厅","中转中心", "总部"};	    
 	    final JComboBox organbox = new JComboBox(organ);
+	    content.add(organbox);
+		organbox.setBounds(Gapw, Gaph, textw, texth);
 	    
-	    context.add(organbox);
-		organbox.setBounds(Gapw + gap + labelw, Gaph, textw, texth);
-	    
-		JButton btn=new JButton("确定");
+		JButtonM btn=new JButtonM("确定");
 		btn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {			
 				boolean isnum=true;			
@@ -101,8 +100,9 @@ public class BuildAccount {
 			
 		});
 
-		btn.setBounds(320, 600, labelw, labelh+10);
-		context.add(btn);
+		btn.setBounds(746, 631, 199, 52);
+		btn.HideTheButton();
+		content.add(btn);
 	}
 }
 

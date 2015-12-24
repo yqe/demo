@@ -2,6 +2,7 @@ package finance;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -9,8 +10,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Locale;
-
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,6 +29,7 @@ import po.EarnedPOList;
 import po.EmploeePO;
 import documentbl.Earneddocu;
 import financebl.CostManage;
+import image.ImageGet;
 
 public class StateOfRun {
 
@@ -43,43 +43,30 @@ public class StateOfRun {
 		this.emPO = emPO;
 	}
 
-	public void stateofrun(JPanel context) {
-		context.removeAll();
-		int labelw = 80;
-		int labelh = 30;
-		int boxw = 60;
-		int boxh = 25;
-		int boxgap = 10;
-		int Gapw = 40;
-		int Gaph = 220;
+	public void stateofrun(JPanelContent content) {
+		content.removeAll();
+		Image bgp = new ImageGet().GetFinanceImage("StateOfRun");
+		content.setConpanel(bgp);
+
 		final JTextField time1 = new JTextField();
 		final DatePicker datepick1 = new DatePicker(time1);
-		datepick1.setLocale(Locale.CHINA);//设置显示语言
-	    datepick1.setPattern("yyyy-MM-dd");//设置日期格式化字符串
-	    datepick1.setEditorable(false);//设置是否可编辑
-		datepick1.setPreferredSize(new Dimension(100,30));//设置大小
-		
+		datepick1.setLocale(Locale.CHINA);// 设置显示语言
+		datepick1.setPattern("yyyy-MM-dd");// 设置日期格式化字符串
+		datepick1.setEditorable(false);// 设置是否可编辑
+		datepick1.setPreferredSize(new Dimension(100, 30));// 设置大小
+
 		final JTextField time2 = new JTextField();
 		final DatePicker datepick2 = new DatePicker(time2);
-		datepick2.setLocale(Locale.CHINA);//设置显示语言
-	    datepick2.setPattern("yyyy-MM-dd");//设置日期格式化字符串
-	    datepick2.setEditorable(false);//设置是否可编辑
-		datepick2.setPreferredSize(new Dimension(100,30));//设置大小
-		
-		
-		JLabel[] label = new JLabel[] { new JLabel("开始日期:"), new JLabel("结束日期:") };
-		for (int i = 0; i < label.length; i++) {
-			label[i].setFont(new Font("", Font.PLAIN, 16));
-			label[i].setBounds(Gapw + (labelw + boxgap * 4 + boxw * 3) * i, Gaph, labelw, labelh);
-			context.add(label[i]);
-			
-		}
-		  datepick1.setBounds(Gapw + labelw , Gaph,150,boxh);
-		  datepick2.setBounds(Gapw + labelw + (labelw + boxw * 3 + boxgap * 5), Gaph,150,boxh);
-			context.add(datepick1);
-			context.add(datepick2);
-	
-	
+		datepick2.setLocale(Locale.CHINA);// 设置显示语言
+		datepick2.setPattern("yyyy-MM-dd");// 设置日期格式化字符串
+		datepick2.setEditorable(false);// 设置是否可编辑
+		datepick2.setPreferredSize(new Dimension(100, 30));// 设置大小
+
+		datepick1.setBounds(207, 272, 174, 42);
+		datepick2.setBounds(453, 272, 174, 42);
+		content.add(datepick1);
+		content.add(datepick2);
+
 		String[] columnnames = { "订单条形码号", "到达日期", "收款金额", "快递员" };
 		String[] columnnames2 = { "付款日期", "付款金额", "付款人", "付款账户", "条目", "备注" };
 		Object[][] data = {};
@@ -99,20 +86,18 @@ public class StateOfRun {
 		jp2.setOpaque(false);
 		jp2.getViewport().setOpaque(false);
 
-		jp1.setBounds(Gapw, Gaph+labelh+5, 300, 350);
-		jp2.setBounds(Gapw + 350 + 20, Gaph+labelh+5, 300, 350);
-		context.add(jp1);
-		context.add(jp2);
+		jp1.setBounds(92, 362, 380, 352);
+		jp2.setBounds(544, 362, 380, 352);
+		content.add(jp1);
+		content.add(jp2);
 
-		JButton okbtn = new JButton("确定");
+		JButtonM okbtn = new JButtonM("确定查看");
+		okbtn.HideTheButton();
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				String startdate =datepick1.getText();
-         		String enddate = datepick2.getText();
 
-				// System.out.println(startdate);
-				// System.out.println(enddate);
+				String startdate = datepick1.getText();
+				String enddate = datepick2.getText();
 
 				CostManage costmanage = new CostManage(oos, ois);
 				Earneddocu earneddocu = new Earneddocu(oos, ois);
@@ -146,8 +131,8 @@ public class StateOfRun {
 			}
 		});
 
-		okbtn.setBounds(645, Gaph, 70, 30);
-		context.add(okbtn);
+		okbtn.setBounds(702, 272, 175, 42);
+		content.add(okbtn);
 
 	}
 

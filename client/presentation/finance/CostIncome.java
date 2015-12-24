@@ -1,6 +1,7 @@
 package finance;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -10,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import financebl.FinanceBl;
+import image.ImageGet;
 import po.EmploeePO;
 
 public class CostIncome {
@@ -18,39 +20,31 @@ public class CostIncome {
 	private EmploeePO emPO;
 
 	public CostIncome(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
-		this.oos=oos;
-		this.ois=ois;
-		this.emPO=emPO;
+		this.oos = oos;
+		this.ois = ois;
+		this.emPO = emPO;
 	}
 
-	public void costincome(JPanel context) {
-		context.removeAll();
-		int labelw = 100;
-		int labelh = 30;
-		int textw = 150;
-		int texth = 30;
-		int gap = 20;
-		int gaph = 80;
-		int Gaph=150;
-		int Gapw=200;
-		JLabel[] label = new JLabel[] { new JLabel("总收入:"), new JLabel("总支出:"),
-				new JLabel("总利润:") };
-		for (int i = 0; i < label.length; i++) {
-			label[i].setFont(new Font("", Font.PLAIN, 25));
-			label[i].setBounds(Gapw, Gaph+100 + (labelh + gaph) * i, labelw, labelh);
-			context.add(label[i]);
-		}
-		JTextField[] textfield = new JTextField[] { new JTextField(),
-				new JTextField(), new JTextField() };
+	public void costincome(JPanelContent content) {
+		content.removeAll();
+		Image bgp = new ImageGet().GetFinanceImage("CostIncome");
+		content.setConpanel(bgp);
+		
+		int Gapw=470;
+		int textw=175;
+		int texth=42;
+
+		JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField() };
+		textfield[0].setBounds(Gapw, 358, textw, texth);
+		textfield[1].setBounds(Gapw, 430, textw, texth);
+		textfield[2].setBounds(Gapw, 504, textw, texth);
 		for (int i = 0; i < textfield.length; i++) {
 			textfield[i].setOpaque(false);
 			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 			textfield[i].setEditable(false);
-			textfield[i].setBounds(Gapw + gap + labelw, Gaph+100 + (texth + gaph) * i,
-					textw, texth);
-			context.add(textfield[i]);
+			content.add(textfield[i]);
 		}
-		FinanceBl finance = new FinanceBl(oos,ois);
+		FinanceBl finance = new FinanceBl(oos, ois);
 		String s[] = finance.GetCostInfo();
 		textfield[0].setText(s[0]);
 		textfield[1].setText(s[1]);

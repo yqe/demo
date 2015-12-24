@@ -1,5 +1,6 @@
 package finance;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,14 +28,13 @@ import po.EmploeePO;
 
 public class financemainui {
 
-	JPanel context = new JPanel();
 	private Image bgp;
 	private Image cmdbgp;
 	int width;
 	int height;
 	int cmdwidth;
-	JButton[] cmdbutton = new JButton[] { new JButton("返回登录界面"),new JButton("账户管理"), new JButton("查看收款单"), new JButton("成本管理"),
-			new JButton("成本收益表"), new JButton("经营情况表"), new JButton("期初建账"), new JButton("退出") };
+	JButtonM[] cmdbutton = new JButtonM[] { new JButtonM("返回登录界面"), new JButtonM("账户管理"), new JButtonM("查看收款单"),
+			new JButtonM("成本管理"), new JButtonM("成本收益表"), new JButtonM("经营情况表"), new JButtonM("期初建账"), new JButtonM("退出") };
 	private Socket socket;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
@@ -61,10 +60,12 @@ public class financemainui {
 		}
 	};
 
+	JPanelContent content = new JPanelContent();
+
 	public JPanel financemainui() throws IOException {
 
-//		bgp = new ImageGet().getImageByState("StorageBGP");
-//		cmdbgp = new ImageGet().getImageByState("StorageCMD");//财务的图到时候你自己加吧
+		bgp = new ImageGet().GetFinanceImage("FinanceBGP");
+		cmdbgp = new ImageGet().GetFinanceImage("FinanceCMD");
 
 		width = bgp.getWidth(null);
 		height = bgp.getHeight(null);
@@ -77,24 +78,25 @@ public class financemainui {
 		cmdpanel.setOpaque(false);
 		cmdpanel.setBounds(0, 0, cmdwidth, height);
 		cmdpanel.setLayout(null);
-		AddcmdButton();
+		AddcmdComp();
 
-		context.setOpaque(false);
-		context.setBounds(cmdwidth, 0, width, height);
-		context.setLayout(null);
-
+		content.setOpaque(false);
+		content.setBounds(cmdwidth, 0, width, height);
+		content.setLayout(null);
+		
 		contain.add(cmdpanel);
-		contain.add(context);
-		new CheckBill(oos, ois, emPO).CheckBill(context);
-		context.repaint();
+		contain.add(content);
+
+		new AccountMan(oos, ois, emPO).AccMan(content);
+		content.repaint();
 		return contain;
 	}
 
-	public void AddcmdButton() {
-		int buttonw=191;
-		int buttonh=40;
-		int gapw=88;;
-		cmdbutton[0].setBounds(gapw, 249, buttonw, 33);
+	public void AddcmdComp() {
+		int buttonw = 191;
+		int buttonh = 40;
+		int gapw = 88;
+		cmdbutton[0].setBounds(gapw, 249, buttonw, buttonh);
 		cmdbutton[1].setBounds(gapw, 327, buttonw, buttonh);
 		cmdbutton[2].setBounds(gapw, 390, buttonw, buttonh);
 		cmdbutton[3].setBounds(gapw, 453, buttonw, buttonh);
@@ -104,46 +106,54 @@ public class financemainui {
 		cmdbutton[7].setBounds(gapw, 693, buttonw, buttonh);
 		for (int i = 0; i < cmdbutton.length; i++) {
 			cmdpanel.add(cmdbutton[i]);
+			cmdbutton[i].HideTheButton();
+			cmdbutton[i].addActionListener(new CmdActionListener());
 		}
+		JLabel emname = new JLabel(emPO.getName());
+		emname.setBounds(210, 115, buttonw, buttonh);
+		emname.setFont(new Font("幼圆", Font.PLAIN, 25));
+		emname.setForeground(Color.white);
+		JLabel emid = new JLabel(emPO.getEmpID());
+		emid.setBounds(85, 210, buttonw, buttonh);
+		emid.setFont(new Font("幼圆", Font.PLAIN, 25));
+		emid.setForeground(Color.white);
+		JLabel emposid = new JLabel(emPO.getPosID());
+		emposid.setBounds(210, 210, buttonw, buttonh);
+		emposid.setFont(new Font("幼圆", Font.PLAIN, 25));
+		emposid.setForeground(Color.white);
+		cmdpanel.add(emname);
+		cmdpanel.add(emid);
+		cmdpanel.add(emposid);
 	}
 
-	public void changepanel(JPanel p1) {
-		contain.remove(context);
-		context = p1;
-		context.setBounds(cmdwidth, 0, context.getWidth(), context.getHeight());
-		contain.add(context);
-		context.repaint();
-		contain.repaint();
-		contain.revalidate();
-	}
 
 	public class CmdActionListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
 			case "账户管理":
-				new AccountMan(oos, ois, emPO);
+				new AccountMan(oos, ois, emPO).AccMan(content);
+				content.repaint();
 				break;
 			case "查看收款单":
-				new CheckBill(oos, ois, emPO).CheckBill(context);
-				context.repaint();
+				new CheckBill(oos, ois, emPO).CheckBill(content);
+				content.repaint();
 				break;
 			case "成本管理":
-				new CostMan(oos, ois, emPO).costMan(context);
-				context.repaint();
+				new CostMan(oos, ois, emPO).costMan(content);
+				content.repaint();
 				break;
 			case "成本收益表":
-				new CostIncome(oos, ois, emPO).costincome(context);
-				context.repaint();
+				new CostIncome(oos, ois, emPO).costincome(content);
+				content.repaint();
 				break;
 			case "经营情况表":
-				OperateState();
-				new StateOfRun(oos, ois, emPO).stateofrun(context);
-				context.repaint();
+				new StateOfRun(oos, ois, emPO).stateofrun(content);
+				content.repaint();
 				break;
 			case "期初建账":
-				new BuildAccount(oos, ois, emPO).buildaccount(context);
-				context.repaint();
+				new BuildAccount(oos, ois, emPO).buildaccount(content);
+				content.repaint();
 				break;
 			case "导出表单":
 
@@ -155,44 +165,4 @@ public class financemainui {
 		}
 	}
 
-	private void ShowEmpInfo() {
-		int b2size = 16;
-		JLabel employid = new JLabel("工号 :");
-		JLabel employjob = new JLabel("职位 :");
-		employid.setFont(new Font("", Font.PLAIN, b2size));
-		employjob.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField idt = new JTextField();
-		idt.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField namet = new JTextField();
-		namet.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField jobt = new JTextField();
-		jobt.setFont(new Font("", Font.PLAIN, b2size));
-		idt.setOpaque(false);
-		idt.setEditable(false);
-		idt.setBorder(BorderFactory.createEmptyBorder());
-		namet.setOpaque(false);
-		namet.setEditable(false);
-		namet.setBorder(BorderFactory.createEmptyBorder());
-		jobt.setOpaque(false);
-		jobt.setEditable(false);
-		jobt.setBorder(BorderFactory.createEmptyBorder());
-		employid.setBounds(40, 150, 60, 30);
-		employjob.setBounds(40, 180, 60, 30);
-		namet.setBounds(40, 120, 80, 30);
-		idt.setBounds(100, 150, 80, 30);
-		jobt.setBounds(100, 180, 80, 30);
-		idt.setText(emPO.getEmpID());
-		namet.setText(emPO.getName());
-		jobt.setText(emPO.getPosition());
-
-		cmdpanel.add(employid);
-		cmdpanel.add(employjob);
-		cmdpanel.add(idt);
-		cmdpanel.add(namet);
-		cmdpanel.add(jobt);
-	}
-
-	public void OperateState() {
-
-	}
 }

@@ -1,30 +1,31 @@
 package finance;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import financebl.FinanceBl;
+import image.ImageGet;
 import po.EmploeePO;
 import po.ManageAccountPO;
 
 public class AccountMan {
 	int labelw = 120;
 	int labelh = 30;
-	int textw = 150;
-	int texth = 30;
+	int textw = 140;
+	int texth = 15;
 	int gap = 20;
 	int gaph = 80;
-	int Gapw=120;
+	int Gapw=178;
 	int Gaph=250;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
@@ -35,24 +36,26 @@ public class AccountMan {
 		this.ois = ois;
 		this.emPO = emPO;
 	}
-
-	public void AddAcc(JPanel context) {
-		context.removeAll();
-		JLabel[] label = new JLabel[] { new JLabel("账户名称:"), new JLabel("账户金额:") };
-		for (int i = 0; i < label.length; i++) {
-			label[i].setFont(new Font("", Font.PLAIN, 25));
-			label[i].setBounds(Gapw, Gaph + (labelh + gaph) * i, labelw, labelh);
-			context.add(label[i]);
-		}
+	public void AccMan(JPanelContent content){
+		content.removeAll();
+		Image imagebgp = new ImageGet().GetFinanceImage("");
+		content.setConpanel(imagebgp);
+		AddAcc(content);
+		DeleteAcc(content);
+		ChangeAcc(content);
+		CheckAcc(content);
+	}
+	
+	public void AddAcc(JPanelContent content) {
 		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField() };
+		textfield[0].setBounds(Gapw,322,textw,texth);
+		textfield[0].setBounds(Gapw,279,textw,texth);
 		for (int i = 0; i < textfield.length; i++) {
-			textfield[i].setBounds(Gapw + gap + labelw, Gaph + (texth + gaph) * i, textw, texth);
 			textfield[i].setOpaque(false);
 			textfield[i].setBorder(BorderFactory.createEmptyBorder());
-			context.add(textfield[i]);
+			content.add(textfield[i]);
 		}
-		
-		JButton btn = new JButton("确定增加");
+		JButtonM btn = new JButtonM("确定增加");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean isnum = true;
@@ -80,24 +83,19 @@ public class AccountMan {
 				} else {
 					JOptionPane.showMessageDialog(null, "请将信息填写完整!");
 				}
-
 			}
-
 		});
-
-		btn.setBounds(450, 500, 120, 40);
-		context.add(btn);
+		btn.setBounds(178, 339, 160, 50);
+		btn.HideTheButton();
+		content.add(btn);
 	}
 
-	public void DeleteAcc(JPanel context) {
-		context.removeAll();
-		JLabel accmean = new JLabel("账户名称:");
-		accmean.setBounds(Gapw, 300, labelw, texth);
-		accmean.setFont(new Font("", Font.PLAIN, 25));
+	public void DeleteAcc(JPanelContent content) {
+
 		final JTextField accname = new JTextField();
 		accname.setOpaque(false);
 		accname.setBorder(BorderFactory.createEmptyBorder());
-		JButton delbtn = new JButton("确定删除");
+		JButtonM delbtn = new JButtonM("确定删除");
 		delbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean isempty = accname.getText().equals("");
@@ -114,54 +112,35 @@ public class AccountMan {
 			}
 		});
 
-		accname.setBounds(Gapw + 120 + 40, 300, textw, texth);
-		delbtn.setBounds(240, 360, labelw, labelh);
-
-		context.add(accmean);
-		context.add(accname);
-		context.add(delbtn);
+		accname.setBounds(655, 232, textw, texth);
+		delbtn.setBounds(587, 337, 160, 50);
+		
+		delbtn.HideTheButton();
+		content.add(accname);
+		content.add(delbtn);
 	}
 
-	public void ChangeAcc(JPanel context) {
-		context.removeAll();
-		JLabel accmean = new JLabel("账户ID:");
-		accmean.setBounds(Gapw, Gaph, labelw, texth);
-		accmean.setFont(new Font("", Font.PLAIN, 20));
-		JLabel[] account = new JLabel[] { new JLabel("原账户名称:"), new JLabel("现账户名称:"), new JLabel("原账户金额:"),
-				new JLabel("现账户金额:") };
+	public void ChangeAcc(JPanelContent content) {
 
-		for (int i = 0; i < account.length; i = i + 2) {
-			account[i].setBounds(Gapw, Gaph + gaph * (i + 1), labelw, texth);
-			account[i + 1].setBounds(Gapw + textw + gap + 80 + gap, Gaph + gaph * (i + 1), labelw, texth);
-			account[i].setFont(new Font("", Font.PLAIN, 16));
-			account[i + 1].setFont(new Font("", Font.PLAIN, 16));
-			context.add(account[i]);
-			context.add(account[i + 1]);
-		}
 		final JTextField accname = new JTextField();
 		accname.setOpaque(false);
 		accname.setBorder(BorderFactory.createEmptyBorder());
-		accname.setBounds(Gapw + 100 + 20, Gaph, textw, texth);
+		accname.setBounds(610, 477, textw, texth);
 		final JTextField[] text = new JTextField[] { new JTextField(), new JTextField(), new JTextField(),
 				new JTextField() };
-
-		text[0].setOpaque(false);
-		text[0].setBorder(BorderFactory.createEmptyBorder());
-		text[1].setOpaque(false);
-		text[1].setBorder(BorderFactory.createEmptyBorder());
-		text[2].setOpaque(false);
-		text[2].setBorder(BorderFactory.createEmptyBorder());
-		text[3].setOpaque(false);		
-		text[3].setBorder(BorderFactory.createEmptyBorder());
+		
+		text[0].setBounds(632,534, textw, texth);
+		text[1].setBounds(840,532, textw, texth);
+		text[2].setBounds(632,592, textw, texth);
+		text[3].setBounds(840,589, textw, texth);
 		text[0].setEditable(false);
 		text[2].setEditable(false);
-		for (int i = 0; i < text.length; i = i + 2) {
-			text[i].setBounds(Gapw + 80 + gap, Gaph + gaph * (i + 1), textw, texth);
-			text[i + 1].setBounds(Gapw + textw + gap + 80 + 80 + gap + gap, Gaph + gaph * (i + 1), textw, texth);
-			context.add(text[i]);
-			context.add(text[i + 1]);
+		for (int i = 0; i < text.length; i = i + 1) {
+			text[i].setOpaque(false);
+			text[i].setBorder(BorderFactory.createEmptyBorder());
+			content.add(text[i]);
 		}
-		JButton btn = new JButton("确定搜索");
+		JButtonM btn = new JButtonM("确定搜索");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!accname.getText().equals("")) {
@@ -178,9 +157,9 @@ public class AccountMan {
 				}
 			}
 		});
-
-		btn.setBounds(400, Gaph, labelw, labelh);
-		JButton changebtn = new JButton("确定修改");
+		btn.setBounds(818, 476, 111, 29);
+		btn.HideTheButton();
+		JButtonM changebtn = new JButtonM("确定修改");
 		changebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean isnum = true;
@@ -192,10 +171,6 @@ public class AccountMan {
 				boolean idisempty = text[1].getText().equals("");
 				boolean numisempty = text[3].getText().equals("");
 				boolean isempty = idisempty || numisempty;
-
-				FinanceBl finance = new FinanceBl(oos, ois);
-				// ManageAccountPO
-				// mapo=finance.CheckBankAccount(accname.getText());
 				if (!isempty && isnum) {
 					FinanceBl change = new FinanceBl(oos, ois);
 					ManageAccountPO mapo = new ManageAccountPO(text[1].getText(), Double.valueOf(text[3].getText()),
@@ -210,43 +185,29 @@ public class AccountMan {
 
 			}
 		});
-		changebtn.setBounds(400, 600, labelw, labelh);
-		context.add(accmean);
-		context.add(accname);
-		context.add(btn);
-		context.add(changebtn);
+		changebtn.setBounds(769, 657, 160, 50);
+		changebtn.HideTheButton();
+		content.add(accname);
+		content.add(btn);
+		content.add(changebtn);
 
 	}
 
-	public void CheckAcc(JPanel context) {
-		context.removeAll();
-		JLabel[] label = new JLabel[] { new JLabel("账户名称:"), new JLabel("账户金额:") };
+	public void CheckAcc(JPanelContent content) {
 
-		for (int i = 0; i < label.length; i++) {
-			label[i].setFont(new Font("", Font.PLAIN, 18));
-			label[i].setBounds(Gapw, Gaph + (labelh + gaph) * i + 100, labelw, labelh);
-			context.add(label[i]);
-		}
 		final JTextField[] textfield = new JTextField[] { new JTextField(), new JTextField(), new JTextField() };
-		for (int i = 1; i < textfield.length; i++) {
-			textfield[i].setBounds(Gapw + gap + labelw, Gaph + (texth + gaph) * (i - 1) + 100, textw, texth);
-			context.add(textfield[i]);
+		textfield[0].setBounds(Gapw,496, textw, texth);
+		textfield[1].setBounds(Gapw,549, textw, texth);
+		textfield[2].setBounds(Gapw,606, textw, texth);
+		for (int i = 0; i < textfield.length; i++) {
+			content.add(textfield[i]);
 			textfield[i].setOpaque(false);
 			textfield[i].setBorder(BorderFactory.createEmptyBorder());
 		}
-
 		textfield[1].setEditable(false);
 		textfield[2].setEditable(false);
 
-		JLabel id = new JLabel("账户ID:");
-		id.setFont(new Font("", Font.PLAIN, 18));
-		id.setBounds(Gapw, Gaph, 150, labelh);
-		context.add(id);
-		textfield[0].setBounds(250, Gaph, textw, labelh);
-		textfield[0].setOpaque(false);
-		textfield[0].setBorder(BorderFactory.createEmptyBorder());
-		context.add(textfield[0]);
-		JButton button = new JButton("确认查询");
+		JButtonM button = new JButtonM("确认查询");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!textfield[0].getText().equals("")) {
@@ -265,8 +226,9 @@ public class AccountMan {
 			}
 		});
 
-		button.setBounds(270 + textw, Gaph, labelw, labelh);
-		context.add(button);
+		button.setBounds(375, 496, 91, 30);
+		button.HideTheButton();
+		content.add(button);
 	}
 
 }
