@@ -1,7 +1,10 @@
 package manager;
 
+import image.ImageGet;
+
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -47,10 +50,11 @@ public class addemployee {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/addemployee.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("addemployee");
 		background = new ImageIcon(bgp);
 	
-		p1.setBounds(0, 0, 988, 756);
+		p1.setBounds(0, 0,1029, 840);
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));

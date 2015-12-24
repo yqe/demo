@@ -62,15 +62,15 @@ public class ImageGet {
 
 	public static final Image transitmaincontrol = createImage("image/transitmaincontrol.jpg");
 	
-//	public static final Image managercontrol = createImage("image/managercontrol.jpg");
+	public static final Image managercontrol = createImage("image/managercontrol.jpg");
 	
-//	public static final Image staff = createImage("image/staff.jpg");
+	public static final Image staff = createImage("image/staff.jpg");
 	
-//	public static final Image addemployee = createImage("image/addemployee.jpg");
+	public static final Image addemployee = createImage("image/addemployee.jpg");
 	
-//	public static final Image deleteemployee = createImage("image/deleteemployee.jpg");
-	
-//	public static final Image checkdocuments = createImage("image/checkdocuments.jpg");
+	public static final Image deleteemployee = createImage("image/deleteemployee.jpg");
+
+	public static final Image checkdocuments = createImage("image/checkdocuments.jpg");
 
 	public static final Image Finance_BGP = createImage("image/FinanceBGP.jpg");
 	public static final Image Finance_CMD = createImage("image/FinanceCMD.jpg");
@@ -156,15 +156,15 @@ public class ImageGet {
 		case "transitmaincontrol":
 			return transitmaincontrol;
 		case "managercontrol":
-			return null;
+			return managercontrol;
 		case "staff":
-			return null;
+			return staff;
 		case "checkdocuments":
-			return null;
+			return checkdocuments;
 		case "deleteemployee":
-			return null;
+			return deleteemployee;
 		case "addemployee":
-			return null;
+			return addemployee;
 			
 		default:
 			break;

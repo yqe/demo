@@ -29,6 +29,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import login.MTextfield;
 import login.loginframe;
 import po.EmploeePO;
 
@@ -36,14 +37,14 @@ public class manager {
 	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
-	int size = 356;
-	JPanel content = new JPanel() {
+	int size = 315;
+	JPanel content = new JPanel() ;
+	final JPanel control = new JPanel(){
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(background.getImage(), 0, 0, null);
 		}
 	};
-	final JPanel control = new JPanel();
 	private Socket socket;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
@@ -67,7 +68,7 @@ public class manager {
 	        Image bgp=ImageGet.getImageByState("managercontrol");
 		background = new ImageIcon(bgp);
 		
-		manager.setBounds(0, 0, 1344, 756);
+		manager.setBounds(0, 0, 1344, 840);
 
 		manager.setOpaque(false);
 		manager.setLayout(null);
@@ -80,18 +81,18 @@ public class manager {
 		final staff sf = new staff(oos, ois, emPO);
 		
 		
-		strategypanel =strategy.Panel();
+//		strategypanel =strategy.Panel();
 		deleteempopanel=delete.Panel();
 		addempopanel=add.Panel();
-		approvepanel=a.Panel();
+//		approvepanel=a.Panel();
 		staffpanel=sf.Panel();
 		
-		control.setBounds(0, 0, size, 700);
-		content.setBounds(size, 0, 650, 700);
+		control.setBounds(0, 0, size, 840);
+		content.setBounds(size, 0, 1029, 840);
 
 	
 
-		JButton b3 = new JButton("退出");
+		JButton b3 = new JButton();
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -106,14 +107,14 @@ public class manager {
 			}
 		});
 
-		JButton b4 = new JButton("制定经营策略");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(strategypanel);
 			}
 
 		});
-		JButton b5 = new JButton("审批单据");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(approvepanel);
@@ -121,7 +122,7 @@ public class manager {
 
 		});
 
-		JButton b6 = new JButton("查看表单");
+		JButton b6 = new JButton();
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {					
@@ -134,21 +135,21 @@ public class manager {
 			}
 
 		});
-		JButton b7 = new JButton("人员调度");
+		JButton b7 = new JButton();
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(staffpanel);
 			}
 
 		});
-		JButton b8 = new JButton("添加员工");
+		JButton b8 = new JButton();
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(addempopanel);
 			}
 
 		});
-		JButton b9 = new JButton("删除员工");
+		JButton b9 = new JButton();
 		b9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(deleteempopanel);
@@ -160,9 +161,11 @@ public class manager {
 		control.setOpaque(false);
 	
 	
-		JTextField idt=new JTextField();
-		JTextField namet=new JTextField();
-		JTextField jobt=new JTextField();
+		MTextfield idt=new MTextfield();
+		MTextfield namet=new MTextfield();
+		MTextfield jobt=new MTextfield();
+		
+		idt.settextFont();namet.settextFont();jobt.settextFont();
 	
 		idt.setOpaque(false);
 		idt.setEditable(false);
@@ -174,9 +177,9 @@ public class manager {
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());	
 	
-    	namet.setBounds(40, 170, 80, 30);
-		idt.setBounds(100, 210, 80, 30);
-		jobt.setBounds(100, 250, 80, 30);	
+		namet.setBounds(200, 110, 150, 35);
+		jobt.setBounds(200, 150, 200, 35);		
+		idt.setBounds(82, 238, 150, 30);
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText(emPO.getPosition());	
@@ -192,14 +195,24 @@ public class manager {
 		control.add(b8);
 		control.add(b9);
 
-		int b4xloc = size / 6, b4yloc = 3*control.getHeight() / 7, b4ysize = control.getHeight() /13;
-		b4.setBounds(b4xloc, b4yloc, 120, 30);
-		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
-		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);
-		b7.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 30);
-		b8.setBounds(b4xloc, b4yloc + 4 * b4ysize, 120, 30);
-		b9.setBounds(b4xloc, b4yloc + 5 * b4ysize, 120, 30);
-		b3.setBounds(b4xloc, b4yloc + 6 * b4ysize, 120, 30);
+		b3.setContentAreaFilled(false);b3.setBorder(BorderFactory.createEmptyBorder());
+		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
+		b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
+		b7.setContentAreaFilled(false);b7.setBorder(BorderFactory.createEmptyBorder());
+		b8.setContentAreaFilled(false);b8.setBorder(BorderFactory.createEmptyBorder());
+		b9.setContentAreaFilled(false);b9.setBorder(BorderFactory.createEmptyBorder());
+		
+		
+		int length=195,width=44;
+		int xloc=88;
+		b4.setBounds(xloc, 339, length, width);
+		b5.setBounds(xloc, 392, length, width);
+		b6.setBounds(xloc, 442, length, width);
+		b7.setBounds(xloc, 495, length, width-2);
+		b8.setBounds(xloc, 549, length, width);
+		b9.setBounds(xloc, 594, length, width-2);
+		b3.setBounds(xloc, 648, length, width+2);
 
 		content.add(delete.Panel());
 		content.setLayout(null);

@@ -1,9 +1,12 @@
 package manager;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Graphics;
@@ -50,9 +53,10 @@ public class staff {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/staff.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("staff");
 		background = new ImageIcon(bgp);	
-		p1.setBounds(0, 0, 988, 756);
+		p1.setBounds(0, 0, 1029, 840);
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));

@@ -48,7 +48,7 @@ public class checkdocuments {
 
 	public JPanel Panel(final JPanel p1) throws IOException {
 		p1.removeAll();
-		p1.setBounds(0, 0, 988, 756);
+		p1.setBounds(0, 0, 1029, 840);
 		JLabel l1 = new JLabel("快递物流系统");
 		int b1size = 30;
 		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
