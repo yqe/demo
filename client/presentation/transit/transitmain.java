@@ -1,9 +1,12 @@
 package transit;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Graphics;
@@ -26,6 +29,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import login.MTextfield;
 import login.loginframe;
 import po.EmploeePO;
 
@@ -59,7 +63,8 @@ public class transitmain {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/transitmaincontrol.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("transitmaincontrol");
 		background = new ImageIcon(bgp);
 
 		transitmain.setBounds(0, 0, 1344, 821);
@@ -75,14 +80,9 @@ public class transitmain {
 		control.setBounds(0, 0, size, 821);
 		content.setBounds(size, 0, 942, 821);
 
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—> 主页");
-		int b2size = 16;
-		l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
+		
 
-		JButton b3 = new JButton("退出");
+		JButton b3 = new JButton();
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -96,14 +96,14 @@ public class transitmain {
 			}
 		});
 
-		JButton b4 = new JButton("中转接收");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(tspanel);
 			}
 
 		});
-		JButton b5 = new JButton("装运管理");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changepanel(tslpanel);
@@ -111,17 +111,17 @@ public class transitmain {
 
 		});
 
+		int b2size=20;
 		control.setLayout(null);
 		control.setOpaque(false);
-		JLabel employid=new JLabel("工号 :");
-		JLabel employjob=new JLabel("职位 :");
-		employid.setFont(new Font("", Font.PLAIN, b2size));
-		employjob.setFont(new Font("", Font.PLAIN, b2size));		
-		JTextField idt=new JTextField();
+		
+		MTextfield idt=new MTextfield();
 		idt.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField namet=new JTextField();
+		MTextfield namet=new MTextfield();
 		namet.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField jobt=new JTextField();
+		MTextfield jobt=new MTextfield();
+		
+		idt.settextFont();namet.settextFont();jobt.settextFont();
 		jobt.setFont(new Font("", Font.PLAIN, b2size));	
 		idt.setOpaque(false);
 		idt.setEditable(false);
@@ -132,17 +132,16 @@ public class transitmain {
 		jobt.setOpaque(false);
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());	
-		employid.setBounds(40, 210, 60, 30);
-		employjob.setBounds(40, 250,60, 30);
-		namet.setBounds(40, 170, 80, 30);
-		idt.setBounds(100, 210, 80, 30);
-		jobt.setBounds(100, 250, 80, 30);		
+		
+		
+		namet.setBounds(120, 90, 150, 35);
+		jobt.setBounds(120, 140, 200, 35);		
+		idt.setBounds(82, 225, 150, 30);
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText(emPO.getPosition());
 	
-		control.add(employid);
-		control.add(employjob);
+	
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);
@@ -150,10 +149,15 @@ public class transitmain {
 		control.add(b4);
 		control.add(b5);
 
-		int b4xloc = size / 6, b4yloc = 4*control.getHeight() / 9, b4ysize = control.getHeight() / 9;
-		b4.setBounds(b4xloc, b4yloc, 120, 30);
-		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
-		b3.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);
+		
+		b3.setContentAreaFilled(false);b3.setBorder(BorderFactory.createEmptyBorder());
+		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
+		
+		int length=251,width=66;
+		b4.setBounds(48, 418, length, width);
+		b5.setBounds(48, 418 + 114, length, width-2);
+		b3.setBounds(48, 642, 251, 98);
 
 		content.add(tspanel);
 		content.setLayout(null);

@@ -29,6 +29,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import login.MTextfield;
 import login.loginframe;
 import po.EmploeePO;
 
@@ -142,19 +143,15 @@ public class storagemain {
 		control.setLayout(null);
 		control.setOpaque(false);
 		
-		JLabel employid=new JLabel("工号 :");
-		JLabel employjob=new JLabel("职位 :");
-		employid.setFont(new Font("", Font.PLAIN, b2size));
-		employjob.setFont(new Font("", Font.PLAIN, b2size));
 		
-		JTextField idt=new JTextField();
-		idt.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField namet=new JTextField();
-		namet.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField jobt=new JTextField();
-		jobt.setFont(new Font("", Font.PLAIN, b2size));
-
+	
 		
+		MTextfield idt=new MTextfield();
+		MTextfield namet=new MTextfield();	
+		MTextfield jobt=new MTextfield();
+		
+		idt.settextFont();namet.settextFont();jobt.settextFont();
+	
 		idt.setOpaque(false);
 		idt.setEditable(false);
 		idt.setBorder(BorderFactory.createEmptyBorder());
@@ -164,19 +161,19 @@ public class storagemain {
 		jobt.setOpaque(false);
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());	
-		employid.setBounds(20, 180, 50, 30);
-		employjob.setBounds(20, 220,50, 30);
+		
+		
+		namet.setBounds(120, 90, 150, 35);
+		jobt.setBounds(120, 140, 200, 35);		
+		idt.setBounds(82, 225, 150, 30);	
 	
-		namet.setBounds(20, 140, 80, 30);
-		idt.setBounds(80, 180, 80, 30);
-		jobt.setBounds(80, 220, 110, 30);
+
 	
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText("库存管理人员");//因为显示不下所以填的这个
 	
-		control.add(employid);
-		control.add(employjob);
+		
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);

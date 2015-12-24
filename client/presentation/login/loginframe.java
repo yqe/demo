@@ -212,7 +212,7 @@ public class loginframe {
 		password.setOpaque(false);password.setBorder(BorderFactory.createEmptyBorder());
 		password.setFont(new Font("幼圆", Font.PLAIN, 25));password.setForeground(Color.white);
 //		l1.setBounds(150, 50, 40, 30);
-		id.setBounds(442, 177, 189, 41);
+		id.setBounds(443, 177, 189, 41);
 //		l2.setBounds(150, 100, 80, 30);
 		password.setBounds(442, 265, 189, 41);
 		

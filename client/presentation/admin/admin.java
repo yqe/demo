@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import login.MTextfield;
 import login.loginframe;
 import po.EmploeePO;
 import courier.Send;
@@ -140,17 +141,15 @@ public class admin {
 
 		control.setLayout(null);
 		control.setOpaque(false);
-		JLabel employid=new JLabel("工号 :");
-		JLabel employjob=new JLabel("职位 :");
-		employid.setFont(new Font("", Font.PLAIN, b2size));
-		employjob.setFont(new Font("", Font.PLAIN, b2size));
+	
+
 		
-		JTextField idt=new JTextField();
-		idt.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField namet=new JTextField();
-		namet.setFont(new Font("", Font.PLAIN, b2size));
-		JTextField jobt=new JTextField();
-		jobt.setFont(new Font("", Font.PLAIN, b2size));
+		MTextfield idt=new MTextfield();
+		MTextfield namet=new MTextfield();	
+		MTextfield jobt=new MTextfield();
+		
+		idt.settextFont();namet.settextFont();jobt.settextFont();
+	
 		
 		idt.setOpaque(false);
 		idt.setEditable(false);
@@ -161,19 +160,17 @@ public class admin {
 		jobt.setOpaque(false);
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());	
-		employid.setBounds(40, 210, 60, 30);
-		employjob.setBounds(40, 250,60, 30);		
-		namet.setBounds(40, 170, 80, 30);
-		idt.setBounds(100, 210, 80, 30);
-		jobt.setBounds(100, 250, 80, 30);
+			
+		namet.setBounds(120, 90, 150, 35);
+		jobt.setBounds(120, 140, 200, 35);		
+		idt.setBounds(82, 228, 150, 30);	
 	
 		idt.setText(empPO.getEmpID());
 		namet.setText(empPO.getName());
 		jobt.setText(empPO.getPosition());
 
 		
-		control.add(employid);
-		control.add(employjob);
+	
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);

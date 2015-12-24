@@ -1,8 +1,11 @@
 package transit;
 
+import image.ImageGet;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -24,6 +27,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
+import login.MTextfield;
 
 import com.eltima.components.ui.DatePicker;
 
@@ -58,33 +63,27 @@ public class transit {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/transit.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("transit");
 		background = new ImageIcon(bgp);
 	
 		p1.setBounds(0, 0, 942, 821);
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—>中转接收");
-		int wordsize = 18;
-		JLabel l3 = new JLabel("中转中心编号:");
-		JLabel l4 = new JLabel("到达日期:");
-		JLabel l5 = new JLabel("出发地:");
-		JLabel l6 = new JLabel("货物到达状态:");
-		JLabel l7 = new JLabel("中转单编号:");
+	
+//		JLabel l3 = new JLabel("中转中心编号:");
+//		JLabel l4 = new JLabel("到达日期:");
+//		JLabel l5 = new JLabel("出发地:");
+//		JLabel l6 = new JLabel("货物到达状态:");
+//		JLabel l7 = new JLabel("中转单编号:");
 		// JLabel l8 = new JLabel("中转中心到达单列表:");
 
-		l2.setFont(new Font("", Font.PLAIN, wordsize));
-		l3.setFont(new Font("", Font.PLAIN, wordsize));
-		l4.setFont(new Font("", Font.PLAIN, wordsize));
-		l5.setFont(new Font("", Font.PLAIN, wordsize));
-		l6.setFont(new Font("", Font.PLAIN, wordsize));
-		l7.setFont(new Font("", Font.PLAIN, wordsize));
+
 		// l8.setFont(new Font("", Font.PLAIN, wordsize));
 
-		final JTextField t1 = new JTextField();
-		final JTextField t2 = new JTextField();
+		final MTextfield t1 = new MTextfield();
+		final MTextfield t2 = new MTextfield();
 
+		t1.settextFont();
+		t2.settextFont();
 		
 		t1.setOpaque(false);
 		t1.setBorder(BorderFactory.createEmptyBorder());
@@ -123,7 +122,7 @@ public class transit {
 		// jp.getViewport().setOpaque(false);
 		//
 
-		JButton b4 = new JButton("添加");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String date = datepick.getText();
@@ -147,42 +146,11 @@ public class transit {
 			}
 		});
 
-		// JButton b5=new JButton("删除");
-		// b5.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent e) {
-		// // TODO Auto-generated method stub
-		// //��ȡҪɾ�����,û��ѡ����-1
-		// DefaultTableModel model = (DefaultTableModel) table.getModel();
-		// int row=table.getSelectedRow();
-		// System.out.println(row);
-		// if(row== -1){
-		// JOptionPane.showMessageDialog(null,"请选中要删除的行!");
-		// }else{
-		// model.removeRow(row);
-		// }
-		// }
-		// });
-		//
-		// JButton b6=new JButton("完成中转");
-		// b6.addActionListener(new ActionListener(){
-		// public void actionPerformed(ActionEvent e) {
-		//
-		// JOptionPane.showMessageDialog(null,"成功完成中转!");
-		// }
-		//
-		// });
-		//
+	
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
-		p1.add(l6);
-		p1.add(l7);
+	
 		// p1.add(l8);
 
 		p1.add(t1);
@@ -197,40 +165,19 @@ public class transit {
 		// p1.add(b6);
 		// p1.add(jp);
 
-		// int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4
-		// / 25 - 15;
-		// int b1yloc = p1.getHeight() * 1 / 19;
-		// int b4xloc = p1.getWidth() * 11 / 13;
-		// int b4yloc = p1.getHeight() * 3 / 19 + 20, b4ysize = p1.getHeight() *
-		// 1 / 5;
+		int xloc=268,yloc=152,length=230,width=46,interval=77;
+		datepick.setBounds(xloc, yloc+interval, length, width);
+//
+		sitebox.setBounds(xloc, yloc+interval*2, length, width);
+		statebox.setBounds(xloc, yloc+interval*3, length, width);
+//
+		t1.setBounds(xloc, yloc, length, width);
+		t2.setBounds(xloc, yloc+interval*4, length, width);
 
-		int labelgw = 100;
-		int gaph = 50;
-		int labelw = 125;
-		int labelgh = 30;
-		l1.setBounds(300, -20, 180, 80);
-		l2.setBounds(50, gaph, 180, 30);
-
-		l3.setBounds(labelw, gaph * 2 + labelgh * 1, labelw, labelgh);
-		l4.setBounds(labelw, gaph * 3 + labelgh * 2, labelw, labelgh);
-		l5.setBounds(labelw, gaph * 4 + labelgh * 3, labelw, labelgh);
-		l6.setBounds(labelw, gaph * 5 + labelgh * 4, labelw, labelgh);
-		l7.setBounds(labelw, gaph * 6 + labelgh * 5, labelw, labelgh);
-		// l8.setBounds(50, b1yloc + 150, 200, 30);
-		// jp.setBounds(50,b1yloc+200, 413, 400);
-		int ltgapw = 30;
-		int boxw = 80;
-		datepick.setBounds(labelw * 2 + ltgapw, gaph * 3 + labelgh * 2, 150, 30);
-
-		sitebox.setBounds(labelw * 2 + ltgapw, gaph * 4 + labelgh * 3, 80, 30);
-		statebox.setBounds(labelw * 2 + ltgapw, gaph * 5 + labelgh * 4, 80, 30);
-
-		t1.setBounds(labelw * 2 + ltgapw, gaph * 2 + labelgh * 1, 120, 30);
-		t2.setBounds(labelw * 2 + ltgapw, gaph * 6 + labelgh * 5, 120, 30);
-
-		 b4.setBounds(500, 600, 100, 40);
-		// b5.setBounds(b4xloc, b4yloc+2*b4ysize, 100, 40);
-		// b6.setBounds(b4xloc, b4yloc+3*b4ysize, 100, 40);
+		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+		
+		 b4.setBounds(333, 592, 263, 116);
+	
 		return p1;
 	}
 }

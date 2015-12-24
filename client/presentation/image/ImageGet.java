@@ -139,7 +139,7 @@ public class ImageGet {
 			return transit;
 		case "transitload":
 			return transitload;
-		case "transmaincontrol":
+		case "transitmaincontrol":
 			return transitmaincontrol;
 		default:
 			break;
