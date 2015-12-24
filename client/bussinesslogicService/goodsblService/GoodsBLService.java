@@ -18,5 +18,5 @@ public interface GoodsBLService {
 	public String Goodsgetfee(Double weight, String typebox, String packbox,
 			String depatureplace, String destination);// 显示快件的运费
 
-	public String Goodsgetdate(String depatureplace, String destination);// 显示快件的预计到达日期
+	public String Goodsgetdate(String depatureplace, String destination,String typebox);// 显示快件的预计到达日期
 }

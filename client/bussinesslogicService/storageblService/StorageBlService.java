@@ -3,6 +3,7 @@ package storageblService;
 import po.InputStorageList;
 import po.LookStoragePO;
 import po.OutStorageList;
+import po.StorageAlarmPO;
 import po.StorageCheckPO;
 import po.StorageList;
 
@@ -70,4 +71,22 @@ public interface StorageBlService {
 	 *                zxc
 	 */
 	public StorageCheckPO IDStorageGet(String ID);
+	/**
+	 * 设置库存报警值;
+	 * 
+	 * @param StorageAlarmPO alarm;
+	 * @return 
+	 * @exception @author
+	 *                zxc
+	 */
+	public boolean SetStorage110(StorageAlarmPO alarm);
+	/**
+	 * 判断是否库存报警;
+	 * 
+	 * @param String posid;//机构编号
+	 * @return 
+	 * @exception @author
+	 *                zxc
+	 */
+	public void Storage110(String posid);
 }

@@ -31,13 +31,49 @@ public class CourierInfoStream {
 			case "AboutPrice":
 				AboutPrice(ois, oos);
 				break;
+			case "GetArrivalDay":
+				GetArrivalDay(ois, oos);
+				break;
 			default:
-				GetExpressID(ois,oos);
+				GetExpressID(ois, oos);
 				break;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * 得到预计到达天数;
+	 * 
+	 * @param ObjectInputStream
+	 *            ois, ObjectOutputStream oos;
+	 * @exception @author
+	 *                zxc
+	 */
+	private void GetArrivalDay(ObjectInputStream ois, ObjectOutputStream oos) {
+		try {
+			String read = (String) ois.readObject();
+			String[] reads = read.split(" ");
+			if (reads[3].equals("次晨特快"))
+				oos.writeObject(new String("1"));
+			else {
+				double distance = new DistanceData().getdistance(reads[0], reads[1]);
+				int day = (int) (distance / 300);
+				if (day == 0)
+					day = 1;
+				if (reads[3].equals("经济快递"))
+					day++;
+				oos.writeObject(new String("" + day));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -51,10 +87,10 @@ public class CourierInfoStream {
 	private void GetExpressID(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			ois.readObject();
-			GoodsDocu gooddata=new GoodsDocu();
-			String maxid=gooddata.getgoodsidmax();
-			long temp=Long.parseLong(maxid);
-			String reid=String.valueOf(temp+1);
+			GoodsDocu gooddata = new GoodsDocu();
+			String maxid = gooddata.getgoodsidmax();
+			long temp = Long.parseLong(maxid);
+			String reid = String.valueOf(temp + 1);
 			oos.writeObject(new String(reid));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -64,6 +100,7 @@ public class CourierInfoStream {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 返回给客户端快递的货运轨迹;
 	 * 
@@ -75,7 +112,7 @@ public class CourierInfoStream {
 	public void GetRoute(ObjectInputStream ois, ObjectOutputStream oos) {
 		try {
 			ExpressTrail trail = new ExpressTrail();
-			String goodid= (String) ois.readObject();
+			String goodid = (String) ois.readObject();
 			System.out.println(goodid);
 			ExpressTrailPO trailpo = trail.find(goodid);
 			oos.writeObject(trailpo);
@@ -143,7 +180,7 @@ public class CourierInfoStream {
 		DiliverDocu ddp = new DiliverDocu();
 		try {
 			DiliverDocuPO gdpo = (DiliverDocuPO) ois.readObject();
-			boolean isok=ddp.insert(gdpo);
+			boolean isok = ddp.insert(gdpo);
 			oos.writeObject(new Boolean(isok));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -162,7 +199,7 @@ public class CourierInfoStream {
 		GoodsDocu gd = new GoodsDocu();
 		try {
 			GoodsDocuPO gdpo = (GoodsDocuPO) ois.readObject();
-			boolean isok=gd.insert(gdpo);
+			boolean isok = gd.insert(gdpo);
 			oos.writeObject(new Boolean(isok));
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -85,7 +85,8 @@ public class GoodsBl implements GoodsBLService {
 			oos.writeObject(new String("GetRoute"));
 			oos.writeObject(new String(ID));
 			ExpressTrailPO routepo = (ExpressTrailPO) ois.readObject();
-			route=routepo.getDepar()+routepo.getBusstrail()+routepo.getCentertrail()+routepo.getDestination();
+			route = routepo.getDepar() + "\n"+routepo.getBusstrail() + "\n"+ routepo.getCentertrail() +  "\n"+routepo.getDestination();
+			route.replaceAll(null, "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,9 +133,7 @@ public class GoodsBl implements GoodsBLService {
 	// double[] packprice=new double[]{5.0,10.0,1.0};
 	public String Goodsgetfee(Double weight, String typebox, String packbox, String depatureplace, String destination) {
 		String priceStr = "";
-		// System.out.println(weight);
 		try {
-			System.out.println(weight);
 			oos.writeUTF("Courier");
 			oos.writeUTF("AboutPrice");
 			oos.writeObject(new String(depatureplace + " " + destination));
@@ -169,8 +168,18 @@ public class GoodsBl implements GoodsBLService {
 	}
 
 	// 显示快件的预计到达日期
-	public String Goodsgetdate(String depatureplace, String destination) {
-		return destination;
+	public String Goodsgetdate(String depatureplace, String destination, String typebox) {
+		String re = null;
+		try {
+			oos.writeUTF("Courier");
+			oos.writeUTF("GetArrivalDay");
+			oos.writeObject(new String(depatureplace + " " + " " + destination + " " + typebox));
+			re = (String) ois.readObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return re;
 	}
 
 }
