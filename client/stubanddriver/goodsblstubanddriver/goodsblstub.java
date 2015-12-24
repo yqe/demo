@@ -33,4 +33,10 @@ public class goodsblstub implements GoodsBLService {
 		return "12";
 	}
 
+	@Override
+	public String Goodsgetdate(String depatureplace, String destination, String typebox) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
