@@ -8,9 +8,9 @@ public class StorageAlarmPO {
 	 */
 	private String transcenterID;
 	private int total;//库存总量
-	private int alarmvalue;//报警值
+	private double alarmvalue;//报警值
 
-	public StorageAlarmPO(String ID, int total, int value) {
+	public StorageAlarmPO(String ID, int total, double value) {
 		this.transcenterID = ID;
 		this.total = total;
 		this.alarmvalue = value;
@@ -24,7 +24,7 @@ public class StorageAlarmPO {
 		return total;
 	}
 
-	public int getAlarmvalue() {
+	public double getAlarmvalue() {
 		return alarmvalue;
 	}
 
