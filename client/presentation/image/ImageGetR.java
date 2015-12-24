@@ -8,175 +8,173 @@ import javax.imageio.ImageIO;
 
 public class ImageGetR {
 
-	public  final Image adduser = createImage("/imagero/adduser.jpg");
+	public final String adduser = "/imagero/adduser.jpg";
 
-	public  final Image admincontrol = createImage("/imagero/admincontrol.jpg");
+	public final String admincontrol = "/imagero/admincontrol.jpg";
 
-	public  final Image arrival = createImage("/imagero/arrival.jpg");
+	public final String arrival = ("/imagero/arrival.jpg");
 
-	public  final Image authority = createImage("/imagero/authority.jpg");
+	public final String authority = ("/imagero/authority.jpg");
 
-	public  final Image background = createImage("/imagero/background.jpg");
+	public final String background = ("/imagero/background.jpg");
 
-	public  final Image boclerkcontrol = createImage("/imagero/boclerkcontrol.jpg");
+	public final String boclerkcontrol = ("/imagero/boclerkcontrol.jpg");
 
-	public  final Image buildaccount = createImage("/imagero/buildaccount.jpg");
+	public final String buildaccount = ("/imagero/buildaccount.jpg");
 
-	public  final Image changepassword = createImage("/imagero/changepassword.jpg");
+	public final String changepassword = ("/imagero/changepassword.jpg");
 
-	public  final Image changestorage = createImage("/imagero/changestorage.jpg");
+	public final String changestorage = ("/imagero/changestorage.jpg");
 
-	public  final Image check = createImage("/imagero/check.jpg");
+	public final String check = ("/imagero/check.jpg");
 
-	public  final Image checkstorage = createImage("/imagero/checkstorage.jpg");
+	public final String checkstorage = ("/imagero/checkstorage.jpg");
 
-	public  final Image collection = createImage("/imagero/collection.jpg");
+	public final String collection = ("/imagero/collection.jpg");
 
-	public  final Image countstorage = createImage("/imagero/countstorage.jpg");
+	public final String countstorage = ("/imagero/countstorage.jpg");
 
-	public  final Image couriercontrol = createImage("/imagero/couriercontrol.jpg");
+	public final String couriercontrol = ("/imagero/couriercontrol.jpg");
 
-	public  final Image dispatch = createImage("/imagero/dispatch.jpg");
+	public final String dispatch = ("/imagero/dispatch.jpg");
 
-	public  final Image financemaincontrol = createImage("/imagero/FinanceCMD.jpg");
-	
-	public  final Image Inquiry = createImage("/imagero/Inquiry.jpg");
+	public final String financemaincontrol = ("/imagero/FinanceCMD.jpg");
 
-	public  final Image instorage = createImage("/imagero/instorage.jpg");
+	public final String Inquiry = ("/imagero/Inquiry.jpg");
 
-	public  final Image load = createImage("/imagero/load.jpg");
+	public final String instorage = ("/imagero/instorage.jpg");
 
-	public  final Image logoff = createImage("/imagero/logoff.jpg");
+	public final String load = ("/imagero/load.jpg");
 
-	public  final Image Maintenance = createImage("/imagero/Maintenance.jpg");
+	public final String logoff = ("/imagero/logoff.jpg");
 
-	public  final Image outstorage = createImage("/imagero/outstorage.jpg");
+	public final String Maintenance = ("/imagero/Maintenance.jpg");
 
-	public  final Image send = createImage("/imagero/send.jpg");
+	public final String outstorage = ("/imagero/outstorage.jpg");
 
-	public  final Image storagemaincontrol = createImage("/imagero/storagemaincontrol.jpg");
+	public final String send = ("/imagero/send.jpg");
 
-	public  final Image transit = createImage("/imagero/transit.jpg");
+	public final String storagemaincontrol = ("/imagero/storagemaincontrol.jpg");
 
-	public  final Image transitload = createImage("/imagero/transitload.jpg");
+	public final String transit = ("/imagero/transit.jpg");
 
-	public  final Image transitmaincontrol = createImage("/imagero/transitmaincontrol.jpg");
-	
-//	public  final Image managercontrol = createImage("/imagero/managercontrol.jpg");
-	
-//	public  final Image staff = createImage("/imagero/staff.jpg");
-	
-//	public  final Image addemployee = createImage("/imagero/addemployee.jpg");
-	
-//	public  final Image deleteemployee = createImage("/imagero/deleteemployee.jpg");
-	
-//	public  final Image checkdocuments = createImage("/imagero/checkdocuments.jpg");
+	public final String transitload = ("/imagero/transitload.jpg");
 
-	public  final Image Finance_BGP = createImage("/imagero/FinanceBGP.jpg");
-	public  final Image Finance_CMD = createImage("/imagero/FinanceCMD.jpg");
-	public  final Image Finance_Checkbill = createImage("/imagero/checkbill.jpg");
-	public  final Image Finance_costman = createImage("/imagero/costman.jpg");
-	public  final Image Finance_costincome = createImage("/imagero/costincome.jpg");
-	public  final Image Finance_stateofrun = createImage("/imagero/stateofrun.jpg");
-	public  final Image Finace_accman=createImage("/imagero/accman.jpg");
-	
-	public  Image GetFinanceImage(String state) {
+	public final String transitmaincontrol = ("/imagero/transitmaincontrol.jpg");
+
+	// public final String managercontrol = ("/imagero/managercontrol.jpg");
+
+	// public final String staff = ("/imagero/staff.jpg");
+
+	// public final String addemployee = ("/imagero/addemployee.jpg");
+
+	// public final String deleteemployee = ("/imagero/deleteemployee.jpg");
+
+	// public final String checkdocuments = ("/imagero/checkdocuments.jpg");
+
+	public final String Finance_BGP = ("/imagero/FinanceBGP.jpg");
+	public final String Finance_CMD = ("/imagero/FinanceCMD.jpg");
+	public final String Finance_Checkbill = ("/imagero/checkbill.jpg");
+	public final String Finance_costman = ("/imagero/costman.jpg");
+	public final String Finance_costincome = ("/imagero/costincome.jpg");
+	public final String Finance_stateofrun = ("/imagero/stateofrun.jpg");
+	public final String Finace_accman = ("/imagero/accman.jpg");
+
+	public Image GetFinanceImage(String state) {
 		switch (state) {
 		case "FinanceBGP":
-			return Finance_BGP;
+			return createImage(Finance_BGP);
 		case "FinanceCMD":
-			return Finance_CMD;
+			return createImage(Finance_CMD);
 		case "CheckBill":
-			return Finance_Checkbill;
+			return createImage(Finance_Checkbill);
 		case "CostMan":
-			return Finance_costman;
+			return createImage(Finance_costman);
 		case "CostIncome":
-			return Finance_costincome;
+			return createImage(Finance_costincome);
 		case "StateOfRun":
-			return Finance_stateofrun;
+			return createImage(Finance_stateofrun);
 		default:
-			return Finace_accman;
+			return createImage(Finace_accman);
 		}
 	}
 
-	public  Image getImageByState(String state) {
+	public Image getImageByState(String state) {
 		switch (state) {
 		case "adduser":
-			return adduser;
+			return createImage(adduser);
 		case "admincontrol":
-			return admincontrol;
+			return createImage(admincontrol);
 		case "arrival":
-			return arrival;
+			return createImage(arrival);
 		case "authority":
-			return authority;
+			return createImage(authority);
 		case "background":
-			return background;
+			return createImage(background);
 		case "boclerkcontrol":
-			return boclerkcontrol;
+			return createImage(boclerkcontrol);
 		case "buildaccount":
-			return buildaccount;
+			return createImage(buildaccount);
 		case "changepassword":
-			return changepassword;
+			return createImage(changepassword);
 		case "changestorage":
-			return changestorage;
+			return createImage(changestorage);
 		case "check":
-			return check;
+			return createImage(check);
 		case "checkstorage":
-			return checkstorage;
+			return createImage(checkstorage);
 		case "collection":
-			return collection;
+			return createImage(collection);
 		case "countstorage":
-			return countstorage;
+			return createImage(countstorage);
 		case "couriercontrol":
-			return couriercontrol;
+			return createImage(couriercontrol);
 		case "dispatch":
-			return dispatch;
+			return createImage(dispatch);
 		case "financemaincontrol":
-			return financemaincontrol;
+			return createImage(financemaincontrol);
 		case "instorage":
-			return instorage;
+			return createImage(instorage);
 		case "Inquiry":
-			return Inquiry;
+			return createImage(Inquiry);
 		case "load":
-			return load;
+			return createImage(load);
 		case "logoff":
-			return logoff;
+			return createImage(logoff);
 		case "Maintenance":
-			return Maintenance;
+			return createImage(Maintenance);
 		case "outstorage":
-			return outstorage;
+			return createImage(outstorage);
 		case "send":
-			return send;
+			return createImage(send);
 		case "storagemaincontrol":
-			return storagemaincontrol;
+			return createImage(storagemaincontrol);
 		case "transit":
-			return transit;
+			return createImage(transit);
 		case "transitload":
-			return transitload;
+			return createImage(transitload);
 		case "transitmaincontrol":
-			return transitmaincontrol;
+			return createImage(transitmaincontrol);
 		case "managercontrol":
-			return null;
+			return createImage(null);
 		case "staff":
-			return null;
+			return createImage(null);
 		case "checkdocuments":
-			return null;
+			return createImage(null);
 		case "deleteemployee":
-			return null;
+			return createImage(null);
 		case "addemployee":
-			return null;
-			
+			return createImage(null);
 		default:
-			break;
+			return createImage(null);
 		}
-		return null;
-	}
 
+	}
 
 	protected Image createImage(String path) {
 		try {
-			BufferedImage bimg=ImageIO.read(getClass().getResource(path));
-//			Image image = ImageIO.read(new FileInputStream(path));
+			BufferedImage bimg = ImageIO.read(getClass().getResource(path));
+			// Image image = ImageIO.read(new FileInputStream(path));
 			return bimg;
 		} catch (Exception exception) {
 			exception.printStackTrace();
