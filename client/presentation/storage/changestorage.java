@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import login.MTextfield;
 import po.EmploeePO;
 import po.StorageCheckPO;
 import storagebl.StorageBl;
@@ -73,11 +74,11 @@ public class changestorage {
 
 
 
-		final JTextField id = new JTextField();
-		final JTextField qu = new JTextField();
-		final JTextField pai = new JTextField();
-		final JTextField jia = new JTextField();
-		final JTextField wei = new JTextField();
+		final MTextfield id = new MTextfield();
+		final MTextfield qu = new MTextfield();
+		final MTextfield pai = new MTextfield();
+		final MTextfield jia = new MTextfield();
+		final MTextfield wei = new MTextfield();
 		
 		id.setOpaque(false);
 //		id.setBorder(BorderFactory.createEmptyBorder());
@@ -95,10 +96,10 @@ public class changestorage {
 		jia.setEnabled(false);
 		wei.setEnabled(false);
 
-		final JTextField chqu = new JTextField();
-		final JTextField chpai = new JTextField();
-		final JTextField chjia = new JTextField();
-		final JTextField chwei = new JTextField();
+		final MTextfield chqu = new MTextfield();
+		final MTextfield chpai = new MTextfield();
+		final MTextfield chjia = new MTextfield();
+		final MTextfield chwei = new MTextfield();
 		
 		chqu.setOpaque(false);
 		chqu.setBorder(BorderFactory.createEmptyBorder());
@@ -109,7 +110,7 @@ public class changestorage {
 		chwei.setOpaque(false);
 		chwei.setBorder(BorderFactory.createEmptyBorder());
 
-		JButton b4 = new JButton("");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean idisempty = id.getText().equals("");
@@ -135,7 +136,7 @@ public class changestorage {
 			}
 		});
 
-		JButton b5 = new JButton("");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			boolean ischquempty = chqu.getText().equals("");
 			boolean ischpaiempty = chpai.getText().equals("");
@@ -180,17 +181,21 @@ public class changestorage {
 	    int	xloc=113,length=176,wdith=43,interval=80;
 	    int chxloc=483,chyloc=355,chinterval=80;
 
+	    qu.settextFont();pai.settextFont();jia.settextFont();wei.settextFont();
+	    
 		qu.setBounds(xloc, chyloc, length, wdith);
 		pai.setBounds(xloc, chyloc+chinterval-3, length, wdith);
 		jia.setBounds(xloc, chyloc+2*chinterval-3, length, wdith);
 		wei.setBounds(xloc, chyloc+3*chinterval+3, length, wdith);// 现
 
+		chqu.settextFont();chpai.settextFont();chjia.settextFont();chwei.settextFont();
 		
 		chqu.setBounds(chxloc, chyloc, length, wdith);
 		chpai.setBounds(chxloc, chyloc+chinterval-3, length, wdith);
 		chjia.setBounds(chxloc, chyloc+2*chinterval-3, length, wdith);
 		chwei.setBounds(chxloc, chyloc+3*chinterval+3, length, wdith);// 更改
 
+		id.settextFont();
 		id.setBounds(250, 199, 150, 41);
 
 		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());

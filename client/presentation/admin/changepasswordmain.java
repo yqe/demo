@@ -2,6 +2,7 @@ package admin;
 
 import image.ImageGet;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -22,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import login.MTextfield;
 import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
@@ -56,7 +58,7 @@ public class changepasswordmain {
 
 		
 
-		final JTextField id = new JTextField();
+		final MTextfield id = new MTextfield();
 		final JPasswordField newpassword1 = new JPasswordField();
 		final JPasswordField newpassword2 = new JPasswordField();
 		
@@ -120,8 +122,13 @@ public class changepasswordmain {
 		
 
 		id.setBounds(170, 293, 176, 43);
+		id.settextFont();
 		newpassword1.setBounds(600, 319, 176, 43);
 		newpassword2.setBounds(600, 409, 176, 43);
+		newpassword1.setFont(new Font("幼圆",Font.BOLD,24));
+		newpassword1.setForeground(Color.white);
+		newpassword2.setFont(new Font("幼圆",Font.BOLD,24));
+		newpassword2.setForeground(Color.white);
 		
 		b4.setContentAreaFilled(false);
         b4.setBorder(BorderFactory.createEmptyBorder());

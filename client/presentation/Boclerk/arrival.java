@@ -32,6 +32,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
+import login.MTextfield;
+
 import com.eltima.components.ui.DatePicker;
 
 import documentbl.HallArrivalDocu;
@@ -64,28 +66,14 @@ public class arrival {
 	
 
 		int b2size = 16;
-//		JLabel l3 = new JLabel("营业厅编号:");
-//		JLabel l4 = new JLabel("到达日期:");
-//		JLabel l5 = new JLabel("出发地:");
-//		JLabel l6 = new JLabel("货物到达状态:");
-//		JLabel l7 = new JLabel("中转单编号:");
-//
-//		JLabel l8 = new JLabel("营业厅到达单列表:");
 
-//		l2.setFont(new Font("", Font.PLAIN, b2size));
-//		l3.setFont(new Font("", Font.PLAIN, b2size));
-//		l4.setFont(new Font("", Font.PLAIN, b2size));
-//		l5.setFont(new Font("", Font.PLAIN, b2size));
-//		l6.setFont(new Font("", Font.PLAIN, b2size));
-//		l7.setFont(new Font("", Font.PLAIN, b2size));
-//		l8.setFont(new Font("", Font.PLAIN, b2size));
 
-		final JTextField t1 = new JTextField();
+		final MTextfield t1 = new MTextfield();
 		t1.setText(emPO.getPosID());
 		t1.setOpaque(false);
 		t1.setBorder(BorderFactory.createEmptyBorder());
 		t1.setEditable(false);
-		final JTextField t2 = new JTextField();
+		final MTextfield t2 = new MTextfield();
 		
 		t2.setOpaque(false);
 		t2.setBorder(BorderFactory.createEmptyBorder());
@@ -226,6 +214,8 @@ public class arrival {
         b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
         
 		int xloc=184,yloc=128,length=150,width=38,interval=58;
+		
+		t1.settextFont();t2.settextFont();
 		
 		t1.setBounds(xloc, yloc, length, width);
 		datepick.setBounds(xloc, yloc+interval, length, width);

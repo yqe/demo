@@ -25,6 +25,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import login.MTextfield;
+
 import com.eltima.components.ui.DatePicker;
 
 import documentbl.Transdocu;
@@ -72,13 +74,13 @@ public class load {
 //		JLabel l12 = new JLabel("营业厅编号:");
 
 
-		final JTextField id = new JTextField();
-		final JTextField transid = new JTextField();
-		final JTextField carid = new JTextField();
-		final JTextField jz = new JTextField();// ��װԱ
-		final JTextField yy = new JTextField();// Ѻ��Ա
-		final JTextField price = new JTextField();
-		final JTextField yyt = new JTextField();
+		final MTextfield id = new MTextfield();
+		final MTextfield transid = new MTextfield();
+		final MTextfield carid = new MTextfield();
+		final MTextfield jz = new MTextfield();// ��װԱ
+		final MTextfield yy = new MTextfield();// Ѻ��Ա
+		final MTextfield price = new MTextfield();
+		final MTextfield yyt = new MTextfield();
 		
 		id.setOpaque(false);
 		id.setBorder(BorderFactory.createEmptyBorder());
@@ -239,6 +241,10 @@ public class load {
 //		l11.setBounds(450, 500, 100, 30);
 
 		int interval=55;int xloc=271;
+		
+		id.settextFont();transid.settextFont();carid.settextFont();jz.settextFont();yy.settextFont();price.settextFont();
+		yyt.settextFont();
+		
 		id.setBounds(xloc, 132, 234, 38);
 		datepick.setBounds(xloc, 132+interval, 234, 38);
 		transid.setBounds(xloc, 132+interval*3, 234, 38);

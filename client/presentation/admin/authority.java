@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import login.MTextfield;
 import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
@@ -56,9 +57,9 @@ public class authority {
 
 	
 
-		final JTextField t1 = new JTextField();
+		final MTextfield t1 = new MTextfield();
 
-		final JTextField t2 = new JTextField();
+		final MTextfield t2 = new MTextfield();
 		
 		
 		t1.setOpaque(false);
@@ -125,8 +126,8 @@ public class authority {
 		p1.add(b5);
 
 	
-		
-		
+		t1.settextFont();
+		t2.settextFont();
 		
 		t1.setBounds(170, 293, 176, 43);
 		t2.setBounds(605, 319, 176, 43);

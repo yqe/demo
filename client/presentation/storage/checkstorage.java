@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import login.MTextfield;
+
 import com.eltima.components.ui.DatePicker;
 
 import po.EmploeePO;
@@ -69,12 +71,12 @@ public class checkstorage {
 
 
 
-		final JTextField t1 = new JTextField();
-		final JTextField t2 = new JTextField();
-		final JTextField t3 = new JTextField();
-		final JTextField t4 = new JTextField();
+		final MTextfield t1 = new MTextfield();
+		final MTextfield t2 = new MTextfield();
+		final MTextfield t3 = new MTextfield();
+		final MTextfield t4 = new MTextfield();
 		
-		final JTextField zzzx = new JTextField();
+		final MTextfield zzzx = new MTextfield();
 
 		t1.setOpaque(false);
 		t1.setEditable(false);
@@ -144,12 +146,17 @@ public class checkstorage {
 		zzzx.setOpaque(false);
 		zzzx.setBorder(BorderFactory.createEmptyBorder());
 		
+		zzzx.settextFont();
+		
 		zzzx.setBounds(470, 152, 196, 42);
 		
 
 		b4.setContentAreaFilled(false);
 		
 		int xloc=315,yloc=445,length=174,width=43,xinterval=200,yinterval=100;
+		
+		t1.settextFont();t2.settextFont();t3.settextFont();t4.settextFont();
+		
 		t1.setBounds(xloc, yloc+yinterval-3, length, width);
 		t2.setBounds(xloc, yloc, length, width);
 		t3.setBounds(xloc+xinterval, yloc+yinterval, length, width);

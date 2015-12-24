@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import login.MTextfield;
 import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
@@ -55,9 +56,9 @@ public class adduser {
 
 
 
-		final JTextField t1 = new JTextField();
-		final JTextField t2 = new JTextField();
-		final JTextField t3 = new JTextField();
+		final MTextfield t1 = new MTextfield();
+		final MTextfield t2 = new MTextfield();
+		final MTextfield t3 = new MTextfield();
 		final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
 		final JComboBox job = new JComboBox(jobs);
 
@@ -110,8 +111,11 @@ public class adduser {
           int length=174,width=43;		
 
 		t1.setBounds(194, 319, length, width);
+		t1.settextFont();
 		t2.setBounds(194, 409, length, width);
+		t2.settextFont();
 		t3.setBounds(600, 319, length, width);
+		t3.settextFont();
 		job.setBounds(600, 409, length, width);
 
 		b5.setContentAreaFilled(false);

@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import login.MTextfield;
 import po.EmploeePO;
 import po.VehicleMaintanceInfoPO;
 import transbl.TransBl;
@@ -77,13 +78,13 @@ public class Maintenance {
 //		l11.setFont(new Font("", Font.PLAIN, lmain));
 //		l12.setFont(new Font("", Font.PLAIN, lmain));
 
-		final JTextField carid = new JTextField();
-		final JTextField carnumber = new JTextField();
-		final JTextField driverid = new JTextField();
-		final JTextField drivername = new JTextField();
-		final JTextField driversfz = new JTextField();
-		final JTextField tel = new JTextField();
-		final JTextField date = new JTextField();
+		final MTextfield carid = new MTextfield();
+		final MTextfield carnumber = new MTextfield();
+		final MTextfield driverid = new MTextfield();
+		final MTextfield drivername = new MTextfield();
+		final MTextfield driversfz = new MTextfield();
+		final MTextfield tel = new MTextfield();
+		final MTextfield date = new MTextfield();
 		
 		carid.setOpaque(false);
 		carid.setBorder(BorderFactory.createEmptyBorder());
@@ -117,7 +118,7 @@ public class Maintenance {
 		bg.add(jb1);
 		bg.add(jb2);
 
-		JButton b1 = new JButton("查询车辆信息");
+		JButton b1 = new JButton();
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TransBl trans = new TransBl(oos,ois);
@@ -170,7 +171,7 @@ public class Maintenance {
 			}
 		});
 
-		JButton b4 = new JButton("更新车辆信息");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean iscarid = (carid.getText().length()==9);
@@ -253,6 +254,10 @@ public class Maintenance {
 		int length=234,width=38;
 		int interval=55;
 		
+		carid.settextFont();carnumber.settextFont();driverid.settextFont();
+		drivername.settextFont();date.settextFont();driversfz.settextFont();
+		tel.settextFont();
+		
 		carid.setBounds(xloc, yloc, length, width);
 		carnumber.setBounds(xloc, yloc+interval, length, width);
 		timebox1.setBounds(xloc, yloc+interval*8+10, length, width);
@@ -263,8 +268,13 @@ public class Maintenance {
 		driversfz.setBounds(xloc, yloc+interval*5+10, length, width);
 		tel.setBounds(xloc, yloc+interval*6+10, length, width);
 
-//		b1.setBounds(450, 100, 120, 30);
-//		b4.setBounds(b4xloc, b4yloc, 180, 40);
+		b1.setContentAreaFilled(false);
+		b1.setBorder(BorderFactory.createEmptyBorder());
+		b4.setContentAreaFilled(false);
+		b4.setBorder(BorderFactory.createEmptyBorder());
+		
+		b1.setBounds(551,130,145,39);
+		b4.setBounds(219, 713, 277, 85);
 
 		jb1.setBounds(xloc+50, yloc+interval*7+20, 50, 30);
 		jb2.setBounds(xloc+195, yloc+interval*7+20, 50, 30);

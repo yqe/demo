@@ -44,6 +44,7 @@ import storagebl.StorageBl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import login.MTextfield;
 import login.Tran;
 
 public class outstorage {
@@ -85,8 +86,8 @@ public class outstorage {
 //		JLabel l8 = new JLabel("入库单列表:");
 
 
-		final JTextField t1 = new JTextField();
-		final JTextField t2 = new JTextField();
+		final MTextfield t1 = new MTextfield();
+		final MTextfield t2 = new MTextfield();
 		
 		t1.setOpaque(false);
 		t1.setBorder(BorderFactory.createEmptyBorder());
@@ -200,13 +201,17 @@ public class outstorage {
 
 		sitebox.setBounds(xloc, 502, length, width);
 		
+		t1.settextFont();
+		
 		t1.setBounds(xloc, 312, length, width);
+		
+		t2.settextFont();
 		
 		t2.setBounds(252, 620, 196, 42);
 
 		typebox.setBounds(268, 358, 176, 43);
 
-//		t2.setBounds(530, b1yloc + 100, 120, 30);
+
 
 		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
 		b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());

@@ -31,6 +31,7 @@ import javax.swing.table.TableColumn;
 
 import com.eltima.components.ui.DatePicker;
 
+import login.MTextfield;
 import login.Tran;
 import po.EmploeePO;
 import po.InputStorageDocuPO;
@@ -79,12 +80,12 @@ public class instorage {
 //        JLabel l11=new JLabel("中转中心编号:");
   
     
-    final JTextField id=new JTextField();
-    final JTextField qu=new JTextField();
-    final JTextField pai=new JTextField();
-    final JTextField jia=new JTextField();
-    final JTextField wei=new JTextField();
-    final JTextField zzzxid=new JTextField();
+    final MTextfield id=new MTextfield();
+    final MTextfield qu=new MTextfield();
+    final MTextfield pai=new MTextfield();
+    final MTextfield jia=new MTextfield();
+    final MTextfield wei=new MTextfield();
+    final MTextfield zzzxid=new MTextfield();
     
     
     id.setOpaque(false);
@@ -221,9 +222,13 @@ public class instorage {
 	
 	sitebox.setOpaque(false);
 	
+	id.settextFont();
+	
 	id.setBounds(xloc, 312, length, width);
 	
 	int newxloc=302,newyloc=311,newlength=136,newwidth=30,interval=65;
+	
+	qu.settextFont();pai.settextFont();jia.settextFont();wei.settextFont();zzzxid.settextFont();
 	qu.setBounds(newxloc, newyloc, newlength, newwidth);
 	pai.setBounds(newxloc, newyloc+interval, newlength, newwidth);
 	jia.setBounds(newxloc, newyloc+interval*2, newlength, newwidth);

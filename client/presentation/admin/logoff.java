@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import login.MTextfield;
 import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
@@ -59,9 +60,9 @@ public class logoff {
 		l4.setFont(new Font("", Font.PLAIN, 18));
 		l5.setFont(new Font("", Font.PLAIN, 18));
 
-		final JTextField t1 = new JTextField();
-		final JTextField t2 = new JTextField();
-		final JTextField t3 = new JTextField();
+		final MTextfield t1 = new MTextfield();
+		final MTextfield t2 = new MTextfield();
+		final MTextfield t3 = new MTextfield();
 
 		
 		t1.setOpaque(false);
@@ -142,6 +143,8 @@ public class logoff {
 		
 		 int length=176,width=43;
 
+		 t1.settextFont();	 t2.settextFont();	 t3.settextFont();
+		 
 		t1.setBounds(244, 298, length, width);
 		t2.setBounds(586, 319, length, width);
 		t3.setBounds(586, 409, length, width);

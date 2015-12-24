@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 
 import com.eltima.components.ui.DatePicker;
 
+import login.MTextfield;
 import login.Tran;
 import documentbl.Earneddocu;
 import po.EarnedPO;
@@ -70,10 +71,10 @@ public class collection {
 //		l7.setFont(new Font("", Font.PLAIN, lmain));
 //		l8.setFont(new Font("", Font.PLAIN, lmain));
 
-		final JTextField id = new JTextField();
-		final JTextField profit = new JTextField();
-		final JTextField courier = new JTextField();
-		final JTextField yyt = new JTextField();
+		final MTextfield id = new MTextfield();
+		final MTextfield profit = new MTextfield();
+		final MTextfield courier = new MTextfield();
+		final MTextfield yyt = new MTextfield();
 		
 		id.setOpaque(false);
 		id.setBorder(BorderFactory.createEmptyBorder());
@@ -171,6 +172,9 @@ public class collection {
 
 		int xloc=271,yloc=77; int length=234,width=38;
 		int interval=55;
+		
+		id.settextFont();	profit.settextFont();	courier.settextFont();	yyt.settextFont();
+		
 		id.setBounds(xloc, yloc+interval, length, width);
 		datepick.setBounds(xloc, yloc+interval*2, length, width);
 		profit.setBounds(xloc, yloc+interval*3, length, width);
