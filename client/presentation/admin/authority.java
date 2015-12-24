@@ -1,7 +1,10 @@
 package admin;
 
+import image.ImageGet;
+
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -43,24 +46,15 @@ public class authority {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/authority.jpg"));
+		 new ImageGet();
+	       Image bgp=ImageGet.getImageByState("authority");
 		background = new ImageIcon(bgp);
 		
 		p1.setBounds(0, 0, 988, 756);
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—>修改权限");
-		int b2size = 16;
-		l2.setFont(new Font("", Font.PLAIN, b2size));
-		JLabel l3 = new JLabel("输入账号:");
+	
 
-		JLabel l4 = new JLabel("姓名:");
-		JLabel l5 = new JLabel("职位:");
 
-		l3.setFont(new Font("", Font.PLAIN, b2size));
-		l4.setFont(new Font("", Font.PLAIN, b2size));
-		l5.setFont(new Font("", Font.PLAIN, b2size));
+	
 
 		final JTextField t1 = new JTextField();
 
@@ -78,7 +72,7 @@ public class authority {
 
 		final JComboBox job = new JComboBox(jobs);
 
-		JButton b4 = new JButton("确定");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// PO传数据
@@ -98,7 +92,7 @@ public class authority {
 
 		});
 
-		JButton b5 = new JButton("确认修改");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!t2.getText().equals("")) {
@@ -120,11 +114,7 @@ public class authority {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
+	
 
 		p1.add(t1);
 		p1.add(t2);
@@ -134,26 +124,21 @@ public class authority {
 		p1.add(b4);
 		p1.add(b5);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 2 / 15;
-		int b4xloc = p1.getWidth() * 2 / 5;
-		int b4yloc = p1.getHeight() * 11 / 15, b4ysize = p1.getHeight() * 1 / 5 + 10;
+	
+		
+		
+		
+		t1.setBounds(170, 293, 176, 43);
+		t2.setBounds(605, 319, 176, 43);
+		job.setBounds(605, 409, 176, 43);
 
-		l1.setBounds(220, -20, 180, 80);
-
-		l2.setBounds(50, b1yloc, 150, 30);
-
-		l3.setBounds(150, 120, 150, 30);
-
-		l4.setBounds(150, 250, 150, 30);
-		l5.setBounds(150, 350, 150, 30);
-		job.setBounds(300, 350, 180, 30);
-
-		t1.setBounds(300, 120, 150, 30);
-		t2.setBounds(300, 250, 150, 30);
-
-		b4.setBounds(300, 180, 100, 30);
-		b5.setBounds(b4xloc, b4yloc, 150, 30);
+		
+		b4.setContentAreaFilled(false);
+		b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);
+		b5.setBorder(BorderFactory.createEmptyBorder());
+		b4.setBounds(154, 409, 211, 56);
+		b5.setBounds(595, 590, 200, 53);
 
 		return p1;
 	}

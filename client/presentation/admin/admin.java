@@ -1,7 +1,10 @@
 package admin;
 
+import image.ImageGet;
+
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -51,7 +54,8 @@ public class admin {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/admincontrol.jpg"));
+		 new ImageGet();
+	       Image bgp=ImageGet.getImageByState("admincontrol");
 		background = new ImageIcon(bgp);
 		int b2size=16;
 		admin.setBounds(0, 0, 1344, 756);
@@ -64,7 +68,7 @@ public class admin {
 		control.setBounds(0, 0, size,756);
 		content.setBounds(size, 0, 988, 756);
 
-		JButton b3 = new JButton("退出");
+		JButton b3 = new JButton();
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -79,7 +83,7 @@ public class admin {
 			}
 		});
 
-		JButton b4 = new JButton("修改账户密码");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -91,7 +95,7 @@ public class admin {
 			}
 
 		});
-		JButton b5 = new JButton("注销账户");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -105,7 +109,7 @@ public class admin {
 
 		});
 
-		JButton b6 = new JButton("修改权限");
+		JButton b6 = new JButton();
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -119,7 +123,7 @@ public class admin {
 
 		});
 
-		JButton b7 = new JButton("增加用户");
+		JButton b7 = new JButton();
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -180,12 +184,22 @@ public class admin {
 		control.add(b6);
 		control.add(b7);
 
-		int b4xloc = size / 6, b4yloc = 3*control.getHeight() / 7, b4ysize = control.getHeight() / 9;
-		b4.setBounds(b4xloc, b4yloc, 120, 30);
-		b5.setBounds(b4xloc, b4yloc + b4ysize, 120, 30);
-		b6.setBounds(b4xloc, b4yloc + 2 * b4ysize, 120, 30);
-		b3.setBounds(b4xloc, b4yloc + 4 * b4ysize, 120, 30);
-		b7.setBounds(b4xloc, b4yloc + 3 * b4ysize, 120, 30);
+	
+		
+		
+		b3.setContentAreaFilled(false);b3.setBorder(BorderFactory.createEmptyBorder());
+		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
+		b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
+		b7.setContentAreaFilled(false);b7.setBorder(BorderFactory.createEmptyBorder());
+		
+		
+		int xloc=87,yloc=340,length=196,width=49,interval=70;
+		b4.setBounds(xloc, yloc, length, width);
+		b5.setBounds(xloc, yloc + interval, length, width);
+		b6.setBounds(xloc, yloc + 2 * interval, length, width);
+		b3.setBounds(xloc, yloc + 4 * interval+6, length, width);
+		b7.setBounds(xloc, yloc + 3 * interval+6, length, width);
 
 		content.add(change.Panel());
 		content.setLayout(null);

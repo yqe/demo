@@ -1,7 +1,10 @@
 package admin;
 
+import image.ImageGet;
+
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -43,24 +46,15 @@ public class changepasswordmain {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/changepassword.jpg"));
+		 new ImageGet();
+	       Image bgp=ImageGet.getImageByState("changepassword");
 		background = new ImageIcon(bgp);
 
 		p1.setBounds(0, 0, 988, 756);
 
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—>修改密码");
-		int b2size = 16;
-		l2.setFont(new Font("", Font.PLAIN, b2size));
-		JLabel l3 = new JLabel("请输入ID：");
-		JLabel l4 = new JLabel("请输入新密码:");
-		JLabel l5 = new JLabel("请再次输入新密码:");
+		
 
-		l3.setFont(new Font("", Font.PLAIN, b2size));
-		l4.setFont(new Font("", Font.PLAIN, b2size));
-		l5.setFont(new Font("", Font.PLAIN, b2size));
+		
 
 		final JTextField id = new JTextField();
 		final JPasswordField newpassword1 = new JPasswordField();
@@ -73,7 +67,7 @@ public class changepasswordmain {
 		newpassword1.setBorder(BorderFactory.createEmptyBorder());
 		newpassword2.setBorder(BorderFactory.createEmptyBorder());
 
-		JButton b4 = new JButton("确认修改");
+		JButton b4 = new JButton("");
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				char[] pass1 = newpassword1.getPassword();
@@ -112,11 +106,7 @@ public class changepasswordmain {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
+	
 
 		p1.add(id);
 		p1.add(newpassword1);
@@ -124,24 +114,19 @@ public class changepasswordmain {
 
 		p1.add(b4);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 2 / 15;
-		int b4xloc = p1.getWidth() * 3 / 7;
-		int b4yloc = p1.getHeight() * 11 / 15, b4ysize = p1.getHeight() * 1 / 5 + 10;
+	
 
-		l1.setBounds(220, -20, 180, 80);
+	
+		
 
-		l2.setBounds(50, b1yloc, 150, 30);
-
-		l3.setBounds(150, 150, 150, 30);
-		l4.setBounds(150, 250, 150, 30);
-		l5.setBounds(150, 350, 150, 30);
-
-		id.setBounds(300, 150, 150, 30);
-		newpassword1.setBounds(300, 250, 150, 30);
-		newpassword2.setBounds(300, 350, 150, 30);
-
-		b4.setBounds(250, b4yloc, 150, 30);
+		id.setBounds(170, 293, 176, 43);
+		newpassword1.setBounds(600, 319, 176, 43);
+		newpassword2.setBounds(600, 409, 176, 43);
+		
+		b4.setContentAreaFilled(false);
+        b4.setBorder(BorderFactory.createEmptyBorder());
+		
+		b4.setBounds(535, 590, 200, 53);
 
 		return p1;
 

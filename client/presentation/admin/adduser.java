@@ -1,7 +1,10 @@
 package admin;
 
+import image.ImageGet;
+
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -43,27 +46,14 @@ public class adduser {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/adduser.jpg"));
+		 new ImageGet();
+	       Image bgp=ImageGet.getImageByState("adduser");
 		background = new ImageIcon(bgp);
 
 		p1.setBounds(0, 0, 988, 756);
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—> 新建账户");
-		int b2size = 16;
-		l2.setFont(new Font("—>主页", Font.PLAIN, b2size));
-		JLabel l3 = new JLabel("输入账号:");
+	
 
-		JLabel l4 = new JLabel("姓名:");
-		JLabel l5 = new JLabel("职位:");
 
-		JLabel l6 = new JLabel("设置密码:");
-
-		l3.setFont(new Font("", Font.PLAIN, b2size));
-		l4.setFont(new Font("", Font.PLAIN, b2size));
-		l5.setFont(new Font("", Font.PLAIN, b2size));
-		l6.setFont(new Font("", Font.PLAIN, b2size));
 
 		final JTextField t1 = new JTextField();
 		final JTextField t2 = new JTextField();
@@ -79,7 +69,7 @@ public class adduser {
 		t3.setBorder(BorderFactory.createEmptyBorder());
 		
 		
-		JButton b5 = new JButton("确认新建");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -105,12 +95,7 @@ public class adduser {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
-		p1.add(l6);
+	
 
 		p1.add(t1);
 		p1.add(t2);
@@ -119,27 +104,19 @@ public class adduser {
 
 		p1.add(b5);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 2 / 15;
-		int b4xloc = p1.getWidth() * 2 / 5;
-		int b4yloc = p1.getHeight() * 12 / 15 , b4ysize = p1.getHeight() * 1 / 5 + 10;
+		
 
-		l1.setBounds(220, -20, 180, 80);
+	
+          int length=174,width=43;		
 
-		l2.setBounds(50, b1yloc, 150, 30);
+		t1.setBounds(194, 319, length, width);
+		t2.setBounds(194, 409, length, width);
+		t3.setBounds(600, 319, length, width);
+		job.setBounds(600, 409, length, width);
 
-		l3.setBounds(150, 150, 150, 30);
-
-		l4.setBounds(150, 350, 150, 30);
-		l5.setBounds(150, 450, 150, 30);
-		l6.setBounds(150, 250, 150, 30);
-
-		t1.setBounds(300, 150, 180, 30);
-		t2.setBounds(300, 350, 180, 30);
-		t3.setBounds(300, 250, 180, 30);
-		job.setBounds(300, 450, 180, 30);
-
-		b5.setBounds(b4xloc, b4yloc, 150, 30);
+		b5.setContentAreaFilled(false);
+		b5.setBorder(BorderFactory.createEmptyBorder());
+		b5.setBounds(582, 606, 200, 54);
 		return p1;
 
 	}
