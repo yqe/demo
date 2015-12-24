@@ -87,13 +87,14 @@ public class logoff {
 				String username = userpo.getUsername();
 				String userposition = userpo.getPosition();
 				if (!t1.getText().equals("")) {
-					if (userpo != null) {
+					if (userpo.getUserID().equals("不存在")) {
+						JOptionPane.showMessageDialog(null, "没有该账号，请再次确认!");
+					} else {
 						t2.setText(username);
 						t3.setText(userposition);
-					} else {
-						JOptionPane.showMessageDialog(null, "账号有误!");
 					}
-				} else {
+				} 
+				else {
 					JOptionPane.showMessageDialog(null, "请输入账号!");
 				}
 			}

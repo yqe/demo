@@ -18,11 +18,11 @@ public class ManageAccount implements ManageAccountService {
 	MySqlImp mysqlimp;
 	ManageAccountPO accpo;
 
-	public ManageAccountPO find(String ID) {
+	public ManageAccountPO find(String name) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
-			String find = "SELECT * FROM 账户管理" + " WHERE 账户ID='"+ID+"'";
+			String find = "SELECT * FROM 账户管理" + " WHERE 账户名称='"+name+"'";
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
 			accpo = new ManageAccountPO(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4));
@@ -67,15 +67,15 @@ public class ManageAccount implements ManageAccountService {
 		}
 	}
 
-	public boolean delete(String ID) {
+	public boolean delete(String name) {
 		// TODO Auto-generated method stub
 		try {
 			mysqlimp = new MySqlImp();
-			String s=this.find(ID).getAccountname();
+			String s=this.find(name).getAccountname();
 			if (s.equals("不存在")) {
 				return false;
 			} else {
-				String delete = "DELETE FROM 账户管理" + " WHERE 账户ID='" + ID + "'";
+				String delete = "DELETE FROM 账户管理" + " WHERE 账户名称='" + name + "'";
 				mysqlimp.update(delete);
 				return true;
 			}

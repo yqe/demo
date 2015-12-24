@@ -2,6 +2,7 @@ package admin;
 
 import image.ImageGet;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -17,10 +18,12 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import login.MTextfield;
 import po.EmploeePO;
@@ -61,6 +64,10 @@ public class adduser {
 		final MTextfield t3 = new MTextfield();
 		final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
 		final JComboBox job = new JComboBox(jobs);
+		job.setOpaque(false);
+		
+             
+        
 
 		t1.setOpaque(false);
 		t2.setOpaque(false);

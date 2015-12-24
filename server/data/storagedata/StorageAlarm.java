@@ -15,7 +15,7 @@ import storagedataService.StorageAlarmService;
 public class StorageAlarm implements StorageAlarmService{
 	private String transcenterID;
 	private int total;//库存总量
-	private int alarmvalue;//报警值
+	private double alarmvalue;//报警值
 	MySqlImp mysqlimp;
 	
 	@Override
@@ -71,7 +71,7 @@ public class StorageAlarm implements StorageAlarmService{
 			rs.next();
 			this.transcenterID=rs.getString(1);
 			this.total=rs.getInt(2);
-			this.alarmvalue=rs.getInt(3);
+			this.alarmvalue=rs.getDouble(3);
 			StorageAlarmPO alaempo=new StorageAlarmPO(transcenterID,total,alarmvalue);
 			return alaempo;
 		} catch (ClassNotFoundException e) {
