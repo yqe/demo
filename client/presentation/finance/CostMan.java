@@ -54,8 +54,8 @@ public class CostMan {
 			content.add(textfield[i]);
 		}
 		textfield[textfield.length - 1].setBounds(Gapw, 605, textw, texth);
-		textfield[textfield.length - 1].setOpaque(false);
-		textfield[textfield.length - 1].setBorder(BorderFactory.createEmptyBorder());
+		textfield[textfield.length - 1].settextFont();
+		textfield[textfield.length - 1].HideTheField();
 		content.add(textfield[textfield.length - 1]);
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);

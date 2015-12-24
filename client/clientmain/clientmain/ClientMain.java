@@ -16,7 +16,7 @@ import login.loginframe;
 public class ClientMain {
 	public static void main(String[] args) {
 	
-		String hostid = "localhost";
+		String hostid = "172.26.217.28";
 		try {
 			Socket socket = new Socket(hostid, 8888);
 			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());

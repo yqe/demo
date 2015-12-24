@@ -17,14 +17,11 @@ import po.EmploeePO;
 import po.ManageAccountPO;
 
 public class AccountMan {
-	int labelw = 120;
-	int labelh = 30;
+
 	int textw = 140;
 	int texth = 15;
-	int gap = 20;
-	int gaph = 80;
-	int Gapw=178;
-	int Gaph=250;
+	int Gapw = 178;
+	int Gaph = 250;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
@@ -34,7 +31,8 @@ public class AccountMan {
 		this.ois = ois;
 		this.emPO = emPO;
 	}
-	public void AccMan(JPanelContent content){
+
+	public void AccMan(JPanelContent content) {
 		content.removeAll();
 		Image imagebgp = new ImageGet().GetFinanceImage("");
 		content.setConpanel(imagebgp);
@@ -43,11 +41,11 @@ public class AccountMan {
 		ChangeAcc(content);
 		CheckAcc(content);
 	}
-	
+
 	public void AddAcc(JPanelContent content) {
 		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield() };
-		textfield[0].setBounds(Gapw,322,textw,texth);
-		textfield[1].setBounds(Gapw,279,textw,texth);
+		textfield[1].setBounds(Gapw, 322, textw, texth);
+		textfield[0].setBounds(Gapw, 279, textw, texth);
 		for (int i = 0; i < textfield.length; i++) {
 			textfield[i].settextFont();
 			textfield[i].HideTheField();
@@ -112,7 +110,7 @@ public class AccountMan {
 
 		accname.setBounds(655, 232, textw, texth);
 		delbtn.setBounds(587, 337, 160, 50);
-		
+
 		delbtn.HideTheButton();
 		content.add(accname);
 		content.add(delbtn);
@@ -126,11 +124,11 @@ public class AccountMan {
 		accname.setBounds(610, 477, textw, texth);
 		final MTextfield[] text = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield(),
 				new MTextfield() };
-		
-		text[0].setBounds(632,534, textw, texth);
-		text[1].setBounds(840,532, textw, texth);
-		text[2].setBounds(632,592, textw, texth);
-		text[3].setBounds(840,589, textw, texth);
+
+		text[0].setBounds(632, 534, textw, texth);
+		text[1].setBounds(840, 532, textw, texth);
+		text[2].setBounds(632, 592, textw, texth);
+		text[3].setBounds(840, 589, textw, texth);
 		text[0].setEditable(false);
 		text[2].setEditable(false);
 		for (int i = 0; i < text.length; i = i + 1) {
@@ -144,12 +142,12 @@ public class AccountMan {
 				if (!accname.getText().equals("")) {
 					FinanceBl finance = new FinanceBl(oos, ois);
 					ManageAccountPO mapo = finance.CheckBankAccount(accname.getText());
-					if(mapo.getAccountname().equals("不存在")){
+					if (mapo.getAccountname().equals("不存在")) {
 						JOptionPane.showMessageDialog(null, "该账户ID不存在!");
+					} else {
+						text[0].setText(mapo.getAccountname());
+						text[2].setText(String.valueOf(mapo.getBalance()));
 					}
-					else{
-					text[0].setText(mapo.getAccountname());
-					text[2].setText(String.valueOf(mapo.getBalance()));}
 				} else {
 					JOptionPane.showMessageDialog(null, "请输入要搜索的账户ID!");
 				}
@@ -194,9 +192,9 @@ public class AccountMan {
 	public void CheckAcc(JPanelContent content) {
 
 		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield() };
-		textfield[0].setBounds(Gapw,496, textw, texth);
-		textfield[1].setBounds(Gapw,549, textw, texth);
-		textfield[2].setBounds(Gapw,606, textw, texth);
+		textfield[0].setBounds(Gapw, 496, textw, texth);
+		textfield[1].setBounds(Gapw, 549, textw, texth);
+		textfield[2].setBounds(Gapw, 606, textw, texth);
 		for (int i = 0; i < textfield.length; i++) {
 			textfield[i].settextFont();
 			textfield[i].HideTheField();
@@ -212,12 +210,12 @@ public class AccountMan {
 				if (!textfield[0].getText().equals("")) {
 					FinanceBl finance = new FinanceBl(oos, ois);
 					ManageAccountPO mapo = finance.CheckBankAccount(textfield[0].getText());
-					if(mapo.getAccountname().equals("不存在")){
+					if (mapo.getAccountname().equals("不存在")) {
 						JOptionPane.showMessageDialog(null, "该账户ID不存在!");
+					} else {
+						textfield[1].setText(mapo.getAccountname());
+						textfield[2].setText(String.valueOf(mapo.getBalance()));
 					}
-					else{
-					textfield[1].setText(mapo.getAccountname());
-					textfield[2].setText(String.valueOf(mapo.getBalance()));}
 				} else {
 					JOptionPane.showMessageDialog(null, "请输入要查询的账户ID!");
 				}
