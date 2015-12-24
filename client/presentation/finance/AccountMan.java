@@ -44,8 +44,8 @@ public class AccountMan {
 
 	public void AddAcc(JPanelContent content) {
 		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield() };
-		textfield[0].setBounds(Gapw, 232, textw, texth);
-		textfield[1].setBounds(Gapw, 279, textw, texth);
+		textfield[0].setBounds(Gapw, 237, textw, texth);
+		textfield[1].setBounds(Gapw, 282, textw, texth);
 		for (int i = 0; i < textfield.length; i++) {
 			textfield[i].settextFont();
 			textfield[i].HideTheField();
@@ -108,7 +108,7 @@ public class AccountMan {
 			}
 		});
 
-		accname.setBounds(655, 232, textw, texth);
+		accname.setBounds(655, 237, textw, texth);
 		delbtn.setBounds(587, 337, 160, 50);
 
 		delbtn.HideTheButton();
@@ -119,16 +119,15 @@ public class AccountMan {
 	public void ChangeAcc(JPanelContent content) {
 
 		final MTextfield accname = new MTextfield();
-		accname.setOpaque(false);
-		accname.setBorder(BorderFactory.createEmptyBorder());
-		accname.setBounds(610, 477, textw, texth);
+		accname.settextFont();
+		accname.HideTheField();
+		accname.setBounds(610, 485, textw, texth);
 		final MTextfield[] text = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield(),
 				new MTextfield() };
-
-		text[0].setBounds(632, 534, textw, texth);
-		text[1].setBounds(840, 532, textw, texth);
-		text[2].setBounds(632, 592, textw, texth);
-		text[3].setBounds(840, 589, textw, texth);
+		text[0].setBounds(631, 538, textw, texth);
+		text[1].setBounds(840, 538, textw, texth);
+		text[2].setBounds(633, 595, textw, texth);
+		text[3].setBounds(840, 595, textw, texth);
 		text[0].setEditable(false);
 		text[2].setEditable(false);
 		for (int i = 0; i < text.length; i = i + 1) {
@@ -192,9 +191,9 @@ public class AccountMan {
 	public void CheckAcc(JPanelContent content) {
 
 		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield() };
-		textfield[0].setBounds(Gapw, 496, textw, texth);
-		textfield[1].setBounds(Gapw, 549, textw, texth);
-		textfield[2].setBounds(Gapw, 606, textw, texth);
+		textfield[0].setBounds(Gapw, 501, textw, texth);
+		textfield[1].setBounds(Gapw, 554, textw, texth);
+		textfield[2].setBounds(Gapw, 611, textw, texth);
 		for (int i = 0; i < textfield.length; i++) {
 			textfield[i].settextFont();
 			textfield[i].HideTheField();
