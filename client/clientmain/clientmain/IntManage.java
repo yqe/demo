@@ -6,9 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class IntManage {
-	Socket socket;
-	ObjectOutputStream oos;
-	ObjectInputStream ois;
+	private Socket socket;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
 
 	public void InitInternet() {
 		String hostid = "localhost";

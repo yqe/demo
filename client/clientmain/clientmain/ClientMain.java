@@ -15,21 +15,16 @@ import login.loginframe;
 
 public class ClientMain {
 	public static void main(String[] args) {
-	
-		String hostid = "172.26.217.28";
-		try {
-			Socket socket = new Socket(hostid, 8888);
-			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 
-			loginframe login = new loginframe(socket, oos, ois);
+		IntManage client = new IntManage();
+		client.InitInternet();
+		String hostid = "172.26.217.28";
+		loginframe login = new loginframe(client.getSocket(), client.getOos(), client.getOis());
+		try {
 			login.Frame();
-		} catch (UnknownHostException e1) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
