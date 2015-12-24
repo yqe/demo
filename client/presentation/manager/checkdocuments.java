@@ -66,14 +66,14 @@ public class checkdocuments {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// new CheckBill().CheckBill(p1);
-				new StateOfRun(oos,ois,emPO).stateofrun(p1);
+//				new StateOfRun(oos,ois,emPO).stateofrun(p1);
 				p1.repaint();
 			}
-		}); // 这一部分家族企业和我Panel实现方法不同
+		}); 
 		JButton b5 = new JButton("查看成本收益表");
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CostIncome(oos,ois,emPO).costincome(p1);
+//				new CostIncome(oos,ois,emPO).costincome(p1);
 				p1.repaint();
 			}
 		});

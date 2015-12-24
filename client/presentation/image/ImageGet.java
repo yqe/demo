@@ -39,6 +39,8 @@ public class ImageGet {
 	public static final Image dispatch = createImage("image/dispatch.jpg");
 
 	public static final Image financemaincontrol = createImage("image/FinanceCMD.jpg");
+	
+	public static final Image Inquiry = createImage("image/Inquiry.jpg");
 
 	public static final Image instorage = createImage("image/instorage.jpg");
 
@@ -123,6 +125,8 @@ public class ImageGet {
 			return financemaincontrol;
 		case "instorage":
 			return instorage;
+		case "Inquiry":
+			return Inquiry;
 		case "load":
 			return load;
 		case "logoff":
@@ -141,6 +145,8 @@ public class ImageGet {
 			return transitload;
 		case "transitmaincontrol":
 			return transitmaincontrol;
+			
+			
 		default:
 			break;
 		}

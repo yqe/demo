@@ -1,9 +1,12 @@
 package manager;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Graphics;
@@ -60,7 +63,8 @@ public class manager {
 	}
 
 	public JPanel Panel() throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/managercontrol.jpg"));
+		 new ImageGet();
+	        Image bgp=ImageGet.getImageByState("managercontrol");
 		background = new ImageIcon(bgp);
 		
 		manager.setBounds(0, 0, 1344, 756);
@@ -85,12 +89,7 @@ public class manager {
 		control.setBounds(0, 0, size, 700);
 		content.setBounds(size, 0, 650, 700);
 
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—> 主页");
-		int b2size = 16;
-		l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
+	
 
 		JButton b3 = new JButton("退出");
 		b3.addActionListener(new ActionListener() {
@@ -159,16 +158,12 @@ public class manager {
 
 		control.setLayout(null);
 		control.setOpaque(false);
-		JLabel employid=new JLabel("工号 :");
-		JLabel employjob=new JLabel("职位 :");
-		employid.setFont(new Font("", Font.PLAIN, b2size));
-		employjob.setFont(new Font("", Font.PLAIN, b2size));	
+	
+	
 		JTextField idt=new JTextField();
-		idt.setFont(new Font("", Font.PLAIN, b2size));
 		JTextField namet=new JTextField();
-		namet.setFont(new Font("", Font.PLAIN, b2size));
 		JTextField jobt=new JTextField();
-		jobt.setFont(new Font("", Font.PLAIN, b2size));	
+	
 		idt.setOpaque(false);
 		idt.setEditable(false);
 		idt.setBorder(BorderFactory.createEmptyBorder());
@@ -178,16 +173,14 @@ public class manager {
 		jobt.setOpaque(false);
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());	
-		employid.setBounds(40, 210, 60, 30);
-		employjob.setBounds(40, 250,60, 30);
+	
     	namet.setBounds(40, 170, 80, 30);
 		idt.setBounds(100, 210, 80, 30);
 		jobt.setBounds(100, 250, 80, 30);	
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText(emPO.getPosition());	
-		control.add(employid);
-		control.add(employjob);
+	
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);
