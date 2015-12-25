@@ -90,7 +90,7 @@ public class countstorage {
 
 		
 
-		jp.setBounds(50, b1yloc + 75, 528, 400);
+//		jp.setBounds(50, b1yloc + 75, 528, 400);
 
 		return p1;
 

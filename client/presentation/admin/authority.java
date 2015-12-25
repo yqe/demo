@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import login.MTextfield;
+import login.Mdialog;
 import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
@@ -105,11 +106,11 @@ public class authority {
 					boolean isOk = userbl
 							.positionTransfer(new UserInfoPO(ID, pass, name, job.getSelectedItem().toString()));
 					if (isOk)
-						JOptionPane.showMessageDialog(null, "修改成功!");
+						Mdialog.showMessageDialog("修改成功!");
 					else
-						JOptionPane.showMessageDialog(null, "修改失败!");
+						Mdialog.showMessageDialog( "修改失败!");
 				} else
-					JOptionPane.showMessageDialog(null, "请确认员工信息!");
+					Mdialog.showMessageDialog("请确认员工信息!");
 			}
 		});
 

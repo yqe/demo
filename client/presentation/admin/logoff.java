@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import login.MTextfield;
+import login.Mdialog;
 import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
@@ -88,14 +89,14 @@ public class logoff {
 				String userposition = userpo.getPosition();
 				if (!t1.getText().equals("")) {
 					if (userpo.getUserID().equals("不存在")) {
-						JOptionPane.showMessageDialog(null, "没有该账号，请再次确认!");
+						Mdialog.showMessageDialog( "没有该账号，请再次确认!");
 					} else {
 						t2.setText(username);
 						t3.setText(userposition);
 					}
 				} 
 				else {
-					JOptionPane.showMessageDialog(null, "请输入账号!");
+					Mdialog.showMessageDialog( "请输入账号!");
 				}
 			}
 
@@ -109,12 +110,12 @@ public class logoff {
 					UserInfoPO userpotemp = userbl.GetUserAccount(t1.getText());
 					boolean IsOk = userbl.cancellation(userpotemp);
 					if (IsOk) {
-						JOptionPane.showMessageDialog(null, "注销成功!");
+						Mdialog.showMessageDialog( "注销成功!");
 					} else {
-						JOptionPane.showMessageDialog(null, "注销失败，请重新再试一次!");
+						Mdialog.showMessageDialog( "注销失败，请重新再试一次!");
 					}
 				} else
-					JOptionPane.showMessageDialog(null, "注销失败，请确认输入的账户!");
+					Mdialog.showMessageDialog( "注销失败，请确认输入的账户!");
 			}
 
 		});

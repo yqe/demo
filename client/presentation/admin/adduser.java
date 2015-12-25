@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import login.MTextfield;
+import login.Mdialog;
 import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
@@ -100,13 +101,17 @@ public class adduser {
 				if (!isempty) {
 					UserInfoPO user = new UserInfoPO(t1.getText(), t3.getText(), t2.getText(),
 							job.getSelectedItem().toString());
+//					System.out.println(t1.getText());
+//					System.out.println(t3.getText());
+//					System.out.println(t2.getText());
+//					System.out.println(job.getSelectedItem().toString());
 					UserBl userbl = new UserBl(oos,ois);
 					if (userbl.AddUser(user))
-						JOptionPane.showMessageDialog(null, "新建成功!");
+						Mdialog.showMessageDialog( "新建成功!");
 					else
-						JOptionPane.showMessageDialog(null, "抱歉，新建失败!");
+						Mdialog.showMessageDialog("抱歉，新建失败!");
 				} else
-					JOptionPane.showMessageDialog(null, "新建失败，请确认信息填写完整!");
+					Mdialog.showMessageDialog("新建失败，请确认信息填写完整!");
 
 			}
 

@@ -32,6 +32,8 @@ import po.EmploeePO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import login.MTextfield;
+
 public class staff {
 	private JPanel imagePanel;
 	private ImageIcon background;
@@ -57,22 +59,16 @@ public class staff {
 	        Image bgp=ImageGet.getImageByState("staff");
 		background = new ImageIcon(bgp);	
 		p1.setBounds(0, 0, 1029, 840);
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—>人员调度");
-		int b2size = 16;
-		JLabel l3 = new JLabel("机构选择:");
-		JLabel l4 = new JLabel("员工ID:");
-		l2.setFont(new Font("", Font.PLAIN, b2size));
-		l3.setFont(new Font("", Font.PLAIN, b2size));
-		l4.setFont(new Font("", Font.PLAIN, b2size));
+		
+	
 
 		String[] organ = { "营业厅", "中转中心", "总部" };
 
 		JComboBox organbox = new JComboBox(organ);
 
-		final JTextField t1 = new JTextField();
+		final MTextfield t1 = new MTextfield();
+		
+		t1.settextFont();
 		
 		t1.setOpaque(false);
 		t1.setBorder(BorderFactory.createEmptyBorder());
@@ -91,7 +87,7 @@ public class staff {
 			}
 
 		});
-		JButton b5 = new JButton("确认");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				staffchange sfc = null;
@@ -114,10 +110,7 @@ public class staff {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-		p1.add(l3);
-		p1.add(l4);
+	
 
 		p1.add(organbox);
 		p1.add(t1);
@@ -127,23 +120,15 @@ public class staff {
 
 		p1.setOpaque(false);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 2 / 15;
-		int b4xloc = p1.getWidth() * 2 / 3;
-		int b4yloc = p1.getHeight() * 4 / 15 + 20, b4ysize = p1.getHeight() * 2 / 5;
+		
 
-		l1.setBounds(220, -20, 180, 80);
+		b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
+		
+		organbox.setBounds(440, 285, 281, 45);
+		t1.setBounds(445, 492, 281, 45);
 
-		l2.setBounds(50, b1yloc, 180, 30);
-
-		l3.setBounds(150, b4yloc, 180, 30);
-		l4.setBounds(150, b4yloc + b4ysize, 180, 30);
-
-		organbox.setBounds(250, b4yloc, 120, 30);
-		t1.setBounds(250, b4yloc + b4ysize, 120, 30);
-
-		b4.setBounds(b4xloc, b4yloc, 100, 40);
-		b5.setBounds(b4xloc, b4yloc + b4ysize, 100, 40);
+//		b4.setBounds(b4xloc, b4yloc, 100, 40);
+		b5.setBounds(718, 662, 200, 72);
 
 		return p1;
 

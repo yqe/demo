@@ -24,6 +24,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import login.MTextfield;
+import login.Mdialog;
 import po.EmploeePO;
 import po.UserInfoPO;
 import userbl.UserBl;
@@ -82,24 +83,24 @@ public class changepasswordmain {
 						if (equal) {
 							UserBl userbl = new UserBl(oos,ois);
 							if(userbl.GetUserAccount(id.getText()).getUserID().equals("不存在")){
-								JOptionPane.showMessageDialog(null, "没有该账户!");
+								Mdialog.showMessageDialog("没有该账户!");
 							}
 							else{
 								boolean IsOk = userbl.changePassword(new UserInfoPO(id.getText(), password1, "", ""));
 							if (IsOk)
-								JOptionPane.showMessageDialog(null, "修改成功!");// 将新密码传入所对应PO
+								Mdialog.showMessageDialog( "修改成功!");// 将新密码传入所对应PO
 							else
-								JOptionPane.showMessageDialog(null, "修改失败!");}
+								Mdialog.showMessageDialog( "修改失败!");}
 						} else {
-							JOptionPane.showMessageDialog(null, "两次所输入新密码不统一，请重新输入!");
+							Mdialog.showMessageDialog("两次所输入新密码不统一，请重新输入!");
 							newpassword1.setText("");
 							newpassword2.setText("");// 清空
 						}
 					} else {
-						JOptionPane.showMessageDialog(null, "请输入新密码!");
+						Mdialog.showMessageDialog("请输入新密码!");
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "请先输入ID!");
+					Mdialog.showMessageDialog( "请先输入ID!");
 				}
 
 			}
