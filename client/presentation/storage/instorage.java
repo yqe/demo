@@ -2,6 +2,7 @@ package storage;
 
 import image.ImageGet;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -22,6 +23,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,6 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import com.eltima.components.ui.DatePicker;
@@ -122,19 +125,47 @@ public class instorage {
    
 //	final String place=(String) sitebox.getSelectedItem();
    
-   String[] columnnames = {"快递编号","入库日期","目的地","区号","排号","架号","位号","中转中心编号"};
+   String[] columnnames = {"","","","","","",""};
 
 	
 	final DefaultTableModel model=new  DefaultTableModel(null,columnnames);
-	final JTable table=new JTable(model);
+	final JTable table = new JTable(model){
+		   public Component prepareRenderer(TableCellRenderer renderer,
+				     int row, int column) {
+				    Component c = super.prepareRenderer(renderer, row, column);
+				    if (c instanceof JComponent) {
+				     ((JComponent) c).setOpaque(false);
+				    }
+				    return c;
+				   }
+				  };
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+	table.setOpaque(false);
+	table.setRowHeight(21);
+	
 //    table.setEnabled(false);
-	TableColumn dateColumn = table.getColumnModel().getColumn(1);
-	dateColumn.setPreferredWidth(100);
+	TableColumn Column0 = table.getColumnModel().getColumn(0); 
+	Column0.setPreferredWidth(83);
 	
-	TableColumn zzzxColumn = table.getColumnModel().getColumn(7);
-	dateColumn.setPreferredWidth(120);
+	TableColumn Column1 = table.getColumnModel().getColumn(1);
+	Column1.setPreferredWidth(83);
 	
+	TableColumn Column2 = table.getColumnModel().getColumn(2);
+	Column2.setPreferredWidth(82);
+	
+	TableColumn Column3 = table.getColumnModel().getColumn(3);
+	Column3.setPreferredWidth(61);
+
+	TableColumn Column4 = table.getColumnModel().getColumn(4);
+	Column4.setPreferredWidth(54);
+	
+	TableColumn Column5 = table.getColumnModel().getColumn(5);
+	Column5.setPreferredWidth(61);
+	
+	TableColumn Column6 = table.getColumnModel().getColumn(6);
+	Column6.setPreferredWidth(54);
+	
+	table.getTableHeader().setOpaque(false);
 	
 	JScrollPane jp=new JScrollPane(table);    
     
@@ -151,9 +182,9 @@ public class instorage {
 			String place=(String) sitebox.getSelectedItem();
 			InputStorageDocuPO insto=new InputStorageDocuPO(id.getText(), date, place, qu.getText(), pai.getText(), jia.getText(), wei.getText(), zzzxid.getText());
 			islt.addInputStoragePO(insto);
-//			Object[] add={id.getText(),date,place,qu.getText(),pai.getText(),jia.getText(),wei.getText(),zzzxid.getText()};
-//			DefaultTableModel model = (DefaultTableModel) table.getModel();            
-//			model.insertRow(model.getRowCount(), add);
+			Object[] add={id.getText(),date,place,qu.getText(),pai.getText(),jia.getText(),wei.getText()};
+			DefaultTableModel model = (DefaultTableModel) table.getModel();            
+			model.insertRow(model.getRowCount(), add);
 //			System.out.println(model.getRowCount());
 		}
 	});
@@ -218,7 +249,7 @@ public class instorage {
 	
 	int xloc=65,length=175,width=44;
 	
-//    jp.setBounds(xloc, b1yloc+250, 648, 400);
+    jp.setBounds(825-356, 262, 482, 250);
 	
 	datepick.setBounds(xloc, 408, length, width);
 

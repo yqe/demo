@@ -62,15 +62,15 @@ public class ImageGetR {
 
 	public final String transitmaincontrol = ("/imagero/transitmaincontrol.jpg");
 
-	// public final String managercontrol = ("/imagero/managercontrol.jpg");
+	 public final String managercontrol = ("/imagero/managercontrol.jpg");
 
-	// public final String staff = ("/imagero/staff.jpg");
+	 public final String staff = ("/imagero/staff.jpg");
 
-	// public final String addemployee = ("/imagero/addemployee.jpg");
+	 public final String addemployee = ("/imagero/addemployee.jpg");
 
-	// public final String deleteemployee = ("/imagero/deleteemployee.jpg");
+	 public final String deleteemployee = ("/imagero/deleteemployee.jpg");
 
-	// public final String checkdocuments = ("/imagero/checkdocuments.jpg");
+	 public final String checkdocuments = ("/imagero/checkdocuments.jpg");
 
 	public final String Finance_BGP = ("/imagero/FinanceBGP.jpg");
 	public final String Finance_CMD = ("/imagero/FinanceCMD.jpg");
@@ -156,15 +156,15 @@ public class ImageGetR {
 		case "transitmaincontrol":
 			return createImage(transitmaincontrol);
 		case "managercontrol":
-			return createImage(null);
+			return createImage(managercontrol);
 		case "staff":
-			return createImage(null);
+			return createImage(staff);
 		case "checkdocuments":
-			return createImage(null);
+			return createImage(checkdocuments);
 		case "deleteemployee":
-			return createImage(null);
+			return createImage(deleteemployee);
 		case "addemployee":
-			return createImage(null);
+			return createImage(addemployee);
 		default:
 			return createImage(null);
 		}

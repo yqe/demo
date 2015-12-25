@@ -81,7 +81,7 @@ public class changestorage {
 		final MTextfield wei = new MTextfield();
 		
 		id.setOpaque(false);
-//		id.setBorder(BorderFactory.createEmptyBorder());
+		id.setBorder(BorderFactory.createEmptyBorder());
 		qu.setOpaque(false);
 		qu.setBorder(BorderFactory.createEmptyBorder());
 		pai.setOpaque(false);

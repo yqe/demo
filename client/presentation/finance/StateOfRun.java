@@ -91,7 +91,7 @@ public class StateOfRun {
 		content.add(jp1);
 		content.add(jp2);
 
-		JButtonM okbtn = new JButtonM("确定查看");
+		JButtonM okbtn = new JButtonM();
 		okbtn.HideTheButton();
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -4,6 +4,7 @@ import image.ImageGet;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -25,6 +26,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,6 +35,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import com.eltima.components.ui.DatePicker;
@@ -112,21 +115,44 @@ public class outstorage {
 		String[] type = { "汽车", "火车", "飞机" };
 		final JComboBox typebox = new JComboBox(type);
 
-		String[] columnnames = { "快递编号", "出库日期", "目的地", "装运形式", "中转编号" };
-		Object[][] data = { { "000001", "2015年9月27日", "上海", "火车", "0000001" },
-				{ "000002", "2015年9月27日", "南京", "汽车", "0000151" }, { "000003", "2015年9月27日", "北京", "飞机", "0000202" },
+		String[] columnnames = { "", "", "", "" };
+		Object[][] data = { { "000001", "2015年9月27日", "上海", "火车"},
+				{ "000002", "2015年9月27日", "南京", "汽车" }, { "000003", "2015年9月27日", "北京", "飞机"},
 
 		};
 
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
-		final JTable table = new JTable(model);
+		final JTable table = new JTable(model){
+			   public Component prepareRenderer(TableCellRenderer renderer,
+					     int row, int column) {
+					    Component c = super.prepareRenderer(renderer, row, column);
+					    if (c instanceof JComponent) {
+					     ((JComponent) c).setOpaque(false);
+					    }
+					    return c;
+					   }
+					  };
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		TableColumn dateColumn = table.getColumnModel().getColumn(1);
-		dateColumn.setPreferredWidth(120);
+		TableColumn Column0 = table.getColumnModel().getColumn(0); 
+		Column0.setPreferredWidth(84);
+		
+		TableColumn Column1 = table.getColumnModel().getColumn(1);
+		Column1.setPreferredWidth(82);
+		
+		TableColumn Column2 = table.getColumnModel().getColumn(2);
+		Column2.setPreferredWidth(84);
+		
+		TableColumn Column3 = table.getColumnModel().getColumn(3);
+		Column3.setPreferredWidth(75);
 
 		JScrollPane jp = new JScrollPane(table);
-
+		
+		table.setOpaque(false);
+		table.getTableHeader().setOpaque(false);
+		table.setRowHeight(21);
+		
 		jp.setOpaque(false);
+		
 		jp.getViewport().setOpaque(false);
 
 		JButton b4 = new JButton("");
@@ -137,29 +163,29 @@ public class outstorage {
 				String type = (String) typebox.getSelectedItem();
 				OutStorageDocuPO am = new OutStorageDocuPO(t1.getText(), date, place, type, t2.getText());
 				oslt.addOutStoragePO(am);
-//				Object[] add = { t1.getText(), date, place, type, t2.getText() };
-//				DefaultTableModel model = (DefaultTableModel) table.getModel();
-//				model.insertRow(model.getRowCount(), add);
-				// System.out.println(model.getRowCount());
+				Object[] add = { t1.getText(), date, place, type};
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.insertRow(model.getRowCount(), add);
+				 System.out.println(model.getRowCount());
 			}
 		});
 
-//		JButton b5 = new JButton("删除");
-//		b5.addActionListener(new ActionListener() {
-//
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//				// ��ȡҪɾ�����,û��ѡ����-1
-//				DefaultTableModel model = (DefaultTableModel) table.getModel();
-//				int row = table.getSelectedRow();
-//				// System.out.println(row);
-//				if (row == -1) {
-//					JOptionPane.showMessageDialog(null, "请选中要删除的行!");
-//				} else {
-//					model.removeRow(row);
-//				}
-//			}
-//		});
+		JButton b5 = new JButton("删除");
+		b5.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				// ��ȡҪɾ�����,û��ѡ����-1
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				int row = table.getSelectedRow();
+				// System.out.println(row);
+				if (row == -1) {
+					JOptionPane.showMessageDialog(null, "请选中要删除的行!");
+				} else {
+					model.removeRow(row);
+				}
+			}
+		});
 
 		JButton b6 = new JButton("");
 		b6.addActionListener(new ActionListener() {
@@ -199,7 +225,7 @@ public class outstorage {
 //
 		int xloc=65,length=175,width=44;
 		
-//	    jp.setBounds(xloc, b1yloc+250, 648, 400);
+	    jp.setBounds(547, 265, 327, 252);
 		
 		datepick.setBounds(xloc, 408, length, width);
 
