@@ -53,9 +53,9 @@ public class Mdialog extends JDialog{
 		output.HideTheField();
 //		output.settextFont();
 		output.setForeground(Color.white);
-		output.setFont(new Font("幼圆",Font.BOLD,20));
+		output.setFont(new Font("幼圆",Font.BOLD,18));
 		
-		output.setBounds(50,50,200,30);
+		output.setBounds(50,50,250,30);
 		output.setText(input);
 		output.setEditable(false);
 		
