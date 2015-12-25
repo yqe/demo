@@ -1,33 +1,23 @@
 package manager;
 
-import image.ImageGet;
-
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 import emploeebl.EmploeeBl;
+import image.ImageGet;
+import login.MTextfield;
 import po.EmploeePO;
-import po.UserInfoPO;
-import userbl.UserBl;
 
 public class deleteemployee {
 	private JPanel imagePanel;
@@ -56,49 +46,49 @@ public class deleteemployee {
 
 		p1.setBounds(0, 0, 1029, 840);
 
-		final JTextField id = new JTextField();
-		final JTextField name = new JTextField();
-		final JTextField age = new JTextField();
-		final JTextField tel = new JTextField();
-		final JTextField salary = new JTextField();
-		final JTextField identity = new JTextField();
-		final JTextField address = new JTextField();
-		final JTextField job = new JTextField();
-		final JTextField place = new JTextField();
-		final JTextField sex = new JTextField();
-		final JTextField posidtext = new JTextField();
+		final MTextfield id = new MTextfield();
+		final MTextfield name = new MTextfield();
+		final MTextfield age = new MTextfield();
+		final MTextfield tel = new MTextfield();
+		final MTextfield salary = new MTextfield();
+		final MTextfield identity = new MTextfield();
+		final MTextfield address = new MTextfield();
+		final MTextfield job = new MTextfield();
+		final MTextfield place = new MTextfield();
+		final MTextfield sex = new MTextfield();
+		final MTextfield posidtext = new MTextfield();
 
-		id.setOpaque(false);
-		id.setBorder(BorderFactory.createEmptyBorder());
-		name.setOpaque(false);
-		name.setBorder(BorderFactory.createEmptyBorder());
+		id.settextFont();
+		id.HideTheField();
+		name.settextFont();
+		name.HideTheField();
 		name.setEditable(false);
-		age.setOpaque(false);
-		age.setBorder(BorderFactory.createEmptyBorder());
+		age.settextFont();
+		age.HideTheField();
 		age.setEditable(false);
-		tel.setOpaque(false);
-		tel.setBorder(BorderFactory.createEmptyBorder());
+		tel.settextFont();
+		tel.HideTheField();
 		tel.setEditable(false);
-		salary.setOpaque(false);
-		salary.setBorder(BorderFactory.createEmptyBorder());
+		salary.settextFont();
+		salary.HideTheField();
 		salary.setEditable(false);
-		identity.setOpaque(false);
-		identity.setBorder(BorderFactory.createEmptyBorder());
+		identity.settextFont();
+		identity.HideTheField();
 		identity.setEditable(false);
-		address.setOpaque(false);
-		address.setBorder(BorderFactory.createEmptyBorder());
+		address.settextFont();
+		address.HideTheField();
 		address.setEditable(false);
-		job.setOpaque(false);
-		job.setBorder(BorderFactory.createEmptyBorder());
+		job.settextFont();
+		job.HideTheField();
 		job.setEditable(false);
-		place.setOpaque(false);
-		place.setBorder(BorderFactory.createEmptyBorder());
+		place.settextFont();
+		place.HideTheField();
 		place.setEditable(false);
-		sex.setOpaque(false);
-		sex.setBorder(BorderFactory.createEmptyBorder());
+		sex.settextFont();
+		sex.HideTheField();
 		sex.setEditable(false);
-		posidtext.setOpaque(false);
-		posidtext.setBorder(BorderFactory.createEmptyBorder());
+		posidtext.settextFont();
+		posidtext.HideTheField();
 		posidtext.setEditable(false);
 
 		JButton b4 = new JButton();

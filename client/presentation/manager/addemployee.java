@@ -1,33 +1,26 @@
 package manager;
 
-import image.ImageGet;
-
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 import emploeebl.EmploeeBl;
+import image.ImageGet;
+import login.MTextfield;
 import po.EmploeePO;
-import po.UserInfoPO;
-import userbl.UserBl;
 
 public class addemployee {
 	private JPanel imagePanel;
@@ -56,30 +49,30 @@ public class addemployee {
 
 		p1.setBounds(0, 0, 1029, 840);
 
-		final JTextField id = new JTextField();
-		final JTextField name = new JTextField();
-		final JTextField age = new JTextField();
-		final JTextField tel = new JTextField();
-		final JTextField salary = new JTextField();
-		final JTextField identity = new JTextField();
-		final JTextField address = new JTextField();
-		final JTextField posidtext = new JTextField();
-		id.setOpaque(false);
-		id.setBorder(BorderFactory.createEmptyBorder());
-		name.setOpaque(false);
-		name.setBorder(BorderFactory.createEmptyBorder());
-		age.setOpaque(false);
-		age.setBorder(BorderFactory.createEmptyBorder());
-		tel.setOpaque(false);
-		tel.setBorder(BorderFactory.createEmptyBorder());
-		salary.setOpaque(false);
-		salary.setBorder(BorderFactory.createEmptyBorder());
-		identity.setOpaque(false);
-		identity.setBorder(BorderFactory.createEmptyBorder());
-		address.setOpaque(false);
-		address.setBorder(BorderFactory.createEmptyBorder());
-		posidtext.setOpaque(false);
-		posidtext.setBorder(BorderFactory.createEmptyBorder());
+		final MTextfield id = new MTextfield();
+		final MTextfield name = new MTextfield();
+		final MTextfield age = new MTextfield();
+		final MTextfield tel = new MTextfield();
+		final MTextfield salary = new MTextfield();
+		final MTextfield identity = new MTextfield();
+		final MTextfield address = new MTextfield();
+		final MTextfield posidtext = new MTextfield();
+		id.settextFont();
+		id.HideTheField();
+		name.settextFont();
+		name.HideTheField();
+		age.settextFont();
+		age.HideTheField();
+		tel.settextFont();
+		tel.HideTheField();
+		salary.settextFont();
+		salary.HideTheField();
+		identity.settextFont();
+		identity.HideTheField();
+		address.settextFont();
+		address.HideTheField();
+		posidtext.settextFont();
+		posidtext.HideTheField();
 
 		final String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
 
