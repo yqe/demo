@@ -33,14 +33,15 @@ public class infoDialog extends JDialog implements ActionListener {
 
 	// JButton ok=new JButton("ȷ��");
 	infoDialog(String name,String home,String workspace,String tel) throws IOException {
-		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/Cbackground.jpg"));
-		background = new ImageIcon(bgp);
-		JPanel back = new JPanel() {
-			public void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(background.getImage(), 0, 0, null);
-			}
-		};
+	
+//		background = new ImageIcon(bgp);
+		JPanel back = new JPanel();
+//		{
+//			public void paintComponent(Graphics g) {
+//				super.paintComponent(g);
+//				g.drawImage(background.getImage(), 0, 0, null);
+//			}
+//		};
 		back.setBounds(0, 0, 350, 300);
 		back.setLayout(null);
 		back.setOpaque(false);

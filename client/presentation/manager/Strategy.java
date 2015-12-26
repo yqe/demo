@@ -1,9 +1,12 @@
 package manager;
 
+import image.ImageGet;
+
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Graphics;
@@ -52,7 +55,8 @@ public class Strategy {
 	}
 
 	public JPanel Panel() throws IOException {
-//		BufferedImage bgp = ImageIO.read(getClass().getResource("/presentation/strategy.jpg"));
+//		new ImageGet();
+//		Image bgp = ImageGet.getImageByState("addemployee");
 //		background = new ImageIcon(bgp);
 		
 		p1.setBounds(0, 0,1029, 840);
@@ -146,7 +150,7 @@ public class Strategy {
 				StrategyPO spo = new StrategyPO(Integer.valueOf(newmanager), Integer.valueOf(newtransitman),
 						Integer.valueOf(newstorager), Integer.valueOf(newboclerk), Integer.valueOf(newcourier),
 						Integer.valueOf(newfinancer), Integer.valueOf(newcontroller), Double.valueOf(newprice));
-        System.out.println(newmanager+"3#@@#####");
+//        System.out.println(newmanager+"3#@@#####");
 				if (stra.modify(spo))
 					JOptionPane.showMessageDialog(null, "修改成功!");
 				else

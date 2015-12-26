@@ -64,7 +64,12 @@ public class check {
 				if (id.getText().length() == 10) {
 					try {
 						GoodsBl goodsbl = new GoodsBl(oos,ois);
-						String[] infoma = goodsbl.Goodsgetinfo(id.getText());
+						String []infoma=new String[4];
+//						System.out.println(id.getText());
+						for(int i=0;i<4;i++){
+//						infoma[i]= goodsbl.Goodsgetinfo(id.getText())[i];
+//						System.out.println(goodsbl.Goodsgetinfo(id.getText()));
+						}
 						info = new infoDialog(infoma[0], infoma[1], infoma[2], infoma[3]);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block

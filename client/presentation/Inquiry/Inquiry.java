@@ -78,16 +78,7 @@ public class Inquiry {
 					t2.setText(route);
 				} else
 					JOptionPane.showMessageDialog(null, "请输入正确的订单条形码号!");
-				// boolean isid = true;
-				// if (!t1.getText().equals("")) {
-				// if (isid) {
-				// t2.setText("查询成功！");
-				// } else {
-				// JOptionPane.showMessageDialog(null, "所输入订单条形码号不合法!");
-				// }
-				// } else {
-				// JOptionPane.showMessageDialog(null, "请输入订单条形码号!");
-				// }
+			
 			}
 		});
 

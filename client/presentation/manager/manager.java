@@ -81,10 +81,10 @@ public class manager {
 		final staff sf = new staff(oos, ois, emPO);
 		
 		
-//		strategypanel =strategy.Panel();
+		strategypanel =strategy.Panel();
 		deleteempopanel=delete.Panel();
 		addempopanel=add.Panel();
-//		approvepanel=a.Panel();
+		approvepanel=a.Panel();
 		staffpanel=sf.Panel();
 		
 		control.setBounds(0, 0, size, 840);
@@ -164,29 +164,36 @@ public class manager {
 		MTextfield idt=new MTextfield();
 		MTextfield namet=new MTextfield();
 		MTextfield jobt=new MTextfield();
+		MTextfield post=new MTextfield();
 		
-		idt.settextFont();namet.settextFont();jobt.settextFont();
+		idt.settextFont();namet.settextFont();jobt.settextFont();post.settextFont();
 	
-		idt.setOpaque(false);
+		idt.HideTheField();
 		idt.setEditable(false);
-		idt.setBorder(BorderFactory.createEmptyBorder());
-		namet.setOpaque(false);
+	
+	    namet.HideTheField();
 		namet.setEditable(false);
-		namet.setBorder(BorderFactory.createEmptyBorder());
-		jobt.setOpaque(false);
+
+	    jobt.HideTheField();
 		jobt.setEditable(false);
-		jobt.setBorder(BorderFactory.createEmptyBorder());	
+		
+		post.HideTheField();
+		post.setEditable(false);
+		
 	
 		namet.setBounds(200, 110, 150, 35);
 		jobt.setBounds(200, 150, 200, 35);		
 		idt.setBounds(82, 238, 150, 30);
+		post.setBounds(200, 238, 150, 30);
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText(emPO.getPosition());	
+		post.setText(emPO.getPosID());
 	
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);
+		control.add(post);
 		control.add(b3);
 		control.add(b4);
 		control.add(b5);
