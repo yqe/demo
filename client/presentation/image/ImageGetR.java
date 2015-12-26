@@ -71,6 +71,8 @@ public class ImageGetR {
 	public final String checkdocuments = ("/imagero/checkdocuments.jpg");
 
 	public final String error = ("/imagero/error.jpg");
+	
+	public final String infodialog = ("/imagero/infodialog.jpg");
 
 	public final String Finance_BGP = ("/imagero/FinanceBGP.jpg");
 	public final String Finance_CMD = ("/imagero/FinanceCMD.jpg");
@@ -168,6 +170,8 @@ public class ImageGetR {
 			return createImage(addemployee);
 		case "error":
 			return createImage(error);
+		case "infodialog":
+			return createImage(infodialog);
 		default:
 			return createImage(null);
 		}

@@ -58,7 +58,7 @@ public class BuildAccount {
 	    content.add(organbox);
 		organbox.setBounds(Gapw, Gaph, textw, texth);
 	    
-		JButtonM btn=new JButtonM("确定");
+		JButtonM btn=new JButtonM("");
 		btn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {			
 				boolean isnum=true;			

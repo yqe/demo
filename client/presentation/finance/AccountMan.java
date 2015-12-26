@@ -19,7 +19,7 @@ import po.ManageAccountPO;
 public class AccountMan {
 
 	int textw = 140;
-	int texth = 15;
+	int texth = 30;
 	int Gapw = 178;
 	int Gaph = 250;
 	private ObjectOutputStream oos;

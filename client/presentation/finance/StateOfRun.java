@@ -50,7 +50,7 @@ public class StateOfRun {
 
 		final JTextField time1 = new JTextField();
 		final DatePicker datepick1 = new DatePicker(time1);
-		datepick1.setLocale(Locale.CHINA);// 设置显示语言
+//		datepick1.setLocale(Locale.CHINA);// 设置显示语言
 		datepick1.setPattern("yyyy-MM-dd");// 设置日期格式化字符串
 		datepick1.setEditorable(false);// 设置是否可编辑
 		datepick1.setPreferredSize(new Dimension(100, 30));// 设置大小

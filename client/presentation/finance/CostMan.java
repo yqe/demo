@@ -59,7 +59,7 @@ public class CostMan {
 		content.add(textfield[textfield.length - 1]);
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
-		datepick.setLocale(Locale.CHINA);// 设置显示语言
+//		datepick.setLocale(Locale.CHINA);// 设置显示语言
 		datepick.setPattern("yyyy-MM-dd");// 设置日期格式化字符串
 		datepick.setEditorable(false);// 设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100, 30));// 设置大小
