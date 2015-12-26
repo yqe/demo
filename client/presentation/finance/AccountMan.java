@@ -96,7 +96,6 @@ public class AccountMan {
 			public void actionPerformed(ActionEvent e) {
 				boolean isempty = accname.getText().equals("");
 				FinanceBl adacc = new FinanceBl(oos, ois);
-
 				if (!isempty && adacc.DeleteBankAccount(accname.getText())) {
 					JOptionPane.showMessageDialog(null, "删除成功!");
 				} else if (isempty) {
@@ -147,6 +146,7 @@ public class AccountMan {
 					} else {
 						text[0].setText(mapo.getAccountname());
 						text[2].setText(String.valueOf(mapo.getBalance()));
+						text[3].setText(String.valueOf(mapo.getBalance()));
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "请输入要搜索的账户ID!");
@@ -203,7 +203,7 @@ public class AccountMan {
 		textfield[1].setEditable(false);
 		textfield[2].setEditable(false);
 
-		JButtonM button = new JButtonM("确认查询");
+		JButtonM button = new JButtonM("查询");
 		button.setFont(new Font("幼圆", Font.BOLD, 16));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

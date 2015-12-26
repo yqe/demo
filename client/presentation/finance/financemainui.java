@@ -34,7 +34,8 @@ public class financemainui {
 	int height;
 	int cmdwidth;
 	JButtonM[] cmdbutton = new JButtonM[] { new JButtonM("返回登录界面"), new JButtonM("账户管理"), new JButtonM("查看收款单"),
-			new JButtonM("成本管理"), new JButtonM("成本收益表"), new JButtonM("经营情况表"), new JButtonM("期初建账"), new JButtonM("退出") };
+			new JButtonM("成本管理"), new JButtonM("成本收益表"), new JButtonM("经营情况表"), new JButtonM("期初建账"),
+			new JButtonM("退出") };
 	private Socket socket;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
@@ -83,12 +84,12 @@ public class financemainui {
 		content.setOpaque(false);
 		content.setBounds(cmdwidth, 0, width, height);
 		content.setLayout(null);
-		
+
 		contain.add(cmdpanel);
 		contain.add(content);
 
 		new AccountMan(oos, ois, emPO).AccMan(content);
-		content.repaint();
+		ContentRepaint();
 		return contain;
 	}
 
@@ -126,37 +127,36 @@ public class financemainui {
 		cmdpanel.add(emposid);
 	}
 
-
 	public class CmdActionListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
 			case "账户管理":
 				new AccountMan(oos, ois, emPO).AccMan(content);
-				content.repaint();
+				ContentRepaint();
 				break;
 			case "查看收款单":
 				new CheckBill(oos, ois, emPO).CheckBill(content);
-				content.repaint();
+				ContentRepaint();
 				break;
 			case "成本管理":
 				new CostMan(oos, ois, emPO).costMan(content);
-				content.repaint();
+				ContentRepaint();
 				break;
 			case "成本收益表":
 				new CostIncome(oos, ois, emPO).costincome(content);
-				content.repaint();
+				ContentRepaint();
 				break;
 			case "经营情况表":
 				new StateOfRun(oos, ois, emPO).stateofrun(content);
-				content.repaint();
+				ContentRepaint();
 				break;
 			case "期初建账":
 				new BuildAccount(oos, ois, emPO).buildaccount(content);
-				content.repaint();
+				ContentRepaint();
 				break;
 			case "导出表单":
-
+				ContentRepaint();
 				break;
 			default:
 				System.exit(1);
@@ -165,4 +165,8 @@ public class financemainui {
 		}
 	}
 
+	public void ContentRepaint() {
+		content.repaint();
+		content.revalidate();
+	}
 }
