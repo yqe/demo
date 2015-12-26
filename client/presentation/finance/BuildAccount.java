@@ -30,7 +30,7 @@ public class BuildAccount {
 
 	public void buildaccount(JPanelContent content) {
 		content.removeAll();
-		Image imagebgp = new ImageGet().GetFinanceImage("CostMan");
+		Image imagebgp = new ImageGet().GetFinanceImage("BuildAccount");
 		content.setConpanel(imagebgp);
 		
 		final MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield(),

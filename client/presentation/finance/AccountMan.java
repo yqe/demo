@@ -158,25 +158,17 @@ public class AccountMan {
 		JButtonM changebtn = new JButtonM("确定修改");
 		changebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean isnum = true;
-				for (int i = 0; i < text[3].getText().length(); i++) {
-					if (text[3].getText().charAt(i) > '9' || text[3].getText().charAt(i) < '1') {
-						isnum = false;
-					}
-				}
+
 				boolean idisempty = text[1].getText().equals("");
-				boolean numisempty = text[3].getText().equals("");
-				boolean isempty = idisempty || numisempty;
-				if (!isempty && isnum) {
+
+				if (!idisempty) {
 					FinanceBl change = new FinanceBl(oos, ois);
-					ManageAccountPO mapo = new ManageAccountPO(text[1].getText(), Double.valueOf(text[3].getText()),
+					ManageAccountPO mapo = new ManageAccountPO(text[1].getText(), Double.valueOf(text[2].getText()),
 							accname.getText(), null);
 					change.ModifyBankAccount(mapo);
 					JOptionPane.showMessageDialog(null, "修改成功!");
-				} else if (!isempty && !isnum) {
-					JOptionPane.showMessageDialog(null, "所输入金额非法!");
 				} else {
-					JOptionPane.showMessageDialog(null, "请将信息输入完整!");
+					JOptionPane.showMessageDialog(null, "请输入完整账户名称!");
 				}
 
 			}

@@ -20,8 +20,6 @@ public class ImageGetR {
 
 	public final String boclerkcontrol = ("/imagero/boclerkcontrol.jpg");
 
-	public final String buildaccount = ("/imagero/buildaccount.jpg");
-
 	public final String changepassword = ("/imagero/changepassword.jpg");
 
 	public final String changestorage = ("/imagero/changestorage.jpg");
@@ -62,17 +60,17 @@ public class ImageGetR {
 
 	public final String transitmaincontrol = ("/imagero/transitmaincontrol.jpg");
 
-	 public final String managercontrol = ("/imagero/managercontrol.jpg");
+	public final String managercontrol = ("/imagero/managercontrol.jpg");
 
-	 public final String staff = ("/imagero/staff.jpg");
+	public final String staff = ("/imagero/staff.jpg");
 
-	 public final String addemployee = ("/imagero/addemployee.jpg");
+	public final String addemployee = ("/imagero/addemployee.jpg");
 
-	 public final String deleteemployee = ("/imagero/deleteemployee.jpg");
+	public final String deleteemployee = ("/imagero/deleteemployee.jpg");
 
-	 public final String checkdocuments = ("/imagero/checkdocuments.jpg");
-	 
-	 public final String error = ("/imagero/error.jpg");
+	public final String checkdocuments = ("/imagero/checkdocuments.jpg");
+
+	public final String error = ("/imagero/error.jpg");
 
 	public final String Finance_BGP = ("/imagero/FinanceBGP.jpg");
 	public final String Finance_CMD = ("/imagero/FinanceCMD.jpg");
@@ -81,6 +79,7 @@ public class ImageGetR {
 	public final String Finance_costincome = ("/imagero/costincome.jpg");
 	public final String Finance_stateofrun = ("/imagero/stateofrun.jpg");
 	public final String Finace_accman = ("/imagero/accman.jpg");
+	public final String Finace_buildaccount = ("/imagero/buildaccount.jpg");
 
 	public Image GetFinanceImage(String state) {
 		switch (state) {
@@ -96,6 +95,8 @@ public class ImageGetR {
 			return createImage(Finance_costincome);
 		case "StateOfRun":
 			return createImage(Finance_stateofrun);
+		case "BuildAccount":
+			return createImage(Finace_buildaccount);
 		default:
 			return createImage(Finace_accman);
 		}
@@ -115,8 +116,6 @@ public class ImageGetR {
 			return createImage(background);
 		case "boclerkcontrol":
 			return createImage(boclerkcontrol);
-		case "buildaccount":
-			return createImage(buildaccount);
 		case "changepassword":
 			return createImage(changepassword);
 		case "changestorage":

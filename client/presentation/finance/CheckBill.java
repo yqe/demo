@@ -93,7 +93,7 @@ public class CheckBill {
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("ID", id);
 
 				if (epolist.GetIndex(0).getPaydate().equals("不存在")) {
-					JOptionPane.showMessageDialog(null, "当天没有收款单!");
+					JOptionPane.showMessageDialog(null, "该营业厅尚无没有收款单!");
 				} else {
 					for (int i = 0; i < epolist.Getsize(); i++) {
 						Object[] add = { epolist.GetIndex(i).getPaydate(), epolist.GetIndex(i).getEarnedmoney(),
