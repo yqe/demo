@@ -30,8 +30,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import login.MTextfield;
+import login.Mdialog;
 import login.loginframe;
 import po.EmploeePO;
+import storagebl.StorageBl;
 
 public class storagemain {
 	private JPanel imagePanel;
@@ -40,7 +42,7 @@ public class storagemain {
 	int size = 356;
 	JPanel content = new JPanel();
 
-	final JPanel control = new JPanel(){
+	final JPanel control = new JPanel() {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(background.getImage(), 0, 0, null);
@@ -55,7 +57,8 @@ public class storagemain {
 	JPanel chspanel;
 	JPanel cospanel;
 	JPanel caspanel;
-	JPanel storagemain = new JPanel() ;
+	JPanel storagemain = new JPanel();
+
 	public storagemain(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
 		this.socket = socket;
 		this.ois = ois;
@@ -64,8 +67,8 @@ public class storagemain {
 	}
 
 	public JPanel Panel() throws IOException {
-		 new ImageGet();
-	        Image bgp=ImageGet.getImageByState("storagemaincontrol");
+		new ImageGet();
+		Image bgp = ImageGet.getImageByState("storagemaincontrol");
 		background = new ImageIcon(bgp);
 
 		storagemain.setBounds(0, 0, 1344, 756);
@@ -78,24 +81,19 @@ public class storagemain {
 		final checkstorage chs = new checkstorage(oos, ois, emPO);
 		final countstorage cos = new countstorage(oos, ois, emPO);
 		final changestorage cas = new changestorage(oos, ois, emPO);
-		
-		inspanel=ins.Panel();
-		ouspanel=ous.Panel();
-		chspanel=chs.Panel();
-		cospanel=cos.Panel();
-		caspanel=cas.Panel();
+
+		inspanel = ins.Panel();
+		ouspanel = ous.Panel();
+		chspanel = chs.Panel();
+		cospanel = cos.Panel();
+		caspanel = cas.Panel();
 
 		control.setBounds(0, 0, size, 756);
 		content.setBounds(size, 0, 988, 756);
 
-	
 		int b2size = 16;
-//		l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
+		// l2.setFont(new Font("—> 主页", Font.PLAIN, b2size));
 
-		
-		
-		
-		
 		JButton b3 = new JButton();
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -142,16 +140,15 @@ public class storagemain {
 
 		control.setLayout(null);
 		control.setOpaque(false);
-		
-		
-	
-		
-		MTextfield idt=new MTextfield();
-		MTextfield namet=new MTextfield();	
-		MTextfield jobt=new MTextfield();
-		
-		idt.settextFont();namet.settextFont();jobt.settextFont();
-	
+
+		MTextfield idt = new MTextfield();
+		MTextfield namet = new MTextfield();
+		MTextfield jobt = new MTextfield();
+
+		idt.settextFont();
+		namet.settextFont();
+		jobt.settextFont();
+
 		idt.setOpaque(false);
 		idt.setEditable(false);
 		idt.setBorder(BorderFactory.createEmptyBorder());
@@ -160,25 +157,20 @@ public class storagemain {
 		namet.setBorder(BorderFactory.createEmptyBorder());
 		jobt.setOpaque(false);
 		jobt.setEditable(false);
-		jobt.setBorder(BorderFactory.createEmptyBorder());	
-		
-		
-		namet.setBounds(120, 90, 150, 35);
-		jobt.setBounds(120, 140, 200, 35);		
-		idt.setBounds(82, 225, 150, 30);	
-	
+		jobt.setBorder(BorderFactory.createEmptyBorder());
 
-	
+		namet.setBounds(120, 90, 150, 35);
+		jobt.setBounds(120, 140, 200, 35);
+		idt.setBounds(82, 225, 150, 30);
+
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
-		jobt.setText("库存管理人员");//因为显示不下所以填的这个
-	
-		
+		jobt.setText("库存管理人员");// 因为显示不下所以填的这个
+
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);
-	
-		
+
 		control.add(b3);
 		control.add(b4);
 		control.add(b5);
@@ -186,21 +178,26 @@ public class storagemain {
 		control.add(b7);
 		control.add(b8);
 
-		b3.setContentAreaFilled(false);b3.setBorder(BorderFactory.createEmptyBorder());
-		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
-		b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
-		b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
-		b7.setContentAreaFilled(false);b7.setBorder(BorderFactory.createEmptyBorder());
-		b8.setContentAreaFilled(false);b8.setBorder(BorderFactory.createEmptyBorder());
-			
-		
-		int xloc=87,yloc=341,length=194,width=45,interval=70;
+		b3.setContentAreaFilled(false);
+		b3.setBorder(BorderFactory.createEmptyBorder());
+		b4.setContentAreaFilled(false);
+		b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);
+		b5.setBorder(BorderFactory.createEmptyBorder());
+		b6.setContentAreaFilled(false);
+		b6.setBorder(BorderFactory.createEmptyBorder());
+		b7.setContentAreaFilled(false);
+		b7.setBorder(BorderFactory.createEmptyBorder());
+		b8.setContentAreaFilled(false);
+		b8.setBorder(BorderFactory.createEmptyBorder());
+
+		int xloc = 87, yloc = 341, length = 194, width = 45, interval = 70;
 		b4.setBounds(xloc, yloc, length, width);
 		b5.setBounds(xloc, yloc + interval, length, width);
 		b6.setBounds(xloc, yloc + 2 * interval, length, width);
-		b7.setBounds(xloc, yloc + 3 * interval, length, width+2);
-		b8.setBounds(xloc, yloc + 4 * interval-3, length, width);
-		b3.setBounds(xloc, yloc + 5 * interval-3, length, width);
+		b7.setBounds(xloc, yloc + 3 * interval, length, width + 2);
+		b8.setBounds(xloc, yloc + 4 * interval - 3, length, width);
+		b3.setBounds(xloc, yloc + 5 * interval - 3, length, width);
 
 		content.add(inspanel);
 		content.setLayout(null);
@@ -213,9 +210,15 @@ public class storagemain {
 
 	}
 
+	public void AlarmStorage() {
+		boolean alarm = new StorageBl(oos, ois).Storage110(emPO.getPosID());
+		if (alarm)
+			Mdialog.showMessageDialog("库存容量已达报警值请尽快调整！");
+	}
+
 	public void changepanel(JPanel p1) {
 		storagemain.remove(content);
-		content=p1;
+		content = p1;
 		content.setBounds(size, 0, content.getWidth(), content.getHeight());
 		storagemain.add(content);
 		storagemain.repaint();

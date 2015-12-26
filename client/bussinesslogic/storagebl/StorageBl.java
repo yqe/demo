@@ -162,18 +162,17 @@ public class StorageBl implements StorageBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public void Storage110(String posid){
+	public boolean Storage110(String posid){
 		try {
 			oos.writeUTF("Storage");
 			oos.writeUTF("ChangeStorage");
 			oos.writeObject(new String(posid));
 			boolean alarm=(boolean) ois.readObject();
-			if(alarm)
-				//TODO
-				System.out.println("报警了");
+			return alarm;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 	/**
 	 * 设置库存报警值;

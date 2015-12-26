@@ -88,5 +88,5 @@ public interface StorageBlService {
 	 * @exception @author
 	 *                zxc
 	 */
-	public void Storage110(String posid);
+	public boolean Storage110(String posid);
 }

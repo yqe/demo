@@ -128,7 +128,6 @@ public class financemainui {
 	}
 
 	public class CmdActionListener implements ActionListener {
-
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
 			case "账户管理":
