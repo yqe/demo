@@ -1,5 +1,6 @@
 package finance;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -8,11 +9,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Locale;
 
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import com.eltima.components.ui.DatePicker;
 
@@ -56,9 +60,38 @@ public class CheckBill {
 		String[] columnnames = { "营业厅编号", "订单条形码号", "收款日期", "收款金额", "收款快递员" };
 		Object[][] data = {};
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
-		final JTable bill = new JTable(model);
+		final JTable bill = new JTable(model){
+			   public Component prepareRenderer(TableCellRenderer renderer,
+					     int row, int column) {
+					    Component c = super.prepareRenderer(renderer, row, column);
+					    if (c instanceof JComponent) {
+					     ((JComponent) c).setOpaque(false);
+					    }
+					    return c;
+					   }
+					  };
+		bill.setOpaque(false);
+		bill.setRowHeight(23);
+		bill.getTableHeader().setOpaque(false);
 		bill.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumn Column0 = bill.getColumnModel().getColumn(0); 
+		Column0.setPreferredWidth(152);
+		
+		TableColumn Column1 = bill.getColumnModel().getColumn(1);
+		Column1.setPreferredWidth(149);
+		
+		TableColumn Column2 = bill.getColumnModel().getColumn(2);
+		Column2.setPreferredWidth(133);
+		
+		TableColumn Column3 = bill.getColumnModel().getColumn(3);
+		Column3.setPreferredWidth(157);
+
+		TableColumn Column4 = bill.getColumnModel().getColumn(4);
+		Column4.setPreferredWidth(151);
 		JScrollPane jp = new JScrollPane(bill);
+		
+		jp.setOpaque(false);
+		jp.getViewport().setOpaque(false);
 
 		JButtonM timecheck = new JButtonM("按天查询");
 		timecheck.setBounds(454, 249, 182, 39);
@@ -108,7 +141,7 @@ public class CheckBill {
 
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
-		jp.setBounds(110, 358, 376, 350);
+		jp.setBounds(91, 420, 741, 283);
 
 		content.add(jp);
 		content.add(timecheck);
