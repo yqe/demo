@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import documentdataService.EarnedDocuService;
 import goodsdata.ExpressTrail;
 import managedata.CheckProfit;
+import managedata.ManageAccount;
 import mysqlimp.MySqlImp;
 import po.CondemnDocuPO;
 import po.EarnedPO;
 import po.ExpressTrailPO;
+import po.ManageAccountPO;
 
 /**
  * @author jjlb 收款单
@@ -24,13 +26,14 @@ public class EarnedDocu implements EarnedDocuService {
 	private String bussinessID;// 所属营业厅编号
 	private String bussinessname;// 营业厅名字
 	MySqlImp mysqlimp;
-
+	ManageAccount maacc;
 	@Override
 	public boolean insert(EarnedPO po) {
 		// TODO Auto-generated method stub
 		this.findnamebyID(po.getBussinessID());
 		CondemnDocu condocu = new CondemnDocu();
 		ExpressTrail expre = new ExpressTrail();
+		maacc=new ManageAccount();
 		try {
 			mysqlimp = new MySqlImp();
 			this.paydate = po.getPaydate();
@@ -46,6 +49,10 @@ public class EarnedDocu implements EarnedDocuService {
 			check.setearned(earnedmoney);// 总收入增加一条收入
 			String track = "快件已到达" + bussinessname;
 			expre.set(orderID, "营业厅轨迹", track);// 插入一条货运轨迹记录
+			String name=maacc.findthefirst().getAccountname();
+			double money=maacc.findthefirst().getBalance();
+			money+=earnedmoney;
+			maacc.update(new ManageAccountPO(name, money));
 			return true;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

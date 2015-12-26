@@ -13,8 +13,6 @@ import po.ManageAccountPO;
 public class ManageAccount implements ManageAccountService {
 	private String accountname;
 	private double balance;
-	private String accountID;
-	private String password;
 	MySqlImp mysqlimp;
 	ManageAccountPO accpo;
 
@@ -25,7 +23,7 @@ public class ManageAccount implements ManageAccountService {
 			String find = "SELECT * FROM 账户管理" + " WHERE 账户名称='"+name+"'";
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
-			accpo = new ManageAccountPO(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4));
+			accpo = new ManageAccountPO(rs.getString(1), rs.getDouble(2));
 			rs.close();
 			return accpo;
 		} catch (ClassNotFoundException e) {
@@ -37,7 +35,7 @@ public class ManageAccount implements ManageAccountService {
 			// TODO Auto-generated catch block
 			 e.printStackTrace();
 			System.out.println("Some MySql problem has happened in ManageAccount!");
-			return new ManageAccountPO("不存在", 2, "", "");
+			return new ManageAccountPO("不存在", 2);
 		}
 
 	}
@@ -48,10 +46,9 @@ public class ManageAccount implements ManageAccountService {
 			mysqlimp = new MySqlImp();
 			this.accountname = po.getAccountname();
 			this.balance = po.getBalance();
-			this.accountID = po.getAccountID();
-			this.password = po.getPassword();
-			String insert = "INSERT INTO 账户管理" + " (账户名称,余额,账户ID,账户密码)" + " VALUES('" + accountname + "'," + balance
-					+ ",'" + accountID + "','" + password + "')";
+			
+			String insert = "INSERT INTO 账户管理" + " (账户名称,余额)" + " VALUES('" + accountname + "'," + balance
+					+ ")";
 			mysqlimp.update(insert);
 			return true;
 		} catch (ClassNotFoundException e) {
@@ -94,10 +91,30 @@ public class ManageAccount implements ManageAccountService {
 
 	public boolean update(ManageAccountPO po) {
 		// TODO Auto-generated method stub
-		ManageAccount ma = new ManageAccount();
-		ma.delete(po.getAccountID());
-		ma.insert(po);
+		this.delete(po.getAccountname());
+		this.insert(po);
 		return true;
 	}
-
+	
+	public ManageAccountPO findthefirst(){
+		try {
+			
+			mysqlimp=new MySqlImp();
+			String findfir="SELECT *"+" FROM 账户管理"+" limit 1";
+			ResultSet rs=mysqlimp.query(findfir);
+			rs.next();
+			accpo=new ManageAccountPO(rs.getString(1), rs.getDouble(2));
+			return accpo;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			accpo=new ManageAccountPO("不存在",0);
+			return accpo;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			accpo=new ManageAccountPO("不存在",0);
+			return accpo;
+		}
+	}
 }

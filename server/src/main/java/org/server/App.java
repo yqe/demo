@@ -13,6 +13,9 @@ import managedata.CheckProfit;
 import managedata.ManageAccount;
 import managedata.ManageCostData;
 import po.CondemnDocuPO;
+import po.CostManagePO;
+import po.EarnedPO;
+import po.ManageAccountPO;
 import storagedata.InputStorageDocu;
 import strategydata.EmploeeData;
 import strategydata.StrategyData;
@@ -63,7 +66,7 @@ public class App
         	//g.insert(new GoodsDocuPO("3231", "ggg", "fefe", "effe", "efef", "fef", "iii", "1232321", 20, 30, "333", "413", 40, "ggg", 10, 20, 30, 30, 80, "rrr", "3", "ttt", "ttt", "yyy"));
 //        	System.out.println(check.getcosttotal());
 //        	System.out.println(check.getearnedtotal());
-//        	System.out.println(check.profittotal());
+//        	System.out.println(check.profiottotal());
         	//ea.insert(new EarnedPO("2015-11-12", 20, "张三", "114500", "025000"));
         	//System.out.println(s.getconstance());
         	//in.insert(new InitializeAccountPO("112355", "营业厅", 30, 20, 80, 100));
@@ -75,6 +78,9 @@ public class App
 //        	System.out.println(macc.delete("1"));
         	//ArrayList<CondemnDocuPO> list=con.findall();
         	//System.out.println(list.get(1).getType()+" "+list.get(2).getID()+" "+list.get(1).getState());
+        	//ea.insert(new EarnedPO("2015-12-26", 30, "啊皮豪", "11122", "2234"));
+        	boolean t=ma.insert(new CostManagePO("2015-12-26", 20, "fefe", "456", "哈哈", "哈哈"));
+        	System.out.println(t);
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

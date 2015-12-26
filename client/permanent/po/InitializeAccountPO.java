@@ -9,16 +9,16 @@ import java.util.ArrayList;
  */
 public class InitializeAccountPO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private String bankaccountid;//银行 账户ID
+	private String bankaccoundname;//银行 账户名称
 	private String jigou;
 	private int affair;//人员数
 	private int car;//车辆数
 	private int storage;//库存量
 	private double money;//账户余额
 	private ArrayList<InitializeAccountPO> account;
-	public InitializeAccountPO(String bankaccountid,String jigou,int affair,int car,int storage, double money)
+	public InitializeAccountPO(String bankaccoundname,String jigou,int affair,int car,int storage, double money)
 	{ 
-		this.bankaccountid=bankaccountid;
+		this.bankaccoundname=bankaccoundname;
 		this.jigou=jigou;
 		this.affair=affair;
 		this.car=car;
@@ -26,7 +26,7 @@ public class InitializeAccountPO implements Serializable {
 
 		this.money=money;
 	}
-     public String getId(){return bankaccountid;}
+     public String getId(){return bankaccoundname;}
      public String getJigou(){return jigou;}
      public int getAffair(){return affair;}
      public int getCar(){return car;}

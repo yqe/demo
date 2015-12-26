@@ -5,16 +5,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import financedataService.InitialAccountService;
+import managedata.ManageAccount;
 import mysqlimp.MySqlImp;
 import po.InitializeAccountPO;
-import po.TransPO;
+import po.ManageAccountPO;
 
 /**
  * @author jjlb
  *期初建账
  */
 public class Initialaccount implements InitialAccountService{
-	private String bankaccountid;//银行账户id
+	private String bankaccountname;//银行账户名称
 	private String jigou;
 	private int affair;//人员
 	private int car;//车辆数
@@ -23,13 +24,14 @@ public class Initialaccount implements InitialAccountService{
 	private ArrayList<InitializeAccountPO> acpoList;
 	MySqlImp mysqlimp;
 	private InitializeAccountPO accpo;
-	public InitializeAccountPO find(String bankaccountid) {
+	ManageAccount maacc;
+	public InitializeAccountPO find(String bankaccountname) {
 		// TODO Auto-generated method stub
 		
 		try {
-			this.bankaccountid=bankaccountid;
+			this.bankaccountname=bankaccountname;
 			mysqlimp=new MySqlImp();
-			String find="SELECT 银行账户ID,机构名称,人员,车辆,库存,银行账户余额"+" FROM 期初建账信息"+" WHERE 银行账户ID='"+bankaccountid+"'";
+			String find="SELECT 银行账户名称,机构名称,人员,车辆,库存,银行账户余额"+" FROM 期初建账信息"+" WHERE 银行账户名称='"+bankaccountname+"'";
 			ResultSet rs=mysqlimp.query(find);
 			accpo=new InitializeAccountPO(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getDouble(6));
 			rs.close();
@@ -53,16 +55,23 @@ public class Initialaccount implements InitialAccountService{
 	public boolean insert(InitializeAccountPO po) {
 		// TODO Auto-generated method stub
 		try {
-			this.bankaccountid=po.getId();
+			maacc=new ManageAccount();
+			this.bankaccountname=po.getId();
 			this.jigou=po.getJigou();
 			this.affair=po.getAffair();
 			this.car=po.getCar();
 			this.storage=po.getStorage();
 			this.money=po.getMoney();
 			mysqlimp=new MySqlImp();
-			String insert="INSERT INTO 期初建账信息"+" (银行账户ID,机构名称,人员,车辆,库存,银行账户余额)"+" VALUES('"+bankaccountid+"','"+jigou+"','"+affair+"',"+car+","+storage+","+money+")";
+			String insert="INSERT INTO 期初建账信息"+" (银行账户名称,机构名称,人员,车辆,库存,银行账户余额)"+" VALUES('"+bankaccountname+"','"+jigou+"','"+affair+"',"+car+","+storage+","+money+")";
 			mysqlimp.update(insert);
-			return true;
+			ManageAccountPO mapo=new ManageAccountPO(bankaccountname,money);
+			if(!maacc.find(bankaccountname).equals("不存在")){
+				maacc.update(mapo);
+				return true;
+			}else{
+				return false;
+			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
