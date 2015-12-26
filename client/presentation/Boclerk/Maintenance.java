@@ -26,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import login.MTextfield;
+import login.Mdialog;
 import po.EmploeePO;
 import po.VehicleMaintanceInfoPO;
 import transbl.TransBl;
@@ -137,7 +138,7 @@ public class Maintenance {
 				String ss = vpo.getVehicleID();
 				// System.out.println(ss);
 				if (vpo.getVehicleID().equals("不存在")) {
-					JOptionPane.showMessageDialog(null, "所输入车辆ID不存在");
+					Mdialog.showMessageDialog("所输入车辆ID不存在");
 				} else {
 					carnumber.setText(vpo.getCarsID());
 					driverid.setText(vpo.getDriverID());
@@ -207,20 +208,20 @@ public class Maintenance {
 							timebox1.getSelectedItem().toString());
 					TransBl trans = new TransBl(oos,ois);
 					if (trans.ChangeVehicleInfoPO(vpo))
-						JOptionPane.showMessageDialog(null, "更新成功!");
+						Mdialog.showMessageDialog( "更新成功!");
 					else
-						JOptionPane.showMessageDialog(null, "抱歉，更新失败!");
+						Mdialog.showMessageDialog("抱歉，更新失败!");
 				} else if (!iscarid && !caridisempty) {
-					JOptionPane.showMessageDialog(null, "请输入正确的车辆代号!");
+					Mdialog.showMessageDialog( "请输入正确的车辆代号!");
 				} else if (!iscarnumber && !carnumberisempty) {
-					JOptionPane.showMessageDialog(null, "请输入正确的车牌号!");
+					Mdialog.showMessageDialog( "请输入正确的车牌号!");
 				} else if (!isdriverid && !driveridisempty) {
-					JOptionPane.showMessageDialog(null, "请输入正确的司机代号!");
+					Mdialog.showMessageDialog( "请输入正确的司机代号!");
 				} 
 				 else if (!isdriverid && !driveridisempty) {
-						JOptionPane.showMessageDialog(null, "请输入正确的身份证号!");
+					 Mdialog.showMessageDialog( "请输入正确的身份证号!");
 				}else if (isempty) {
-					JOptionPane.showMessageDialog(null, "请完整填写信息!");// 123
+					Mdialog.showMessageDialog( "请完整填写信息!");// 123
 				}
 
 			}

@@ -116,12 +116,11 @@ public class transitmain {
 		control.setOpaque(false);
 		
 		MTextfield idt=new MTextfield();
-		idt.setFont(new Font("", Font.PLAIN, b2size));
 		MTextfield namet=new MTextfield();
-		namet.setFont(new Font("", Font.PLAIN, b2size));
 		MTextfield jobt=new MTextfield();
+		MTextfield post=new MTextfield();
 		
-		idt.settextFont();namet.settextFont();jobt.settextFont();
+		idt.settextFont();namet.settextFont();jobt.settextFont();post.settextFont();
 		jobt.setFont(new Font("", Font.PLAIN, b2size));	
 		idt.setOpaque(false);
 		idt.setEditable(false);
@@ -133,18 +132,21 @@ public class transitmain {
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());	
 		
+		post.HideTheField();post.setEditable(false);
 		
-		namet.setBounds(120, 90, 150, 35);
-		jobt.setBounds(120, 140, 200, 35);		
-		idt.setBounds(82, 225, 150, 30);
+		namet.setBounds(180, 90, 150, 35);
+		jobt.setBounds(180, 140, 200, 35);		
+		idt.setBounds(72, 225, 150, 30);
+		post.setBounds(180, 225, 150, 30);
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText(emPO.getPosition());
-	
+	    post.setText(emPO.getPosID());
 	
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);
+		control.add(post);
 		control.add(b3);
 		control.add(b4);
 		control.add(b5);

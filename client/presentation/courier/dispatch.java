@@ -28,6 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import login.MTextfield;
+import login.Mdialog;
 
 import com.eltima.components.ui.DatePicker;
 
@@ -69,24 +70,20 @@ public class dispatch {
 		final MTextfield courier = new MTextfield();
 		
 		id.settextFont();name.settextFont();courier.settextFont();
-		
 		final JTextField time = new JTextField();
 		Calendar c=Calendar.getInstance();
 
 		Date d=c.getTime();
 		final DatePicker datepick = new DatePicker(time,d);
 		datepick.setOpaque(false);
-		datepick.setLocale(Locale.CHINA);//设置显示语言
+//		datepick.setLocale(Locale.CHINA);//设置显示语言
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick.setEditorable(false);//设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 		
-		id.setOpaque(false);
-		id.setBorder(BorderFactory.createEmptyBorder());
-		name.setOpaque(false);
-		name.setBorder(BorderFactory.createEmptyBorder());
-		courier.setOpaque(false);
-		courier.setBorder(BorderFactory.createEmptyBorder());
+		id.HideTheField();name.HideTheField();courier.HideTheField();
+		
+		
 		
 		
 		JButton b4 = new JButton();
@@ -104,12 +101,12 @@ public class dispatch {
 					Diliverdocu dili=new Diliverdocu(oos,ois);
 					boolean IsOk=dili.BuildDiliverDocu(new DiliverDocuPO(id.getText(), time, name.getText(), courier.getText()));
 					if(IsOk){
-						JOptionPane.showMessageDialog(null, "生成派件单成功!");
+						Mdialog.showMessageDialog("生成派件单成功!");
 					}
 				} else if (!isid && !idisempty) {
-					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
+					Mdialog.showMessageDialog( "所输入订单条形码号非法!");
 				} else {
-					JOptionPane.showMessageDialog(null, "请完整填写信息!");
+					Mdialog.showMessageDialog("请完整填写信息!");
 				}
 			}
 

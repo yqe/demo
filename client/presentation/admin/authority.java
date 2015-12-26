@@ -82,7 +82,7 @@ public class authority {
 				UserBl m = new UserBl(oos,ois);
 				UserInfoPO a = m.GetUserAccount(t1.getText());
 				if (a.getUserID().equals("不存在"))
-					JOptionPane.showMessageDialog(null, "请输入正确账号!");
+					Mdialog.showMessageDialog("请输入正确账号!");
 				if (!t1.getText().equals("")) {
 					t2.setText(a.getUsername());
 					for (int i = 0; i < 7; i++) {

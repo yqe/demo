@@ -33,6 +33,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import login.MTextfield;
+import login.Mdialog;
 
 import com.eltima.components.ui.DatePicker;
 
@@ -151,9 +152,9 @@ public class arrival {
 				boolean IsOk = bussari.BuildHallArrivalDocu(
 						new BussinessArrivalDocuPO(date, t2.getText(), place, state, t1.getText()));
 				if (IsOk) {
-					JOptionPane.showMessageDialog(null, "成功建立到达单!");
+					Mdialog.showMessageDialog("成功建立到达单!");
 				} else {
-					JOptionPane.showMessageDialog(null, "建立到达单失败!");
+					Mdialog.showMessageDialog("建立到达单失败!");
 				}
 
 				// System.out.println(model.getRowCount());
@@ -170,7 +171,7 @@ public class arrival {
 				int row = table.getSelectedRow();
 				// System.out.println(row);
 				if (row == -1) {
-					JOptionPane.showMessageDialog(null, "请选中要删除的行!");
+					Mdialog.showMessageDialog( "请选中要删除的行!");
 				} else {
 					model.removeRow(row);
 				}

@@ -132,24 +132,26 @@ public class outstorage {
 					    return c;
 					   }
 					  };
+    	table.setRowHeight(30);
+    	  
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		TableColumn Column0 = table.getColumnModel().getColumn(0); 
 		Column0.setPreferredWidth(84);
 		
 		TableColumn Column1 = table.getColumnModel().getColumn(1);
-		Column1.setPreferredWidth(82);
+		Column1.setPreferredWidth(107);
 		
 		TableColumn Column2 = table.getColumnModel().getColumn(2);
-		Column2.setPreferredWidth(84);
+		Column2.setPreferredWidth(75);
 		
 		TableColumn Column3 = table.getColumnModel().getColumn(3);
-		Column3.setPreferredWidth(75);
+		Column3.setPreferredWidth(103);
 
+		table.setForeground(Color.white);
 		JScrollPane jp = new JScrollPane(table);
 		
 		table.setOpaque(false);
 		table.getTableHeader().setOpaque(false);
-		table.setRowHeight(21);
 		
 		jp.setOpaque(false);
 		
@@ -225,7 +227,7 @@ public class outstorage {
 //
 		int xloc=65,length=175,width=44;
 		
-	    jp.setBounds(547, 265, 327, 252);
+	    jp.setBounds(571, 220, 367, 355);
 		
 		datepick.setBounds(xloc, 408, length, width);
 

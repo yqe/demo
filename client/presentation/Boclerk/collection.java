@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import com.eltima.components.ui.DatePicker;
 
 import login.MTextfield;
+import login.Mdialog;
 import login.Tran;
 import documentbl.Earneddocu;
 import po.EarnedPO;
@@ -92,7 +93,7 @@ public class collection {
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
 		datepick.setOpaque(false);
-		datepick.setLocale(Locale.CHINA);//设置显示语言
+//		datepick.setLocale(Locale.CHINA);//设置显示语言
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick.setEditorable(false);//设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100,30));//设置大小
@@ -117,19 +118,19 @@ public class collection {
 					pisempty = true;
 				}
 				if (id.getText().length() != 10)
-					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
+					Mdialog.showMessageDialog( "所输入订单条形码号非法!");
 				else if (cisempty)
-					JOptionPane.showMessageDialog(null, "请完整填写信息!");
+					Mdialog.showMessageDialog( "请完整填写信息!");
 				else if (pisempty&&isnum)
-					JOptionPane.showMessageDialog(null, "抱歉，请输入正确的收款金额!");
+					Mdialog.showMessageDialog("抱歉，请输入正确的收款金额!");
 				else {
 					Earneddocu edocu = new Earneddocu(oos,ois);
 					boolean IsOk = edocu
 							.BuildEarnedDocu(new EarnedPO(newdate, rececash, courier.getText(), id.getText(), yyt.getText()));
 					if (IsOk) {
-						JOptionPane.showMessageDialog(null, "成功建立收款单!");
+						Mdialog.showMessageDialog( "成功建立收款单!");
 					} else {
-						JOptionPane.showMessageDialog(null, "建立收款单失敗!");
+						Mdialog.showMessageDialog( "建立收款单失敗!");
 					}
 				}
 			}

@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import login.MTextfield;
+import login.Mdialog;
 
 import com.eltima.components.ui.DatePicker;
 
@@ -113,32 +114,32 @@ public class transitload {
 
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
-		datepick.setLocale(Locale.CHINA);//设置显示语言
+//		datepick.setLocale(Locale.CHINA);//设置显示语言
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
-	    datepick.setEditorable(false);//设置是否可编辑
+//	    datepick.setEditorable(false);//设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 
 		String[] site = { "上海", "北京", "南京", "深圳", "广州", "杭州" };
 	
-		Color text=new Color(0,0,0);
+//		Color text=new Color(0,0,0);
 		
 		final JComboBox sitebox1 = new JComboBox(site);
 		
-		sitebox1.setBackground(text);
+		sitebox1.setBackground(Color.gray);
 		
 		final JComboBox sitebox2 = new JComboBox(site);
 		
-		sitebox2.setBackground(text);
+		sitebox2.setBackground(Color.gray);
 		
 		String[] transport={"汽车","火车","飞机"};
 		
 		final JComboBox transportbox = new JComboBox(transport);
 		
-		transportbox.setBackground(text);
+		transportbox.setBackground(Color.gray);
 
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!isempty) {
+				if (!isempty) {				
 					TransferDocuPO tfpo = new TransferDocuPO("飞机",
 							datepick.getText(),
 							zzdid.getText(), hbid.getText(), (String) sitebox1.getSelectedItem(),
@@ -147,11 +148,12 @@ public class transitload {
 					Turndocu td = new Turndocu(oos,ois);
 					boolean IsOk = td.BuildTurnDocu(tfpo);
 					if (IsOk)
-						JOptionPane.showMessageDialog(null, "成功生成装车单!");
+						Mdialog.showMessageDialog( "成功生成装车单!");
 					else
-						JOptionPane.showMessageDialog(null, "生成装车单失败!");
+						Mdialog.showMessageDialog( "生成装车单失败!");
 				} else if (isempty) {
-					JOptionPane.showMessageDialog(null, "请输入完整的信息!");
+				
+					Mdialog.showMessageDialog( "请输入完整的信息!");
 				}
 
 			}

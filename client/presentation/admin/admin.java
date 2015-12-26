@@ -147,8 +147,9 @@ public class admin {
 		MTextfield idt=new MTextfield();
 		MTextfield namet=new MTextfield();	
 		MTextfield jobt=new MTextfield();
+		MTextfield post=new MTextfield();
 		
-		idt.settextFont();namet.settextFont();jobt.settextFont();
+		idt.settextFont();namet.settextFont();jobt.settextFont();post.settextFont();
 	
 		
 		idt.setOpaque(false);
@@ -160,20 +161,24 @@ public class admin {
 		jobt.setOpaque(false);
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());	
+		
+		post.HideTheField();post.setEditable(false);
 			
-		namet.setBounds(120, 90, 150, 35);
-		jobt.setBounds(120, 140, 200, 35);		
+		namet.setBounds(190, 90, 150, 35);
+		jobt.setBounds(190, 140, 200, 35);		
 		idt.setBounds(82, 228, 150, 30);	
+		post.setBounds(190, 228, 150, 30);	
 	
 		idt.setText(empPO.getEmpID());
 		namet.setText(empPO.getName());
 		jobt.setText(empPO.getPosition());
-
+        post.setText(empPO.getPosID());
 		
 	
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);
+		control.add(post);
 	
 		control.add(b3);
 		control.add(b4);

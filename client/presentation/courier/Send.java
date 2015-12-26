@@ -31,6 +31,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import login.MTextfield;
+import login.Mdialog;
 
 import com.eltima.components.ui.DatePicker;
 
@@ -97,7 +98,7 @@ public class Send {
 		
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
-		datepick.setLocale(Locale.CHINA);//设置显示语言
+//		datepick.setLocale(Locale.CHINA);//设置显示语言
 		datepick.setBackground(Color.gray);
 //		datepick.setFieldForeground(Color.white);
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
@@ -436,9 +437,9 @@ public class Send {
 				if (!isempty && goodsbl.BuildGoodsDocu(gpo)) {
 
 					// goodsbl.BuildGoodsDocu(gpo);
-					JOptionPane.showMessageDialog(null, "成功生成寄件单!");
+					Mdialog.showMessageDialog("成功生成寄件单!");
 				} else {
-					JOptionPane.showMessageDialog(null, "信息未填写完整!");
+					Mdialog.showMessageDialog("信息未填写完整!");
 				}
 
 			}

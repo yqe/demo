@@ -32,10 +32,12 @@ public class check {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
-	JPanel p1 = new JPanel(){public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(background.getImage(), 0, 0, null);
-	}};
+	JPanel p1 = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public check(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos = oos;
@@ -44,15 +46,14 @@ public class check {
 	}
 
 	public JPanel Panel() throws IOException {
-		   new ImageGet();
-	        Image bgp=ImageGet.getImageByState("check");
+		new ImageGet();
+		Image bgp = ImageGet.getImageByState("check");
 		background = new ImageIcon(bgp);
-		
+
 		p1.setBounds(0, 0, 942, 815);
-	
 
 		final MTextfield id = new MTextfield();
-		
+
 		id.settextFont();
 		id.setOpaque(false);
 		id.setBorder(BorderFactory.createEmptyBorder());
@@ -63,14 +64,12 @@ public class check {
 				infoDialog info = null;
 				if (id.getText().length() == 10) {
 					try {
-						GoodsBl goodsbl = new GoodsBl(oos,ois);
-						String []infoma=new String[4];
-//						System.out.println(id.getText());
-						for(int i=0;i<4;i++){
-//						infoma[i]= goodsbl.Goodsgetinfo(id.getText())[i];
-//						System.out.println(goodsbl.Goodsgetinfo(id.getText()));
-						}
-						info = new infoDialog(infoma[0], infoma[1], infoma[2], infoma[3]);
+						GoodsBl goodsbl = new GoodsBl(oos, ois);
+						String[] infoma = new String[4];
+						System.out.println(id.getText());
+						infoma = goodsbl.Goodsgetinfo(id.getText());
+						info = new infoDialog(infoma[0], infoma[1], infoma[2],
+								infoma[3]);
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -86,7 +85,6 @@ public class check {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-	
 
 		p1.add(id);
 
@@ -94,14 +92,12 @@ public class check {
 
 		p1.setOpaque(false);
 
-	
+		b4.setContentAreaFilled(false);
+		b4.setBorder(BorderFactory.createEmptyBorder());
 
-	     b4.setContentAreaFilled(false);
-	     b4.setBorder(BorderFactory.createEmptyBorder());
+		id.setBounds(811 - 402, 262, 232, 47);
 
-		id.setBounds(811-402, 262, 232, 47);
-
-		b4.setBounds(688-402, 479, 310, 88);
+		b4.setBounds(688 - 402, 479, 310, 88);
 		return p1;
 
 	}

@@ -28,6 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import login.MTextfield;
+import login.Mdialog;
 
 import com.eltima.components.ui.DatePicker;
 
@@ -111,7 +112,7 @@ public class load {
 		Date d=c.getTime();
 		final DatePicker datepick = new DatePicker(time,d);
 		
-		datepick.setLocale(Locale.CHINA);//设置显示语言
+//		datepick.setLocale(Locale.CHINA);//设置显示语言
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick.setEditorable(false);//设置是否可编辑
 	    datepick.setBackground(Color.gray);
@@ -162,24 +163,24 @@ public class load {
 					IsDouble=false;
 				}
 				if (istransid&&iscarid&&id.getText().length() != 10)
-					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
+					Mdialog.showMessageDialog( "所输入订单条形码号非法!");
 				else if(!isempty&&!IsDouble)
-					JOptionPane.showMessageDialog(null, "请输入合法的金额!");
+					Mdialog.showMessageDialog("请输入合法的金额!");
 				else if(!isempty&&!istransid)
-					JOptionPane.showMessageDialog(null, "请输入合法的汽运编号!");
+					Mdialog.showMessageDialog( "请输入合法的汽运编号!");
 				else if(!isempty&&!iscarid)
-					JOptionPane.showMessageDialog(null, "请输入合法的车辆代号!");
+					Mdialog.showMessageDialog( "请输入合法的车辆代号!");
 				else if (isempty)
-					JOptionPane.showMessageDialog(null, "请完整填写信息!");
+					Mdialog.showMessageDialog( "请完整填写信息!");
 				else {
 					Transdocu trans = new Transdocu(oos,ois);
 					boolean IsOk = trans.BuildTransDocu(new TransPO(date, yyt.getText(), transid.getText(),
 							(String) (sitebox.getSelectedItem()), carid.getText(), jz.getText(), yy.getText(),
 							Double.parseDouble(price.getText()), id.getText()));
 					if (IsOk) {
-						JOptionPane.showMessageDialog(null, "成功生成装车单!");
+						Mdialog.showMessageDialog( "成功生成装车单!");
 					} else {
-						JOptionPane.showMessageDialog(null, "生成装车单失败!");
+						Mdialog.showMessageDialog("生成装车单失败!");
 					}
 				}
 				// else if (id.getText().length() != 10) {

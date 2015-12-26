@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import login.MTextfield;
+import login.Mdialog;
 
 import com.eltima.components.ui.DatePicker;
 
@@ -85,16 +86,20 @@ public class transit {
 		t1.settextFont();
 		t2.settextFont();
 		
+		t1.setEditable(false);
+		
+		t1.setText(emPO.getPosID());
+		
 		t1.setOpaque(false);
 		t1.setBorder(BorderFactory.createEmptyBorder());
 		t2.setOpaque(false);
 		t2.setBorder(BorderFactory.createEmptyBorder());
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
-		datepick.setLocale(Locale.CHINA);//设置显示语言
+//		datepick.setLocale(Locale.CHINA);//设置显示语言
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
-	    datepick.setEditorable(false);//设置是否可编辑
-		datepick.setPreferredSize(new Dimension(100,30));//设置大小
+//	    datepick.setEditorable(true);//设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100,40));//设置大小
 
 		String[] site = { "南京", "上海", "北京", "杭州", "广州", "苏州", "成都", "武汉" };
 		final JComboBox sitebox = new JComboBox(site);
@@ -120,21 +125,22 @@ public class transit {
 		//
 		// jp.setOpaque(false);
 		// jp.getViewport().setOpaque(false);
-		//
+		
 
 		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String date = datepick.getText();
+				System.out.println(date+"hhhh");
 				String place = (String) sitebox.getSelectedItem();
 				String state = (String) statebox.getSelectedItem();
 				Zzzxarrivaldocu transferaridocu = new Zzzxarrivaldocu(oos,ois);
 				boolean IsOk = transferaridocu
 						.BuildZzzxarrivalDocu(new ZzzxArrivalDocuPO(t1.getText(), date, t2.getText(), place, state));
 				if (IsOk)
-					JOptionPane.showMessageDialog(null, "中转接受完成!");
+					Mdialog.showMessageDialog("中转接受完成!");
 				else
-					JOptionPane.showMessageDialog(null, "抱歉，中转接受失败!");
+					Mdialog.showMessageDialog("抱歉，中转接受失败!");
 				// Object[] add={t1.getText(),date,place,state,t2.getText()};
 				// DefaultTableModel model = (DefaultTableModel)
 				// table.getModel();

@@ -50,9 +50,9 @@ public class courier {
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 	private Socket socket;
-	Send send = new Send(oos, ois, emPO);
-	dispatch dispatch = new dispatch(oos, ois, emPO);
-	check check = new check(oos, ois, emPO);
+//	Send send = new Send(oos, ois, emPO);
+//	dispatch dispatch = new dispatch(oos, ois, emPO);
+//	check check = new check(oos, ois, emPO);
 	JPanel sendpanel = new JPanel();
 	JPanel dispatchpanel;
 	JPanel checkpanel = new JPanel();
@@ -75,11 +75,11 @@ public class courier {
 
 		courier.setOpaque(false);
 		courier.setLayout(null);
-		// Send send = new Send(oos, ois, emPO);
+		 Send send = new Send(oos, ois, emPO);
 		sendpanel = send.Panel();
-		// dispatch dispatch=new dispatch(oos,ois,emPO);
+		 dispatch dispatch=new dispatch(oos,ois,emPO);
 		dispatchpanel = dispatch.Panel();
-		// check check=new check(oos,ois,emPO);
+		 check check=new check(oos,ois,emPO);
 		checkpanel = check.Panel();
 
 		control.setBounds(0, 0, size, 815);
@@ -117,7 +117,9 @@ public class courier {
 		
 		MTextfield jobt = new MTextfield();
 		
-		idt.settextFont();namet.settextFont();jobt.settextFont();
+		MTextfield post = new MTextfield();
+		
+		idt.settextFont();namet.settextFont();jobt.settextFont();post.settextFont();
 		
 
 		idt.setOpaque(false);
@@ -129,18 +131,22 @@ public class courier {
 		jobt.setOpaque(false);
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());
+		
+		post.HideTheField();post.setEditable(false);
 
 	
 
-		namet.setBounds(200, 110, 150, 35);
-		jobt.setBounds(200, 150, 200, 35);		
+		namet.setBounds(220, 110, 150, 35);
+		jobt.setBounds(220, 150, 200, 35);		
 		idt.setBounds(82, 238, 150, 30);
+		post.setBounds(220, 238, 150, 30);
 
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText(emPO.getPosition());
+		post.setText(emPO.getPosID());
 
-		
+		control.add(post);
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);
