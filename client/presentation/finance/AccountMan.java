@@ -67,7 +67,7 @@ public class AccountMan {
 				if (!isempty && isnum) {
 					// 添加新数据到PO
 					ManageAccountPO a = new ManageAccountPO(textfield[0].getText(),
-							Double.parseDouble(textfield[1].getText()), "", "");
+							Double.parseDouble(textfield[1].getText()));
 					FinanceBl adacc = new FinanceBl(oos, ois);
 					boolean IsOk = adacc.BuildBankAccount(a);
 					if (IsOk)
@@ -163,8 +163,7 @@ public class AccountMan {
 
 				if (!idisempty) {
 					FinanceBl change = new FinanceBl(oos, ois);
-					ManageAccountPO mapo = new ManageAccountPO(text[1].getText(), Double.valueOf(text[2].getText()),
-							accname.getText(), null);
+			ManageAccountPO mapo = new ManageAccountPO(accname.getText(), Double.valueOf(text[2].getText()));
 					change.ModifyBankAccount(mapo);
 					JOptionPane.showMessageDialog(null, "修改成功!");
 				} else {
