@@ -1,19 +1,13 @@
 package finance;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Locale;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -21,15 +15,13 @@ import javax.swing.table.DefaultTableModel;
 
 import com.eltima.components.ui.DatePicker;
 
-import login.Tran;
-import po.CostManList;
-import po.CostManagePO;
-import po.EarnedPO;
-import po.EarnedPOList;
-import po.EmploeePO;
 import documentbl.Earneddocu;
 import financebl.CostManage;
 import image.ImageGet;
+import login.Mdialog;
+import po.CostManList;
+import po.EarnedPOList;
+import po.EmploeePO;
 
 public class StateOfRun {
 
@@ -105,7 +97,7 @@ public class StateOfRun {
 				CostManList cpolist = costmanage.GetCostManageDocu(startdate, enddate);
 
 				if (cpolist.GetIndex(0).getDate().equals("不存在")) {
-					JOptionPane.showMessageDialog(null, "当天没有付款单!");
+					Mdialog.showMessageDialog("当天没有付款单!");
 				} else {
 					for (int i = 0; i < cpolist.GetSize(); i++) {
 						Object[] add = { cpolist.GetIndex(i).getDate(), cpolist.GetIndex(i).getPayment(),
@@ -117,7 +109,7 @@ public class StateOfRun {
 
 					EarnedPOList epolist = earneddocu.GetEarnedDocu(startdate, enddate);
 					if (epolist.GetIndex(0).getPaydate().equals("不存在")) {
-						JOptionPane.showMessageDialog(null, "当天没有收款单!");
+						Mdialog.showMessageDialog("当天没有收款单!");
 					} else {
 						for (int i = 0; i < epolist.Getsize(); i++) {
 							Object[] add = { epolist.GetIndex(i).getPaydate(), epolist.GetIndex(i).getEarnedmoney(),

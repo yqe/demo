@@ -6,10 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Locale;
 
-import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.eltima.components.ui.DatePicker;
@@ -18,6 +15,7 @@ import financebl.CostManage;
 import financebl.FinanceBl;
 import image.ImageGet;
 import login.MTextfield;
+import login.Mdialog;
 import po.CostManagePO;
 import po.EmploeePO;
 import po.ManageAccountPO;
@@ -93,14 +91,14 @@ public class CostMan {
 						textfield[2].getText(), textfield[3].getText(), textfield[4].getText(), textfield[5].getText());
 
 				if (isid && isnum && !isempty && cost.BuildCostManage(cmpo)) {
-					JOptionPane.showMessageDialog(null, "成功付款!");
+					Mdialog.showMessageDialog("成功付款!");
 				} else if (!isempty && !isid) {
-					JOptionPane.showMessageDialog(null, "所输入账户ID非法!");
+					Mdialog.showMessageDialog("所输入账户ID非法!");
 				} else if (!isempty && !isnum) {
-					JOptionPane.showMessageDialog(null, "请输入合法的金额!");// 只能是整数
+					Mdialog.showMessageDialog("请输入合法的金额!");// 只能是整数
 				} else if (isempty) {
 
-					JOptionPane.showMessageDialog(null, "请完整填写信息!");
+					Mdialog.showMessageDialog("请完整填写信息!");
 				}
 
 			}
