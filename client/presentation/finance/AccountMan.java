@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 import financebl.FinanceBl;
 import image.ImageGet;
 import login.MTextfield;
+import login.Mdialog;
 import po.EmploeePO;
 import po.ManageAccountPO;
 
@@ -71,13 +71,13 @@ public class AccountMan {
 					FinanceBl adacc = new FinanceBl(oos, ois);
 					boolean IsOk = adacc.BuildBankAccount(a);
 					if (IsOk)
-						JOptionPane.showMessageDialog(null, "添加成功!");
+						Mdialog.showMessageDialog("添加成功!");
 					else
-						JOptionPane.showMessageDialog(null, "添加失败!");
+						Mdialog.showMessageDialog("抱歉,添加失败!");
 				} else if (!isempty && !isnum) {
-					JOptionPane.showMessageDialog(null, "所输入金额非法!");
+					Mdialog.showMessageDialog("抱歉,所输入金额非法!");
 				} else {
-					JOptionPane.showMessageDialog(null, "请将信息填写完整!");
+					Mdialog.showMessageDialog("抱歉,请将信息填写完整!");
 				}
 			}
 		});
@@ -163,7 +163,7 @@ public class AccountMan {
 
 				if (!idisempty) {
 					FinanceBl change = new FinanceBl(oos, ois);
-			ManageAccountPO mapo = new ManageAccountPO(accname.getText(), Double.valueOf(text[2].getText()));
+					ManageAccountPO mapo = new ManageAccountPO(accname.getText(), Double.valueOf(text[2].getText()));
 					change.ModifyBankAccount(mapo);
 					JOptionPane.showMessageDialog(null, "修改成功!");
 				} else {

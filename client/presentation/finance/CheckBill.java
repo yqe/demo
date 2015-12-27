@@ -7,10 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Locale;
 
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -23,6 +21,7 @@ import com.eltima.components.ui.DatePicker;
 import documentbl.Earneddocu;
 import image.ImageGet;
 import login.MTextfield;
+import login.Mdialog;
 import po.EarnedPOList;
 import po.EmploeePO;
 
@@ -102,7 +101,7 @@ public class CheckBill {
 				Earneddocu earneddocu = new Earneddocu(oos, ois);
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("day", date);
 				if (epolist.GetIndex(0).getPaydate().equals("不存在")) {
-					JOptionPane.showMessageDialog(null, "当天没有收款单!");
+					Mdialog.showMessageDialog("当天没有收款单!");
 				} else {
 					for (int i = 0; i < epolist.Getsize(); i++) {
 						Object[] add = { epolist.GetIndex(i).getPaydate(), epolist.GetIndex(i).getEarnedmoney(),
@@ -126,7 +125,7 @@ public class CheckBill {
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("ID", id);
 
 				if (epolist.GetIndex(0).getPaydate().equals("不存在")) {
-					JOptionPane.showMessageDialog(null, "该营业厅尚无没有收款单!");
+					Mdialog.showMessageDialog("该营业厅尚无没有收款单!");
 				} else {
 					for (int i = 0; i < epolist.Getsize(); i++) {
 						Object[] add = { epolist.GetIndex(i).getPaydate(), epolist.GetIndex(i).getEarnedmoney(),
