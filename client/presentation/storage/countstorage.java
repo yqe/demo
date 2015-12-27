@@ -1,5 +1,6 @@
 package storage;
 
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -11,10 +12,13 @@ import java.io.ObjectOutputStream;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import image.ImageGet;
 import login.MTextfield;
@@ -51,15 +55,52 @@ public class countstorage {
 		p1.setBounds(0, 0, 988, 756);
 		p1.setLayout(null);
 
-		String[] columnnames = { "快递编号", "入库日期", "目的地", "区号", "排号", "架号", "位号" };
+		String[] columnnames = { "", "", "", "", "", "", "" };
 		Object[][] data = {};
 
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
-		JTable table = new JTable(model);
+		JTable table = new JTable(model){
+			   public Component prepareRenderer(TableCellRenderer renderer,
+					     int row, int column) {
+					    Component c = super.prepareRenderer(renderer, row, column);
+					    if (c instanceof JComponent) {
+					     ((JComponent) c).setOpaque(false);
+					    }
+					    return c;
+					   }
+					  };
+	    table.setRowHeight(22);		  
+	    
+					  
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(false);
+		table.setOpaque(false);
+		table.getTableHeader().setOpaque(false);
+		
+		TableColumn Column0 = table.getColumnModel().getColumn(0); 
+		Column0.setPreferredWidth(82);
+		
+		TableColumn Column1 = table.getColumnModel().getColumn(1);
+		Column1.setPreferredWidth(108);
+		
+		TableColumn Column2 = table.getColumnModel().getColumn(2);
+		Column2.setPreferredWidth(67);
+		
+		TableColumn Column3 = table.getColumnModel().getColumn(3);
+		Column3.setPreferredWidth(55);
+		
+		TableColumn Column4 = table.getColumnModel().getColumn(4);
+		Column4.setPreferredWidth(59);
+		
+		TableColumn Column5 = table.getColumnModel().getColumn(5);
+		Column5.setPreferredWidth(57);
+		
+		TableColumn Column6 = table.getColumnModel().getColumn(6);
+		Column6.setPreferredWidth(57);
+		
 
 		JScrollPane jp = new JScrollPane(table);
+		
 
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
@@ -69,10 +110,8 @@ public class countstorage {
 
 		p1.add(jp);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 2 / 23;
-		int b4xloc = p1.getWidth() * 1 / 3;
-		int b4yloc = p1.getHeight() * 4 / 15 + 20, b4ysize = p1.getHeight() * 1 / 5 + 10;
+	
+		jp.setBounds(164, 252, 489, 254);
 
 		final MTextfield num = new MTextfield();
 		final MTextfield alarm = new MTextfield();

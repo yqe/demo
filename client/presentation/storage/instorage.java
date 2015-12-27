@@ -145,25 +145,25 @@ public class instorage {
 	
 //    table.setEnabled(false);
 	TableColumn Column0 = table.getColumnModel().getColumn(0); 
-	Column0.setPreferredWidth(83);
+	Column0.setPreferredWidth(79);
 	
 	TableColumn Column1 = table.getColumnModel().getColumn(1);
-	Column1.setPreferredWidth(83);
+	Column1.setPreferredWidth(103);
 	
 	TableColumn Column2 = table.getColumnModel().getColumn(2);
-	Column2.setPreferredWidth(82);
+	Column2.setPreferredWidth(66);
 	
 	TableColumn Column3 = table.getColumnModel().getColumn(3);
-	Column3.setPreferredWidth(61);
-
+	Column3.setPreferredWidth(54);
+	
 	TableColumn Column4 = table.getColumnModel().getColumn(4);
-	Column4.setPreferredWidth(54);
+	Column4.setPreferredWidth(57);
 	
 	TableColumn Column5 = table.getColumnModel().getColumn(5);
-	Column5.setPreferredWidth(61);
+	Column5.setPreferredWidth(55);
 	
 	TableColumn Column6 = table.getColumnModel().getColumn(6);
-	Column6.setPreferredWidth(54);
+	Column6.setPreferredWidth(57);
 	
 	table.getTableHeader().setOpaque(false);
 	
@@ -249,7 +249,7 @@ public class instorage {
 	
 	int xloc=65,length=175,width=44;
 	
-    jp.setBounds(825-356, 262, 482, 250);
+    jp.setBounds(825-356, 276, 474, 327);
 	
 	datepick.setBounds(xloc, 408, length, width);
 

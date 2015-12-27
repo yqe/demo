@@ -139,10 +139,10 @@ public class outstorage {
 		Column0.setPreferredWidth(84);
 		
 		TableColumn Column1 = table.getColumnModel().getColumn(1);
-		Column1.setPreferredWidth(107);
+		Column1.setPreferredWidth(94);
 		
 		TableColumn Column2 = table.getColumnModel().getColumn(2);
-		Column2.setPreferredWidth(75);
+		Column2.setPreferredWidth(88);
 		
 		TableColumn Column3 = table.getColumnModel().getColumn(3);
 		Column3.setPreferredWidth(103);
@@ -227,7 +227,7 @@ public class outstorage {
 //
 		int xloc=65,length=175,width=44;
 		
-	    jp.setBounds(571, 220, 367, 355);
+	    jp.setBounds(571, 220, 373, 368);
 		
 		datepick.setBounds(xloc, 408, length, width);
 
