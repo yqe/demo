@@ -17,14 +17,15 @@ public class ClientMain {
 	public static void main(String[] args) {
 
 		IntManage client = new IntManage();
-		client.InitInternet();
 		System.out.println(client.getSocket());
-		loginframe login = new loginframe(client.getSocket(), client.getOos(), client.getOis());
-		try {
-			login.Frame();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (client.InitInternet()) {
+			loginframe login = new loginframe(client.getSocket(), client.getOos(), client.getOis());
+			try {
+				login.Frame();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

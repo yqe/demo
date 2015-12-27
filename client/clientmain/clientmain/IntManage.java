@@ -5,20 +5,23 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import login.Mdialog;
+
 public class IntManage {
 	private Socket socket;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 
-	public void InitInternet() {
+	public boolean InitInternet() {
 		String hostid = "localhost";
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
+			return true;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Mdialog.showMessageDialog("请确认您的网络ip是否正确"+"\n"+"服务器是否开启");
+			return false;
 		}
 	}
 
