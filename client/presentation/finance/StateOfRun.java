@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Locale;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -35,14 +36,10 @@ public class StateOfRun {
 		this.emPO = emPO;
 	}
 
-	public void stateofrun(JPanelContent content) {
-		content.removeAll();
-		Image bgp = new ImageGet().GetFinanceImage("StateOfRun");
-		content.setConpanel(bgp);
-
+	public void stateofrun(JPanel content) {
 		final JTextField time1 = new JTextField();
 		final DatePicker datepick1 = new DatePicker(time1);
-//		datepick1.setLocale(Locale.CHINA);// 设置显示语言
+		// datepick1.setLocale(Locale.CHINA);// 设置显示语言
 		datepick1.setPattern("yyyy-MM-dd");// 设置日期格式化字符串
 		datepick1.setEditorable(false);// 设置是否可编辑
 		datepick1.setPreferredSize(new Dimension(100, 30));// 设置大小
@@ -125,23 +122,12 @@ public class StateOfRun {
 
 		okbtn.setBounds(702, 272, 175, 42);
 		content.add(okbtn);
-
 	}
 
-	public String[] GetBoxStr(int n, String meanth) {
-		String[] str = new String[n];
-		int year = 0;
-		int num;
-		if (meanth.equals("年"))
-			year = 2000;
-		for (int i = 0; i < n; i++) {
-			num = i + 1 + year;
-			if (num < 10)
-				str[i] = "0" + num + meanth;
-			else
-				str[i] = num + meanth;
-
-		}
-		return str;
+	public void stateofrun(JPanelContent content) {
+		content.removeAll();
+		Image bgp = new ImageGet().GetFinanceImage("StateOfRun");
+		content.setConpanel(bgp);
+		stateofrun(content.GetPanel());
 	}
 }

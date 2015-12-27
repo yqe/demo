@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -37,14 +38,10 @@ public class CheckBill {
 		this.emPO = emPO;
 	}
 
-	public void CheckBill(JPanelContent content) {
-		content.removeAll();
-		Image bgp = new ImageGet().GetFinanceImage("CheckBill");
-		content.setConpanel(bgp);
-
+	public void CheckBill(JPanel content) {
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
-//		datepick.setLocale(Locale.CHINA);// 设置显示语言
+		// datepick.setLocale(Locale.CHINA);// 设置显示语言
 		datepick.setPattern("yyyy-MM-dd");// 设置日期格式化字符串
 		datepick.setEditorable(true);// 设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100, 30));// 设置大小
@@ -59,36 +56,35 @@ public class CheckBill {
 		String[] columnnames = { "营业厅编号", "订单条形码号", "收款日期", "收款金额", "收款快递员" };
 		Object[][] data = {};
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
-		final JTable bill = new JTable(model){
-			   public Component prepareRenderer(TableCellRenderer renderer,
-					     int row, int column) {
-					    Component c = super.prepareRenderer(renderer, row, column);
-					    if (c instanceof JComponent) {
-					     ((JComponent) c).setOpaque(false);
-					    }
-					    return c;
-					   }
-					  };
+		final JTable bill = new JTable(model) {
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+				Component c = super.prepareRenderer(renderer, row, column);
+				if (c instanceof JComponent) {
+					((JComponent) c).setOpaque(false);
+				}
+				return c;
+			}
+		};
 		bill.setOpaque(false);
 		bill.setRowHeight(23);
 		bill.getTableHeader().setOpaque(false);
 		bill.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		TableColumn Column0 = bill.getColumnModel().getColumn(0); 
+		TableColumn Column0 = bill.getColumnModel().getColumn(0);
 		Column0.setPreferredWidth(152);
-		
+
 		TableColumn Column1 = bill.getColumnModel().getColumn(1);
 		Column1.setPreferredWidth(149);
-		
+
 		TableColumn Column2 = bill.getColumnModel().getColumn(2);
 		Column2.setPreferredWidth(133);
-		
+
 		TableColumn Column3 = bill.getColumnModel().getColumn(3);
 		Column3.setPreferredWidth(157);
 
 		TableColumn Column4 = bill.getColumnModel().getColumn(4);
 		Column4.setPreferredWidth(151);
 		JScrollPane jp = new JScrollPane(bill);
-		
+
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
 
@@ -146,5 +142,12 @@ public class CheckBill {
 		content.add(timecheck);
 		content.add(hallcheck);
 		content.add(hallno);
+	}
+
+	public void CheckBill(JPanelContent content) {
+		content.removeAll();
+		Image bgp = new ImageGet().GetFinanceImage("CheckBill");
+		content.setConpanel(bgp);
+		CheckBill(content.GetPanel());
 	}
 }

@@ -4,6 +4,8 @@ import java.awt.Image;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.JPanel;
+
 import financebl.FinanceBl;
 import image.ImageGet;
 import login.MTextfield;
@@ -20,14 +22,10 @@ public class CostIncome {
 		this.emPO = emPO;
 	}
 
-	public void costincome(JPanelContent content) {
-		content.removeAll();
-		Image bgp = new ImageGet().GetFinanceImage("CostIncome");
-		content.setConpanel(bgp);
-		
-		int Gapw=470;
-		int textw=175;
-		int texth=42;
+	public void costincome(JPanel content) {
+		int Gapw = 470;
+		int textw = 175;
+		int texth = 42;
 
 		MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield() };
 		textfield[0].setBounds(Gapw, 358, textw, texth);
@@ -44,6 +42,13 @@ public class CostIncome {
 		textfield[0].setText(s[0]);
 		textfield[1].setText(s[1]);
 		textfield[2].setText(s[2]);// 得到支出收入利润
+	}
+
+	public void costincome(JPanelContent content) {
+		content.removeAll();
+		Image bgp = new ImageGet().GetFinanceImage("CostIncome");
+		content.setConpanel(bgp);
+		costincome(content.GetPanel());
 
 	}
 
