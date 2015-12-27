@@ -173,7 +173,7 @@ public class ImageGetR {
 		case "infodialog":
 			return createImage(infodialog);
 		default:
-			return createImage(null);
+			return createImage("/imagero/approve.jpg");
 		}
 
 	}
