@@ -53,7 +53,7 @@ public class CheckBill {
 		hallno.HideTheField();
 		hallno.setBounds(244, 298, 175, 42);
 
-		String[] columnnames = { "营业厅编号", "订单条形码号", "收款日期", "收款金额", "收款快递员" };
+		String[] columnnames = { "", "", "", "", "" };
 		Object[][] data = {};
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
 		final JTable bill = new JTable(model) {
@@ -66,7 +66,7 @@ public class CheckBill {
 			}
 		};
 		bill.setOpaque(false);
-		bill.setRowHeight(23);
+		bill.setRowHeight(25);
 		bill.getTableHeader().setOpaque(false);
 		bill.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		TableColumn Column0 = bill.getColumnModel().getColumn(0);
@@ -88,7 +88,7 @@ public class CheckBill {
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
 
-		JButtonM timecheck = new JButtonM("按天查询");
+		JButtonM timecheck = new JButtonM();
 		timecheck.setBounds(454, 249, 182, 39);
 		timecheck.HideTheButton();
 		timecheck.addActionListener(new ActionListener() {
@@ -110,7 +110,7 @@ public class CheckBill {
 			}
 		});
 
-		JButtonM hallcheck = new JButtonM("按营业厅查询");
+		JButtonM hallcheck = new JButtonM();
 		hallcheck.setBounds(454, 298, 182, 39);
 		hallcheck.HideTheButton();
 		hallcheck.addActionListener(new ActionListener() {
@@ -136,7 +136,7 @@ public class CheckBill {
 
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
-		jp.setBounds(91, 420, 741, 283);
+		jp.setBounds(91, 420, 746, 283);
 
 		content.add(jp);
 		content.add(timecheck);

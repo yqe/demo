@@ -1,5 +1,6 @@
 package finance;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -8,11 +9,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Locale;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import com.eltima.components.ui.DatePicker;
 
@@ -56,14 +60,70 @@ public class StateOfRun {
 		content.add(datepick1);
 		content.add(datepick2);
 
-		String[] columnnames = { "订单条形码号", "到达日期", "收款金额", "快递员" };
-		String[] columnnames2 = { "付款日期", "付款金额", "付款人", "付款账户", "条目", "备注" };
+		String[] columnnames = { "", "", "", "",""};
+		String[] columnnames2 = { "", "", "", "", "", "" };
 		Object[][] data = {};
 		Object[][] data2 = {};
 		DefaultTableModel model1 = new DefaultTableModel(data, columnnames);
 		DefaultTableModel model2 = new DefaultTableModel(data2, columnnames2);
-		final JTable table = new JTable(model1);
-		final JTable table2 = new JTable(model2);
+		final JTable table = new JTable(model1){
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+				Component c = super.prepareRenderer(renderer, row, column);
+				if (c instanceof JComponent) {
+					((JComponent) c).setOpaque(false);
+				}
+				return c;
+			}
+		};//重写JTable
+		table.setRowHeight(24);//设置行距
+		final JTable table2 = new JTable(model2){
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+				Component c = super.prepareRenderer(renderer, row, column);
+				if (c instanceof JComponent) {
+					((JComponent) c).setOpaque(false);
+				}
+				return c;
+			}
+		};
+		table2.setRowHeight(24);//设置行距
+		table.setOpaque(false);
+		table.getTableHeader().setOpaque(false);//表头设置成透明，并且columnnames里面都设成 "" ""
+		TableColumn Column0 = table.getColumnModel().getColumn(0);
+		Column0.setPreferredWidth(76);//设置每一列的列宽
+
+		TableColumn Column1 = table.getColumnModel().getColumn(1);
+		Column1.setPreferredWidth(72);
+
+		TableColumn Column2 = table.getColumnModel().getColumn(2);
+		Column2.setPreferredWidth(76);
+
+		TableColumn Column3 = table.getColumnModel().getColumn(3);
+		Column3.setPreferredWidth(68);
+
+		TableColumn Column4 = table.getColumnModel().getColumn(4);		
+		Column4.setPreferredWidth(74);
+		
+		
+		table2.setOpaque(false);
+		table2.getTableHeader().setOpaque(false);
+		TableColumn Column00 = table2.getColumnModel().getColumn(0);
+		Column00.setPreferredWidth(82);
+
+		TableColumn Column01 = table2.getColumnModel().getColumn(1);
+		Column01.setPreferredWidth(80);
+
+		TableColumn Column02 = table2.getColumnModel().getColumn(2);
+		Column02.setPreferredWidth(78);
+
+		TableColumn Column03 = table2.getColumnModel().getColumn(3);
+		Column03.setPreferredWidth(68);
+
+		TableColumn Column04 = table2.getColumnModel().getColumn(4);		
+		Column04.setPreferredWidth(62);
+		
+		TableColumn Column05 = table2.getColumnModel().getColumn(5);		
+		Column05.setPreferredWidth(57);
+		
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -75,8 +135,8 @@ public class StateOfRun {
 		jp2.setOpaque(false);
 		jp2.getViewport().setOpaque(false);
 
-		jp1.setBounds(92, 362, 300, 352);
-		jp2.setBounds(544, 362, 460, 352);
+		jp1.setBounds(89, 421, 370, 282);
+		jp2.setBounds(818-356, 421, 433, 282);
 		content.add(jp1);
 		content.add(jp2);
 

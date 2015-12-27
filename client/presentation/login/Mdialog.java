@@ -36,13 +36,13 @@ public class Mdialog extends JDialog{
 				g.drawImage(background.getImage(), 0, 0, null);
 			}
 		};
-		back.setBounds(0, 0, 300, 150);
+		back.setBounds(0, 0, 300, 175);
 		back.setLayout(null);
 		back.setOpaque(false);
 		
 		exit.setContentAreaFilled(false);
 		exit.setBorder(BorderFactory.createEmptyBorder());
-		exit.setBounds(265, 0, 35, 28);
+		exit.setBounds(270, 0, 30, 25);
 		
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -55,7 +55,7 @@ public class Mdialog extends JDialog{
 		output.setForeground(Color.white);
 		output.setFont(new Font("幼圆",Font.BOLD,18));
 		
-		output.setBounds(50,50,250,30);
+		output.setBounds(60,70,250,30);
 		output.setText(input);
 		output.setEditable(false);
 		
@@ -64,7 +64,7 @@ public class Mdialog extends JDialog{
 		this.add(back);
 		
 		
-		setBounds(800, 300, 300, 150);
+		setBounds(800, 300, 300, 175);
 		setUndecorated(true);
 		setResizable(false);
 		setLayout(null);
