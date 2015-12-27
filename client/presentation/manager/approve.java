@@ -77,7 +77,7 @@ public class approve {
         jp.setOpaque(false);
         jp.getViewport().setOpaque(false);
 	
-	    DocumentBl dbl=new DocumentBl();
+	    DocumentBl dbl=new DocumentBl(oos,ois);
 		 CondemnList alist= dbl.GetUnapproveBill();
 		int item=alist.GetSize();
 		for (int i = 0; i < item; i++) {

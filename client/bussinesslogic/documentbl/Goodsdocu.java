@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import po.GoodsDocuPO;
 
-public class Goodsdocu extends DocumentBl {
+public class Goodsdocu {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;

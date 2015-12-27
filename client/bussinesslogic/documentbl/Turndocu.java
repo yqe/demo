@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import po.TransferDocuPO;
 
-public class Turndocu extends DocumentBl {
+public class Turndocu {
 
 	ObjectOutputStream oos;
 	ObjectInputStream ois;

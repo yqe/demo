@@ -6,15 +6,16 @@ import java.net.Socket;
 
 import po.ZzzxArrivalDocuPO;
 
-public class Zzzxarrivaldocu extends DocumentBl {
+public class Zzzxarrivaldocu {
 
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
-	
+
 	public Zzzxarrivaldocu(ObjectOutputStream oos, ObjectInputStream ois) {
-		this.oos=oos;
-		this.ois=ois;
+		this.oos = oos;
+		this.ois = ois;
 	}
+
 	/**
 	 * 建立中转中心到达单
 	 * 
@@ -24,7 +25,7 @@ public class Zzzxarrivaldocu extends DocumentBl {
 	 * @exception @author
 	 *                zxc
 	 */
-	public boolean BuildZzzxarrivalDocu(ZzzxArrivalDocuPO zzzxpo){
+	public boolean BuildZzzxarrivalDocu(ZzzxArrivalDocuPO zzzxpo) {
 		boolean IsOk = false;
 		try {
 			oos.writeUTF("Transit");

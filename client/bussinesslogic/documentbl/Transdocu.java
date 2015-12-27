@@ -5,7 +5,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import po.TransPO;
 
-public class Transdocu extends DocumentBl {
+public class Transdocu {
 	Socket socket;
 	ObjectOutputStream oos;
 	ObjectInputStream ois;

@@ -16,6 +16,11 @@ public class DocumentBl implements DocumentBlService {
 	boolean IsOk;
 	String hostid = "localhost";
 
+	public DocumentBl(ObjectOutputStream oos, ObjectInputStream ois) {
+		this.oos = oos;
+		this.ois = ois;
+	}
+
 	/**
 	 * 返回未审批的单据
 	 * 
@@ -27,16 +32,10 @@ public class DocumentBl implements DocumentBlService {
 	public CondemnList GetUnapproveBill() {
 		CondemnList cdpolist = null;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Manager");
 			oos.writeUTF("GetUnapproveBill");
 			oos.writeObject(new String("OK"));
 			cdpolist = (CondemnList) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,15 +54,9 @@ public class DocumentBl implements DocumentBlService {
 	public boolean ApproveBill() {
 		boolean IsOk = false;
 		try {
-			socket = new Socket(hostid, 8888);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos.writeUTF("Manager");
 			oos.writeUTF("ApproveBill");
 			IsOk = (boolean) ois.readObject();
-			ois.close();
-			oos.close();
-			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,10 +98,4 @@ public class DocumentBl implements DocumentBlService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public boolean generate(Infocollector infoco) {
-
-		return true;
-	}
-
 }

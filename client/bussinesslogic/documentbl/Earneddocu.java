@@ -7,7 +7,7 @@ import java.net.Socket;
 import po.EarnedPO;
 import po.EarnedPOList;
 
-public class Earneddocu extends DocumentBl {
+public class Earneddocu {
 
 	Socket socket;
 	ObjectOutputStream oos;
@@ -16,14 +16,14 @@ public class Earneddocu extends DocumentBl {
 	String hostid = "localhost";
 
 	public Earneddocu(ObjectOutputStream oos, ObjectInputStream ois) {
-		this.ois=ois;
-		this.oos=oos;
+		this.ois = ois;
+		this.oos = oos;
 	}
 
 	/**
-	 * 得到所给日期之间的所有收款单
-	 * 如果是按ID查询 那么data1=="ID",则datar就是营业厅text的值;为得到所给营业厅ID的所有收款单
+	 * 得到所给日期之间的所有收款单 如果是按ID查询 那么data1=="ID",则datar就是营业厅text的值;为得到所给营业厅ID的所有收款单
 	 * 如果是按日期查询 那么data1=="day",则datar就是所选择的日期,为得到所给日期当天的所有收款单;
+	 * 
 	 * @param EarnedPO
 	 *            earnpo;
 	 * @return
@@ -37,7 +37,7 @@ public class Earneddocu extends DocumentBl {
 			oos.writeUTF("Finance");
 			oos.writeUTF("GetEarnedDocu");
 			oos.writeObject(new String(datal + " " + datar));
-			epolist =  (EarnedPOList) ois.readObject();
+			epolist = (EarnedPOList) ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

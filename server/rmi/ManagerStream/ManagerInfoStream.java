@@ -206,7 +206,7 @@ public class ManagerInfoStream {
 	private void ShowStrategy(ObjectInputStream ois, ObjectOutputStream oos) {
 		StrategyData sd = new StrategyData();
 		try {
-			ois.readObject();
+			String o=(String)ois.readObject();
 			StrategyPO spolist = sd.observe();
 			oos.writeObject(spolist);
 		} catch (RemoteException e) {
@@ -244,9 +244,8 @@ public class ManagerInfoStream {
 	private void GetUnapproveBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		CondemnDocu cd = new CondemnDocu();
 		try {
-			String ok=(String)ois.readObject();
+			String ok = (String) ois.readObject();
 			ArrayList<CondemnDocuPO> cdpolist = cd.findall();
-			System.out.println(cdpolist.get(0).getID());
 			CondemnList cdlist = new CondemnList();
 			for (int i = 0; i < cdpolist.size(); i++) {
 				cdlist.AddCondemnDocuPO(cdpolist.get(i));
@@ -261,7 +260,7 @@ public class ManagerInfoStream {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 	}
 
 	/**

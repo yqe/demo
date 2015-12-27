@@ -6,7 +6,7 @@ import java.net.Socket;
 
 import po.BussinessArrivalDocuPO;
 
-public class HallArrivalDocu extends DocumentBl {
+public class HallArrivalDocu {
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
 	boolean IsOk;
