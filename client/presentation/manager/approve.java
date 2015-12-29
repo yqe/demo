@@ -1,5 +1,7 @@
 package manager;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -12,12 +14,14 @@ import java.io.ObjectOutputStream;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import documentbl.DocumentBl;
 import image.ImageGet;
@@ -50,17 +54,31 @@ public class approve {
 
 		p1.setBounds(0, 0, 1029, 840);
 
-		String[] columnnames = { "单据名称", "编号" };
+		String[] columnnames = { "单据类型", "编号" };
 		Object[][] data = { { "aq", "123" }, { "21", "21" } };
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
-		final JTable table = new JTable(model);
+		final JTable table = new JTable(model){
+			   public Component prepareRenderer(TableCellRenderer renderer,
+					     int row, int column) {
+					    Component c = super.prepareRenderer(renderer, row, column);
+					    if (c instanceof JComponent) {
+					     ((JComponent) c).setOpaque(false);
+					    }
+					    return c;
+					   }
+					  };
+	    table.setOpaque(false);
+	    table.setForeground(Color.white);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table.setRowHeight(40);
+		table.setRowHeight(31);		
+		table.getTableHeader().setForeground(Color.white);
+		table.getTableHeader().setFont(new Font("幼圆",Font.BOLD,20) );
 		table.getColumnModel().getColumn(0).setPreferredWidth(332);// 设置宽度
 		table.getColumnModel().getColumn(1).setPreferredWidth(332);
 		JScrollPane jp = new JScrollPane(table);
-		jp.setBounds(515 - 315, 253, 1178-515, 648-253);
+		jp.setBounds(515 - 315, 257, 1178-515, 648-253);
 		jp.setOpaque(false);
+		
 		jp.getViewport().setOpaque(false);
 
 		DocumentBl dbl = new DocumentBl(oos, ois);

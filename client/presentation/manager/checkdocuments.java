@@ -49,14 +49,9 @@ public class checkdocuments {
 	public JPanel Panel(final JPanel p1) throws IOException {
 		p1.removeAll();
 		p1.setBounds(0, 0, 1029, 840);
-		JLabel l1 = new JLabel("快递物流系统");
-		int b1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, b1size));
-		JLabel l2 = new JLabel("—>查看表单");
-		int b2size = 16;
+		
 		JLabel l3 = new JLabel("已选表单列表");
-		l2.setFont(new Font("", Font.PLAIN, b2size));
-		l3.setFont(new Font("", Font.PLAIN, b2size));
+	
 
 		final StateOfRun sr = new StateOfRun(oos,ois,emPO);
 		final CostIncome cic = new CostIncome(oos,ois,emPO);
@@ -95,8 +90,7 @@ public class checkdocuments {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
+	
 		p1.add(l3);
 
 		p1.add(b4);
@@ -110,9 +104,7 @@ public class checkdocuments {
 		int b4xloc = p1.getWidth() * 1 / 7;
 		int b4yloc = p1.getHeight() * 4 / 17, b4ysize = p1.getHeight() * 1 / 6;
 
-		l1.setBounds(220, -20, 180, 80);
-
-		l2.setBounds(50, b1yloc, 180, 30);
+	
 		l3.setBounds(50, b4yloc + 50, 180, 30);
 
 		b4.setBounds(b4xloc, b4yloc, 180, 40);
