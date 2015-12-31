@@ -76,7 +76,7 @@ public class approve {
 		table.getColumnModel().getColumn(0).setPreferredWidth(332);// 设置宽度
 		table.getColumnModel().getColumn(1).setPreferredWidth(332);
 		JScrollPane jp = new JScrollPane(table);
-		jp.setBounds(515 - 315, 257, 1178-515, 648-253);
+		jp.setBounds(515 - 315, 257, 1178-490, 648-253);
 		jp.setOpaque(false);
 		
 		jp.getViewport().setOpaque(false);
