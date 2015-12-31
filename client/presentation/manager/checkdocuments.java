@@ -63,20 +63,7 @@ public class checkdocuments {
 		contain.setBounds(0, 0, 720, 700);
 
 		JButton b4 = new JButton();
-		b4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// new CheckBill().CheckBill(p1);
-				new StateOfRun(oos,ois,emPO).stateofrun(p1);
-				p1.repaint();
-			}
-		}); // 这一部分家族企业和我Panel实现方法不同
 		JButton b5 = new JButton();
-		b5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new CostIncome(oos,ois,emPO).costincome(p1);
-				p1.repaint();
-			}
-		});
 
 		String[] columnnames = { "", "" };
 		Object[][] data = { { "2015-11-25", "成本收益表" }, { "2015-11-20", "成本收益表" }, { "2015-09-21", "经营情况表" } };
@@ -121,6 +108,24 @@ public class checkdocuments {
 		b4.setBounds(500-315, 256, 247, 43);
 		b5.setBounds(903-315, 256, 247, 43);
 		jp.setBounds(491-315, 387, 328+357, 421);
+		
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new StateOfRun(oos,ois,emPO).stateofrun(p1);
+				p1.repaint();
+				p1.revalidate();
+			}
+		});
+		
+		b5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				p1.removeAll();
+				new CostIncome(oos,ois,emPO).costincome(p1);
+				p1.repaint();
+				p1.revalidate();
+			}
+		});
 
 		return p1;
 

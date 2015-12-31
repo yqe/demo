@@ -141,15 +141,9 @@ public class manager {
 		JButton b6 = new JButton();
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {					
-					changepanel(checkdocumentspanel);
-					content.remove(cd.Panel(content));
-					cd.Panel(content).repaint();
-					content.setBounds(size, 0, content.getWidth(), content.getHeight());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				changepanel(checkdocumentspanel);
+//					cd.Panel(content).repaint();
+//					content.setBounds(size, 0, content.getWidth(), content.getHeight());
 			}
 
 		});
