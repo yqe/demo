@@ -36,6 +36,7 @@ import po.EmploeePO;
 public class manager {
 	private JPanel imagePanel;
 	private ImageIcon background;
+	public ImageIcon cdbackground;
 	private ImageIcon button1;
 	int size = 315;
 	JPanel content = new JPanel() ;
@@ -45,6 +46,14 @@ public class manager {
 			g.drawImage(background.getImage(), 0, 0, null);
 		}
 	};
+	
+	final JPanel cdp = new JPanel(){
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(cdbackground.getImage(), 0, 0, null);
+		}
+	};
+	
 	private Socket socket;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
@@ -54,6 +63,7 @@ public class manager {
 	JPanel staffpanel;
 	JPanel addempopanel;
 	JPanel deleteempopanel;
+	JPanel checkdocumentspanel;
 	JPanel manager = new JPanel();
 
 	public manager(Socket socket, ObjectInputStream ois, ObjectOutputStream oos, EmploeePO emPO) {
@@ -67,6 +77,10 @@ public class manager {
 		 new ImageGet();
 	        Image bgp=ImageGet.getImageByState("managercontrol");
 		background = new ImageIcon(bgp);
+		
+		 new ImageGet();
+	        Image cdbgp=ImageGet.getImageByState("checkdocuments");
+		cdbackground = new ImageIcon(cdbgp);
 		
 		manager.setBounds(0, 0, 1344, 840);
 
@@ -86,6 +100,8 @@ public class manager {
 		addempopanel=add.Panel();
 		approvepanel=a.Panel();
 		staffpanel=sf.Panel();
+		checkdocumentspanel=cd.Panel(cdp);
+		
 		
 		control.setBounds(0, 0, size, 840);
 		content.setBounds(size, 0, 1029, 840);
@@ -126,6 +142,8 @@ public class manager {
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {					
+					changepanel(checkdocumentspanel);
+					content.remove(cd.Panel(content));
 					cd.Panel(content).repaint();
 					content.setBounds(size, 0, content.getWidth(), content.getHeight());
 				} catch (IOException e1) {
