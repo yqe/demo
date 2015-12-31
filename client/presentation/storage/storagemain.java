@@ -205,7 +205,7 @@ public class storagemain {
 
 		storagemain.add(control);
 		storagemain.add(content);
-
+		AlarmStorage();
 		return storagemain;
 
 	}
@@ -214,6 +214,8 @@ public class storagemain {
 		boolean alarm = new StorageBl(oos, ois).Storage110(emPO.getPosID());
 		if (alarm)
 			Mdialog.showMessageDialog("库存容量已达报警值请尽快调整！");
+		else
+			Mdialog.showMessageDialog("库存容量尚未到达报警值");
 	}
 
 	public void changepanel(JPanel p1) {

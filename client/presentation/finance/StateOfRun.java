@@ -181,6 +181,28 @@ public class StateOfRun {
 		});
 
 		okbtn.setBounds(702, 272, 175, 42);
+		
+		JButtonM excelbtn = new JButtonM();
+		okbtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String startdate = datepick1.getText();
+				String enddate = datepick2.getText();
+				CostManage costmanage = new CostManage(oos, ois);
+				Earneddocu earneddocu = new Earneddocu(oos, ois);
+				CostManList cpolist = costmanage.GetCostManageDocu(startdate, enddate);
+				EarnedPOList epolist = earneddocu.GetEarnedDocu(startdate, enddate);
+				BuildExcel excel=new BuildExcel();
+				if(excel.CreateCostExcel(cpolist))
+					Mdialog.showMessageDialog("生成付款单Excel表格成功!");
+				else
+					Mdialog.showMessageDialog("抱歉，生成付款单Excel表格失败!");
+				if(excel.CreateEarnExcel(epolist))
+					Mdialog.showMessageDialog("生成收款单Excel表格成功!");
+				else
+					Mdialog.showMessageDialog("抱歉，生成收款单Excel表格失败!");
+			}});
 		content.add(okbtn);
 	}
 
