@@ -13,7 +13,7 @@ public class IntManage {
 	private ObjectInputStream ois;
 
 	public boolean InitInternet() {
-		String hostid = "localhost";
+		String hostid = new ReadIP().ReturnIP();
 		try {
 			socket = new Socket(hostid, 8888);
 			oos = new ObjectOutputStream(socket.getOutputStream());

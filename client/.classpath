@@ -32,5 +32,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/JTattoo.jar"/>
 	<classpathentry kind="lib" path="lib/datepicker.jar"/>
+	<classpathentry kind="lib" path="C:/Users/长弓楚/Desktop/poi-3.6-20091214.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
