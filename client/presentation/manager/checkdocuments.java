@@ -2,6 +2,7 @@ package manager;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Label;
@@ -14,8 +15,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import finance.CostIncome;
 import finance.JPanelContent;
@@ -58,7 +62,7 @@ public class checkdocuments {
 		final JPanel contain = new JPanel();
 		contain.setBounds(0, 0, 720, 700);
 
-		JButton b4 = new JButton("查看经营情况表");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// new CheckBill().CheckBill(p1);
@@ -66,7 +70,7 @@ public class checkdocuments {
 				p1.repaint();
 			}
 		}); // 这一部分家族企业和我Panel实现方法不同
-		JButton b5 = new JButton("查看成本收益表");
+		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new CostIncome(oos,ois,emPO).costincome(p1);
@@ -74,14 +78,24 @@ public class checkdocuments {
 			}
 		});
 
-		String[] columnnames = { "日期", "表单类型" };
+		String[] columnnames = { "", "" };
 		Object[][] data = { { "2015-11-25", "成本收益表" }, { "2015-11-20", "成本收益表" }, { "2015-09-21", "经营情况表" } };
 
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
-		JTable table = new JTable(model);
+		JTable table = new JTable(model){
+			   public Component prepareRenderer(TableCellRenderer renderer,
+					     int row, int column) {
+					    Component c = super.prepareRenderer(renderer, row, column);
+					    if (c instanceof JComponent) {
+					     ((JComponent) c).setOpaque(false);
+					    }
+					    return c;
+					   }
+					  };
+					  table.setOpaque(false);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table.getColumnModel().getColumn(0).setPreferredWidth(200);// 设置宽度
-		table.getColumnModel().getColumn(1).setPreferredWidth(200);
+		table.getColumnModel().getColumn(0).setPreferredWidth(328);// 设置宽度
+		table.getColumnModel().getColumn(1).setPreferredWidth(352);
 
 		JScrollPane jp = new JScrollPane(table);
 
@@ -99,17 +113,14 @@ public class checkdocuments {
 
 		p1.setOpaque(false);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 2 / 15;
-		int b4xloc = p1.getWidth() * 1 / 7;
-		int b4yloc = p1.getHeight() * 4 / 17, b4ysize = p1.getHeight() * 1 / 6;
-
 	
-		l3.setBounds(50, b4yloc + 50, 180, 30);
+         b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
+         b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
+	
 
-		b4.setBounds(b4xloc, b4yloc, 180, 40);
-		b5.setBounds(b4xloc + 300, b4yloc, 180, 40);
-		jp.setBounds(100, b4yloc + 80, 403, 400);
+		b4.setBounds(500-315, 256, 247, 43);
+		b5.setBounds(903-315, 256, 247, 43);
+		jp.setBounds(491-315, 387, 328+357, 421);
 
 		return p1;
 
