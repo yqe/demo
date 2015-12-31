@@ -79,8 +79,9 @@ public class App
         	//ArrayList<CondemnDocuPO> list=con.findall();
         	//System.out.println(list.get(1).getType()+" "+list.get(2).getID()+" "+list.get(1).getState());
         	//ea.insert(new EarnedPO("2015-12-26", 30, "啊皮豪", "11122", "2234"));
-        	boolean t=ma.insert(new CostManagePO("2015-12-26", 20, "fefe", "456", "哈哈", "哈哈"));
-        	System.out.println(t);
+        	//boolean t=ma.insert(new CostManagePO("2015-12-26", 20, "fefe", "456", "哈哈", "哈哈"));
+        	//System.out.println(t);
+        	con.update();
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

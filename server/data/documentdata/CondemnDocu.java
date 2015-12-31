@@ -62,7 +62,7 @@ public class CondemnDocu {
 	public boolean update(){
 		try {
 			mysqlimp=new MySqlImp();
-			String set="UPDATE 审批单据"+" SET 状态=已审批";
+			String set="UPDATE 审批单据"+" SET 状态='已审批'";
 			mysqlimp.update(set);
 			return true;
 		} catch (ClassNotFoundException e) {
