@@ -68,7 +68,7 @@ public class approve {
 					   }
 					  };
 	    table.setOpaque(false);
-	    table.setForeground(Color.white);
+//	    table.setForeground(Color.white);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setRowHeight(31);		
 		table.getTableHeader().setForeground(Color.white);

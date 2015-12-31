@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import login.MTextfield;
 import po.EmploeePO;
 import po.StrategyPO;
 
@@ -40,13 +41,13 @@ public class Strategy {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
-	JPanel p1 = new JPanel();
-//	{
-//		public void paintComponent(Graphics g) {
-//			super.paintComponent(g);
-//			g.drawImage(background.getImage(), 0, 0, null);
-//		}
-//	};
+	JPanel p1 = new JPanel()
+	{
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public Strategy(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos = oos;
@@ -55,55 +56,43 @@ public class Strategy {
 	}
 
 	public JPanel Panel() throws IOException {
-//		new ImageGet();
-//		Image bgp = ImageGet.getImageByState("addemployee");
-//		background = new ImageIcon(bgp);
+		new ImageGet();
+		Image bgp = ImageGet.getImageByState("strategy");
+		background = new ImageIcon(bgp);
 		
 		p1.setBounds(0, 0,1029, 840);
-		JLabel l1 = new JLabel("快递物流系统");
-		int l1size = 30;
-		l1.setFont(new Font("快递物流系统", Font.PLAIN, l1size));
-		JLabel l2 = new JLabel("—>修改薪水策略");
-		int l2size = 16;
-		l2.setFont(new Font("—", Font.PLAIN, l2size));
-		JLabel l3 = new JLabel("薪水策略:");
-		JLabel l4 = new JLabel("职位");
-		JLabel l5 = new JLabel("月薪");
-		JLabel l6 = new JLabel("总经理:");
-		JLabel l7 = new JLabel("中转中心业务员:");
-		JLabel l8 = new JLabel("中转中心仓库管理员:");
-		JLabel l9 = new JLabel("营业厅业务员:");
-		JLabel l10 = new JLabel("快递员:");
-		JLabel l11 = new JLabel("财务人员:");
-		JLabel l12 = new JLabel("管理员:");
-
-		JLabel l13 = new JLabel("快递价格策略:");
-		JLabel l14 = new JLabel("单价:");
-		JLabel l15 = new JLabel("元 /每公里/每公斤/1000");
+		
+//		JLabel l3 = new JLabel("薪水策略:");
+//		JLabel l4 = new JLabel("职位");
+//		JLabel l5 = new JLabel("月薪");
+//		JLabel l6 = new JLabel("总经理:");
+//		JLabel l7 = new JLabel("中转中心业务员:");
+//		JLabel l8 = new JLabel("中转中心仓库管理员:");
+//		JLabel l9 = new JLabel("营业厅业务员:");
+//		JLabel l10 = new JLabel("快递员:");
+//		JLabel l11 = new JLabel("财务人员:");
+//		JLabel l12 = new JLabel("管理员:");
+//
+//		JLabel l13 = new JLabel("快递价格策略:");
+//		JLabel l14 = new JLabel("单价:");
+//		JLabel l15 = new JLabel("元 /每公里/每公斤/1000");
 
 		int lmain = 16;
-		l3.setFont(new Font("", Font.PLAIN, lmain));
-		l4.setFont(new Font("", Font.PLAIN, lmain));
-		l5.setFont(new Font("", Font.PLAIN, lmain));
-		l6.setFont(new Font("", Font.PLAIN, lmain));
-		l7.setFont(new Font("", Font.PLAIN, lmain));
-		l8.setFont(new Font("", Font.PLAIN, lmain));
-		l9.setFont(new Font("", Font.PLAIN, lmain));
-		l10.setFont(new Font("", Font.PLAIN, lmain));
-		l11.setFont(new Font("", Font.PLAIN, lmain));
-		l12.setFont(new Font("", Font.PLAIN, lmain));
-		l13.setFont(new Font("", Font.PLAIN, lmain));
-		l14.setFont(new Font("", Font.PLAIN, lmain));
-		l15.setFont(new Font("", Font.PLAIN, lmain));
+	
 
-		final JTextField manager = new JTextField();
-		final JTextField transitman = new JTextField();
-		final JTextField storager = new JTextField();
-		final JTextField boclerk = new JTextField();
-		final JTextField courier = new JTextField();
-		final JTextField financer = new JTextField();
-		final JTextField controller = new JTextField();
-		final JTextField price = new JTextField();
+		final MTextfield manager = new MTextfield();
+		final MTextfield transitman = new MTextfield();
+		final MTextfield storager = new MTextfield();
+		final MTextfield boclerk = new MTextfield();
+		final MTextfield courier = new MTextfield();
+		final MTextfield financer = new MTextfield();
+		final MTextfield controller = new MTextfield();
+		final MTextfield price = new MTextfield();
+		
+		manager.settextFont();transitman.settextFont();storager.settextFont();boclerk.settextFont();
+		courier.settextFont();financer.settextFont();controller.settextFont();price.settextFont();
+
+		
 		
 		manager.setOpaque(false);
 		manager.setBorder(BorderFactory.createEmptyBorder());
@@ -134,7 +123,7 @@ public class Strategy {
 		controller.setText(String.valueOf(spo.getManagersal()));
 		price.setText(String.valueOf(spo.getConstance()));
 
-		JButton b4 = new JButton("确认修改");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String newmanager = manager.getText();
@@ -161,21 +150,7 @@ public class Strategy {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-		p1.add(l1);
-		p1.add(l2);
-		p1.add(l3);
-		p1.add(l4);
-		p1.add(l5);
-		p1.add(l6);
-		p1.add(l7);
-		p1.add(l8);
-		p1.add(l9);
-		p1.add(l10);
-		p1.add(l11);
-		p1.add(l12);
-		p1.add(l13);
-		p1.add(l14);
-		p1.add(l15);
+
 
 		p1.add(manager);
 		p1.add(transitman);
@@ -190,44 +165,23 @@ public class Strategy {
 
 		p1.setOpaque(false);
 
-		int b1xloc = p1.getWidth() * 7 / 12 + 20, b1xsize = p1.getWidth() * 4 / 25 - 15;
-		int b1yloc = p1.getHeight() * 1 / 15;
-		int b4xloc = p1.getWidth() * 2 / 5 - 30;
-		int b4yloc = p1.getHeight() * 13 / 15, b4ysize = p1.getHeight() * 1 / 5 + 10;
 
-		int l4xloc = 3 * p1.getWidth() / 10;
-		int lysize = 50;
-		l1.setBounds(220, -20, 180, 80);
-		l2.setBounds(50, b1yloc, 200, 30);
-		l3.setBounds(50, 100, 150, 30);
-		l4.setBounds(l4xloc, 100, 150, 30); // 职位
-		l5.setBounds(350, 100, 150, 30); // 薪水
+	    b4.setContentAreaFilled(false);
+	    b4.setBorder(BorderFactory.createEmptyBorder());
+	    
+	    
 
-		l6.setBounds(l4xloc, 100 + lysize, 150, 30);
-		l7.setBounds(l4xloc, 100 + 2 * lysize, 150, 30);
-		l8.setBounds(l4xloc, 100 + 3 * lysize, 150, 30);
-		l9.setBounds(l4xloc, 100 + 4 * lysize, 150, 30);
-		l10.setBounds(l4xloc, 100 + 5 * lysize, 150, 30);
-		l11.setBounds(l4xloc, 100 + 6 * lysize, 150, 30);
-		l12.setBounds(l4xloc, 100 + 7 * lysize, 100, 30);
+		int t1xloc=967-315,tyloc=297,txsize=85,interval=48;
+		manager.setBounds(t1xloc, tyloc, 100, 30);
+		transitman.setBounds(t1xloc, tyloc+interval, 100, 30);
+		storager.setBounds(t1xloc, tyloc+interval*2-1, 100, 30);
+		boclerk.setBounds(t1xloc, tyloc+interval*3-3, 100, 30);
+		courier.setBounds(t1xloc, tyloc+interval*4-2, 100, 30);
+		financer.setBounds(t1xloc, tyloc+interval*5, 100, 30);
+		controller.setBounds(t1xloc, tyloc+interval*6, 100, 30);
+		price.setBounds(t1xloc , tyloc+interval*8-15, 80, 30);
 
-		l13.setBounds(50, 100 + 8 * lysize, 150, 30);
-
-		l14.setBounds(l4xloc, 100 + 8 * lysize, 150, 30);
-		l15.setBounds(420, 100 + 8 * lysize, 200, 30);
-
-		int t1xloc = 7 * p1.getWidth() / 12;
-		int tysize = 50;
-		manager.setBounds(t1xloc, 100 + tysize, 100, 30);
-		transitman.setBounds(t1xloc, 100 + 2 * tysize, 100, 30);
-		storager.setBounds(t1xloc, 100 + 3 * tysize, 100, 30);
-		boclerk.setBounds(t1xloc, 100 + 4 * tysize, 100, 30);
-		courier.setBounds(t1xloc, 100 + 5 * tysize, 100, 30);
-		financer.setBounds(t1xloc, 100 + 6 * tysize, 100, 30);
-		controller.setBounds(t1xloc, 100 + 7 * tysize, 100, 30);
-		price.setBounds(t1xloc * 3 / 4, 100 + 8 * tysize, 80, 30);
-
-		b4.setBounds(b4xloc, b4yloc, 180, 40);
+		b4.setBounds(968-315, 744, 228, 54);
 		return p1;
 
 	}

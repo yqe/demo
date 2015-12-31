@@ -33,12 +33,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class checkdocuments {
-	private JPanel imagePanel;
 	private ImageIcon background;
 	private ImageIcon button1;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
+	
 
 	public checkdocuments(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos = oos;

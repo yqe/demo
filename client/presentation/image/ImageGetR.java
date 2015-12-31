@@ -53,6 +53,8 @@ public class ImageGetR {
 	public final String send = ("/imagero/send.jpg");
 
 	public final String storagemaincontrol = ("/imagero/storagemaincontrol.jpg");
+	
+	public final String strategy = ("/imagero/strategy.jpg");
 
 	public final String transit = ("/imagero/transit.jpg");
 
@@ -172,6 +174,8 @@ public class ImageGetR {
 			return createImage(error);
 		case "infodialog":
 			return createImage(infodialog);
+		case "strategy":
+			return createImage(strategy);
 		default:
 			return createImage("/imagero/approve.jpg");
 		}
