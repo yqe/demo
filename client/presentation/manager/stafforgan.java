@@ -34,6 +34,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import emploeebl.EmploeeBl;
 import po.EmploeePO;
 
 import java.awt.event.ActionEvent;
@@ -51,12 +52,12 @@ public class stafforgan extends JDialog implements ActionListener {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 
-	stafforgan(ArrayList <EmploeePO> empolist,ObjectOutputStream oos,ObjectInputStream ois) throws IOException {
+	stafforgan(ArrayList <EmploeePO> empolist,final ObjectOutputStream oos,final ObjectInputStream ois) throws IOException {
 		 new ImageGet();
 	        Image bgp=ImageGet.getImageByState("stafforgan");
 		background = new ImageIcon(bgp);
 
-		setTitle("人员机构调度");
+//		setTitle("人员机构调度");
 		setBounds(500, 300, 800, 500);
 		setResizable(false);
 		setLayout(null);
@@ -84,21 +85,6 @@ public class stafforgan extends JDialog implements ActionListener {
 
 		});
 
-		JButton b4 = new JButton();
-//		b4.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				staffchange sfc = null;
-//				try {
-//					sfc = new staffchange();
-//				} catch (IOException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				sfc.setVisible(true);
-//				stafforgan.this.setVisible(false);
-//			}
-//
-//		});
 		String[] columnnames = { "员工ID", "员工姓名", "职位" };
 		Object[][] data = { };
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
@@ -139,6 +125,28 @@ public class stafforgan extends JDialog implements ActionListener {
 		jp.getViewport().setOpaque(false);
 
 		setLayout(null);
+	
+		JButton b4 = new JButton();
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				staffchange sfc = null;
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				int row = table.getSelectedRow();			
+				String id=(String) table.getValueAt(row,0);
+				EmploeeBl embl=new EmploeeBl(oos, ois);
+				EmploeePO empo=embl.IDGetEmp(id);		
+				try {
+					sfc = new staffchange(empo,oos,ois);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				sfc.setVisible(true);
+			}
+
+		});
+		
+		
 	
 		
 		add(b3);

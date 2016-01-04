@@ -183,7 +183,7 @@ public class outstorage {
 				int row = table.getSelectedRow();
 				// System.out.println(row);
 				if (row == -1) {
-					JOptionPane.showMessageDialog(null, "请选中要删除的行!");
+					Mdialog.showMessageDialog( "请选中要删除的行!");
 				} else {
 					model.removeRow(row);
 				}
