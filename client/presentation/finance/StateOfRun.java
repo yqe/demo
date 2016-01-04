@@ -87,7 +87,7 @@ public class StateOfRun {
 		};
 		table2.setRowHeight(24);// 设置行距
 		table.setOpaque(false);
-//		table.getTableHeader().setOpaque(false);// 表头设置成透明，并且columnnames里面都设成 ""
+		table.getTableHeader().setOpaque(false);// 表头设置成透明，并且columnnames里面都设成 ""
 												// ""
 		TableColumn Column0 = table.getColumnModel().getColumn(0);
 		Column0.setPreferredWidth(76);// 设置每一列的列宽
@@ -130,9 +130,9 @@ public class StateOfRun {
 		JScrollPane jp1 = new JScrollPane(table);
 		JScrollPane jp2 = new JScrollPane(table2);
 
-//		jp1.setOpaque(false);
+		jp1.setOpaque(false);
 		jp1.getViewport().setOpaque(false);
-//		jp2.setOpaque(false);
+		jp2.setOpaque(false);
 		jp2.getViewport().setOpaque(false);
 
 		jp1.setBounds(89, 421, 370, 282);
@@ -141,7 +141,7 @@ public class StateOfRun {
 		content.add(jp2);
 
 		JButtonM okbtn = new JButtonM();
-//		okbtn.HideTheButton();
+		okbtn.HideTheButton();
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -181,8 +181,9 @@ public class StateOfRun {
 		});
 
 		okbtn.setBounds(702, 272, 175, 42);
-
 		JButtonM excelbtn = new JButtonM();
+		excelbtn.HideTheButton();
+		excelbtn.setBounds(703, 210, 175, 42);
 		excelbtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -205,6 +206,7 @@ public class StateOfRun {
 			}
 		});
 		content.add(okbtn);
+		content.add(excelbtn);
 	}
 
 	public void stateofrun(JPanelContent content) {

@@ -20,7 +20,7 @@ public class BuildExcel {
 	public static boolean CreateCostExcel(CostManList cpolist) {
 		HSSFWorkbook wb = new HSSFWorkbook();
 		// 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet
-		HSSFSheet sheet = wb.createSheet("学生表一");
+		HSSFSheet sheet = wb.createSheet("付款单");
 		// 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
 		HSSFRow row = sheet.createRow((int) 0);
 		// 第四步，创建单元格，并设置值表头 设置表头居中
@@ -59,20 +59,19 @@ public class BuildExcel {
 		}
 
 		try {
-			FileOutputStream fout = new FileOutputStream("/demo/fukuandan.xls");
+			FileOutputStream fout = new FileOutputStream("ExcelFolder/fukuandan.xls");
 			wb.write(fout);
 			fout.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			return false;
 		}
-
-		return false;
+		return true;
 	}
 	
 	public static boolean CreateEarnExcel(EarnedPOList epolist) {
 		HSSFWorkbook wb = new HSSFWorkbook();
 		// 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet
-		HSSFSheet sheet = wb.createSheet("学生表一");
+		HSSFSheet sheet = wb.createSheet("收款单");
 		// 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
 		HSSFRow row = sheet.createRow((int) 0);
 		// 第四步，创建单元格，并设置值表头 设置表头居中
@@ -106,13 +105,12 @@ public class BuildExcel {
 		}
 
 		try {
-			FileOutputStream fout = new FileOutputStream("D:/students.xls");
+			FileOutputStream fout = new FileOutputStream("ExcelFolder/Earned.xls");
 			wb.write(fout);
 			fout.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			return false;
 		}
-
-		return false;
+		return true;
 	}
 }
