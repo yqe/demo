@@ -20,12 +20,12 @@ public class IntManage {
 			ois = new ObjectInputStream(socket.getInputStream());
 			return true;
 		} catch (IOException e) {
-			Mdialog.showMessageDialog("请确认您的网络ip是否正确"+"\n"+"服务器是否开启");
+			Mdialog.showMessageDialog("请确认您的ip是否正确"+"\n"+"服务器是否开启");
 			return false;
 		}
 	}
 
-	public void CloseInternet(Socket socket2, ObjectOutputStream oos2, ObjectInputStream ois2) {
+	public static void CloseInternet(Socket socket2, ObjectOutputStream oos2, ObjectInputStream ois2) {
 		try {
 			oos2.writeUTF("exit");
 		} catch (IOException e1) {

@@ -4,7 +4,7 @@ public class ServerMain {
 
 	public static void main(String[] args) {
 		new ServerThread();
-	  System.out.println("Server start");
+		ServerStartTip.show();
 	}
 
 }

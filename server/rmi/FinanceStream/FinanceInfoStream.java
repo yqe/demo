@@ -217,13 +217,17 @@ public class FinanceInfoStream {
 	private void GetCostManageDocu(ObjectInputStream ois, ObjectOutputStream oos) {
 		ManageCostData costdata = new ManageCostData();
 		try {
+			System.out.println("GetCostManageDocu");
 			ArrayList<CostManagePO> costpolist;
 			CostManList costlist = new CostManList();
-			String[] data = ((String) ois.readObject()).split(" ");
-			costpolist = costdata.findbytime(data[0], data[1]);
+			String datetemp = (String) ois.readObject();
+			String[] date=datetemp.split(" ");
+			System.out.println(date+" "+date[1]);
+			costpolist = costdata.findbytime(date[0], date[1]);
 			for (int i = 0; i < costpolist.size(); i++) {
 				costlist.AddCostManage(costpolist.get(i));
 			}
+			System.out.println(costlist.GetIndex(0).getDate());
 			oos.writeObject(costlist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

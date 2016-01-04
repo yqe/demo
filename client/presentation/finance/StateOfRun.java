@@ -50,7 +50,7 @@ public class StateOfRun {
 
 		final JTextField time2 = new JTextField();
 		final DatePicker datepick2 = new DatePicker(time2);
-		datepick2.setLocale(Locale.CHINA);// 设置显示语言
+//		datepick2.setLocale(Locale.CHINA);// 设置显示语言
 		datepick2.setPattern("yyyy-MM-dd");// 设置日期格式化字符串
 		datepick2.setEditorable(false);// 设置是否可编辑
 		datepick2.setPreferredSize(new Dimension(100, 30));// 设置大小
@@ -60,13 +60,13 @@ public class StateOfRun {
 		content.add(datepick1);
 		content.add(datepick2);
 
-		String[] columnnames = { "", "", "", "",""};
+		String[] columnnames = { "", "", "", "", "" };
 		String[] columnnames2 = { "", "", "", "", "", "" };
 		Object[][] data = {};
 		Object[][] data2 = {};
 		DefaultTableModel model1 = new DefaultTableModel(data, columnnames);
 		DefaultTableModel model2 = new DefaultTableModel(data2, columnnames2);
-		final JTable table = new JTable(model1){
+		final JTable table = new JTable(model1) {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 				Component c = super.prepareRenderer(renderer, row, column);
 				if (c instanceof JComponent) {
@@ -74,9 +74,9 @@ public class StateOfRun {
 				}
 				return c;
 			}
-		};//重写JTable
-		table.setRowHeight(24);//设置行距
-		final JTable table2 = new JTable(model2){
+		};// 重写JTable
+		table.setRowHeight(24);// 设置行距
+		final JTable table2 = new JTable(model2) {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 				Component c = super.prepareRenderer(renderer, row, column);
 				if (c instanceof JComponent) {
@@ -85,11 +85,12 @@ public class StateOfRun {
 				return c;
 			}
 		};
-		table2.setRowHeight(24);//设置行距
+		table2.setRowHeight(24);// 设置行距
 		table.setOpaque(false);
-		table.getTableHeader().setOpaque(false);//表头设置成透明，并且columnnames里面都设成 "" ""
+//		table.getTableHeader().setOpaque(false);// 表头设置成透明，并且columnnames里面都设成 ""
+												// ""
 		TableColumn Column0 = table.getColumnModel().getColumn(0);
-		Column0.setPreferredWidth(76);//设置每一列的列宽
+		Column0.setPreferredWidth(76);// 设置每一列的列宽
 
 		TableColumn Column1 = table.getColumnModel().getColumn(1);
 		Column1.setPreferredWidth(72);
@@ -100,10 +101,9 @@ public class StateOfRun {
 		TableColumn Column3 = table.getColumnModel().getColumn(3);
 		Column3.setPreferredWidth(68);
 
-		TableColumn Column4 = table.getColumnModel().getColumn(4);		
+		TableColumn Column4 = table.getColumnModel().getColumn(4);
 		Column4.setPreferredWidth(74);
-		
-		
+
 		table2.setOpaque(false);
 		table2.getTableHeader().setOpaque(false);
 		TableColumn Column00 = table2.getColumnModel().getColumn(0);
@@ -118,30 +118,30 @@ public class StateOfRun {
 		TableColumn Column03 = table2.getColumnModel().getColumn(3);
 		Column03.setPreferredWidth(68);
 
-		TableColumn Column04 = table2.getColumnModel().getColumn(4);		
+		TableColumn Column04 = table2.getColumnModel().getColumn(4);
 		Column04.setPreferredWidth(62);
-		
-		TableColumn Column05 = table2.getColumnModel().getColumn(5);		
+
+		TableColumn Column05 = table2.getColumnModel().getColumn(5);
 		Column05.setPreferredWidth(57);
-		
+
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		JScrollPane jp1 = new JScrollPane(table);
 		JScrollPane jp2 = new JScrollPane(table2);
 
-		jp1.setOpaque(false);
+//		jp1.setOpaque(false);
 		jp1.getViewport().setOpaque(false);
-		jp2.setOpaque(false);
+//		jp2.setOpaque(false);
 		jp2.getViewport().setOpaque(false);
 
 		jp1.setBounds(89, 421, 370, 282);
-		jp2.setBounds(818-356, 421, 433, 282);
+		jp2.setBounds(818 - 356, 421, 433, 282);
 		content.add(jp1);
 		content.add(jp2);
 
 		JButtonM okbtn = new JButtonM();
-		okbtn.HideTheButton();
+//		okbtn.HideTheButton();
 		okbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -181,9 +181,9 @@ public class StateOfRun {
 		});
 
 		okbtn.setBounds(702, 272, 175, 42);
-		
+
 		JButtonM excelbtn = new JButtonM();
-		okbtn.addActionListener(new ActionListener() {
+		excelbtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -193,16 +193,17 @@ public class StateOfRun {
 				Earneddocu earneddocu = new Earneddocu(oos, ois);
 				CostManList cpolist = costmanage.GetCostManageDocu(startdate, enddate);
 				EarnedPOList epolist = earneddocu.GetEarnedDocu(startdate, enddate);
-				BuildExcel excel=new BuildExcel();
-				if(excel.CreateCostExcel(cpolist))
+				BuildExcel excel = new BuildExcel();
+				if (excel.CreateCostExcel(cpolist))
 					Mdialog.showMessageDialog("生成付款单Excel表格成功!");
 				else
 					Mdialog.showMessageDialog("抱歉，生成付款单Excel表格失败!");
-				if(excel.CreateEarnExcel(epolist))
+				if (excel.CreateEarnExcel(epolist))
 					Mdialog.showMessageDialog("生成收款单Excel表格成功!");
 				else
 					Mdialog.showMessageDialog("抱歉，生成收款单Excel表格失败!");
-			}});
+			}
+		});
 		content.add(okbtn);
 	}
 

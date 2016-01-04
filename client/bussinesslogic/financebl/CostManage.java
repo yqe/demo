@@ -32,9 +32,11 @@ public class CostManage {
 	public CostManList GetCostManageDocu(String datal, String datar) {
 		CostManList cpolist = null;
 		try {
+			System.out.println(datal+" "+datar);
 			oos.writeUTF("Finance");
 			oos.writeUTF("GetCostManageDocu");
-			oos.writeObject(new String(datal + " " + datar));
+			String str=datal + " " + datar;
+			oos.writeObject(new String(str));
 			cpolist = (CostManList) ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();

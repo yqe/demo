@@ -42,7 +42,6 @@ public class checkdocuments {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
-	
 
 	public checkdocuments(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos = oos;
@@ -53,12 +52,11 @@ public class checkdocuments {
 	public JPanel Panel(final JPanel p1) throws IOException {
 		p1.removeAll();
 		p1.setBounds(0, 0, 1029, 840);
-		
-		JLabel l3 = new JLabel("已选表单列表");
-	
 
-		final StateOfRun sr = new StateOfRun(oos,ois,emPO);
-		final CostIncome cic = new CostIncome(oos,ois,emPO);
+		JLabel l3 = new JLabel("已选表单列表");
+
+		final StateOfRun sr = new StateOfRun(oos, ois, emPO);
+		final CostIncome cic = new CostIncome(oos, ois, emPO);
 		final JPanel contain = new JPanel();
 		contain.setBounds(0, 0, 720, 700);
 
@@ -69,17 +67,16 @@ public class checkdocuments {
 		Object[][] data = { { "2015-11-25", "成本收益表" }, { "2015-11-20", "成本收益表" }, { "2015-09-21", "经营情况表" } };
 
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
-		JTable table = new JTable(model){
-			   public Component prepareRenderer(TableCellRenderer renderer,
-					     int row, int column) {
-					    Component c = super.prepareRenderer(renderer, row, column);
-					    if (c instanceof JComponent) {
-					     ((JComponent) c).setOpaque(false);
-					    }
-					    return c;
-					   }
-					  };
-					  table.setOpaque(false);
+		JTable table = new JTable(model) {
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+				Component c = super.prepareRenderer(renderer, row, column);
+				if (c instanceof JComponent) {
+					((JComponent) c).setOpaque(false);
+				}
+				return c;
+			}
+		};
+		table.setOpaque(false);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.getColumnModel().getColumn(0).setPreferredWidth(328);// 设置宽度
 		table.getColumnModel().getColumn(1).setPreferredWidth(352);
@@ -91,7 +88,7 @@ public class checkdocuments {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-	
+
 		p1.add(l3);
 
 		p1.add(b4);
@@ -100,28 +97,27 @@ public class checkdocuments {
 
 		p1.setOpaque(false);
 
-	
-         b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
-         b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
-	
+		b4.setContentAreaFilled(false);
+		b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);
+		b5.setBorder(BorderFactory.createEmptyBorder());
 
-		b4.setBounds(500-315, 256, 247, 43);
-		b5.setBounds(903-315, 256, 247, 43);
-		jp.setBounds(491-315, 387, 328+357, 421);
-		
+		b4.setBounds(500 - 315, 256, 247, 43);
+		b5.setBounds(903 - 315, 256, 247, 43);
+		jp.setBounds(491 - 315, 387, 328 + 357, 421);
+
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				new StateOfRun(oos,ois,emPO).stateofrun(p1);
+
+				new StateOfRun(oos, ois, emPO).stateofrun(p1);
 				p1.repaint();
 				p1.revalidate();
 			}
 		});
-		
+
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				p1.removeAll();
-				new CostIncome(oos,ois,emPO).costincome(p1);
+				new CostIncome(oos, ois, emPO).costincome(p1);
 				p1.repaint();
 				p1.revalidate();
 			}

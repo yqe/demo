@@ -17,7 +17,6 @@ public class ClientMain {
 	public static void main(String[] args) {
 
 		IntManage client = new IntManage();
-		System.out.println(client.getSocket());
 		if (client.InitInternet()) {
 			loginframe login = new loginframe(client.getSocket(), client.getOos(), client.getOis());
 			try {
