@@ -129,10 +129,11 @@ public class loginframe {
 						frame.add(f.financemainui());
 						break;
 					case "PasswordError":
-						JOptionPane.showMessageDialog(null, "所输入账号密码错误");
+						Mdialog.showMessageDialog( "所输入账号密码错误");
 						break;
 					default: {
-						JOptionPane.showMessageDialog(null, "所输入账号不存在!");
+						Mdialog.showMessageDialog( "所输入账号不存在!");
+						break;
 					}
 					}
 				} catch (IOException e1) {

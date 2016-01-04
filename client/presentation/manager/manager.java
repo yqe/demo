@@ -261,7 +261,7 @@ public class manager {
 		b10.setBounds(xloc, 442-8, length, width );
 		b11.setBounds(xloc, 495-8, length, width );
 
-		content.add(delete.Panel());
+		content.add(strategypanel);
 		content.setLayout(null);
 		content.setOpaque(false);
 

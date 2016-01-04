@@ -31,6 +31,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import login.MTextfield;
+import login.Mdialog;
 import po.EmploeePO;
 import po.StrategyPO;
 
@@ -141,9 +142,9 @@ public class Strategy {
 						Integer.valueOf(newfinancer), Integer.valueOf(newcontroller), Double.valueOf(newprice));
 //        System.out.println(newmanager+"3#@@#####");
 				if (stra.modify(spo))
-					JOptionPane.showMessageDialog(null, "修改成功!");
+					Mdialog.showMessageDialog("修改成功!");
 				else
-					JOptionPane.showMessageDialog(null, "修改失败!");
+					Mdialog.showMessageDialog( "修改失败!");
 
 			}
 		});
