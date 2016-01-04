@@ -1,5 +1,6 @@
 package storage;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -87,6 +88,7 @@ public class countstorage {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(false);
 		table.setOpaque(false);
+		table.setForeground(Color.white);
 		table.getTableHeader().setOpaque(false);
 		
 		TableColumn Column0 = table.getColumnModel().getColumn(0); 
