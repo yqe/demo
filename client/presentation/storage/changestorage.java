@@ -139,14 +139,14 @@ public class changestorage {
 
 		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
-			boolean ischquempty = chqu.getText().equals("");
-			boolean ischpaiempty = chpai.getText().equals("");
-			boolean ischjiaempty = chjia.getText().equals("");
-			boolean ischweiempty = chwei.getText().equals("");
-
-			boolean isempty = ischquempty || ischpaiempty || ischjiaempty || ischweiempty;
-
 			public void actionPerformed(ActionEvent e) {
+				boolean ischquempty = chqu.getText().equals("");
+				boolean ischpaiempty = chpai.getText().equals("");
+				boolean ischjiaempty = chjia.getText().equals("");
+				boolean ischweiempty = chwei.getText().equals("");
+
+				boolean isempty = ischquempty || ischpaiempty || ischjiaempty || ischweiempty;
+
 				StorageBl storage=new StorageBl(oos, ois);
 				if (!isempty) {
 					StorageCheckPO check=storage.IDStorageGet(id.getText());
