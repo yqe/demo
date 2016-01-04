@@ -51,14 +51,14 @@ public class loginframe {
 	public ObjectInputStream ois;
 
 	public loginframe(Socket socket, ObjectOutputStream oos, ObjectInputStream ois) {
-		this.socket=socket;
-		this.oos=oos;
-		this.ois=ois;
+		this.socket = socket;
+		this.oos = oos;
+		this.ois = ois;
 	}
 
 	public void Frame() throws IOException {
-		 new ImageGet();
-	        Image bgp=ImageGet.getImageByState("background");
+		new ImageGet();
+		Image bgp = ImageGet.getImageByState("background");
 		background = new ImageIcon(bgp);
 
 		final JFrame frame = new JFrame("");
@@ -68,8 +68,8 @@ public class loginframe {
 				g.drawImage(background.getImage(), 0, 0, frame.getSize().width, frame.getSize().height, frame);
 			}
 		};
-//		JLabel l1 = new JLabel("ID:");
-//		JLabel l2 = new JLabel("Password:");
+		// JLabel l1 = new JLabel("ID:");
+		// JLabel l2 = new JLabel("Password:");
 		final JTextField id = new JTextField();
 		final JPasswordField password = new JPasswordField();
 		final JButton b1 = new JButton();
@@ -81,65 +81,67 @@ public class loginframe {
 			public void actionPerformed(ActionEvent e) {
 				char[] pass = password.getPassword();
 				String passwordstr = new String(pass);
-				try {
-					UserBl userui = new UserBl(oos,ois);
-					String userid=id.getText();
-					String cmdui = userui.look(userid, passwordstr);
-					switch (cmdui) {
-					case "管理员":
-						admin ad = new admin(socket,ois,oos,userui.GetEmployeePO(userid));
-						frame.remove(p1);
-						frame.setBounds(500, 100, ad.Panel().getWidth(), ad.Panel().getHeight());
-						frame.add(ad.Panel());
-						break;
-					case "营业厅业务员":
-						frame.remove(p1);
-						Boclerk bo = new Boclerk(socket,ois,oos,userui.GetEmployeePO(userid));
-						frame.setBounds(500, 100, bo.Panel().getWidth(), bo.Panel().getHeight());
-						frame.add(bo.Panel());
-						break;
-					case "快递员":
-						frame.remove(p1);
-						courier c = new courier(socket,ois,oos,userui.GetEmployeePO(userid));
-						frame.setBounds(400, 100, c.Panel().getWidth(), c.Panel().getHeight());
-						frame.add(c.Panel());
-						break;
-					case "总经理":
-						frame.remove(p1);
-						manager m = new manager(socket,ois,oos,userui.GetEmployeePO(userid));
-						frame.setBounds(500, 100, m.Panel().getWidth(), m.Panel().getHeight());
-						frame.add(m.Panel());
-						break;
-					case "中转中心业务员":
-						frame.remove(p1);
-						transitmain t = new transitmain(socket,ois,oos,userui.GetEmployeePO(userid));
-						frame.setBounds(500, 100, t.Panel().getWidth(), t.Panel().getHeight());
-						frame.add(t.Panel());
-						break;
-					case "中转中心库存管理人员":
-						frame.remove(p1);
-						storagemain s = new storagemain(socket,ois,oos,userui.GetEmployeePO(userid));
-						frame.setBounds(500, 100, s.Panel().getWidth(), s.Panel().getHeight());
-						frame.add(s.Panel());
-						break;
-					case "财务人员":
-						frame.remove(p1);
-						financemainui f = new financemainui(socket,ois,oos,userui.GetEmployeePO(userid));
-						frame.setBounds(500, 100, f.financemainui().getWidth(), f.financemainui().getHeight());
-						frame.add(f.financemainui());
-						break;
-					case "PasswordError":
-						Mdialog.showMessageDialog( "所输入账号密码错误");
-						break;
-					default: {
-						Mdialog.showMessageDialog( "所输入账号不存在!");
-						break;
+				if (id.getText().equals("") || password.getText().equals(""))
+					Mdialog.showMessageDialog("请填写完整的登录信息!");
+				else
+					try {
+						UserBl userui = new UserBl(oos, ois);
+						String userid = id.getText();
+						String cmdui = userui.look(userid, passwordstr);
+						switch (cmdui) {
+						case "管理员":
+							admin ad = new admin(socket, ois, oos, userui.GetEmployeePO(userid));
+							frame.remove(p1);
+							frame.setBounds(500, 100, ad.Panel().getWidth(), ad.Panel().getHeight());
+							frame.add(ad.Panel());
+							break;
+						case "营业厅业务员":
+							frame.remove(p1);
+							Boclerk bo = new Boclerk(socket, ois, oos, userui.GetEmployeePO(userid));
+							frame.setBounds(500, 100, bo.Panel().getWidth(), bo.Panel().getHeight());
+							frame.add(bo.Panel());
+							break;
+						case "快递员":
+							frame.remove(p1);
+							courier c = new courier(socket, ois, oos, userui.GetEmployeePO(userid));
+							frame.setBounds(400, 100, c.Panel().getWidth(), c.Panel().getHeight());
+							frame.add(c.Panel());
+							break;
+						case "总经理":
+							frame.remove(p1);
+							manager m = new manager(socket, ois, oos, userui.GetEmployeePO(userid));
+							frame.setBounds(500, 100, m.Panel().getWidth(), m.Panel().getHeight());
+							frame.add(m.Panel());
+							break;
+						case "中转中心业务员":
+							frame.remove(p1);
+							transitmain t = new transitmain(socket, ois, oos, userui.GetEmployeePO(userid));
+							frame.setBounds(500, 100, t.Panel().getWidth(), t.Panel().getHeight());
+							frame.add(t.Panel());
+							break;
+						case "中转中心库存管理人员":
+							frame.remove(p1);
+							storagemain s = new storagemain(socket, ois, oos, userui.GetEmployeePO(userid));
+							frame.setBounds(500, 100, s.Panel().getWidth(), s.Panel().getHeight());
+							frame.add(s.Panel());
+							break;
+						case "财务人员":
+							frame.remove(p1);
+							financemainui f = new financemainui(socket, ois, oos, userui.GetEmployeePO(userid));
+							frame.setBounds(500, 100, f.financemainui().getWidth(), f.financemainui().getHeight());
+							frame.add(f.financemainui());
+							break;
+						case "PasswordError":
+							Mdialog.showMessageDialog("所输入账号密码错误");
+							break;
+						default: {
+							Mdialog.showMessageDialog("所输入账号不存在!");
+							break;
+						}
+						}
+					} catch (IOException e1) {
+						Mdialog.showMessageDialog("界面错误!");
 					}
-					}
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			}
 		});
 		// b1.setEnabled(true);
@@ -147,7 +149,7 @@ public class loginframe {
 		b2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				Inquiry in = new Inquiry(oos,ois);
+				Inquiry in = new Inquiry(oos, ois);
 				try {
 					frame.remove(p1);
 					frame.setBounds(200, 100, in.Panel().getWidth(), in.Panel().getHeight());
@@ -167,13 +169,12 @@ public class loginframe {
 			}
 		});
 
-
 		imagePanel = (JPanel) frame.getContentPane();
 		imagePanel.setOpaque(false);
 		p1.setOpaque(false);
 		p1.setLayout(null);
-//		p1.add(l1);
-//		p1.add(l2);
+		// p1.add(l1);
+		// p1.add(l2);
 		p1.add(id);
 		p1.add(password);
 		p1.add(b1);
@@ -183,7 +184,7 @@ public class loginframe {
 		frame.getLayeredPane().setLayout(null);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		frame.setUndecorated(true);
 		frame.setResizable(false);
 		frame.setVisible(true);
@@ -208,20 +209,27 @@ public class loginframe {
 				}
 			}
 		});
-		
-		id.setOpaque(false);id.setBorder(BorderFactory.createEmptyBorder());
-		id.setFont(new Font("幼圆", Font.PLAIN, 25));id.setForeground(Color.white);
-		password.setOpaque(false);password.setBorder(BorderFactory.createEmptyBorder());
-		password.setFont(new Font("幼圆", Font.PLAIN, 25));password.setForeground(Color.white);
-//		l1.setBounds(150, 50, 40, 30);
+
+		id.setOpaque(false);
+		id.setBorder(BorderFactory.createEmptyBorder());
+		id.setFont(new Font("幼圆", Font.PLAIN, 25));
+		id.setForeground(Color.white);
+		password.setOpaque(false);
+		password.setBorder(BorderFactory.createEmptyBorder());
+		password.setFont(new Font("幼圆", Font.PLAIN, 25));
+		password.setForeground(Color.white);
+		// l1.setBounds(150, 50, 40, 30);
 		id.setBounds(442, 177, 189, 41);
-//		l2.setBounds(150, 100, 80, 30);
+		// l2.setBounds(150, 100, 80, 30);
 		password.setBounds(442, 265, 189, 41);
-		
-		b1.setContentAreaFilled(false);b1.setBorder(BorderFactory.createEmptyBorder());
-		b2.setContentAreaFilled(false);b2.setBorder(BorderFactory.createEmptyBorder());
-		b3.setContentAreaFilled(false);b3.setBorder(BorderFactory.createEmptyBorder());
-		
+
+		b1.setContentAreaFilled(false);
+		b1.setBorder(BorderFactory.createEmptyBorder());
+		b2.setContentAreaFilled(false);
+		b2.setBorder(BorderFactory.createEmptyBorder());
+		b3.setContentAreaFilled(false);
+		b3.setBorder(BorderFactory.createEmptyBorder());
+
 		b1.setBounds(700, 250, 272, 85);
 		b2.setBounds(367, 358, 272, 85);
 		b3.setBounds(700, 373, 272, 85);
