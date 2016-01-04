@@ -29,6 +29,7 @@ public class ServerThread implements Runnable {
 	private void init() throws Exception {
 		Thread thread = new Thread(this);
 		thread.start();
+		ServerStartTip.show();
 	}
 
 	public void run() {
@@ -44,7 +45,7 @@ public class ServerThread implements Runnable {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			ServerStartTip.show2();
 		}
 	}
 

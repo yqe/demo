@@ -15,4 +15,12 @@ public class ServerStartTip {
 		tipframe.add(tip);
 		tipframe.setVisible(true);
 	}
+	public static void show2() {
+		JFrame tipframe=new JFrame("ServerTip");
+		tipframe.setBounds(200, 300, 200, 100);
+		JLabel tip=new JLabel("服务器出错");
+		tip.setFont(new Font("幼圆",Font.BOLD,18));
+		tipframe.add(tip);
+		tipframe.setVisible(true);
+	}
 }
