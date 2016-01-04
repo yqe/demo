@@ -244,16 +244,22 @@ public class manager {
 
 		int length = 195, width = 44;
 		int xloc = 88;
-		b4.setBounds(xloc, 339, length, width);
-		b5.setBounds(xloc, 392, length, width);
+		b4.setBounds(xloc, 339-8, length, width);
+		b5.setBounds(xloc, 392-8, length, width);
 //		b6.setBounds(xloc, 442, length, width);
-		b7.setBounds(xloc, 495, length, width - 2);
-		b8.setBounds(xloc, 549, length, width);
-		b9.setBounds(xloc, 594, length, width - 2);
-		b3.setBounds(xloc, 648, length, width + 2);
+		b7.setBounds(xloc, 549, length, width - 2);
+		b8.setBounds(xloc, 594+13, length, width-2);
+		b9.setBounds(xloc, 648+13, length, width - 2);
+		b3.setBounds(xloc, 700+18, length, width + 2);
 		
-		b10.setBounds(xloc, 442, length, width );
-		b11.setBounds(xloc, 702, length, width );
+		
+		b10.setContentAreaFilled(false);
+		b10.setBorder(BorderFactory.createEmptyBorder());
+		b11.setContentAreaFilled(false);
+		b11.setBorder(BorderFactory.createEmptyBorder());
+		
+		b10.setBounds(xloc, 442-8, length, width );
+		b11.setBounds(xloc, 495-8, length, width );
 
 		content.add(delete.Panel());
 		content.setLayout(null);
