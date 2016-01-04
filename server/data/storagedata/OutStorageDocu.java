@@ -34,8 +34,8 @@ public class OutStorageDocu implements OutStorageService{
 			int i=0;
 			ArrayList<OutStorageDocuPO> out=oslt.getSlist();
 			mysqlimp=new MySqlImp();
-			i=out.size();
-			while(i>0){
+			i=out.size()-1;
+			while(i>=0){
 				OutStorageDocuPO outpo=out.get(i);
 				this.goodsID=outpo.getGoodno();
 				this.outdate=outpo.getOuttime();
@@ -43,7 +43,7 @@ public class OutStorageDocu implements OutStorageService{
 				this.loadform=outpo.getLoadform();
 				this.transcentreID=outpo.getTransferno();
 				condocu.insert(new CondemnDocuPO("出库单",goodsID, "未审批"));
-				String insert="INSERT INTO 出库单"+" (快递编号,出库日期,目的地,装运形式,中转中心编号）"+" VALUES（'"+goodsID+"','"+outdate+"','"+destination+"','"+loadform+"','"+transcentreID+"')";
+				String insert="INSERT INTO 出库单"+" (快递编号,出库日期,目的地,装运形式,中转中心编号)"+" VALUES('"+goodsID+"','"+outdate+"','"+destination+"','"+loadform+"','"+transcentreID+"')";
 				//生成一条出库单
 				String deletecheck="DELETE FROM 库存盘点"+" WHERE 快递编号='"+goodsID+"'";
 				//删除一条库存记录

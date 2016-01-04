@@ -146,7 +146,7 @@ public class StorageBl implements StorageBlService {
 		StorageCheckPO stopo=null;
 		try {
 			oos.writeUTF("Storage");
-			oos.writeUTF("ChangeStorage");
+			oos.writeUTF("IDCheckStorage");
 			oos.writeObject(new String(ID));
 			stopo=(StorageCheckPO) ois.readObject();
 		} catch (Exception e) {
@@ -165,7 +165,7 @@ public class StorageBl implements StorageBlService {
 	public boolean Storage110(String posid){
 		try {
 			oos.writeUTF("Storage");
-			oos.writeUTF("ChangeStorage");
+			oos.writeUTF("Storage110");
 			oos.writeObject(new String(posid));
 			boolean alarm=(boolean) ois.readObject();
 			return alarm;

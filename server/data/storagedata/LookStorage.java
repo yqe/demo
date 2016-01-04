@@ -21,7 +21,6 @@ public class LookStorage implements LookStorageService {
 	InputStorageDocu inputdocu = new InputStorageDocu();
 	OutStorageDocu outdocu = new OutStorageDocu();
 	GoodsDocu goodsdocu = new GoodsDocu();
-	LookStorage look = new LookStorage();
 	StorageCheck stocheck=new StorageCheck();
 	MySqlImp mysqlimp;
 

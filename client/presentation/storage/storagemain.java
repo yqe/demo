@@ -205,7 +205,7 @@ public class storagemain {
 
 		storagemain.add(control);
 		storagemain.add(content);
-		AlarmStorage();
+//		AlarmStorage();
 		return storagemain;
 
 	}

@@ -14,8 +14,7 @@ import storagedataService.StorageCheckService;
 public class StorageCheck implements StorageCheckService {
 	public String goodsID;
 	/* 快递编号 */
-	public String time;
-	/* 入库时间 */
+
 	public String area;
 	/* 区位 */
 	public String row;
@@ -25,6 +24,9 @@ public class StorageCheck implements StorageCheckService {
 	public String location;
 	/* 位号 */
 	MySqlImp mysqlimp;
+	
+	public String time;
+	/* 入库时间 */
 	public String transcenterID;// 中装中心编号
 
 	public boolean update(StorageCheckPO po) {

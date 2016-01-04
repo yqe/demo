@@ -36,8 +36,8 @@ public class InputStorageDocu implements InputStorageService{
 			int i=0;
 			ArrayList<InputStorageDocuPO> in=inslt.getSlist();
 			mysqlimp=new MySqlImp();
-			i=in.size();
-			while(i>0){
+			i=in.size()-1;
+			while(i>=0){
 				InputStorageDocuPO inpo=in.get(i);
 				this.goodsID=inpo.getGoodsID();
 				this.intime=inpo.getIntime();
@@ -48,7 +48,7 @@ public class InputStorageDocu implements InputStorageService{
 				this.local=inpo.getLocal();
 				this.transcenterID=inpo.getTranscenterID();
 				condocu.insert(new CondemnDocuPO("入库单",goodsID, "未审批"));
-				String insert="INSERT INTO 入库单"+" (快递编号,入库日期,目的地,区号,排号,架号,位号,中转中心编号）"+" VALUES（'"+goodsID+"','"+intime+"','"+destination+"','"+area+"','"+queue+"','"+shelf+"','"+local+"','"+transcenterID+"')";
+				String insert="INSERT INTO 入库单"+" (快递编号,入库日期,目的地,区号,排号,架号,位号,中转中心编号)"+" VALUES('"+goodsID+"','"+intime+"','"+destination+"','"+area+"','"+queue+"','"+shelf+"','"+local+"','"+transcenterID+"')";
 				//数据库中生成一条入库单
 				String insertintocheck="INSERT INTO 库存盘点"+" (快递编号,区号,排号,架号,位号,入库日期,中转中心编号)"+" VALUES('"+goodsID+"','"+area+"','"+queue+"','"+shelf+"','"+local+"','"+intime+"','"+transcenterID+"')";
 				//库存盘点中生成一条记录

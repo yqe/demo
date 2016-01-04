@@ -97,7 +97,7 @@ public class checkstorage {
 		final JTextField time1 = new JTextField();
 		final DatePicker datepick1 = new DatePicker(time1);
 		datepick1.setOpaque(false);
-		datepick1.setLocale(Locale.CHINA);//设置显示语言
+//		datepick1.setLocale(Locale.CHINA);//设置显示语言
 	    datepick1.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick1.setEditorable(false);//设置是否可编辑
 		datepick1.setPreferredSize(new Dimension(100,30));//设置大小
@@ -107,7 +107,7 @@ public class checkstorage {
 		Date d=c.getTime();
 		final DatePicker datepick2 = new DatePicker(time2,d);
 		datepick2.setOpaque(false);
-		datepick2.setLocale(Locale.CHINA);//设置显示语言
+//		datepick2.setLocale(Locale.CHINA);//设置显示语言
 	    datepick2.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick2.setEditorable(false);//设置是否可编辑
 		datepick2.setPreferredSize(new Dimension(100,30));//设置大小
@@ -116,7 +116,7 @@ public class checkstorage {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StorageBl stobl = new StorageBl(oos, ois);
-				LookStoragePO look=stobl.StorageSee(zzzx.getText(), datepick1.getText(), datepick2.getText());
+				LookStoragePO look=stobl.StorageSee(emPO.getPosID(), datepick1.getText(), datepick2.getText());
                 t1.setText(String.valueOf(look.getOutputnum()));
                 t2.setText(String.valueOf(look.getIntputnum()));
                 t3.setText(String.valueOf(look.getMoney()));

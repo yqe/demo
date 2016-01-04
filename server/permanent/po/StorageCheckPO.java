@@ -20,8 +20,8 @@ public class StorageCheckPO implements Serializable {
 	/* 位号 */
 	public String transcenterID;// 中转中新编号
 
-	public StorageCheckPO(String goodno, String time, String area, String row, String shelf, String location,
-			String tranID) {
+	public StorageCheckPO(String goodno, String area, String row, String shelf, String location,
+			String time,String tranID) {
 		// super();
 
 		this.goodsID = goodno;

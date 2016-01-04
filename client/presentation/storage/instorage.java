@@ -2,6 +2,7 @@ package storage;
 
 import image.ImageGet;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -114,7 +115,7 @@ public class instorage {
     Calendar c=Calendar.getInstance();
 	Date d=c.getTime();
 	final DatePicker datepick = new DatePicker(time,d);
-	datepick.setLocale(Locale.CHINA);//设置显示语言
+
     datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
     datepick.setEditorable(false);//设置是否可编辑
 	datepick.setPreferredSize(new Dimension(100,30));//设置大小
@@ -143,6 +144,7 @@ public class instorage {
 	table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 	table.setOpaque(false);
 	table.setRowHeight(21);
+	table.setForeground(Color.white);
 	
 //    table.setEnabled(false);
 	TableColumn Column0 = table.getColumnModel().getColumn(0); 

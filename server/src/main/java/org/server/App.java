@@ -1,7 +1,5 @@
 package org.server;
 
-import java.util.ArrayList;
-
 import distancedata.DistanceData;
 import documentdata.CondemnDocu;
 import documentdata.EarnedDocu;
@@ -12,11 +10,9 @@ import goodsdata.ExpressTrail;
 import managedata.CheckProfit;
 import managedata.ManageAccount;
 import managedata.ManageCostData;
-import po.CondemnDocuPO;
-import po.CostManagePO;
-import po.EarnedPO;
-import po.ManageAccountPO;
 import storagedata.InputStorageDocu;
+import storagedata.LookStorage;
+import storagedata.OutStorageDocu;
 import strategydata.EmploeeData;
 import strategydata.StrategyData;
 import transdata.VehicleMaintance;
@@ -45,6 +41,8 @@ public class App
         ExpressTrail expre=new ExpressTrail();
         ManageAccount macc=new ManageAccount();
         CondemnDocu con=new CondemnDocu();
+        OutStorageDocu out=new OutStorageDocu();
+        LookStorage look=new LookStorage();
         try {
 			//s.observe(); 
 			//s.updatesalary("总经理", 50000);
@@ -81,7 +79,15 @@ public class App
         	//ea.insert(new EarnedPO("2015-12-26", 30, "啊皮豪", "11122", "2234"));
         	//boolean t=ma.insert(new CostManagePO("2015-12-26", 20, "fefe", "456", "哈哈", "哈哈"));
         	//System.out.println(t);
-        	con.update();
+        	//con.update();
+//        	InputStorageList inslt=new InputStorageList();
+//        	inslt.addInputStoragePO(new InputStorageDocuPO("1111111111", "2015-01-04", "天津", "1", "3", "3", "4", "025000"));
+//       	input.InputStorageAdd(inslt);
+        	System.out.println(input.storagenum("025000", "2016-01-01", "2016-01-04"));
+        	//System.out.println(look.getstorednum("025000"));
+        	
+//        	System.out.println(look.findmoney("025000"));
+        	//System.out.println(out.OutStorageNum("025000", "2015-01-04", "2016-01-06"));
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

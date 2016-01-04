@@ -46,10 +46,12 @@ public class Send {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private EmploeePO emPO;
-	JPanel p1 = new JPanel(){public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(background.getImage(), 0, 0, null);
-	}};
+	JPanel p1 = new JPanel() {
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public Send(ObjectOutputStream oos, ObjectInputStream ois, EmploeePO emPO) {
 		this.oos = oos;
@@ -58,14 +60,11 @@ public class Send {
 	}
 
 	public JPanel Panel() throws IOException {
-		   new ImageGet();
-	        Image bgp=ImageGet.getImageByState("send");
+		new ImageGet();
+		Image bgp = ImageGet.getImageByState("send");
 		background = new ImageIcon(bgp);
-		
-		p1.setBounds(0, 0, 942, 815);
-		
 
-		
+		p1.setBounds(0, 0, 942, 815);
 
 		final MTextfield sender = new MTextfield();
 		final MTextfield senderinfo = new MTextfield();
@@ -87,24 +86,35 @@ public class Send {
 		// JTextField t17=new JTextField();
 		final MTextfield courier = new MTextfield();
 
-		
-		sender.settextFont();senderinfo.settextFont();sendertel.settextFont();sendersite.settextFont();
-		getter.settextFont();getterinfo.settextFont();gettertel.settextFont();gettersite.settextFont();
-		
-		goodsname.settextFont();goodsweight.settextFont();
-		length.settextFont();width.settextFont();height.settextFont();
-		V.settextFont();goodsinfo.settextFont();price.settextFont();exceptedtime.settextFont();
+		sender.settextFont();
+		senderinfo.settextFont();
+		sendertel.settextFont();
+		sendersite.settextFont();
+		getter.settextFont();
+		getterinfo.settextFont();
+		gettertel.settextFont();
+		gettersite.settextFont();
+
+		goodsname.settextFont();
+		goodsweight.settextFont();
+		length.settextFont();
+		width.settextFont();
+		height.settextFont();
+		V.settextFont();
+		goodsinfo.settextFont();
+		price.settextFont();
+		exceptedtime.settextFont();
 		courier.settextFont();
-		
+
 		final JTextField time = new JTextField();
 		final DatePicker datepick = new DatePicker(time);
-//		datepick.setLocale(Locale.CHINA);//设置显示语言
+		// datepick.setLocale(Locale.CHINA);//设置显示语言
 		datepick.setBackground(Color.gray);
-//		datepick.setFieldForeground(Color.white);
-	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
-	    datepick.setEditorable(false);//设置是否可编辑
-		datepick.setPreferredSize(new Dimension(100,30));//设置大小
-	    		
+		// datepick.setFieldForeground(Color.white);
+		datepick.setPattern("yyyy-MM-dd");// 设置日期格式化字符串
+		datepick.setEditorable(false);// 设置是否可编辑
+		datepick.setPreferredSize(new Dimension(100, 30));// 设置大小
+
 		sender.setOpaque(false);
 		sender.setBorder(BorderFactory.createEmptyBorder());
 		senderinfo.setOpaque(false);
@@ -113,7 +123,7 @@ public class Send {
 		sendertel.setBorder(BorderFactory.createEmptyBorder());
 		sendersite.setOpaque(false);
 		sendersite.setBorder(BorderFactory.createEmptyBorder());
-		
+
 		getter.setOpaque(false);
 		getter.setBorder(BorderFactory.createEmptyBorder());
 		getterinfo.setOpaque(false);
@@ -122,7 +132,7 @@ public class Send {
 		gettertel.setBorder(BorderFactory.createEmptyBorder());
 		gettersite.setOpaque(false);
 		gettersite.setBorder(BorderFactory.createEmptyBorder());
-		
+
 		goodsname.setOpaque(false);
 		goodsname.setBorder(BorderFactory.createEmptyBorder());
 		goodsweight.setOpaque(false);
@@ -133,7 +143,7 @@ public class Send {
 		width.setBorder(BorderFactory.createEmptyBorder());
 		height.setOpaque(false);
 		height.setBorder(BorderFactory.createEmptyBorder());
-		
+
 		goodsinfo.setOpaque(false);
 		goodsinfo.setBorder(BorderFactory.createEmptyBorder());
 		price.setOpaque(false);
@@ -142,8 +152,8 @@ public class Send {
 		exceptedtime.setBorder(BorderFactory.createEmptyBorder());
 		courier.setOpaque(false);
 		courier.setBorder(BorderFactory.createEmptyBorder());
-		
-//		
+
+		//
 		V.setOpaque(false);
 		V.setBorder(BorderFactory.createEmptyBorder());
 		V.setEditable(false);
@@ -159,7 +169,6 @@ public class Send {
 		numbox.setForeground(Color.white);
 		numbox.setFont(new Font("幼圆", Font.BOLD, 18));
 		numbox.setOpaque(false);
-		 
 
 		String[] type = { "普通快递", "经济快递", "次晨特快" };
 		final JComboBox typebox = new JComboBox(type);
@@ -174,7 +183,7 @@ public class Send {
 		packagebox.setForeground(Color.white);
 		packagebox.setFont(new Font("幼圆", Font.BOLD, 18));
 		packagebox.setOpaque(false);
-		
+
 		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
 		final JComboBox depaturebox = new JComboBox(depature);
 		depaturebox.setBackground(Color.gray);
@@ -186,85 +195,43 @@ public class Send {
 		final JComboBox destinationbox = new JComboBox(destination);
 		destinationbox.setBackground(Color.gray);
 		destinationbox.setForeground(Color.white);
-		destinationbox.setFont(new Font("幼圆", Font.BOLD, 18));	
+		destinationbox.setFont(new Font("幼圆", Font.BOLD, 18));
 		destinationbox.setOpaque(false);
-		
-		numbox.addItemListener(new ItemListener()
-		 {
-		 public void itemStateChanged(ItemEvent e)
-		 {
-		 if (e.getStateChange() == ItemEvent.SELECTED)
-		 {
-			 GoodsBl goodsbl = new GoodsBl(oos, ois);					
-				double weight = Double.valueOf(goodsweight.getText());
-				String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
-						packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
-						destinationbox.getSelectedItem().toString());
-				double feedou = Double.valueOf(fee);
-				double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
-				price.setText(String.valueOf(goodsprice));}
-		 }
-		 });
-		
-		 typebox.addItemListener(new ItemListener()
-		 {
-		 public void itemStateChanged(ItemEvent e)
-		 {
-		 if (e.getStateChange() == ItemEvent.SELECTED)
-		 {
-			 GoodsBl goodsbl = new GoodsBl(oos, ois);					
-				double weight = Double.valueOf(goodsweight.getText());
-				String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
-						packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
-						destinationbox.getSelectedItem().toString());
-				double feedou = Double.valueOf(fee);
-				double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
-				price.setText(String.valueOf(goodsprice));	  }
-		 }
-		 });	
-		
-		packagebox.addItemListener(new ItemListener()
-		 {
-		 public void itemStateChanged(ItemEvent e)
-		 {
-		 if (e.getStateChange() == ItemEvent.SELECTED)
-		 {
-			 GoodsBl goodsbl = new GoodsBl(oos, ois);					
-				double weight = Double.valueOf(goodsweight.getText());
-				String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
-						packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
-						destinationbox.getSelectedItem().toString());
-				double feedou = Double.valueOf(fee);
-				double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
-				price.setText(String.valueOf(goodsprice));	 
-		
-		 }
-		 }
-		 });
-		
-		depaturebox.addItemListener(new ItemListener()
-		 {
-		 public void itemStateChanged(ItemEvent e)
-		 {
-		 if (e.getStateChange() == ItemEvent.SELECTED)
-		 {
-			 GoodsBl goodsbl = new GoodsBl(oos, ois);					
-			double weight = Double.valueOf(goodsweight.getText());
-			String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
-					packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
-					destinationbox.getSelectedItem().toString());
-			double feedou = Double.valueOf(fee);
-			double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
-			price.setText(String.valueOf(goodsprice));	 
-		 }
-		 }
-		 });
-		
-		
-		destinationbox.addItemListener(new ItemListener() {
+
+		numbox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
-					GoodsBl goodsbl = new GoodsBl(oos, ois);					
+					GoodsBl goodsbl = new GoodsBl(oos, ois);
+					double weight = Double.valueOf(goodsweight.getText());
+					String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+							packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+							destinationbox.getSelectedItem().toString());
+					double feedou = Double.valueOf(fee);
+					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+					price.setText(String.valueOf(goodsprice));
+				}
+			}
+		});
+
+		typebox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					GoodsBl goodsbl = new GoodsBl(oos, ois);
+					double weight = Double.valueOf(goodsweight.getText());
+					String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+							packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+							destinationbox.getSelectedItem().toString());
+					double feedou = Double.valueOf(fee);
+					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+					price.setText(String.valueOf(goodsprice));
+				}
+			}
+		});
+
+		packagebox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					GoodsBl goodsbl = new GoodsBl(oos, ois);
 					double weight = Double.valueOf(goodsweight.getText());
 					String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
 							packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
@@ -277,7 +244,37 @@ public class Send {
 			}
 		});
 
-		
+		depaturebox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					GoodsBl goodsbl = new GoodsBl(oos, ois);
+					double weight = Double.valueOf(goodsweight.getText());
+					String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+							packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+							destinationbox.getSelectedItem().toString());
+					double feedou = Double.valueOf(fee);
+					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+					price.setText(String.valueOf(goodsprice));
+				}
+			}
+		});
+
+		destinationbox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					GoodsBl goodsbl = new GoodsBl(oos, ois);
+					double weight = Double.valueOf(goodsweight.getText());
+					String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
+							packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
+							destinationbox.getSelectedItem().toString());
+					double feedou = Double.valueOf(fee);
+					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+					price.setText(String.valueOf(goodsprice));
+					exceptedtime.setText(goodsbl.Goodsgetdate(depaturebox.getSelectedItem().toString(),
+							destinationbox.getSelectedItem().toString(), typebox.getSelectedItem().toString()));
+				}
+			}
+		});
 
 		length.getDocument().addDocumentListener(new DocumentListener() {
 			String goodslength;
@@ -339,7 +336,7 @@ public class Send {
 						weight = v / 5000;
 					}
 					goodsweight.setText(String.valueOf(weight));
-                    GoodsBl goodsbl = new GoodsBl(oos, ois);
+					GoodsBl goodsbl = new GoodsBl(oos, ois);
 					String fee = goodsbl.Goodsgetfee(weight, typebox.getSelectedItem().toString(),
 							packagebox.getSelectedItem().toString(), depaturebox.getSelectedItem().toString(),
 							destinationbox.getSelectedItem().toString());
@@ -384,7 +381,6 @@ public class Send {
 			}
 		});
 
-		
 		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -425,7 +421,7 @@ public class Send {
 				}
 
 				GoodsBl goodsbl = new GoodsBl(oos, ois);
-				String id=goodsbl.GetExpressID();
+				String id = goodsbl.GetExpressID();
 				GoodsDocuPO gpo = new GoodsDocuPO(sender.getText(), senderinfo.getText(), sendertel.getText(),
 						sendersite.getText(), getter.getText(), getterinfo.getText(), gettertel.getText(),
 						gettersite.getText(), j, Double.valueOf(price.getText()), typebox.getSelectedItem().toString(),
@@ -433,7 +429,8 @@ public class Send {
 						Integer.valueOf(numbox.getSelectedItem().toString()), Double.valueOf(length.getText()),
 						Double.valueOf(width.getText()), Double.valueOf(height.getText()), Double.valueOf(V.getText()),
 						goodsinfo.getText(), packagebox.getSelectedItem().toString(), exceptedtime.getText(),
-						generatetime, courier.getText(),depaturebox.getSelectedItem().toString(),destinationbox.getSelectedItem().toString());
+						generatetime, courier.getText(), depaturebox.getSelectedItem().toString(),
+						destinationbox.getSelectedItem().toString());
 				if (!isempty && goodsbl.BuildGoodsDocu(gpo)) {
 
 					// goodsbl.BuildGoodsDocu(gpo);
@@ -448,7 +445,6 @@ public class Send {
 
 		p1.setOpaque(false);
 		p1.setLayout(null);
-	
 
 		p1.add(sender);
 		p1.add(senderinfo);
@@ -479,15 +475,14 @@ public class Send {
 		// p1.add(monthbox1);
 		// p1.add(daybox1);// ����
 		p1.add(datepick);
-		
 
 		p1.add(b4);
 
 		p1.setOpaque(false);
 
-		int size=402;
-	    int senderxloc=573-size,getterxloc=1054-size;
-		
+		int size = 402;
+		int senderxloc = 573 - size, getterxloc = 1054 - size;
+
 		sender.setBounds(senderxloc, 194, 167, 38);
 		senderinfo.setBounds(senderxloc, 303, 192, 58);
 		sendertel.setBounds(senderxloc, 250, 167, 38);
@@ -498,41 +493,38 @@ public class Send {
 		gettertel.setBounds(getterxloc, 254, 167, 38);
 		gettersite.setBounds(getterxloc, 382, 190, 55);// �ռ���
 
-		goodsname.setBounds(557-size, 510, 63, 43);
-		goodsweight.setBounds(1140-size, 510, 63, 43);
-		
-		length.setBounds(480-size, 561, 98, 43);
-		width.setBounds(650-size,561, 98, 43);
-		height.setBounds(827-size, 567, 98, 43);
-		
-		V.setBounds(1041-size, 563, 99, 40);
-		
-		goodsinfo.setBounds(545-size, 616, 376, 46);
-		numbox.setBounds(862-size, 510, 115, 43);// ����
-		
+		goodsname.setBounds(557 - size, 510, 63, 43);
+		goodsweight.setBounds(1140 - size, 510, 63, 43);
 
-		typebox.setBounds(1066-size, 616, 161, 47);
-		packagebox.setBounds(557-size, 671, 115, 27);
-//		price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
-		exceptedtime.setBounds(585-size, 717, 164, 39);
+		length.setBounds(480 - size, 561, 98, 43);
+		width.setBounds(650 - size, 561, 98, 43);
+		height.setBounds(827 - size, 567, 98, 43);
+
+		V.setBounds(1041 - size, 563, 99, 40);
+
+		goodsinfo.setBounds(545 - size, 616, 376, 46);
+		numbox.setBounds(862 - size, 510, 115, 43);// ����
+
+		typebox.setBounds(1066 - size, 616, 161, 47);
+		packagebox.setBounds(557 - size, 671, 115, 27);
+		// price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
+		exceptedtime.setBounds(585 - size, 717, 164, 39);
 		// yearbox1.setBounds(t1xloc + 30, t1yloc + 8 * interval, 80, 30);
 		// monthbox1.setBounds(t1xloc + 120, t1yloc + 8 * interval, 80, 30);
 		// daybox1.setBounds(t1xloc + 210, t1yloc + 8 * interval, 80, 30);
-		depaturebox.setBounds(780-size, 673, 109, 42);
-		destinationbox.setBounds(1003-size,673, 104, 42);
+		depaturebox.setBounds(780 - size, 673, 109, 42);
+		destinationbox.setBounds(1003 - size, 673, 104, 42);
 
 		// t17.setBounds(t1xloc+450,t1yloc+8*interval, 200, 30);
 		// ����
 
-		datepick.setBounds(1145-size, 720, 138, 38);
-		courier.setBounds(1214-size, 673, 104, 41);
+		datepick.setBounds(1145 - size, 720, 138, 38);
+		courier.setBounds(1214 - size, 673, 104, 41);
 
-	
-		
 		b4.setContentAreaFilled(false);
 		b4.setBorder(BorderFactory.createEmptyBorder());
 
-		b4.setBounds(708-size, 759, 326, 41);
+		b4.setBounds(708 - size, 759, 326, 41);
 		return p1;
 
 	}
