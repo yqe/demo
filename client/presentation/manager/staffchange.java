@@ -49,7 +49,7 @@ public class staffchange extends JDialog implements ActionListener {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	
-	staffchange(final String id,final String name,String position,final int salary,final int age,final String sfz,final String tel,final String sex,final String address,final String area,final String posID) throws IOException {
+	staffchange(final EmploeePO empo,final ObjectOutputStream oos,final ObjectInputStream ois) throws IOException {
 		 new ImageGet();
 	        Image bgp=ImageGet.getImageByState("staffchange");
 		background = new ImageIcon(bgp);
@@ -85,8 +85,8 @@ public class staffchange extends JDialog implements ActionListener {
 		JTextField t7 = new JTextField();
 		JTextField t8 = new JTextField();
 		
-		t1.setText(id);t2.setText(name);t3.setText(String.valueOf(salary));t4.setText(String.valueOf(age));
-		t5.setText(sfz);t6.setText(tel);t7.setText(sex);t8.setText(address);			
+		t1.setText(empo.getEmpID());t2.setText(empo.getName());t3.setText(String.valueOf(empo.getSalary()));t4.setText(String.valueOf(empo.getAge()));
+		t5.setText(empo.getIdendity());t6.setText(empo.getPhonenum());t7.setText(empo.getSex());t8.setText(empo.getAddress());			
 		
 		t1.setOpaque(false);
 		t1.setBorder(BorderFactory.createEmptyBorder());
@@ -121,7 +121,7 @@ public class staffchange extends JDialog implements ActionListener {
 		final JComboBox job = new JComboBox(jobs);
 
 		for (int i = 0; i < jobs.length; i++) {
-			if (jobs[i].equals(position)) {
+			if (jobs[i].equals(empo.getPosition())) {
 				job.setSelectedIndex(i);
 				break;
 			}
@@ -142,9 +142,10 @@ public class staffchange extends JDialog implements ActionListener {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EmploeeBl embl=new EmploeeBl(oos, ois);
-				EmploeePO empo=new EmploeePO(job.getSelectedItem().toString(),id,name,salary,sex,age,
-						tel,sfz,address,area,posID);
-				embl.ModifyEmpInfo(empo);
+				EmploeePO newempo=new EmploeePO(job.getSelectedItem().toString(),empo.getEmpID(),
+						empo.getName(),empo.getSalary(),empo.getSex(),empo.getAge(),
+						empo.getPhonenum(),empo.getIdendity(),empo.getAddress(),empo.getArea(),empo.getPosID());
+				embl.ModifyEmpInfo(newempo);
 				Mdialog.showMessageDialog("修改成功!");
 			}
 

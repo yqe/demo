@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -64,9 +65,9 @@ public class staff {
 		
 	
 
-		String[] organ = { "营业厅", "中转中心", "总部" };
+		String[] organ = { "营业厅业务员", "中转中心业务员","中转中心库存管理人员" ,"财务人员", "总经理", "管理员" ,"快递员" };
 
-		JComboBox organbox = new JComboBox(organ);
+		final JComboBox organbox = new JComboBox(organ);
 
 		final MTextfield t1 = new MTextfield();
 		
@@ -79,8 +80,10 @@ public class staff {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				stafforgan sfo = null;
+				EmploeeBl embl=new EmploeeBl(oos, ois);
 				try {
-					sfo = new stafforgan();
+					ArrayList <EmploeePO> empolist=embl.GetOEmployee(organbox.getSelectedItem().toString())		;
+					sfo = new stafforgan(empolist,oos,ois);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -89,6 +92,9 @@ public class staff {
 			}
 
 		});
+		
+		
+		
 		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -101,8 +107,7 @@ public class staff {
 							Mdialog.showMessageDialog( "没有该员工ID!");
 						}
 						else{
-						sfc = new staffchange(empo.getEmpID(),empo.getName(),empo.getPosition(),empo.getSalary(),
-								empo.getAge(),empo.getIdendity(),empo.getPhonenum(),empo.getSex(),empo.getAddress(),empo.getArea(),empo.getPosID());
+						sfc = new staffchange(empo,oos,ois);
 						sfc.setVisible(true);}
 					}
 					else {

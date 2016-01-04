@@ -14,6 +14,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -31,6 +34,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import po.EmploeePO;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -43,8 +48,10 @@ public class stafforgan extends JDialog implements ActionListener {
 	private ImageIcon button1;
 	private int xx, yy;
 	private boolean isDraging;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
 
-	stafforgan() throws IOException {
+	stafforgan(ArrayList <EmploeePO> empolist,ObjectOutputStream oos,ObjectInputStream ois) throws IOException {
 		 new ImageGet();
 	        Image bgp=ImageGet.getImageByState("stafforgan");
 		background = new ImageIcon(bgp);
@@ -93,8 +100,7 @@ public class stafforgan extends JDialog implements ActionListener {
 //
 //		});
 		String[] columnnames = { "员工ID", "员工姓名", "职位" };
-		Object[][] data = { { "000001", "安德罗妮", "营业厅业务员" }, { "000002", "蒙太奇", "营业厅业务员" },
-				{ "000003", "囚徒", "营业厅业务员" } };
+		Object[][] data = { };
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
 		final JTable table = new JTable(model){
 			   public Component prepareRenderer(TableCellRenderer renderer,
@@ -106,7 +112,13 @@ public class stafforgan extends JDialog implements ActionListener {
 					    return c;
 					   }
 					  };
-		
+					  
+			 for (int i = 0; i < empolist.size(); i++) {
+				Object[] add = { empolist.get(i).getEmpID(), empolist.get(i).getName(),
+						empolist.get(i).getPosition()};
+				DefaultTableModel newmodel = (DefaultTableModel) table.getModel();
+				model.insertRow(newmodel.getRowCount(), add);
+			 }
 		table.getTableHeader().setFont(new Font("幼圆",Font.BOLD,20) );
 		table.setForeground(Color.white);
 	

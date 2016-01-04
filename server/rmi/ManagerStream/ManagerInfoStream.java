@@ -139,7 +139,9 @@ public class ManagerInfoStream {
 		EmploeeData emdata = new EmploeeData();
 		try {
 			String org = (String) ois.readObject();
-			ArrayList<EmploeePO> empolist = emdata.findall();
+			System.out.println(org);
+			ArrayList<EmploeePO> empolist = emdata.findbypos(org);
+			System.out.println(empolist.get(0).getName());
 			oos.writeObject(empolist);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
