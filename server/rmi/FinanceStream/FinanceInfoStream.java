@@ -252,19 +252,16 @@ public class FinanceInfoStream {
 			ArrayList<EarnedPO> epolist;
 			EarnedPOList earnlist = new EarnedPOList();
 			String[] data = ((String) ois.readObject()).split(" ");
-			System.out.println(data[0] + " " + data[1]);
 			if (data[0].equals("ID"))
 				epolist = ed.findbyID(data[1]);
 			else if (data[0].equals("day")) {
 				epolist = ed.findbydate(data[1]);
-				System.out.println(epolist.get(0).getDilivername());
 			} else
 				epolist = ed.findbytime(data[0], data[1]);
+			System.out.println(epolist.get(0).getPaydate());
 			for (int i = 0; i < epolist.size(); i++) {
 				earnlist.addEarnedPO(epolist.get(i));
 			}
-			System.out.println(epolist.get(0).getBussinessID());
-			System.out.println(earnlist.GetIndex(0).getBussinessID());
 			oos.writeObject(earnlist);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

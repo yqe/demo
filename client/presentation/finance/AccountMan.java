@@ -64,7 +64,7 @@ public class AccountMan {
 				boolean priceisempty = textfield[1].getText().equals("");
 				boolean isempty = idisempty || priceisempty;
 
-				if (!isempty && isnum) {
+				if (!isempty && !isnum) {
 					// 添加新数据到PO
 					ManageAccountPO a = new ManageAccountPO(textfield[0].getText(),
 							Double.parseDouble(textfield[1].getText()));
@@ -97,11 +97,11 @@ public class AccountMan {
 				boolean isempty = accname.getText().equals("");
 				FinanceBl adacc = new FinanceBl(oos, ois);
 				if (!isempty && adacc.DeleteBankAccount(accname.getText())) {
-					JOptionPane.showMessageDialog(null, "删除成功!");
+					Mdialog.showMessageDialog("删除成功!");
 				} else if (isempty) {
-					JOptionPane.showMessageDialog(null, "请填写所需要删除的账户!");
+					Mdialog.showMessageDialog("请填写所需要删除的账户!");
 				} else {
-					JOptionPane.showMessageDialog(null, "未查询到该账户!");
+					Mdialog.showMessageDialog( "未查询到该账户!");
 				}
 
 			}
@@ -142,14 +142,14 @@ public class AccountMan {
 					FinanceBl finance = new FinanceBl(oos, ois);
 					ManageAccountPO mapo = finance.CheckBankAccount(accname.getText());
 					if (mapo.getAccountname().equals("不存在")) {
-						JOptionPane.showMessageDialog(null, "该账户ID不存在!");
+						Mdialog.showMessageDialog( "该账户ID不存在!");
 					} else {
 						text[0].setText(mapo.getAccountname());
 						text[2].setText(String.valueOf(mapo.getBalance()));
 						text[3].setText(String.valueOf(mapo.getBalance()));
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "请输入要搜索的账户ID!");
+					Mdialog.showMessageDialog( "请输入要搜索的账户ID!");
 				}
 			}
 		});
@@ -165,9 +165,9 @@ public class AccountMan {
 					FinanceBl change = new FinanceBl(oos, ois);
 					ManageAccountPO mapo = new ManageAccountPO(accname.getText(), Double.valueOf(text[2].getText()));
 					change.ModifyBankAccount(mapo);
-					JOptionPane.showMessageDialog(null, "修改成功!");
+					Mdialog.showMessageDialog("修改成功!");
 				} else {
-					JOptionPane.showMessageDialog(null, "请输入完整账户名称!");
+					Mdialog.showMessageDialog( "请输入完整账户名称!");
 				}
 
 			}
@@ -202,13 +202,13 @@ public class AccountMan {
 					FinanceBl finance = new FinanceBl(oos, ois);
 					ManageAccountPO mapo = finance.CheckBankAccount(textfield[0].getText());
 					if (mapo.getAccountname().equals("不存在")) {
-						JOptionPane.showMessageDialog(null, "该账户ID不存在!");
+						Mdialog.showMessageDialog("该账户ID不存在!");
 					} else {
 						textfield[1].setText(mapo.getAccountname());
 						textfield[2].setText(String.valueOf(mapo.getBalance()));
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "请输入要查询的账户ID!");
+					Mdialog.showMessageDialog("请输入要查询的账户ID!");
 				}
 
 			}

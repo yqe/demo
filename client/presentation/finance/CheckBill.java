@@ -88,7 +88,7 @@ public class CheckBill {
 		jp.setOpaque(false);
 		jp.getViewport().setOpaque(false);
 
-		JButtonM timecheck = new JButtonM();
+		JButtonM timecheck = new JButtonM("确定");
 		timecheck.setBounds(454, 249, 182, 39);
 		timecheck.HideTheButton();
 		timecheck.addActionListener(new ActionListener() {
@@ -110,7 +110,7 @@ public class CheckBill {
 			}
 		});
 
-		JButtonM hallcheck = new JButtonM();
+		JButtonM hallcheck = new JButtonM("确定");
 		hallcheck.setBounds(454, 298, 182, 39);
 		hallcheck.HideTheButton();
 		hallcheck.addActionListener(new ActionListener() {

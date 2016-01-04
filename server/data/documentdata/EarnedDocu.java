@@ -197,9 +197,8 @@ public class EarnedDocu implements EarnedDocuService {
 	@Override
 	public ArrayList<EarnedPO> findbydate(String date) {
 		// TODO Auto-generated method stub
-
 		try {
-			System.out.println(date);
+//			System.out.println(date);
 			ArrayList<EarnedPO> earnList = new ArrayList<EarnedPO>();
 			mysqlimp = new MySqlImp();
 			String find = "SELECT 收款日期,收款金额,收款快递员姓名,订单条形码号,所属营业厅编号" + " FROM 收款单" + " WHERE 收款日期='" + date + "'";
