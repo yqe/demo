@@ -25,6 +25,7 @@ import login.MTextfield;
 import login.Mdialog;
 import po.EmploeePO;
 import po.StorageAlarmPO;
+import po.StorageList;
 import storagebl.StorageBl;
 
 public class countstorage {
@@ -47,7 +48,7 @@ public class countstorage {
 		this.emPO = emPO;
 	}
 
-	public JPanel Panel() throws IOException {
+	public JPanel Panel(String centreid) throws IOException {
 		new ImageGet();
 		Image bgp = ImageGet.getImageByState("countstorage");
 		background = new ImageIcon(bgp);
@@ -69,6 +70,17 @@ public class countstorage {
 					    return c;
 					   }
 					  };
+		StorageBl sbl=new StorageBl(oos, ois); 			
+		StorageList slist=sbl.StorageCheck(centreid);	  
+		 for (int i = 0; i < slist.getSlist().size(); i++) {
+				Object[] add = { slist.getSlist().get(i).getGoodno(),slist.getSlist().get(i).getTime(),
+			slist.getSlist().get(i).getDestination(),slist.getSlist().get(i).getArea(),
+			slist.getSlist().get(i).getRow(),slist.getSlist().get(i).getShelf(),slist.getSlist().get(i).getLocation()};
+				DefaultTableModel newmodel = (DefaultTableModel) table.getModel();
+				model.insertRow(newmodel.getRowCount(), add);
+			 }		  
+					  
+					  
 	    table.setRowHeight(22);		  
 	    
 					  

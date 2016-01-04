@@ -85,7 +85,7 @@ public class storagemain {
 		inspanel = ins.Panel();
 		ouspanel = ous.Panel();
 		chspanel = chs.Panel();
-		cospanel = cos.Panel();
+		cospanel = cos.Panel(emPO.getPosID());
 		caspanel = cas.Panel();
 
 		control.setBounds(0, 0, size, 756);
