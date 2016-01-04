@@ -42,8 +42,10 @@ public class StorageInfoStream {
 			case "SetStorageAlarm":
 				SetStorageAlarm(ois, oos);
 				break;
-			default:
+			case "ChangeStorage":
 				ChangeStorage(ois, oos);
+				break;	
+			default:
 				break;
 			}
 		} catch (IOException e) {

@@ -65,6 +65,10 @@ public class ImageGetR {
 	public final String managercontrol = ("/imagero/managercontrol.jpg");
 
 	public final String staff = ("/imagero/staff.jpg");
+	
+	public final String stafforgan = ("/imagero/stafforgan.jpg");
+	
+	public final String staffchange = ("/imagero/staffchange.jpg");
 
 	public final String addemployee = ("/imagero/addemployee.jpg");
 
@@ -164,6 +168,10 @@ public class ImageGetR {
 			return createImage(managercontrol);
 		case "staff":
 			return createImage(staff);
+		case "stafforgan":
+			return createImage(stafforgan);
+		case "staffchange":
+			return createImage(staffchange);		
 		case "checkdocuments":
 			return createImage(checkdocuments);
 		case "deleteemployee":

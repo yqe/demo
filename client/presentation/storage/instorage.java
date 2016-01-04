@@ -37,6 +37,7 @@ import javax.swing.table.TableColumn;
 import com.eltima.components.ui.DatePicker;
 
 import login.MTextfield;
+import login.Mdialog;
 import login.Tran;
 import po.EmploeePO;
 import po.InputStorageDocuPO;
@@ -215,9 +216,9 @@ public class instorage {
 			StorageBl ido=new StorageBl(oos,ois);
 			boolean isOk=ido.InStorageInput(islt);
 			if (isOk)
-			JOptionPane.showMessageDialog(null,"成功完成入库!");
+				Mdialog.showMessageDialog("成功完成入库!");
 			else
-				JOptionPane.showMessageDialog(null,"无法完成入库!");
+				Mdialog.showMessageDialog("无法完成入库!");
 		}
 		
 	});

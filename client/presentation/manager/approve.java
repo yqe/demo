@@ -20,6 +20,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -67,11 +69,18 @@ public class approve {
 					    return c;
 					   }
 					  };
+					  
+	    DefaultTableCellRenderer renderer=new DefaultTableCellRenderer();
+		renderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+		table.setDefaultRenderer(Object.class, renderer);
+					  
+		DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();	
+		tcr.setHorizontalAlignment(JLabel.CENTER);
 	    table.setOpaque(false);
-//	    table.setForeground(Color.white);
+	    table.setForeground(Color.white);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setRowHeight(31);		
-		table.getTableHeader().setForeground(Color.white);
+		table.getTableHeader().setForeground(Color.black);
 		table.getTableHeader().setFont(new Font("幼圆",Font.BOLD,20) );
 		table.getColumnModel().getColumn(0).setPreferredWidth(332);// 设置宽度
 		table.getColumnModel().getColumn(1).setPreferredWidth(332);

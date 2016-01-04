@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import login.MTextfield;
+import login.Mdialog;
 import goodsbl.GoodsBl;
 import po.EmploeePO;
 
@@ -76,7 +77,7 @@ public class check {
 					}
 					info.setVisible(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "所输入订单条形码号非法!");
+					Mdialog.showMessageDialog( "所输入订单条形码号非法!");
 				}
 
 			}

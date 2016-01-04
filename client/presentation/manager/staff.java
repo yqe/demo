@@ -127,7 +127,7 @@ public class staff {
 		organbox.setBounds(440, 285, 281, 45);
 		t1.setBounds(445, 492, 281, 45);
 
-//		b4.setBounds(b4xloc, b4yloc, 100, 40);
+		b4.setBounds(718, 300, 200, 72);
 		b5.setBounds(718, 662, 200, 72);
 
 		return p1;

@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Mdialog extends JDialog{
 	private ImageIcon background;
@@ -53,9 +54,10 @@ public class Mdialog extends JDialog{
 		output.HideTheField();
 //		output.settextFont();
 		output.setForeground(Color.white);
-		output.setFont(new Font("幼圆",Font.BOLD,18));
+		output.setFont(new Font("幼圆",Font.BOLD,16));
+		output.setHorizontalAlignment(JTextField.CENTER);
 		
-		output.setBounds(60,70,250,30);
+		output.setBounds(0,70,300,30);
 		output.setText(input);
 		output.setEditable(false);
 		

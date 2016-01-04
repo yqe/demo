@@ -50,6 +50,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import login.MTextfield;
+import login.Mdialog;
 import login.Tran;
 
 public class outstorage {
@@ -168,7 +169,7 @@ public class outstorage {
 				Object[] add = { t1.getText(), date, place, type};
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.insertRow(model.getRowCount(), add);
-				 System.out.println(model.getRowCount());
+//				 System.out.println(model.getRowCount());
 			}
 		});
 
@@ -195,9 +196,9 @@ public class outstorage {
 				StorageBl k = new StorageBl(oos,ois);
 				boolean isOk = k.OutStorageInput(oslt);
 				if (isOk)
-					JOptionPane.showMessageDialog(null, "成功完成出库!");
+					Mdialog.showMessageDialog("成功完成出库!");
 				else
-					JOptionPane.showMessageDialog(null, "无法完成出库!");
+					Mdialog.showMessageDialog( "无法完成出库!");
 
 			}
 

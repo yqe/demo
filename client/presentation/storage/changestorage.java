@@ -31,6 +31,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import login.MTextfield;
+import login.Mdialog;
 import po.EmploeePO;
 import po.StorageCheckPO;
 import storagebl.StorageBl;
@@ -119,18 +120,18 @@ public class changestorage {
 				if (!idisempty) {
 					StorageCheckPO check=storage.IDStorageGet(id.getText());
 					if(check.getGoodno().equals("不存在")){
-					JOptionPane.showMessageDialog(null, "仓库没有该快递编号货物!");
+						Mdialog.showMessageDialog( "仓库没有该快递编号货物!");
 					}
 					else{
 				    qu.setText(check.getArea());
 				    pai.setText(check.getRow());
 				    jia.setText(check.getShelf());
 				    wei.setText(check.getLocation());
-					JOptionPane.showMessageDialog(null, "已查到所查快递仓库位置!");
+				    Mdialog.showMessageDialog("已查到所查快递仓库位置!");
 					}
 				} else if (idisempty) {
 					// System.out.println(id.getText().equals(""));
-					JOptionPane.showMessageDialog(null, "请填写快递编号!");
+					Mdialog.showMessageDialog("请填写快递编号!");
 				}
 
 			}
@@ -152,9 +153,9 @@ public class changestorage {
 					StorageCheckPO change=new StorageCheckPO(check.getGoodsID(),check.getTime(),chqu.getText(),
 							chpai.getText(),chjia.getText(),chwei.getText(),check.getTranscenterID());
 					storage.StorageUpdate(change);
-					JOptionPane.showMessageDialog(null, "成功修改!");
+					Mdialog.showMessageDialog("成功修改!");
 				} else if (isempty) {
-					JOptionPane.showMessageDialog(null, "请填写完整更改信息!");
+					Mdialog.showMessageDialog("请填写完整更改信息!");
 				}
 
 			}
