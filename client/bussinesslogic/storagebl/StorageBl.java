@@ -82,7 +82,7 @@ public class StorageBl implements StorageBlService {
 		StorageList Stolist = new StorageList();
 		try {
 			oos.writeUTF("Storage");
-			oos.writeUTF("SeeStorage");
+			oos.writeUTF("CheckStorage");
 			oos.writeObject(new String(centerid));
 			Stolist = (StorageList) ois.readObject();
 		} catch (Exception e) {

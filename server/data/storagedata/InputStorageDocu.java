@@ -50,7 +50,7 @@ public class InputStorageDocu implements InputStorageService{
 				condocu.insert(new CondemnDocuPO("入库单",goodsID, "未审批"));
 				String insert="INSERT INTO 入库单"+" (快递编号,入库日期,目的地,区号,排号,架号,位号,中转中心编号)"+" VALUES('"+goodsID+"','"+intime+"','"+destination+"','"+area+"','"+queue+"','"+shelf+"','"+local+"','"+transcenterID+"')";
 				//数据库中生成一条入库单
-				String insertintocheck="INSERT INTO 库存盘点"+" (快递编号,区号,排号,架号,位号,入库日期,中转中心编号)"+" VALUES('"+goodsID+"','"+area+"','"+queue+"','"+shelf+"','"+local+"','"+intime+"','"+transcenterID+"')";
+				String insertintocheck="INSERT INTO 库存盘点"+" (快递编号,区号,排号,架号,位号,入库日期,中转中心编号,目的地)"+" VALUES('"+goodsID+"','"+area+"','"+queue+"','"+shelf+"','"+local+"','"+intime+"','"+transcenterID+"','"+destination+"')";
 				//库存盘点中生成一条记录
 				String track="快件已到达"+transcentername;
 				

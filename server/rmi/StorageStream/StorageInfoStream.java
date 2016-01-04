@@ -10,6 +10,7 @@ import po.LookStoragePO;
 import po.OutStorageList;
 import po.StorageAlarmPO;
 import po.StorageCheckPO;
+import po.StorageList;
 import storagedata.InputStorageDocu;
 import storagedata.LookStorage;
 import storagedata.OutStorageDocu;
@@ -189,7 +190,11 @@ public class StorageInfoStream {
 			StorageCheck stocheck = new StorageCheck();
 			String transID = (String) ois.readObject();
 			ArrayList<StorageCheckPO> stolist = stocheck.findall(transID);
-			oos.writeObject(stolist);
+			StorageList slist=new StorageList();
+			for (int i = 0; i < stolist.size(); i++) {
+				slist.addStoragePO(stolist.get(i));
+			}
+			oos.writeObject(slist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -74,9 +74,9 @@ public class countstorage {
 		StorageBl sbl=new StorageBl(oos, ois); 			
 		StorageList slist=sbl.StorageCheck(centreid);	  
 		 for (int i = 0; i < slist.getSlist().size(); i++) {
-				Object[] add = { slist.getSlist().get(i).getGoodno(),slist.getSlist().get(i).getTime(),
-			slist.getSlist().get(i).getDestination(),slist.getSlist().get(i).getArea(),
-			slist.getSlist().get(i).getRow(),slist.getSlist().get(i).getShelf(),slist.getSlist().get(i).getLocation()};
+				Object[] add = { slist.getSlist().get(i).getGoodno(),slist.getSlist().get(i).getLocation(),
+			slist.getSlist().get(i).getDestination(),slist.getSlist().get(i).getTime(),slist.getSlist().get(i).getArea(),
+			slist.getSlist().get(i).getRow(),slist.getSlist().get(i).getShelf(),};
 				DefaultTableModel newmodel = (DefaultTableModel) table.getModel();
 				model.insertRow(newmodel.getRowCount(), add);
 			 }		  
@@ -146,7 +146,7 @@ public class countstorage {
 					Mdialog.showMessageDialog("请确定输入的库存量为百分数");
 				else {
 					StorageBl stobl = new StorageBl(oos, ois);
-					double alarmnum = Double.parseDouble(alarmstr.substring(0, alarmstr.length() - 1));
+					double alarmnum = Double.parseDouble(alarmstr.substring(0, alarmstr.length() - 1))/100;
 					StorageAlarmPO alarmpo = new StorageAlarmPO(emPO.getPosID(), Integer.parseInt(num.getText()),
 							alarmnum);
 					if (stobl.SetStorage110(alarmpo))

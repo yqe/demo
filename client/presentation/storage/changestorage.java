@@ -151,7 +151,7 @@ public class changestorage {
 				if (!isempty) {
 					StorageCheckPO check=storage.IDStorageGet(id.getText());
 					StorageCheckPO change=new StorageCheckPO(check.getGoodsID(),check.getTime(),chqu.getText(),
-							chpai.getText(),chjia.getText(),chwei.getText(),check.getTranscenterID());
+							chpai.getText(),chjia.getText(),chwei.getText(),check.getTranscenterID(),check.getDestination());
 					storage.StorageUpdate(change);
 					Mdialog.showMessageDialog("成功修改!");
 				} else if (isempty) {

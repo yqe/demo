@@ -28,6 +28,8 @@ public class StorageCheck implements StorageCheckService {
 	public String time;
 	/* 入库时间 */
 	public String transcenterID;// 中装中心编号
+	
+	public String destination;
 
 	public boolean update(StorageCheckPO po) {
 		StorageCheck scheck = new StorageCheck();
@@ -45,9 +47,9 @@ public class StorageCheck implements StorageCheckService {
 			this.shelf = po.getShelf();
 			this.location = po.getLocation();
 			this.time = po.getTime();
-			String insert = "INSERT INTO 库存盘点" + " (快递编号,区号,排号,架号,位号,入库日期,中转中心编号)" + " VALUES('" + goodsID + "','"
+			String insert = "INSERT INTO 库存盘点" + " (快递编号,区号,排号,架号,位号,入库日期,中转中心编号,目的地)" + " VALUES('" + goodsID + "','"
 					+ area + "','" + row + "','" + shelf + "','" + location + "','" + time + "','" + transcenterID
-					+ "')";
+					+ "','"+destination+"')";
 			mysqlimp.update(insert);
 			return true;
 		} catch (ClassNotFoundException e) {
@@ -95,7 +97,7 @@ public class StorageCheck implements StorageCheckService {
 			ResultSet rs = mysqlimp.query(findbydate);
 			while (rs.next()) {
 				stoList.add(new StorageCheckPO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7)));
+						rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8)));
 			}
 			rs.close();
 			return stoList;
@@ -109,7 +111,7 @@ public class StorageCheck implements StorageCheckService {
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StorageCheck!");
 			ArrayList<StorageCheckPO> stoList = new ArrayList<StorageCheckPO>();
-			stoList.add(new StorageCheckPO("不存在", "", "", "", "", "", ""));
+			stoList.add(new StorageCheckPO("不存在", "", "", "", "", "", "",""));
 			return stoList;
 		}
 
@@ -124,7 +126,7 @@ public class StorageCheck implements StorageCheckService {
 			ResultSet rs = mysqlimp.query(findall);
 			while (rs.next()) {
 				stoList.add(new StorageCheckPO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7)));
+						rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8)));
 			}
 			rs.close();
 			return stoList;
@@ -138,7 +140,7 @@ public class StorageCheck implements StorageCheckService {
 			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StorageCheck!");
 			ArrayList<StorageCheckPO> stoList = new ArrayList<StorageCheckPO>();
-			stoList.add(new StorageCheckPO("不存在", "", "", "", "", "", ""));
+			stoList.add(new StorageCheckPO("不存在", "", "", "", "", "", "",""));
 			return stoList;
 		}
 
@@ -152,7 +154,7 @@ public class StorageCheck implements StorageCheckService {
 			ResultSet rs = mysqlimp.query(find);
 			rs.next();
 			StorageCheckPO spo = new StorageCheckPO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-					rs.getString(5), rs.getString(6), rs.getString(7));
+					rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8));
 			rs.close();
 			return spo;
 		} catch (ClassNotFoundException e) {
@@ -164,7 +166,7 @@ public class StorageCheck implements StorageCheckService {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 			System.out.println("Some MySql problem has happened in StorageCheck!");
-			return new StorageCheckPO("不存在", "", "", "", "", "", "");
+			return new StorageCheckPO("不存在", "", "", "", "", "", "","");
 		}
 
 	}

@@ -19,9 +19,11 @@ public class StorageCheckPO implements Serializable {
 	public String location;
 	/* 位号 */
 	public String transcenterID;// 中转中新编号
+	
+	public String destination;
 
 	public StorageCheckPO(String goodno, String time, String area, String row, String shelf, String location,
-			String tranID) {
+			String tranID,String destination) {
 		// super();
 
 		this.goodsID = goodno;
@@ -31,6 +33,11 @@ public class StorageCheckPO implements Serializable {
 		this.shelf = shelf;
 		this.location = location;
 		this.transcenterID = tranID;
+		this.destination=destination;
+	}
+
+	public String getDestination() {
+		return destination;
 	}
 
 	public String getGoodsID() {
