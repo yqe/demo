@@ -101,10 +101,10 @@ public class infoDialog extends JDialog implements ActionListener {
 		
 
 		
-		namet.setBounds(150, 30, 100, 30);
-		homesitet.setBounds(150, 80, 100, 30);
-		worksitet.setBounds(150, 130, 100, 30);
-		telt.setBounds(150, 180, 100, 30);
+		namet.setBounds(108, 30+46, 120, 28);
+		homesitet.setBounds(108, 80+45, 204, 28);
+		worksitet.setBounds(108, 130+45, 204, 28);
+		telt.setBounds(108, 180+40, 120, 28);
 		
 		setUndecorated(true);
 		setResizable(false);
