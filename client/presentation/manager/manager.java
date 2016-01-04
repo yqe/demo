@@ -160,6 +160,24 @@ public class manager {
 			}
 
 		});
+		
+		JButton b10 = new JButton();
+		b10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				checkstateofrun csr=new checkstateofrun(oos, ois, emPO);
+				changepanel(csr.checkstateofrun());
+			}
+
+		});
+		
+		JButton b11 = new JButton();
+		b11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				checkcostincome cci=new checkcostincome(oos,ois,emPO);
+				changepanel(cci.checkcostincome());
+			}
+
+		});
 
 		control.setLayout(null);
 		control.setOpaque(false);
@@ -206,6 +224,8 @@ public class manager {
 		control.add(b7);
 		control.add(b8);
 		control.add(b9);
+		control.add(b10);
+		control.add(b11);
 
 		b3.setContentAreaFilled(false);
 		b3.setBorder(BorderFactory.createEmptyBorder());
@@ -226,11 +246,14 @@ public class manager {
 		int xloc = 88;
 		b4.setBounds(xloc, 339, length, width);
 		b5.setBounds(xloc, 392, length, width);
-		b6.setBounds(xloc, 442, length, width);
+//		b6.setBounds(xloc, 442, length, width);
 		b7.setBounds(xloc, 495, length, width - 2);
 		b8.setBounds(xloc, 549, length, width);
 		b9.setBounds(xloc, 594, length, width - 2);
 		b3.setBounds(xloc, 648, length, width + 2);
+		
+		b10.setBounds(xloc, 442, length, width );
+		b11.setBounds(xloc, 702, length, width );
 
 		content.add(delete.Panel());
 		content.setLayout(null);
