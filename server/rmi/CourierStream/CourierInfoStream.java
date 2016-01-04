@@ -55,14 +55,17 @@ public class CourierInfoStream {
 		try {
 			String read = (String) ois.readObject();
 			String[] reads = read.split(" ");
-			if (reads[3].equals("次晨特快"))
+//			System.out.println(reads[0]+" 0 "+reads[1]+" 1 "+reads[2]);
+			if (reads[2].equals("次晨特快"))
 				oos.writeObject(new String("1"));
 			else {
 				double distance = new DistanceData().getdistance(reads[0], reads[1]);
 				int day = (int) (distance / 300);
+//				System.out.println(distance);
+//				System.out.println(day);
 				if (day == 0)
 					day = 1;
-				if (reads[3].equals("经济快递"))
+				if (reads[2].equals("经济快递"))
 					day++;
 				oos.writeObject(new String("" + day));
 			}

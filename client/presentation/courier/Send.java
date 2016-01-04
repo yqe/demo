@@ -16,6 +16,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.imageio.ImageIO;
@@ -86,6 +88,8 @@ public class Send {
 		// JTextField t17=new JTextField();
 		final MTextfield courier = new MTextfield();
 
+		final MTextfield id = new MTextfield();
+		
 		sender.settextFont();
 		senderinfo.settextFont();
 		sendertel.settextFont();
@@ -95,6 +99,14 @@ public class Send {
 		gettertel.settextFont();
 		gettersite.settextFont();
 
+		id.settextFont();
+		id.setBorder(BorderFactory.createEmptyBorder());
+		id.setOpaque(false);
+		
+		GoodsBl gbl=new GoodsBl(oos,ois);
+		id.setText(gbl.GetExpressID());
+		id.setEditable(false);
+		
 		goodsname.settextFont();
 		goodsweight.settextFont();
 		length.settextFont();
@@ -102,12 +114,15 @@ public class Send {
 		height.settextFont();
 		V.settextFont();
 		goodsinfo.settextFont();
-		price.settextFont();
+		price.settextFont();		
 		exceptedtime.settextFont();
 		courier.settextFont();
-
+		
+		Calendar c=Calendar.getInstance();
+		Date d=c.getTime();
 		final JTextField time = new JTextField();
-		final DatePicker datepick = new DatePicker(time);
+		final DatePicker datepick = new DatePicker(time,d);
+
 		// datepick.setLocale(Locale.CHINA);//设置显示语言
 		datepick.setBackground(Color.gray);
 		// datepick.setFieldForeground(Color.white);
@@ -224,6 +239,11 @@ public class Send {
 					double feedou = Double.valueOf(fee);
 					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
 					price.setText(String.valueOf(goodsprice));
+					
+					String days=goodsbl.Goodsgetdate(depaturebox.getSelectedItem().toString(), 
+							destinationbox.getSelectedItem().toString(), typebox.getSelectedItem().toString());
+
+		             exceptedtime.setText(days);
 				}
 			}
 		});
@@ -255,6 +275,11 @@ public class Send {
 					double feedou = Double.valueOf(fee);
 					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
 					price.setText(String.valueOf(goodsprice));
+					
+					String days=goodsbl.Goodsgetdate(depaturebox.getSelectedItem().toString(), 
+							destinationbox.getSelectedItem().toString(), typebox.getSelectedItem().toString());
+
+		             exceptedtime.setText(days);
 				}
 			}
 		});
@@ -269,9 +294,18 @@ public class Send {
 							destinationbox.getSelectedItem().toString());
 					double feedou = Double.valueOf(fee);
 					double goodsprice = (Double.valueOf(numbox.getSelectedItem().toString())) * feedou;
+					
 					price.setText(String.valueOf(goodsprice));
+					
+					System.out.print(goodsprice);
+					System.out.println("&&&&");
 					exceptedtime.setText(goodsbl.Goodsgetdate(depaturebox.getSelectedItem().toString(),
 							destinationbox.getSelectedItem().toString(), typebox.getSelectedItem().toString()));
+			
+					String days=goodsbl.Goodsgetdate(depaturebox.getSelectedItem().toString(), 
+							destinationbox.getSelectedItem().toString(), typebox.getSelectedItem().toString());
+
+		             exceptedtime.setText(days);
 				}
 			}
 		});
@@ -467,6 +501,7 @@ public class Send {
 		p1.add(destinationbox);
 
 		// p1.add(t17);
+		p1.add(id);
 		p1.add(courier);
 		p1.add(typebox);
 		p1.add(packagebox);
@@ -482,6 +517,13 @@ public class Send {
 
 		int size = 402;
 		int senderxloc = 573 - size, getterxloc = 1054 - size;
+		
+		exceptedtime.setEditable(false);
+		
+		
+		
+		
+		id.setBounds(891-402, 62, 228, 40);
 
 		sender.setBounds(senderxloc, 194, 167, 38);
 		senderinfo.setBounds(senderxloc, 303, 192, 58);
@@ -507,7 +549,7 @@ public class Send {
 
 		typebox.setBounds(1066 - size, 616, 161, 47);
 		packagebox.setBounds(557 - size, 671, 115, 27);
-		// price.setBounds(t1xloc + 450, t1yloc + 8 * interval, 120, 30);
+		 price.setBounds(585 - size+260, 717, 90, 39);
 		exceptedtime.setBounds(585 - size, 717, 164, 39);
 		// yearbox1.setBounds(t1xloc + 30, t1yloc + 8 * interval, 80, 30);
 		// monthbox1.setBounds(t1xloc + 120, t1yloc + 8 * interval, 80, 30);

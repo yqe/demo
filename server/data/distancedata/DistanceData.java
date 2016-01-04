@@ -33,7 +33,7 @@ public class DistanceData implements DistanceDataService{
 			return 0;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 			System.out.println("Some MySql problem has happened in getdistance!");
 			return 0;
 		}

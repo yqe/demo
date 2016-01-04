@@ -83,11 +83,12 @@ public class App
 //        	InputStorageList inslt=new InputStorageList();
 //        	inslt.addInputStoragePO(new InputStorageDocuPO("1111111111", "2015-01-04", "天津", "1", "3", "3", "4", "025000"));
 //       	input.InputStorageAdd(inslt);
-        	System.out.println(input.storagenum("025000", "2016-01-01", "2016-01-04"));
+        	//System.out.println(input.storagenum("025000", "2016-01-01", "2016-01-04"));
         	//System.out.println(look.getstorednum("025000"));
         	
 //        	System.out.println(look.findmoney("025000"));
         	//System.out.println(out.OutStorageNum("025000", "2015-01-04", "2016-01-06"));
+//        	System.out.println(dis.getdistance("北京", "上海"));
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

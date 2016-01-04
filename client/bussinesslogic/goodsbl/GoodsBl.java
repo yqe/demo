@@ -171,9 +171,10 @@ public class GoodsBl implements GoodsBLService {
 	public String Goodsgetdate(String depatureplace, String destination, String typebox) {
 		String re = null;
 		try {
+			System.out.println(typebox);
 			oos.writeUTF("Courier");
 			oos.writeUTF("GetArrivalDay");
-			oos.writeObject(new String(depatureplace + " " + " " + destination + " " + typebox));
+			oos.writeObject(new String(depatureplace + " " + destination + " " + typebox));
 			re = (String) ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
