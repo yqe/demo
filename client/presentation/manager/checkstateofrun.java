@@ -2,6 +2,7 @@ package manager;
 
 import image.ImageGet;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -46,20 +48,22 @@ public class checkstateofrun {
 		this.ois = ois;
 		this.emPO = emPO;
 	}
-	JPanel p1 = new JPanel() ;
-//	{
-//		public void paintComponent(Graphics g) {
-//			super.paintComponent(g);
-//			g.drawImage(background.getImage(), 0, 0, null);
-//		}
-//	};
+	JPanel p1 = new JPanel() 
+	{
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 	
 	public JPanel checkstateofrun() {
-//		new ImageGet();
-//		Image bgp = ImageGet.getImageByState("addemployee");
-//		background = new ImageIcon(bgp);
+		new ImageGet();
+		Image bgp = ImageGet.getImageByState("checkstateofrun");
+		background = new ImageIcon(bgp);
 
 		p1.setBounds(0, 0, 1029, 840);
+		p1.setOpaque(false);
+		p1.setLayout(null);
 		final JTextField time1 = new JTextField();
 		final DatePicker datepick1 = new DatePicker(time1);
 		// datepick1.setLocale(Locale.CHINA);// 设置显示语言
@@ -74,8 +78,6 @@ public class checkstateofrun {
 		datepick2.setEditorable(false);// 设置是否可编辑
 		datepick2.setPreferredSize(new Dimension(100, 30));// 设置大小
 
-		p1.add(datepick1);
-		p1.add(datepick2);
 
 		String[] columnnames = { "收款日期", "收款金额", "收款快递员", "订单条形码号", "营业厅编号" };
 		String[] columnnames2 = { "付款日期", "付款金额", "付款人", "付款人账号", "条目", "备注" };
@@ -108,9 +110,11 @@ public class checkstateofrun {
 												// ""
 
 		table2.setOpaque(false);
-		table2.getTableHeader().setOpaque(false);
+//		table2.getTableHeader().setOpaque(false);
 	
-
+        table.setForeground(Color.white);
+        table2.setForeground(Color.white);
+		
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -122,8 +126,6 @@ public class checkstateofrun {
 		jp2.setOpaque(false);
 		jp2.getViewport().setOpaque(false);
 
-		p1.add(jp1);
-		p1.add(jp2);
 
 		JButtonM okbtn = new JButtonM();
 //		okbtn.HideTheButton();
@@ -187,17 +189,25 @@ public class checkstateofrun {
 					Mdialog.showMessageDialog("抱歉，生成收款单Excel表格失败!");
 			}
 		});
+	
+		
+		
+		p1.add(datepick1);
+		p1.add(datepick2);
+		p1.add(jp1);
+		p1.add(jp2);
 		p1.add(okbtn);
 		
+		okbtn.setContentAreaFilled(false);
+		okbtn.setBorder(BorderFactory.createEmptyBorder());
 		
-		
-		
-		
-		datepick1.setBounds(207, 272, 174, 42);
-		datepick2.setBounds(453, 272, 174, 42);
+		datepick1.setBounds(238, 272+57, 174, 42);
+		datepick2.setBounds(484, 272+57, 174, 42);
+		table.setBounds(80, 400, 380, 282);
 		jp1.setBounds(80, 400, 380, 282);
-		jp2.setBounds(500, 400, 433, 282);
-		okbtn.setBounds(702, 272, 175, 42);
+		table2.setBounds(500, 400, 433, 282);
+		jp2.setBounds(500, 400, 453, 282);
+		okbtn.setBounds(721, 272+53, 190, 45);
 		return p1;
 	}
 

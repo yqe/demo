@@ -26,24 +26,26 @@ public class checkcostincome {
 		this.ois = ois;
 		this.emPO = emPO;
 	}
-	JPanel p1 = new JPanel();
-//	{
-//		public void paintComponent(Graphics g) {
-//			super.paintComponent(g);
-//			g.drawImage(background.getImage(), 0, 0, null);
-//		}
-//	};
+	JPanel p1 = new JPanel()
+	{
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(background.getImage(), 0, 0, null);
+		}
+	};
 
 	public JPanel checkcostincome() {
-//		new ImageGet();
-//		Image bgp = ImageGet.getImageByState("addemployee");
-//		background = new ImageIcon(bgp);
+		new ImageGet();
+		Image bgp = ImageGet.getImageByState("checkcostincome");
+		background = new ImageIcon(bgp);
 		
-		int Gapw = 470;
+		int Gapw = 420;
 		int textw = 175;
 		int texth = 42;
 
 		p1.setBounds(0, 0, 1029, 840);
+		p1.setOpaque(false);
+		p1.setLayout(null);
 		
 		MTextfield[] textfield = new MTextfield[] { new MTextfield(), new MTextfield(), new MTextfield() };
 		for (int i = 0; i < textfield.length; i++) {
@@ -52,9 +54,10 @@ public class checkcostincome {
 			textfield[i].setEditable(false);
 			p1.add(textfield[i]);
 		}
+		
 		textfield[0].setBounds(Gapw, 358, textw, texth);
-		textfield[1].setBounds(Gapw, 430, textw, texth);
-		textfield[2].setBounds(Gapw, 504, textw, texth);
+		textfield[1].setBounds(Gapw, 436, textw, texth);
+		textfield[2].setBounds(Gapw, 554, textw, texth);
 	
 		FinanceBl finance = new FinanceBl(oos, ois);
 		String s[] = finance.GetCostInfo();
