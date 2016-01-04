@@ -13,6 +13,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -26,6 +28,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import po.EmploeePO;
+import emploeebl.EmploeeBl;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,8 +46,10 @@ public class staffchange extends JDialog implements ActionListener {
 	private ImageIcon button1;
 	private int xx, yy;
 	private boolean isDraging;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
 	
-	staffchange() throws IOException {
+	staffchange(final String id,final String name,String position,final int salary,final int age,final String sfz,final String tel,final String sex,final String address,final String area,final String posID) throws IOException {
 		 new ImageGet();
 	        Image bgp=ImageGet.getImageByState("staffchange");
 		background = new ImageIcon(bgp);
@@ -78,6 +85,9 @@ public class staffchange extends JDialog implements ActionListener {
 		JTextField t7 = new JTextField();
 		JTextField t8 = new JTextField();
 		
+		t1.setText(id);t2.setText(name);t3.setText(String.valueOf(salary));t4.setText(String.valueOf(age));
+		t5.setText(sfz);t6.setText(tel);t7.setText(sex);t8.setText(address);			
+		
 		t1.setOpaque(false);
 		t1.setBorder(BorderFactory.createEmptyBorder());
 		t1.setForeground(Color.white);
@@ -105,9 +115,19 @@ public class staffchange extends JDialog implements ActionListener {
 
 	
 
-		String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
-		JComboBox job = new JComboBox(jobs);
+		
 
+		String[] jobs = { "营业厅业务员", "快递员", "中转中心业务员", "中转中心库存管理人员", "总经理", "财务人员", "管理员" };
+		final JComboBox job = new JComboBox(jobs);
+
+		for (int i = 0; i < jobs.length; i++) {
+			if (jobs[i].equals(position)) {
+				job.setSelectedIndex(i);
+				break;
+			}
+		}
+		
+		
 		JButton b3 = new JButton();
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -121,6 +141,10 @@ public class staffchange extends JDialog implements ActionListener {
 		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EmploeeBl embl=new EmploeeBl(oos, ois);
+				EmploeePO empo=new EmploeePO(job.getSelectedItem().toString(),id,name,salary,sex,age,
+						tel,sfz,address,area,posID);
+				embl.ModifyEmpInfo(empo);
 				Mdialog.showMessageDialog("修改成功!");
 			}
 

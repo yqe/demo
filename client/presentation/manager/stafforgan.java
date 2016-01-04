@@ -78,20 +78,20 @@ public class stafforgan extends JDialog implements ActionListener {
 		});
 
 		JButton b4 = new JButton();
-		b4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				staffchange sfc = null;
-				try {
-					sfc = new staffchange();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				sfc.setVisible(true);
-				stafforgan.this.setVisible(false);
-			}
-
-		});
+//		b4.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				staffchange sfc = null;
+//				try {
+//					sfc = new staffchange();
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				sfc.setVisible(true);
+//				stafforgan.this.setVisible(false);
+//			}
+//
+//		});
 		String[] columnnames = { "员工ID", "员工姓名", "职位" };
 		Object[][] data = { { "000001", "安德罗妮", "营业厅业务员" }, { "000002", "蒙太奇", "营业厅业务员" },
 				{ "000003", "囚徒", "营业厅业务员" } };

@@ -27,12 +27,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import emploeebl.EmploeeBl;
 import po.EmploeePO;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import login.MTextfield;
+import login.Mdialog;
 
 public class staff {
 	private JPanel imagePanel;
@@ -73,7 +75,7 @@ public class staff {
 		t1.setOpaque(false);
 		t1.setBorder(BorderFactory.createEmptyBorder());
 
-		JButton b4 = new JButton("确认");
+		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				stafforgan sfo = null;
@@ -91,12 +93,20 @@ public class staff {
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				staffchange sfc = null;
+				EmploeeBl embl=new EmploeeBl(oos, ois);
 				try {
 					if (!t1.getText().equals("")) {
-						sfc = new staffchange();
-						sfc.setVisible(true);
-					} else {
-						JOptionPane.showMessageDialog(null, "请输入员工ID!");
+						EmploeePO empo=embl.IDGetEmp(t1.getText());
+						if(empo.getPosition().equals("不存在")){
+							Mdialog.showMessageDialog( "没有该员工ID!");
+						}
+						else{
+						sfc = new staffchange(empo.getEmpID(),empo.getName(),empo.getPosition(),empo.getSalary(),
+								empo.getAge(),empo.getIdendity(),empo.getPhonenum(),empo.getSex(),empo.getAddress(),empo.getArea(),empo.getPosID());
+						sfc.setVisible(true);}
+					}
+					else {
+						Mdialog.showMessageDialog( "请输入员工ID!");
 					}
 
 				} catch (IOException e1) {
