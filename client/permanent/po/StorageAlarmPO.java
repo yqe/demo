@@ -1,6 +1,8 @@
 package po;
 
-public class StorageAlarmPO {
+import java.io.Serializable;
+
+public class StorageAlarmPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 库存报警
