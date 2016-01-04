@@ -90,7 +90,7 @@ public class CostMan {
 				CostManagePO cmpo = new CostManagePO(date, Double.valueOf(textfield[1].getText()),
 						textfield[2].getText(), textfield[3].getText(), textfield[4].getText(), textfield[5].getText());
 
-				if (isid && isnum && !isempty && cost.BuildCostManage(cmpo)) {
+				if (isid && !isnum && !isempty && cost.BuildCostManage(cmpo)) {
 					Mdialog.showMessageDialog("成功付款!");
 				} else if (!isempty && !isid) {
 					Mdialog.showMessageDialog("所输入账户ID非法!");
