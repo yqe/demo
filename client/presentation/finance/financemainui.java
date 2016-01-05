@@ -33,7 +33,7 @@ public class financemainui {
 	int width;
 	int height;
 	int cmdwidth;
-	JButtonM[] cmdbutton = new JButtonM[] { new JButtonM("返回登录界面"), new JButtonM("账户管理"), new JButtonM("查看收款单"),
+	JButtonM[] cmdbutton = new JButtonM[] { new JButtonM(), new JButtonM("账户管理"), new JButtonM("查看收款单"),
 			new JButtonM("成本管理"), new JButtonM("成本收益表"), new JButtonM("经营情况表"), new JButtonM("期初建账"),
 			new JButtonM("退出") };
 	private Socket socket;

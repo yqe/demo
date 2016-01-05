@@ -1,7 +1,9 @@
 package finance;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -49,6 +52,22 @@ public class CheckBill {
 		content.add(datepick);
 
 		final MTextfield hallno = new MTextfield();
+		
+		final MTextfield total=new MTextfield();
+		
+		total.settextFont();
+		total.HideTheField();
+		total.setEditable(false);
+		
+		JLabel totallabel=new JLabel("总收款金额:");
+		
+		totallabel.setFont(new Font("幼圆",Font.BOLD,24));
+		totallabel.setForeground(Color.white);
+		
+		totallabel.setBounds(680, 249, 150, 40);
+		
+		total.setBounds(830, 249, 150, 40);
+		
 		hallno.settextFont();
 		hallno.HideTheField();
 		hallno.setBounds(244, 298, 175, 42);
@@ -93,9 +112,12 @@ public class CheckBill {
 		timecheck.HideTheButton();
 		timecheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) bill.getModel();
+				model.setRowCount(0);
 				String date = datepick.getText();
 				Earneddocu earneddocu = new Earneddocu(oos, ois);
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("day", date);
+				 double totalmoney=0;
 				if (epolist.GetIndex(0).getPaydate().equals("不存在")) {
 					Mdialog.showMessageDialog("当天没有收款单!");
 				} else {
@@ -103,9 +125,11 @@ public class CheckBill {
 						Object[] add = { epolist.GetIndex(i).getPaydate(), epolist.GetIndex(i).getEarnedmoney(),
 								epolist.GetIndex(i).getDilivername(), epolist.GetIndex(i).getOrderID(),
 								epolist.GetIndex(i).getBussinessID() };
-						DefaultTableModel model = (DefaultTableModel) bill.getModel();
-						model.insertRow(model.getRowCount(), add);
-					}
+						model.insertRow(model.getRowCount(), add);	
+						totalmoney+=epolist.GetIndex(i).getEarnedmoney();			
+					}				
+			     	total.setText(String.valueOf(totalmoney));
+					
 				}
 			}
 		});
@@ -115,21 +139,24 @@ public class CheckBill {
 		hallcheck.HideTheButton();
 		hallcheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) bill.getModel();
+				model.setRowCount(0);
 				String id = hallno.getText();
 				// System.out.println(id);
 				Earneddocu earneddocu = new Earneddocu(oos, ois);
 				EarnedPOList epolist = earneddocu.GetEarnedDocu("ID", id);
-
+				 double totalmoney=0;
 				if (epolist.GetIndex(0).getPaydate().equals("不存在")) {
-					Mdialog.showMessageDialog("该营业厅尚无没有收款单!");
+					Mdialog.showMessageDialog("该营业厅尚无收款单!");
 				} else {
 					for (int i = 0; i < epolist.Getsize(); i++) {
 						Object[] add = { epolist.GetIndex(i).getPaydate(), epolist.GetIndex(i).getEarnedmoney(),
 								epolist.GetIndex(i).getDilivername(), epolist.GetIndex(i).getOrderID(),
 								epolist.GetIndex(i).getBussinessID() };
-						DefaultTableModel model = (DefaultTableModel) bill.getModel();
 						model.insertRow(model.getRowCount(), add);
+						totalmoney+=epolist.GetIndex(i).getEarnedmoney();
 					}
+					total.setText(String.valueOf(totalmoney));
 				}
 			}
 		});
@@ -138,9 +165,11 @@ public class CheckBill {
 		jp.getViewport().setOpaque(false);
 		jp.setBounds(91, 420, 746, 283);
 
+		content.add(totallabel);
 		content.add(jp);
 		content.add(timecheck);
 		content.add(hallcheck);
+		content.add(total);
 		content.add(hallno);
 	}
 

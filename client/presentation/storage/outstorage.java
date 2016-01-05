@@ -109,16 +109,14 @@ public class outstorage {
 	    datepick.setEditorable(false);//设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 
-		String[] site = { "南京", "上海", "北京", "杭州", "广州", "苏州", "成都", "武汉" };
+		String[] site = { "南京", "上海", "北京", "广州"};
 		final JComboBox sitebox = new JComboBox(site);
 
 		String[] type = { "汽车", "火车", "飞机" };
 		final JComboBox typebox = new JComboBox(type);
 
 		String[] columnnames = { "", "", "", "" };
-		Object[][] data = { { "000001", "2015年9月27日", "上海", "火车"},
-				{ "000002", "2015年9月27日", "南京", "汽车" }, { "000003", "2015年9月27日", "北京", "飞机"},
-
+		Object[][] data = { 
 		};
 
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);

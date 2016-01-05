@@ -14,6 +14,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.imageio.ImageIO;
@@ -84,7 +86,7 @@ public class arrival {
 		
 		Color text=new Color(175,172,172);
 		
-		String[] site = { "南京", "上海", "北京", "杭州", "广州", "苏州", "成都", "武汉" };
+		String[] site = { "南京", "上海", "北京", "广州" };
 		final JComboBox sitebox = new JComboBox(site);
 		 sitebox.setBackground(text);
 		 sitebox.setForeground(Color.white);
@@ -95,9 +97,7 @@ public class arrival {
 			statebox.setForeground(Color.white);
 
 		String[] columnnames = { "", "", "", "", "" };
-		Object[][] data = { { "000001", "2015年9月27日", "上海", "完整", "0000001" },
-				{ "000002", "2015年9月27日", "南京", "完整", "0000151" }, { "000003", "2015年9月27日", "北京", "完整", "0000202" },
-
+		Object[][] data = { 
 		};
 
 		DefaultTableModel model = new DefaultTableModel(data, columnnames);
@@ -135,27 +135,30 @@ public class arrival {
 		jp.getViewport().setOpaque(false);
 		
 		final JTextField time = new JTextField();
-		final DatePicker datepick = new DatePicker(time);
+		Calendar c=Calendar.getInstance();
+		Date d=c.getTime();
+		final DatePicker datepick = new DatePicker(time,d);
 		datepick.setOpaque(false);
-		datepick.setLocale(Locale.CHINA);//设置显示语言
+//		datepick.setLocale(Locale.CHINA);//设置显示语言
 	    datepick.setPattern("yyyy-MM-dd");//设置日期格式化字符串
 	    datepick.setEditorable(false);//设置是否可编辑
 		datepick.setPreferredSize(new Dimension(150,38));//设置大小
 
 		JButton b4 = new JButton();
 		b4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {			
 				String date = datepick.getText();
 				String place = (String) sitebox.getSelectedItem();
 				String state = (String) statebox.getSelectedItem();
 				HallArrivalDocu bussari = new HallArrivalDocu(oos,ois);
-				boolean IsOk = bussari.BuildHallArrivalDocu(
-						new BussinessArrivalDocuPO(date, t2.getText(), place, state, t1.getText()));
-				if (IsOk) {
-					Mdialog.showMessageDialog("成功建立到达单!");
-				} else {
-					Mdialog.showMessageDialog("建立到达单失败!");
-				}
+				BussinessArrivalDocuPO badpo=new BussinessArrivalDocuPO(date, t2.getText(), place, state, t1.getText());
+//                System.out.println(date+" "+t2.getText()+" "+place+" "+state+" "+t1.getText());
+//                System.out.println(badpo.getArrivaltime()+badpo.getBussinessID());
+				boolean isok=bussari.BuildHallArrivalDocu(badpo);
+				System.out.println(isok);
+				Object[] add={date, t2.getText(), place, state, t1.getText()};
+				DefaultTableModel model = (DefaultTableModel) table.getModel();            
+				model.insertRow(model.getRowCount(), add);
 
 				// System.out.println(model.getRowCount());
 			}
@@ -181,7 +184,7 @@ public class arrival {
 		JButton b6 = new JButton();
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				Mdialog.showMessageDialog("成功建立到达单!");
 			}
 
 		});
@@ -214,9 +217,12 @@ public class arrival {
 		
 
 		
-        b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
-        b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
-        b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
+        b4.setContentAreaFilled(false);
+        b4.setBorder(BorderFactory.createEmptyBorder());
+        b5.setContentAreaFilled(false);
+        b5.setBorder(BorderFactory.createEmptyBorder());
+        b6.setContentAreaFilled(false);
+        b6.setBorder(BorderFactory.createEmptyBorder());
         
 		int xloc=184,yloc=128,length=150,width=38,interval=58;
 		

@@ -75,9 +75,10 @@ public class HallClerkInfoStream {
 	private void ArrivalBill(ObjectInputStream ois, ObjectOutputStream oos) {
 		BussinessArrivalDocu bad = new BussinessArrivalDocu();
 		try {
+			String dd=(String)ois.readObject();
 			BussinessArrivalDocuPO badpo = (BussinessArrivalDocuPO) ois.readObject();
 			boolean isok = bad.insert(badpo);
-			oos.writeBoolean(new Boolean(isok));
+//			oos.writeBoolean(new Boolean(isok));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -101,7 +101,7 @@ public class transit {
 //	    datepick.setEditorable(true);//设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100,40));//设置大小
 
-		String[] site = { "南京", "上海", "北京", "杭州", "广州", "苏州", "成都", "武汉" };
+		String[] site = { "南京", "上海", "北京","广州" };
 		final JComboBox sitebox = new JComboBox(site);
 
 		String[] state = { "损坏", "完整", "丢失" };

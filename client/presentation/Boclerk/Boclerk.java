@@ -132,8 +132,9 @@ public class Boclerk {
 		MTextfield idt=new MTextfield();
 		MTextfield namet=new MTextfield();
 		MTextfield jobt=new MTextfield();
+		MTextfield sitet=new MTextfield();
 		
-		idt.settextFont();namet.settextFont();jobt.settextFont();
+		idt.settextFont();namet.settextFont();jobt.settextFont();sitet.settextFont();
 		
 		idt.setOpaque(false);
 		idt.setEditable(false);
@@ -144,18 +145,23 @@ public class Boclerk {
 		jobt.setOpaque(false);
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());	
+		
+		sitet.HideTheField();
+		sitet.setEditable(false);
 	
-		namet.setBounds(120, 90, 150, 35);
-		jobt.setBounds(120, 140, 200, 35);		
-		idt.setBounds(82, 228, 150, 30);		
+		namet.setBounds(150, 100, 150, 35);
+		jobt.setBounds(150, 150, 200, 35);		
+		idt.setBounds(92, 238, 150, 30);	
+		sitet.setBounds(220, 238, 150, 30);
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText(emPO.getPosition());
-	
+	    sitet.setText(emPO.getPosID());
 	
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);	
+		control.add(sitet);	
 		control.add(b3);
 		control.add(b4);
 		control.add(b5);
@@ -166,10 +172,14 @@ public class Boclerk {
 		
 		b3.setContentAreaFilled(false);
 		b3.setBorder(BorderFactory.createEmptyBorder());
-		b4.setContentAreaFilled(false);b4.setBorder(BorderFactory.createEmptyBorder());
-		b5.setContentAreaFilled(false);b5.setBorder(BorderFactory.createEmptyBorder());
-		b6.setContentAreaFilled(false);b6.setBorder(BorderFactory.createEmptyBorder());
-		b7.setContentAreaFilled(false);b7.setBorder(BorderFactory.createEmptyBorder());
+		b4.setContentAreaFilled(false);
+		b4.setBorder(BorderFactory.createEmptyBorder());
+		b5.setContentAreaFilled(false);
+		b5.setBorder(BorderFactory.createEmptyBorder());
+		b6.setContentAreaFilled(false);
+		b6.setBorder(BorderFactory.createEmptyBorder());
+		b7.setContentAreaFilled(false);
+		b7.setBorder(BorderFactory.createEmptyBorder());
 		
 		b3.setBounds(b4xloc, b4yloc + 298, 250, 62);
 		b4.setBounds(b4xloc, b4yloc, 250, 45);

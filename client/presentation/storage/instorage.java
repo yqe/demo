@@ -120,7 +120,7 @@ public class instorage {
     datepick.setEditorable(false);//设置是否可编辑
 	datepick.setPreferredSize(new Dimension(100,30));//设置大小
    
-   String[] site ={"南京","上海","北京","杭州","广州","苏州","成都","武汉"};
+   String[] site ={"南京","上海","北京","广州"};
    final JComboBox sitebox = new JComboBox(site);
     
 //	final String date=(String) yearbox.getSelectedItem()+monthbox.getSelectedItem()+daybox.getSelectedItem();

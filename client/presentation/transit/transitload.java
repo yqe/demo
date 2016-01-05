@@ -119,7 +119,7 @@ public class transitload {
 //	    datepick.setEditorable(false);//设置是否可编辑
 		datepick.setPreferredSize(new Dimension(100,30));//设置大小
 
-		String[] site = { "上海", "北京", "南京", "深圳", "广州", "杭州" };
+		String[] site = { "上海", "北京", "南京", "广州" };
 	
 //		Color text=new Color(0,0,0);
 		

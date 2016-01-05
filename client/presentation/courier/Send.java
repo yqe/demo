@@ -199,14 +199,14 @@ public class Send {
 		packagebox.setFont(new Font("幼圆", Font.BOLD, 18));
 		packagebox.setOpaque(false);
 
-		String[] depature = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
+		String[] depature = { "南京", "广州", "上海", "北京" };
 		final JComboBox depaturebox = new JComboBox(depature);
 		depaturebox.setBackground(Color.gray);
 		depaturebox.setForeground(Color.white);
 		depaturebox.setFont(new Font("幼圆", Font.BOLD, 18));
 		depaturebox.setOpaque(false);
 
-		String[] destination = { "南京", "广州", "上海", "北京", "深圳", "苏州" };
+		String[] destination = { "南京", "广州", "上海", "北京"};
 		final JComboBox destinationbox = new JComboBox(destination);
 		destinationbox.setBackground(Color.gray);
 		destinationbox.setForeground(Color.white);

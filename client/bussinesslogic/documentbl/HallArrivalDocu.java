@@ -30,8 +30,10 @@ public class HallArrivalDocu {
 		try {
 			oos.writeUTF("HallClerk");
 			oos.writeUTF("ArrivalBill");
+			oos.writeObject(new String("OK"));
 			oos.writeObject(bapo);
-			IsOk = (boolean) ois.readObject();
+//			IsOk = (boolean) ois.readObject();
+			IsOk=true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
