@@ -144,10 +144,13 @@ public class storagemain {
 		MTextfield idt = new MTextfield();
 		MTextfield namet = new MTextfield();
 		MTextfield jobt = new MTextfield();
+		
+		MTextfield posid = new MTextfield();
 
 		idt.settextFont();
 		namet.settextFont();
 		jobt.settextFont();
+		posid.settextFont();
 
 		idt.setOpaque(false);
 		idt.setEditable(false);
@@ -158,18 +161,24 @@ public class storagemain {
 		jobt.setOpaque(false);
 		jobt.setEditable(false);
 		jobt.setBorder(BorderFactory.createEmptyBorder());
+		
+		posid.HideTheField();posid.setEditable(false);
 
 		namet.setBounds(120, 90, 150, 35);
 		jobt.setBounds(120, 140, 200, 35);
 		idt.setBounds(82, 225, 150, 30);
+		
+		posid.setBounds(160, 225, 150, 30);
 
 		idt.setText(emPO.getEmpID());
 		namet.setText(emPO.getName());
 		jobt.setText("库存管理人员");// 因为显示不下所以填的这个
-
+        posid.setText(emPO.getPosID());
+		
 		control.add(idt);
 		control.add(namet);
 		control.add(jobt);
+		control.add(posid);
 
 		control.add(b3);
 		control.add(b4);

@@ -88,7 +88,7 @@ public class countstorage {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(false);
 		table.setOpaque(false);
-		table.setForeground(Color.white);
+//		table.setForeground(Color.white);
 		table.getTableHeader().setOpaque(false);
 		
 		TableColumn Column0 = table.getColumnModel().getColumn(0); 

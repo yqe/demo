@@ -90,18 +90,8 @@ public class manager {
 		manager.setLayout(null);
 
 		final Strategy strategy = new Strategy(oos, ois, emPO);
-		final deleteemployee delete = new deleteemployee(oos, ois, emPO);
-		final addemployee add = new addemployee(oos, ois, emPO);
-		final checkdocuments cd = new checkdocuments(oos, ois, emPO);
-		final approve a = new approve(oos, ois, emPO);
-		final staff sf = new staff(oos, ois, emPO);
 
 		strategypanel = strategy.Panel();
-		deleteempopanel = delete.Panel();
-		addempopanel = add.Panel();
-		approvepanel = a.Panel();
-		staffpanel = sf.Panel();
-		checkdocumentspanel = cd.Panel(cdp);
 
 		control.setBounds(0, 0, size, 840);
 		content.setBounds(size, 0, 1029, 840);
@@ -124,6 +114,13 @@ public class manager {
 		JButton b5 = new JButton();
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				final approve a = new approve(oos, ois, emPO);
+				try {
+					approvepanel = a.Panel();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				changepanel(approvepanel);
 			}
 
@@ -132,6 +129,13 @@ public class manager {
 		JButton b6 = new JButton();
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				final checkdocuments cd = new checkdocuments(oos, ois, emPO);
+				try {
+					checkdocumentspanel = cd.Panel(cdp);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				changepanel(checkdocumentspanel);
 				// cd.Panel(content).repaint();
 				// content.setBounds(size, 0, content.getWidth(),
@@ -142,6 +146,13 @@ public class manager {
 		JButton b7 = new JButton();
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				final staff sf = new staff(oos, ois, emPO);
+				try {
+					staffpanel = sf.Panel();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				changepanel(staffpanel);
 			}
 
@@ -149,6 +160,13 @@ public class manager {
 		JButton b8 = new JButton();
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				final addemployee add = new addemployee(oos, ois, emPO);
+				try {
+					addempopanel = add.Panel();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				changepanel(addempopanel);
 			}
 
@@ -156,6 +174,13 @@ public class manager {
 		JButton b9 = new JButton();
 		b9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				final deleteemployee delete = new deleteemployee(oos, ois, emPO);
+				try {
+					deleteempopanel = delete.Panel();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				changepanel(deleteempopanel);
 			}
 

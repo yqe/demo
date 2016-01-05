@@ -12,7 +12,7 @@ public class ReadIP {
 	public static String ReturnIP() {
 		try {
 			String encoding = "UTF-8";
-			File file = new File("clientmain/GetIP.txt");
+			File file = new File("D:/GetIP.txt");
 			if (file.isFile() && file.exists()) {
 				InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);
 				BufferedReader bufferedReader = new BufferedReader(read);
