@@ -88,7 +88,7 @@ public class financemainui {
 		contain.add(cmdpanel);
 		contain.add(content);
 
-		new AccountMan(oos, ois, emPO).AccMan(content);
+		new CheckBill(oos, ois, emPO).CheckBill(content);
 		ContentRepaint();
 		return contain;
 	}
@@ -131,9 +131,12 @@ public class financemainui {
 		public void actionPerformed(ActionEvent e) {
 			switch (e.getActionCommand()) {
 			case "账户管理":
-				new AccountMan(oos, ois, emPO).AccMan(content);
-				ContentRepaint();
-				break;
+				if (emPO.getEmpID().charAt(0) == '*') {
+					new AccountMan(oos, ois, emPO).AccMan(content);
+					ContentRepaint();
+					break;
+				} else
+					break;
 			case "查看收款单":
 				new CheckBill(oos, ois, emPO).CheckBill(content);
 				ContentRepaint();
